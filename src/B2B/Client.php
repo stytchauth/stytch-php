@@ -9,19 +9,19 @@
 namespace Stytch\B2B;
 
 use Stytch\Core\Client as CoreClient;
-use Stytch\Core\ApiBase;
 use Stytch\Shared\PolicyCache;
-use Stytch\B2B\Api\ConnectedApp;
+use Stytch\Consumer\Api\ConnectedApp;
 use Stytch\B2B\Api\Discovery;
-use Stytch\B2B\Api\Fraud;
+use Stytch\Consumer\Api\Fraud;
+use Stytch\B2B\Api\IDP;
 use Stytch\B2B\Api\Impersonation;
-use Stytch\B2B\Api\M2M;
+use Stytch\Consumer\Api\M2M;
 use Stytch\B2B\Api\MagicLinks;
 use Stytch\B2B\Api\OAuth;
 use Stytch\B2B\Api\OTPs;
 use Stytch\B2B\Api\Organizations;
 use Stytch\B2B\Api\Passwords;
-use Stytch\B2B\Api\Project;
+use Stytch\Consumer\Api\Project;
 use Stytch\B2B\Api\RBAC;
 use Stytch\B2B\Api\RecoveryCodes;
 use Stytch\B2B\Api\SCIM;
@@ -43,6 +43,7 @@ class Client
     public ConnectedApp $connected_app;
     public Discovery $discovery;
     public Fraud $fraud;
+    public IDP $idp;
     public Impersonation $impersonation;
     public M2M $m2m;
     public MagicLinks $magic_links;
@@ -67,25 +68,26 @@ class Client
     ) {
         $this->projectId = $projectId;
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
-        
+
         $this->policyCache = new PolicyCache();
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->discovery = new Discovery($this->client);
         $this->fraud = new Fraud($this->client);
-        $this->impersonation = new Impersonation($this->client, $this->policyCache);
+        $this->idp = new IDP($this->client);
+        $this->impersonation = new Impersonation($this->client);
         $this->m2m = new M2M($this->client, $this->projectId);
-        $this->magic_links = new MagicLinks($this->client, $this->policyCache);
-        $this->oauth = new OAuth($this->client, $this->policyCache);
+        $this->magic_links = new MagicLinks($this->client);
+        $this->oauth = new OAuth($this->client);
         $this->otps = new OTPs($this->client);
-        $this->organizations = new Organizations($this->client, $this->policyCache);
-        $this->passwords = new Passwords($this->client, $this->policyCache);
+        $this->organizations = new Organizations($this->client);
+        $this->passwords = new Passwords($this->client);
         $this->project = new Project($this->client);
-        $this->rbac = new RBAC($this->client, $this->policyCache);
-        $this->recovery_codes = new RecoveryCodes($this->client, $this->policyCache);
+        $this->rbac = new RBAC($this->client);
+        $this->recovery_codes = new RecoveryCodes($this->client);
         $this->scim = new SCIM($this->client);
-        $this->sso = new SSO($this->client, $this->policyCache);
+        $this->sso = new SSO($this->client);
         $this->sessions = new Sessions($this->client, $this->projectId, $this->policyCache);
-        $this->totps = new TOTPs($this->client, $this->policyCache);
+        $this->totps = new TOTPs($this->client);
     }
 }

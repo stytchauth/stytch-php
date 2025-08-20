@@ -10,17 +10,41 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class External
+class SSOExternal
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Create a new External SSO Connection.
+
+         * @param \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
+         */
+    public function createConnection(\Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/sso/external/{organization_id}', $data);
+        return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse::fromArray($response);
+    }
+
+    /**
+        * Updates an existing External SSO connection.
+
+         * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
+         */
+    public function updateConnection(\Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->put('/v1/b2b/sso/external/{organization_id}/connections/{connection_id}', $data);
+        return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse::fromArray($response);
     }
 
 }

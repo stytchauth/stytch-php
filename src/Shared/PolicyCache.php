@@ -17,7 +17,7 @@ class PolicyCache
 
     /**
      * Get a cached policy
-     * 
+     *
      * @param string $key Policy cache key
      * @return array|null Cached policy data or null if not found/expired
      */
@@ -28,7 +28,7 @@ class PolicyCache
         }
 
         $cached = $this->policies[$key];
-        
+
         // Check if expired
         if (time() > $cached['expires_at']) {
             unset($this->policies[$key]);
@@ -40,7 +40,7 @@ class PolicyCache
 
     /**
      * Store a policy in cache
-     * 
+     *
      * @param string $key Policy cache key
      * @param array $policy Policy data
      */
@@ -54,7 +54,7 @@ class PolicyCache
 
     /**
      * Clear a specific policy from cache
-     * 
+     *
      * @param string $key Policy cache key
      */
     public function clear(string $key): void
@@ -72,7 +72,7 @@ class PolicyCache
 
     /**
      * Generate cache key for organization and member
-     * 
+     *
      * @param string $organizationId Organization ID
      * @param string $memberId Member ID
      * @return string Cache key
@@ -84,7 +84,7 @@ class PolicyCache
 
     /**
      * Check if user has permission for a resource
-     * 
+     *
      * @param array $policy User's policy
      * @param string $resource Resource identifier
      * @param string $action Action to check (e.g., 'read', 'write')
@@ -95,9 +95,9 @@ class PolicyCache
         // Simple permission checking logic
         // In a real implementation, this would be more sophisticated
         $permissions = $policy['permissions'] ?? [];
-        
+
         foreach ($permissions as $permission) {
-            if ($permission['resource'] === $resource && 
+            if ($permission['resource'] === $resource &&
                 in_array($action, $permission['actions'] ?? [])) {
                 return true;
             }

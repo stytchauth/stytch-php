@@ -21,4 +21,23 @@ class Impersonation
 
     }
 
+    /**
+        * Authenticate an impersonation token to impersonate a User. This endpoint requires an impersonation token
+        * that is not expired or previously used.
+        * A Stytch session will be created for the impersonated user with a 60 minute duration. Impersonated
+        * sessions cannot be extended.
+        *
+        * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
+        * user, and clicking the `Impersonate User` button.
+
+         * @param \Stytch\Consumer\Models\Impersonation\AuthenticateRequest|array $request
+         * @return \Stytch\Consumer\Models\Impersonation\AuthenticateResponse
+         */
+    public function authenticate(\Stytch\Consumer\Models\Impersonation\AuthenticateRequest|array $request): \Stytch\Consumer\Models\Impersonation\AuthenticateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/impersonation/authenticate', $data);
+        return \Stytch\Consumer\Models\Impersonation\AuthenticateResponse::fromArray($response);
+    }
+
 }

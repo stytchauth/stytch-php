@@ -14,11 +14,15 @@ class Discovery
 {
     private Client $client;
 
+    public DiscoveryIntermediateSessions $intermediateSessions;
+    public DiscoveryOrganizations $organizations;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
 
+        $this->intermediateSessions = new DiscoveryIntermediateSessions($this->client);
+        $this->organizations = new DiscoveryOrganizations($this->client);
     }
 
 }

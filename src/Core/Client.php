@@ -25,7 +25,7 @@ class Client
     ) {
         $this->projectId = $projectId;
         $this->secret = $secret;
-        
+
         // Determine API base URL
         if ($customBaseUrl) {
             $this->apiBase = $customBaseUrl;
@@ -35,8 +35,8 @@ class Client
             $this->apiBase = 'https://test.stytch.com';
         } else {
             // Auto-detect based on project ID
-            $this->apiBase = str_starts_with($projectId, 'project-live-') 
-                ? 'https://api.stytch.com' 
+            $this->apiBase = str_starts_with($projectId, 'project-live-')
+                ? 'https://api.stytch.com'
                 : 'https://test.stytch.com';
         }
 
@@ -80,9 +80,9 @@ class Client
     /**
      * Make a DELETE request
      */
-    public function delete(string $path): array
+    public function delete(string $path, array $data = []): array
     {
-        return $this->request('DELETE', $path);
+        return $this->request('DELETE', $path, ['json' => $data]);
     }
 
     /**
@@ -91,20 +91,74 @@ class Client
     private function request(string $method, string $path, array $options = []): array
     {
         try {
-            $url = $this->apiBase . $path;
+            // Extract parameters from both JSON and query data for path substitution
+            $jsonData = $options['json'] ?? [];
+            $queryData = $options['query'] ?? [];
+            $allParams = array_merge($queryData, $jsonData); // JSON takes precedence
+
+            $processedPath = $this->substitutePath($path, $allParams);
+
+            // Remove path parameters from request data to avoid sending them in the body/query
+            if (isset($options['json'])) {
+                $cleanedJson = $this->removePathParams($path, $jsonData);
+                if (empty($cleanedJson)) {
+                    // Remove the json option entirely if it's empty to avoid sending [] instead of {}
+                    unset($options['json']);
+                } else {
+                    $options['json'] = $cleanedJson;
+                }
+            }
+            if (isset($options['query'])) {
+                $options['query'] = $this->removePathParams($path, $queryData);
+            }
+
+            $url = $this->apiBase . $processedPath;
             $response = $this->httpClient->request($method, $url, $options);
-            
+
             $body = $response->getBody()->getContents();
             $data = json_decode($body, true);
-            
+
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \RuntimeException('Invalid JSON response: ' . json_last_error_msg());
             }
-            
+
             return $data;
         } catch (RequestException $e) {
             $this->handleRequestException($e);
         }
+    }
+
+    /**
+     * Substitute path parameters in the URL path
+     */
+    private function substitutePath(string $path, array $data): string
+    {
+        return preg_replace_callback('/\{([^}]+)\}/', function ($matches) use ($data) {
+            $paramName = $matches[1];
+            if (isset($data[$paramName])) {
+                return $data[$paramName];
+            }
+            return $matches[0]; // Return unchanged if parameter not found
+        }, $path);
+    }
+
+    /**
+     * Remove path parameters from request data
+     */
+    private function removePathParams(string $path, array $data): array
+    {
+        $pathParams = [];
+        preg_replace_callback('/\{([^}]+)\}/', function ($matches) use (&$pathParams) {
+            $pathParams[] = $matches[1];
+            return $matches[0];
+        }, $path);
+
+        $cleanedData = $data;
+        foreach ($pathParams as $param) {
+            unset($cleanedData[$param]);
+        }
+
+        return $cleanedData;
     }
 
     /**
@@ -113,17 +167,17 @@ class Client
     private function handleRequestException(RequestException $e): void
     {
         $response = $e->getResponse();
-        
+
         if ($response) {
             $statusCode = $response->getStatusCode();
             $body = $response->getBody()->getContents();
-            
+
             $errorData = json_decode($body, true);
             $errorMessage = $errorData['error_message'] ?? 'HTTP ' . $statusCode . ' error';
-            
+
             throw new StytchException($errorMessage, $statusCode, $errorData);
         }
-        
+
         throw new StytchException('Network error: ' . $e->getMessage(), 0);
     }
 

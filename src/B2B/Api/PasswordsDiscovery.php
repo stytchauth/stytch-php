@@ -10,17 +10,41 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class Discovery
+class PasswordsDiscovery
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
+    public PasswordsDiscoveryEmail $email;
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+        $this->email = new PasswordsDiscoveryEmail($this->client);
+    }
+
+    /**
+        * Authenticate an email/password combination in the discovery flow. This authenticate flow is only valid
+        * for cross-org passwords use cases, and is not tied to a specific organization.
+        *
+        * If you have breach detection during authentication enabled in your
+        * [password strength policy](https://stytch.com/docs/b2b/guides/passwords/strength-policies) and the
+        * member's credentials have appeared in the HaveIBeenPwned dataset, this endpoint will return a
+        * `member_reset_password` error even if the member enters a correct password. We force a password reset in
+        * this case to ensure that the member is the legitimate owner of the email address and not a malicious
+        * actor abusing the compromised credentials.
+        *
+        * If successful, this endpoint will create a new intermediate session and return a list of discovered
+        * organizations that can be session exchanged into.
+
+         * @param \Stytch\B2B\Models\Passwords\Discovery\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse
+         */
+    public function authenticate(\Stytch\B2B\Models\Passwords\Discovery\AuthenticateRequest|array $request): \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/passwords/discovery/authenticate', $data);
+        return \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse::fromArray($response);
     }
 
 }

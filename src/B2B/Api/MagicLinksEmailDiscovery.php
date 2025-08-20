@@ -10,17 +10,28 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class Discovery
+class MagicLinksEmailDiscovery
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Send a discovery magic link to an email address. The magic link is valid for 60 minutes.
+
+         * @param \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
+         */
+    public function send(\Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request): \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/magic_links/email/discovery/send', $data);
+        return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse::fromArray($response);
     }
 
 }

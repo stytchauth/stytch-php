@@ -1,0 +1,46 @@
+# Dependencies
+/vendor/
+
+# Composer
+composer.lock
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment files
+.env
+.envrc
+.env.local
+.env.*.local
+
+# Test coverage
+/coverage-html/
+/coverage/
+*.coverage
+
+# PHPUnit and fixer
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Claude Code
+.claude/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.php.cs.fixer.cache

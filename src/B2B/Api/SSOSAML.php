@@ -10,17 +10,82 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class SAML
+class SSOSAML
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Create a new SAML Connection.
+
+         * @param \Stytch\B2B\Models\SSO\SAML\CreateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse
+         */
+    public function createConnection(\Stytch\B2B\Models\SSO\SAML\CreateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/sso/saml/{organization_id}', $data);
+        return \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse::fromArray($response);
+    }
+
+    /**
+        * Updates an existing SAML connection.
+        *
+        * Note that a newly created connection will not become active until all of the following are provided:
+        * * `idp_sso_url`
+        * * `attribute_mapping`
+        * * `idp_entity_id`
+        * * `x509_certificate`
+
+         * @param \Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse
+         */
+    public function updateConnection(\Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}', $data);
+        return \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse::fromArray($response);
+    }
+
+    /**
+        * Used to update an existing SAML connection using an IDP metadata URL.
+        *
+        * A newly created connection will not become active until all the following are provided:
+        * * `idp_sso_url`
+        * * `idp_entity_id`
+        * * `x509_certificate`
+        * * `attribute_mapping` (must be supplied using [Update SAML Connection](update-saml-connection))
+
+         * @param \Stytch\B2B\Models\SSO\SAML\UpdateByURLRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse
+         */
+    public function updateByURL(\Stytch\B2B\Models\SSO\SAML\UpdateByURLRequest|array $request): \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/url', $data);
+        return \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse::fromArray($response);
+    }
+
+    /**
+        * Delete a SAML verification certificate.
+        *
+        * You may need to do this when rotating certificates from your IdP, since Stytch allows a maximum of 5
+        * certificates per connection. There must always be at least one certificate per active connection.
+
+         * @param \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse
+         */
+    public function deleteVerificationCertificate(\Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequest|array $request): \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->delete('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/verification_certificates/{certificate_id}', $data);
+        return \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse::fromArray($response);
     }
 
 }

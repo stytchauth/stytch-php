@@ -14,11 +14,52 @@ class MagicLinks
 {
     private Client $client;
 
+    public MagicLinksEmail $email;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
 
+        $this->email = new MagicLinksEmail($this->client);
+    }
+
+    /**
+        * Authenticate a User given a Magic Link. This endpoint verifies that the Magic Link token is valid,
+        * hasn't expired or been previously used, and any optional security settings such as IP match or user
+        * agent match are satisfied.
+
+         * @param \Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request
+         * @return \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse
+         */
+    public function authenticate(\Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request): \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/magic_links/authenticate', $data);
+        return \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+        * Create an Embeddable Magic Link token for a User. Access to this endpoint is restricted. To enable it,
+        * please send us a note at support@stytch.com.
+        *
+        * ### Next steps
+        * Send the returned `token` value to the end user in a link which directs to your application. When the
+        * end user follows your link, collect the token, and call
+        * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
+        * authentication.
+        *
+        * **Note:** Authenticating an Embeddable Magic Link token will **not** result in any of the Stytch User's
+        * factors (email address or phone number) being marked as verified, as Stytch cannot confirm where the
+        * user received the token.
+
+         * @param \Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request
+         * @return \Stytch\Consumer\Models\MagicLinks\CreateResponse
+         */
+    public function create(\Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request): \Stytch\Consumer\Models\MagicLinks\CreateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/magic_links', $data);
+        return \Stytch\Consumer\Models\MagicLinks\CreateResponse::fromArray($response);
     }
 
 }

@@ -13,14 +13,31 @@ use Stytch\Core\Client;
 class Impersonation
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Authenticate an impersonation token to impersonate a Member. This endpoint requires an impersonation
+        * token that is not expired or previously used.
+        * A Stytch session will be created for the impersonated member with a 60 minute duration. Impersonated
+        * sessions cannot be extended.
+        *
+        * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
+        * member, and clicking the `Impersonate Member` button.
+
+         * @param \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\Impersonation\AuthenticateResponse
+         */
+    public function authenticate(\Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request): \Stytch\B2B\Models\Impersonation\AuthenticateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/impersonation/authenticate', $data);
+        return \Stytch\B2B\Models\Impersonation\AuthenticateResponse::fromArray($response);
     }
 
 }

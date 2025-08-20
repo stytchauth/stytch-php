@@ -10,17 +10,30 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class Discovery
+class OAuthDiscovery
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Authenticates the Discovery OAuth token and exchanges it for an Intermediate
+        * Session Token. Intermediate Session Tokens can be used for various Discovery login flows and are valid
+        * for 10 minutes.
+
+         * @param \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
+         */
+    public function authenticate(\Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request): \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/oauth/discovery/authenticate', $data);
+        return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse::fromArray($response);
     }
 
 }

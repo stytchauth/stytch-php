@@ -10,7 +10,7 @@ namespace Stytch\Consumer\Api;
 
 use Stytch\Core\Client;
 
-class Email
+class PasswordsEmail
 {
     private Client $client;
 
@@ -19,6 +19,41 @@ class Email
     {
         $this->client = $client;
 
+    }
+
+    /**
+        * Initiates a password reset for the email address provided. This will trigger an email to be sent to the
+        * address, containing a magic link that will allow them to set a new password and authenticate.
+
+         * @param \Stytch\Consumer\Models\Passwords\Email\ResetStartRequest|array $request
+         * @return \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse
+         */
+    public function resetStart(\Stytch\Consumer\Models\Passwords\Email\ResetStartRequest|array $request): \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/passwords/email/reset/start', $data);
+        return \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse::fromArray($response);
+    }
+
+    /**
+        * Reset the user's password and authenticate them. This endpoint checks that the magic link `token` is
+        * valid, hasn't expired, or already been used – and can optionally require additional security settings,
+        * such as the IP address and user agent matching the initial reset request.
+        *
+        * The provided password needs to meet our password strength requirements, which can be checked in advance
+        * with the password strength endpoint. If the token and password are accepted, the password is securely
+        * stored for future authentication and the user is authenticated.
+        *
+        * Note that a successful password reset by email will revoke all active sessions for the `user_id`.
+
+         * @param \Stytch\Consumer\Models\Passwords\Email\ResetRequest|array $request
+         * @return \Stytch\Consumer\Models\Passwords\Email\ResetResponse
+         */
+    public function reset(\Stytch\Consumer\Models\Passwords\Email\ResetRequest|array $request): \Stytch\Consumer\Models\Passwords\Email\ResetResponse
+    {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/passwords/email/reset', $data);
+        return \Stytch\Consumer\Models\Passwords\Email\ResetResponse::fromArray($response);
     }
 
 }
