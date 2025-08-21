@@ -33,8 +33,9 @@ class MagicLinksEmail
          * @param \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request
          * @return \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse
          */
-    public function loginOrSignup(\Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request): \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse
-    {
+    public function loginOrSignup(
+        \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request,
+    ): \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/magic_links/email/login_or_signup', $data);
         return \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse::fromArray($response);
@@ -56,10 +57,13 @@ class MagicLinksEmail
          * @param \Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request
          * @return \Stytch\B2B\Models\MagicLinks\Email\InviteResponse
          */
-    public function invite(\Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request): \Stytch\B2B\Models\MagicLinks\Email\InviteResponse
-    {
+    public function invite(
+        \Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request,
+        \Stytch\B2B\Models\MagicLinks\Email\InviteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\MagicLinks\Email\InviteResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/magic_links/email/invite', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/magic_links/email/invite', $data, $opts);
         return \Stytch\B2B\Models\MagicLinks\Email\InviteResponse::fromArray($response);
     }
 

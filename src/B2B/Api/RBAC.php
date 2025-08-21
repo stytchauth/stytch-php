@@ -40,8 +40,9 @@ class RBAC
          * @param \Stytch\B2B\Models\RBAC\PolicyRequest|array $request
          * @return \Stytch\B2B\Models\RBAC\PolicyResponse
          */
-    public function policy(\Stytch\B2B\Models\RBAC\PolicyRequest|array $request): \Stytch\B2B\Models\RBAC\PolicyResponse
-    {
+    public function policy(
+        \Stytch\B2B\Models\RBAC\PolicyRequest|array $request,
+    ): \Stytch\B2B\Models\RBAC\PolicyResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/rbac/policy', $data);
         return \Stytch\B2B\Models\RBAC\PolicyResponse::fromArray($response);

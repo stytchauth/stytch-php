@@ -58,8 +58,9 @@ class DiscoveryOrganizations
          * @param \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request
          * @return \Stytch\B2B\Models\Discovery\Organizations\CreateResponse
          */
-    public function create(\Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request): \Stytch\B2B\Models\Discovery\Organizations\CreateResponse
-    {
+    public function create(
+        \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request,
+    ): \Stytch\B2B\Models\Discovery\Organizations\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/discovery/organizations/create', $data);
         return \Stytch\B2B\Models\Discovery\Organizations\CreateResponse::fromArray($response);
@@ -89,8 +90,9 @@ class DiscoveryOrganizations
          * @param \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request
          * @return \Stytch\B2B\Models\Discovery\Organizations\ListResponse
          */
-    public function list(\Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request): \Stytch\B2B\Models\Discovery\Organizations\ListResponse
-    {
+    public function list(
+        \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request,
+    ): \Stytch\B2B\Models\Discovery\Organizations\ListResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/discovery/organizations', $data);
         return \Stytch\B2B\Models\Discovery\Organizations\ListResponse::fromArray($response);

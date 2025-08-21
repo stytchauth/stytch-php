@@ -33,10 +33,13 @@ class SSO
          * @param \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request
          * @return \Stytch\B2B\Models\SSO\GetConnectionsResponse
          */
-    public function getConnections(\Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request): \Stytch\B2B\Models\SSO\GetConnectionsResponse
-    {
+    public function getConnections(
+        \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request,
+        \Stytch\B2B\Models\SSO\GetConnectionsRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\GetConnectionsResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->get('/v1/b2b/sso/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/sso/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\GetConnectionsResponse::fromArray($response);
     }
 
@@ -46,10 +49,13 @@ class SSO
          * @param \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\DeleteConnectionResponse
          */
-    public function deleteConnection(\Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request): \Stytch\B2B\Models\SSO\DeleteConnectionResponse
-    {
+    public function deleteConnection(
+        \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\DeleteConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\DeleteConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/sso/{organization_id}/connections/{connection_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/sso/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\DeleteConnectionResponse::fromArray($response);
     }
 
@@ -78,8 +84,9 @@ class SSO
          * @param \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\SSO\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\SSO\AuthenticateRequest|array $request): \Stytch\B2B\Models\SSO\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\SSO\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sso/authenticate', $data);
         return \Stytch\B2B\Models\SSO\AuthenticateResponse::fromArray($response);

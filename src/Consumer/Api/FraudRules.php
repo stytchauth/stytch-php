@@ -46,8 +46,9 @@ class FraudRules
          * @param \Stytch\Consumer\Models\Fraud\Rules\SetRequest|array $request
          * @return \Stytch\Consumer\Models\Fraud\Rules\SetResponse
          */
-    public function set(\Stytch\Consumer\Models\Fraud\Rules\SetRequest|array $request): \Stytch\Consumer\Models\Fraud\Rules\SetResponse
-    {
+    public function set(
+        \Stytch\Consumer\Models\Fraud\Rules\SetRequest|array $request,
+    ): \Stytch\Consumer\Models\Fraud\Rules\SetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/rules/set', $data);
         return \Stytch\Consumer\Models\Fraud\Rules\SetResponse::fromArray($response);
@@ -59,8 +60,9 @@ class FraudRules
          * @param \Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request
          * @return \Stytch\Consumer\Models\Fraud\Rules\ListResponse
          */
-    public function list(\Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request): \Stytch\Consumer\Models\Fraud\Rules\ListResponse
-    {
+    public function list(
+        \Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request,
+    ): \Stytch\Consumer\Models\Fraud\Rules\ListResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/rules/list', $data);
         return \Stytch\Consumer\Models\Fraud\Rules\ListResponse::fromArray($response);

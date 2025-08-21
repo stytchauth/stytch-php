@@ -25,8 +25,9 @@ class Project
          * @param \Stytch\Consumer\Models\Project\MetricsRequest|array $request
          * @return \Stytch\Consumer\Models\Project\MetricsResponse
          */
-    public function metrics(\Stytch\Consumer\Models\Project\MetricsRequest|array $request): \Stytch\Consumer\Models\Project\MetricsResponse
-    {
+    public function metrics(
+        \Stytch\Consumer\Models\Project\MetricsRequest|array $request,
+    ): \Stytch\Consumer\Models\Project\MetricsResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/projects/metrics', $data);
         return \Stytch\Consumer\Models\Project\MetricsResponse::fromArray($response);

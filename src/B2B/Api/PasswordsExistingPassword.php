@@ -49,8 +49,9 @@ class PasswordsExistingPassword
          * @param \Stytch\B2B\Models\Passwords\ExistingPassword\ResetRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\ExistingPassword\ResetResponse
          */
-    public function reset(\Stytch\B2B\Models\Passwords\ExistingPassword\ResetRequest|array $request): \Stytch\B2B\Models\Passwords\ExistingPassword\ResetResponse
-    {
+    public function reset(
+        \Stytch\B2B\Models\Passwords\ExistingPassword\ResetRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\ExistingPassword\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/existing_password/reset', $data);
         return \Stytch\B2B\Models\Passwords\ExistingPassword\ResetResponse::fromArray($response);

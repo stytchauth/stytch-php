@@ -31,10 +31,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\UpdateResponse
          */
-    public function update(\Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request): \Stytch\B2B\Models\Organizations\Members\UpdateResponse
-    {
+    public function update(
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\UpdateResponse::fromArray($response);
     }
 
@@ -44,10 +47,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\DeleteResponse
          */
-    public function delete(\Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request): \Stytch\B2B\Models\Organizations\Members\DeleteResponse
-    {
+    public function delete(
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\DeleteResponse::fromArray($response);
     }
 
@@ -59,10 +65,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
          */
-    public function reactivate(\Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request): \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
-    {
+    public function reactivate(
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\ReactivateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}/reactivate', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}/reactivate', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse::fromArray($response);
     }
 
@@ -81,10 +90,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse
          */
-    public function deleteMfaPhoneNumber(\Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request): \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse
-    {
+    public function deleteMfaPhoneNumber(
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/mfa_phone_numbers/{member_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/mfa_phone_numbers/{member_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse::fromArray($response);
     }
 
@@ -100,10 +112,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse
          */
-    public function deleteTOTP(\Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request): \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse
-    {
+    public function deleteTOTP(
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}/totp', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}/totp', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse::fromArray($response);
     }
 
@@ -116,10 +131,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\SearchResponse
          */
-    public function search(\Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request): \Stytch\B2B\Models\Organizations\Members\SearchResponse
-    {
+    public function search(
+        \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\SearchRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\SearchResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/organizations/members/search', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/members/search', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\SearchResponse::fromArray($response);
     }
 
@@ -133,10 +151,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse
          */
-    public function deletePassword(\Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request): \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse
-    {
+    public function deletePassword(
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/passwords/{member_password_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/passwords/{member_password_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse::fromArray($response);
     }
 
@@ -149,8 +170,9 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
          */
-    public function dangerouslyGet(\Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request): \Stytch\B2B\Models\Organizations\Members\GetResponse
-    {
+    public function dangerouslyGet(
+        \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/members/dangerously_get/{member_id}', $data);
         return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);
@@ -166,8 +188,9 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse
          */
-    public function oidcProviders(\Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse
-    {
+    public function oidcProviders(
+        \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oidc_providers', $data);
         return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse::fromArray($response);
@@ -196,10 +219,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse
          */
-    public function unlinkRetiredEmail(\Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request): \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse
-    {
+    public function unlinkRetiredEmail(
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/unlink_retired_email', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/unlink_retired_email', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse::fromArray($response);
     }
 
@@ -226,10 +252,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse
          */
-    public function startEmailUpdate(\Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request): \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse
-    {
+    public function startEmailUpdate(
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/start_email_update', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/start_email_update', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse::fromArray($response);
     }
 
@@ -246,10 +275,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse
          */
-    public function getConnectedApps(\Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request): \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse
-    {
+    public function getConnectedApps(
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse::fromArray($response);
     }
 
@@ -259,10 +291,13 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\CreateResponse
          */
-    public function create(\Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request): \Stytch\B2B\Models\Organizations\Members\CreateResponse
-    {
+    public function create(
+        \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\CreateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\CreateResponse::fromArray($response);
     }
 
@@ -272,8 +307,9 @@ class OrganizationsMembers
          * @param \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
          */
-    public function get(\Stytch\B2B\Models\Organizations\Members\GetRequest|array $request): \Stytch\B2B\Models\Organizations\Members\GetResponse
-    {
+    public function get(
+        \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/member', $data);
         return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);

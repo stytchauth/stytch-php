@@ -41,8 +41,9 @@ class RBAC
          * @param \Stytch\Consumer\Models\RBAC\PolicyRequest|array $request
          * @return \Stytch\Consumer\Models\RBAC\PolicyResponse
          */
-    public function policy(\Stytch\Consumer\Models\RBAC\PolicyRequest|array $request): \Stytch\Consumer\Models\RBAC\PolicyResponse
-    {
+    public function policy(
+        \Stytch\Consumer\Models\RBAC\PolicyRequest|array $request,
+    ): \Stytch\Consumer\Models\RBAC\PolicyResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/rbac/policy', $data);
         return \Stytch\Consumer\Models\RBAC\PolicyResponse::fromArray($response);

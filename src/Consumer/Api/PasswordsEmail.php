@@ -28,8 +28,9 @@ class PasswordsEmail
          * @param \Stytch\Consumer\Models\Passwords\Email\ResetStartRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse
          */
-    public function resetStart(\Stytch\Consumer\Models\Passwords\Email\ResetStartRequest|array $request): \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse
-    {
+    public function resetStart(
+        \Stytch\Consumer\Models\Passwords\Email\ResetStartRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/email/reset/start', $data);
         return \Stytch\Consumer\Models\Passwords\Email\ResetStartResponse::fromArray($response);
@@ -49,8 +50,9 @@ class PasswordsEmail
          * @param \Stytch\Consumer\Models\Passwords\Email\ResetRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\Email\ResetResponse
          */
-    public function reset(\Stytch\Consumer\Models\Passwords\Email\ResetRequest|array $request): \Stytch\Consumer\Models\Passwords\Email\ResetResponse
-    {
+    public function reset(
+        \Stytch\Consumer\Models\Passwords\Email\ResetRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\Email\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/email/reset', $data);
         return \Stytch\Consumer\Models\Passwords\Email\ResetResponse::fromArray($response);

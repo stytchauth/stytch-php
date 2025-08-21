@@ -27,8 +27,9 @@ class MagicLinksEmailDiscovery
          * @param \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request
          * @return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
          */
-    public function send(\Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request): \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
-    {
+    public function send(
+        \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request,
+    ): \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/magic_links/email/discovery/send', $data);
         return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse::fromArray($response);

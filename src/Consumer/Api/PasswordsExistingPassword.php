@@ -30,8 +30,9 @@ class PasswordsExistingPassword
          * @param \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse
          */
-    public function reset(\Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request): \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse
-    {
+    public function reset(
+        \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/existing_password/reset', $data);
         return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse::fromArray($response);

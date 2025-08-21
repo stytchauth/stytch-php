@@ -94,6 +94,7 @@ class UpdateConnectionRequest
     * Initiated Auth is enabled).
      */
     public ?bool $idpInitiatedAuthDisabled = null;
+    public ?string $samlEncryptionPrivateKey = null;
 
     public function __construct(
         string $organizationId,
@@ -110,7 +111,8 @@ class UpdateConnectionRequest
         ?string $signingPrivateKey = null,
         ?string $nameidFormat = null,
         ?string $alternativeAcsURL = null,
-        ?bool $idpInitiatedAuthDisabled = null
+        ?bool $idpInitiatedAuthDisabled = null,
+        ?string $samlEncryptionPrivateKey = null
     ) {
         $this->organizationId = $organizationId;
         $this->connectionId = $connectionId;
@@ -127,6 +129,7 @@ class UpdateConnectionRequest
         $this->nameidFormat = $nameidFormat;
         $this->alternativeAcsURL = $alternativeAcsURL;
         $this->idpInitiatedAuthDisabled = $idpInitiatedAuthDisabled;
+        $this->samlEncryptionPrivateKey = $samlEncryptionPrivateKey;
     }
 
     /**
@@ -152,7 +155,8 @@ class UpdateConnectionRequest
             $data['signing_private_key'] ?? null,
             $data['nameid_format'] ?? null,
             $data['alternative_acs_url'] ?? null,
-            $data['idp_initiated_auth_disabled'] ?? null
+            $data['idp_initiated_auth_disabled'] ?? null,
+            $data['saml_encryption_private_key'] ?? null
         );
     }
 
@@ -179,6 +183,7 @@ class UpdateConnectionRequest
             'nameid_format' => $this->nameidFormat,
             'alternative_acs_url' => $this->alternativeAcsURL,
             'idp_initiated_auth_disabled' => $this->idpInitiatedAuthDisabled,
+            'saml_encryption_private_key' => $this->samlEncryptionPrivateKey,
         ];
     }
 }

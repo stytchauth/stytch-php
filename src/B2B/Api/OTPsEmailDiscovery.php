@@ -29,8 +29,9 @@ class OTPsEmailDiscovery
          * @param \Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse
          */
-    public function send(\Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request): \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse
-    {
+    public function send(
+        \Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/email/discovery/send', $data);
         return \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse::fromArray($response);
@@ -43,8 +44,9 @@ class OTPsEmailDiscovery
          * @param \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request): \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/email/discovery/authenticate', $data);
         return \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse::fromArray($response);

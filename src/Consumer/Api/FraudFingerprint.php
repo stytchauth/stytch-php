@@ -46,8 +46,9 @@ class FraudFingerprint
          * @param \Stytch\Consumer\Models\Fraud\Fingerprint\LookupRequest|array $request
          * @return \Stytch\Consumer\Models\Fraud\Fingerprint\LookupResponse
          */
-    public function lookup(\Stytch\Consumer\Models\Fraud\Fingerprint\LookupRequest|array $request): \Stytch\Consumer\Models\Fraud\Fingerprint\LookupResponse
-    {
+    public function lookup(
+        \Stytch\Consumer\Models\Fraud\Fingerprint\LookupRequest|array $request,
+    ): \Stytch\Consumer\Models\Fraud\Fingerprint\LookupResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/fingerprint/lookup', $data);
         return \Stytch\Consumer\Models\Fraud\Fingerprint\LookupResponse::fromArray($response);

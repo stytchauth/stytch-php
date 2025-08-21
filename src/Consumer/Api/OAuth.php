@@ -40,8 +40,9 @@ class OAuth
          * @param \Stytch\Consumer\Models\OAuth\AttachRequest|array $request
          * @return \Stytch\Consumer\Models\OAuth\AttachResponse
          */
-    public function attach(\Stytch\Consumer\Models\OAuth\AttachRequest|array $request): \Stytch\Consumer\Models\OAuth\AttachResponse
-    {
+    public function attach(
+        \Stytch\Consumer\Models\OAuth\AttachRequest|array $request,
+    ): \Stytch\Consumer\Models\OAuth\AttachResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/oauth/attach', $data);
         return \Stytch\Consumer\Models\OAuth\AttachResponse::fromArray($response);
@@ -56,8 +57,9 @@ class OAuth
          * @param \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\OAuth\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request): \Stytch\Consumer\Models\OAuth\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\OAuth\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/oauth/authenticate', $data);
         return \Stytch\Consumer\Models\OAuth\AuthenticateResponse::fromArray($response);

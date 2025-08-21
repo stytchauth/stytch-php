@@ -25,8 +25,9 @@ class IDPOAuth
          * @param \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartRequest|array $request
          * @return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartResponse
          */
-    public function authorizeStart(\Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartRequest|array $request): \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartResponse
-    {
+    public function authorizeStart(
+        \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartRequest|array $request,
+    ): \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/idp/oauth/authorize/start', $data);
         return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartResponse::fromArray($response);
@@ -36,8 +37,9 @@ class IDPOAuth
          * @param \Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request
          * @return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse
          */
-    public function authorize(\Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request): \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse
-    {
+    public function authorize(
+        \Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request,
+    ): \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/idp/oauth/authorize', $data);
         return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse::fromArray($response);

@@ -34,8 +34,9 @@ class TOTPs
          * @param \Stytch\B2B\Models\TOTPs\CreateRequest|array $request
          * @return \Stytch\B2B\Models\TOTPs\CreateResponse
          */
-    public function create(\Stytch\B2B\Models\TOTPs\CreateRequest|array $request): \Stytch\B2B\Models\TOTPs\CreateResponse
-    {
+    public function create(
+        \Stytch\B2B\Models\TOTPs\CreateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/totp', $data);
         return \Stytch\B2B\Models\TOTPs\CreateResponse::fromArray($response);
@@ -47,8 +48,9 @@ class TOTPs
          * @param \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\TOTPs\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request): \Stytch\B2B\Models\TOTPs\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/totp/authenticate', $data);
         return \Stytch\B2B\Models\TOTPs\AuthenticateResponse::fromArray($response);
@@ -61,8 +63,9 @@ class TOTPs
          * @param \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request
          * @return \Stytch\B2B\Models\TOTPs\MigrateResponse
          */
-    public function migrate(\Stytch\B2B\Models\TOTPs\MigrateRequest|array $request): \Stytch\B2B\Models\TOTPs\MigrateResponse
-    {
+    public function migrate(
+        \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\MigrateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/totp/migrate', $data);
         return \Stytch\B2B\Models\TOTPs\MigrateResponse::fromArray($response);

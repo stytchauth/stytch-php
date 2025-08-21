@@ -33,8 +33,9 @@ class Impersonation
          * @param \Stytch\Consumer\Models\Impersonation\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\Impersonation\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\Impersonation\AuthenticateRequest|array $request): \Stytch\Consumer\Models\Impersonation\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\Impersonation\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\Impersonation\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/impersonation/authenticate', $data);
         return \Stytch\Consumer\Models\Impersonation\AuthenticateResponse::fromArray($response);

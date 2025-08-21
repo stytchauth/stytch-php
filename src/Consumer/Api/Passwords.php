@@ -48,8 +48,9 @@ class Passwords
          * @param \Stytch\Consumer\Models\Passwords\CreateRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\CreateResponse
          */
-    public function create(\Stytch\Consumer\Models\Passwords\CreateRequest|array $request): \Stytch\Consumer\Models\Passwords\CreateResponse
-    {
+    public function create(
+        \Stytch\Consumer\Models\Passwords\CreateRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords', $data);
         return \Stytch\Consumer\Models\Passwords\CreateResponse::fromArray($response);
@@ -79,8 +80,9 @@ class Passwords
          * @param \Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request): \Stytch\Consumer\Models\Passwords\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/authenticate', $data);
         return \Stytch\Consumer\Models\Passwords\AuthenticateResponse::fromArray($response);
@@ -114,8 +116,9 @@ class Passwords
          * @param \Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\StrengthCheckResponse
          */
-    public function strengthCheck(\Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request): \Stytch\Consumer\Models\Passwords\StrengthCheckResponse
-    {
+    public function strengthCheck(
+        \Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\StrengthCheckResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/strength_check', $data);
         return \Stytch\Consumer\Models\Passwords\StrengthCheckResponse::fromArray($response);
@@ -129,8 +132,9 @@ class Passwords
          * @param \Stytch\Consumer\Models\Passwords\MigrateRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\MigrateResponse
          */
-    public function migrate(\Stytch\Consumer\Models\Passwords\MigrateRequest|array $request): \Stytch\Consumer\Models\Passwords\MigrateResponse
-    {
+    public function migrate(
+        \Stytch\Consumer\Models\Passwords\MigrateRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\MigrateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/migrate', $data);
         return \Stytch\Consumer\Models\Passwords\MigrateResponse::fromArray($response);

@@ -28,8 +28,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\CreateRequest|array $request
          * @return \Stytch\Consumer\Models\Users\CreateResponse
          */
-    public function create(\Stytch\Consumer\Models\Users\CreateRequest|array $request): \Stytch\Consumer\Models\Users\CreateResponse
-    {
+    public function create(
+        \Stytch\Consumer\Models\Users\CreateRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/users', $data);
         return \Stytch\Consumer\Models\Users\CreateResponse::fromArray($response);
@@ -41,8 +42,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\GetRequest|array $request
          * @return \Stytch\Consumer\Models\Users\GetResponse
          */
-    public function get(\Stytch\Consumer\Models\Users\GetRequest|array $request): \Stytch\Consumer\Models\Users\GetResponse
-    {
+    public function get(
+        \Stytch\Consumer\Models\Users\GetRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\GetResponse::fromArray($response);
@@ -64,8 +66,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\SearchRequest|array $request
          * @return \Stytch\Consumer\Models\Users\SearchResponse
          */
-    public function search(\Stytch\Consumer\Models\Users\SearchRequest|array $request): \Stytch\Consumer\Models\Users\SearchResponse
-    {
+    public function search(
+        \Stytch\Consumer\Models\Users\SearchRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\SearchResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/users/search', $data);
         return \Stytch\Consumer\Models\Users\SearchResponse::fromArray($response);
@@ -86,8 +89,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\UpdateRequest|array $request
          * @return \Stytch\Consumer\Models\Users\UpdateResponse
          */
-    public function update(\Stytch\Consumer\Models\Users\UpdateRequest|array $request): \Stytch\Consumer\Models\Users\UpdateResponse
-    {
+    public function update(
+        \Stytch\Consumer\Models\Users\UpdateRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\UpdateResponse::fromArray($response);
@@ -106,8 +110,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request
          * @return \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse
          */
-    public function exchangePrimaryFactor(\Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request): \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse
-    {
+    public function exchangePrimaryFactor(
+        \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/users/{user_id}/exchange_primary_factor', $data);
         return \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse::fromArray($response);
@@ -119,8 +124,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteResponse
          */
-    public function delete(\Stytch\Consumer\Models\Users\DeleteRequest|array $request): \Stytch\Consumer\Models\Users\DeleteResponse
-    {
+    public function delete(
+        \Stytch\Consumer\Models\Users\DeleteRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteResponse::fromArray($response);
@@ -132,8 +138,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteEmailResponse
          */
-    public function deleteEmail(\Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request): \Stytch\Consumer\Models\Users\DeleteEmailResponse
-    {
+    public function deleteEmail(
+        \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteEmailResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/emails/{email_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteEmailResponse::fromArray($response);
@@ -145,8 +152,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse
          */
-    public function deletePhoneNumber(\Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request): \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse
-    {
+    public function deletePhoneNumber(
+        \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/phone_numbers/{phone_id}', $data);
         return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse::fromArray($response);
@@ -158,8 +166,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse
          */
-    public function deleteWebAuthnRegistration(\Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request): \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse
-    {
+    public function deleteWebAuthnRegistration(
+        \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/webauthn_registrations/{webauthn_registration_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse::fromArray($response);
@@ -171,8 +180,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse
          */
-    public function deleteBiometricRegistration(\Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request): \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse
-    {
+    public function deleteBiometricRegistration(
+        \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/biometric_registrations/{biometric_registration_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse::fromArray($response);
@@ -184,8 +194,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteTOTPResponse
          */
-    public function deleteTOTP(\Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request): \Stytch\Consumer\Models\Users\DeleteTOTPResponse
-    {
+    public function deleteTOTP(
+        \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteTOTPResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/totps/{totp_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteTOTPResponse::fromArray($response);
@@ -197,8 +208,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse
          */
-    public function deleteCryptoWallet(\Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request): \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse
-    {
+    public function deleteCryptoWallet(
+        \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/crypto_wallets/{crypto_wallet_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse::fromArray($response);
@@ -210,8 +222,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeletePasswordResponse
          */
-    public function deletePassword(\Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request): \Stytch\Consumer\Models\Users\DeletePasswordResponse
-    {
+    public function deletePassword(
+        \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeletePasswordResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/passwords/{password_id}', $data);
         return \Stytch\Consumer\Models\Users\DeletePasswordResponse::fromArray($response);
@@ -223,8 +236,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request
          * @return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse
          */
-    public function deleteOAuthRegistration(\Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request): \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse
-    {
+    public function deleteOAuthRegistration(
+        \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/oauth/{oauth_user_registration_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse::fromArray($response);
@@ -241,8 +255,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request
          * @return \Stytch\Consumer\Models\Users\ConnectedAppsResponse
          */
-    public function connectedApps(\Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request): \Stytch\Consumer\Models\Users\ConnectedAppsResponse
-    {
+    public function connectedApps(
+        \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\ConnectedAppsResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/users/{user_id}/connected_apps', $data);
         return \Stytch\Consumer\Models\Users\ConnectedAppsResponse::fromArray($response);
@@ -258,8 +273,9 @@ class Users
          * @param \Stytch\Consumer\Models\Users\RevokeRequest|array $request
          * @return \Stytch\Consumer\Models\Users\RevokeResponse
          */
-    public function revoke(\Stytch\Consumer\Models\Users\RevokeRequest|array $request): \Stytch\Consumer\Models\Users\RevokeResponse
-    {
+    public function revoke(
+        \Stytch\Consumer\Models\Users\RevokeRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\RevokeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/users/{user_id}/connected_apps/{connected_app_id}/revoke', $data);
         return \Stytch\Consumer\Models\Users\RevokeResponse::fromArray($response);

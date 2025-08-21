@@ -34,8 +34,9 @@ class OTPsEmail
          * @param \Stytch\B2B\Models\OTPs\Email\LoginOrSignupRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Email\LoginOrSignupResponse
          */
-    public function loginOrSignup(\Stytch\B2B\Models\OTPs\Email\LoginOrSignupRequest|array $request): \Stytch\B2B\Models\OTPs\Email\LoginOrSignupResponse
-    {
+    public function loginOrSignup(
+        \Stytch\B2B\Models\OTPs\Email\LoginOrSignupRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Email\LoginOrSignupResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/email/login_or_signup', $data);
         return \Stytch\B2B\Models\OTPs\Email\LoginOrSignupResponse::fromArray($response);
@@ -69,8 +70,9 @@ class OTPsEmail
          * @param \Stytch\B2B\Models\OTPs\Email\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Email\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\OTPs\Email\AuthenticateRequest|array $request): \Stytch\B2B\Models\OTPs\Email\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\OTPs\Email\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Email\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/email/authenticate', $data);
         return \Stytch\B2B\Models\OTPs\Email\AuthenticateResponse::fromArray($response);

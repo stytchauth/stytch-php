@@ -60,8 +60,9 @@ class OTPsSms
          * @param \Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Sms\SendResponse
          */
-    public function send(\Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request): \Stytch\Consumer\Models\OTPs\Sms\SendResponse
-    {
+    public function send(
+        \Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Sms\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/sms/send', $data);
         return \Stytch\Consumer\Models\OTPs\Sms\SendResponse::fromArray($response);
@@ -94,8 +95,9 @@ class OTPsSms
          * @param \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse
          */
-    public function loginOrCreate(\Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request): \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse
-    {
+    public function loginOrCreate(
+        \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/sms/login_or_create', $data);
         return \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse::fromArray($response);

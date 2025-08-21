@@ -29,8 +29,9 @@ class M2MClients
          * @param \Stytch\Consumer\Models\M2M\Clients\GetRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\GetResponse
          */
-    public function get(\Stytch\Consumer\Models\M2M\Clients\GetRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\GetResponse
-    {
+    public function get(
+        \Stytch\Consumer\Models\M2M\Clients\GetRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/m2m/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\M2M\Clients\GetResponse::fromArray($response);
@@ -48,8 +49,9 @@ class M2MClients
          * @param \Stytch\Consumer\Models\M2M\Clients\SearchRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\SearchResponse
          */
-    public function search(\Stytch\Consumer\Models\M2M\Clients\SearchRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\SearchResponse
-    {
+    public function search(
+        \Stytch\Consumer\Models\M2M\Clients\SearchRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\SearchResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/search', $data);
         return \Stytch\Consumer\Models\M2M\Clients\SearchResponse::fromArray($response);
@@ -68,8 +70,9 @@ class M2MClients
          * @param \Stytch\Consumer\Models\M2M\Clients\UpdateRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\UpdateResponse
          */
-    public function update(\Stytch\Consumer\Models\M2M\Clients\UpdateRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\UpdateResponse
-    {
+    public function update(
+        \Stytch\Consumer\Models\M2M\Clients\UpdateRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/m2m/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\M2M\Clients\UpdateResponse::fromArray($response);
@@ -86,8 +89,9 @@ class M2MClients
          * @param \Stytch\Consumer\Models\M2M\Clients\DeleteRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\DeleteResponse
          */
-    public function delete(\Stytch\Consumer\Models\M2M\Clients\DeleteRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\DeleteResponse
-    {
+    public function delete(
+        \Stytch\Consumer\Models\M2M\Clients\DeleteRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\DeleteResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/m2m/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\M2M\Clients\DeleteResponse::fromArray($response);
@@ -107,8 +111,9 @@ class M2MClients
          * @param \Stytch\Consumer\Models\M2M\Clients\CreateRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\CreateResponse
          */
-    public function create(\Stytch\Consumer\Models\M2M\Clients\CreateRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\CreateResponse
-    {
+    public function create(
+        \Stytch\Consumer\Models\M2M\Clients\CreateRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients', $data);
         return \Stytch\Consumer\Models\M2M\Clients\CreateResponse::fromArray($response);

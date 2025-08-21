@@ -35,8 +35,9 @@ class CryptoWallets
          * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request
          * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse
          */
-    public function authenticateStart(\Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request): \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse
-    {
+    public function authenticateStart(
+        \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request,
+    ): \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/crypto_wallets/authenticate/start', $data);
         return \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse::fromArray($response);
@@ -48,8 +49,9 @@ class CryptoWallets
          * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request): \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/crypto_wallets/authenticate', $data);
         return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse::fromArray($response);

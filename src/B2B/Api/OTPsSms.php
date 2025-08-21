@@ -65,8 +65,9 @@ class OTPsSms
          * @param \Stytch\B2B\Models\OTPs\Sms\SendRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Sms\SendResponse
          */
-    public function send(\Stytch\B2B\Models\OTPs\Sms\SendRequest|array $request): \Stytch\B2B\Models\OTPs\Sms\SendResponse
-    {
+    public function send(
+        \Stytch\B2B\Models\OTPs\Sms\SendRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Sms\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/sms/send', $data);
         return \Stytch\B2B\Models\OTPs\Sms\SendResponse::fromArray($response);
@@ -106,8 +107,9 @@ class OTPsSms
          * @param \Stytch\B2B\Models\OTPs\Sms\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\OTPs\Sms\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\OTPs\Sms\AuthenticateRequest|array $request): \Stytch\B2B\Models\OTPs\Sms\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\OTPs\Sms\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\OTPs\Sms\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/otps/sms/authenticate', $data);
         return \Stytch\B2B\Models\OTPs\Sms\AuthenticateResponse::fromArray($response);

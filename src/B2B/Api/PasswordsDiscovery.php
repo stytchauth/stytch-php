@@ -40,8 +40,9 @@ class PasswordsDiscovery
          * @param \Stytch\B2B\Models\Passwords\Discovery\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\Passwords\Discovery\AuthenticateRequest|array $request): \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\Passwords\Discovery\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/discovery/authenticate', $data);
         return \Stytch\B2B\Models\Passwords\Discovery\AuthenticateResponse::fromArray($response);

@@ -27,10 +27,13 @@ class SSOOIDC
          * @param \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\OIDC\CreateConnectionResponse
          */
-    public function createConnection(\Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\OIDC\CreateConnectionResponse
-    {
+    public function createConnection(
+        \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\OIDC\CreateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/sso/oidc/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/sso/oidc/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\OIDC\CreateConnectionResponse::fromArray($response);
     }
 
@@ -65,10 +68,13 @@ class SSOOIDC
          * @param \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse
          */
-    public function updateConnection(\Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse
-    {
+    public function updateConnection(
+        \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/sso/oidc/{organization_id}/connections/{connection_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/sso/oidc/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse::fromArray($response);
     }
 

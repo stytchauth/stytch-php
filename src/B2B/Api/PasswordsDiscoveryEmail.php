@@ -38,8 +38,9 @@ class PasswordsDiscoveryEmail
          * @param \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartResponse
          */
-    public function resetStart(\Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartRequest|array $request): \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartResponse
-    {
+    public function resetStart(
+        \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/discovery/email/reset/start', $data);
         return \Stytch\B2B\Models\Passwords\Discovery\Email\ResetStartResponse::fromArray($response);
@@ -59,8 +60,9 @@ class PasswordsDiscoveryEmail
          * @param \Stytch\B2B\Models\Passwords\Discovery\Email\ResetRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Discovery\Email\ResetResponse
          */
-    public function reset(\Stytch\B2B\Models\Passwords\Discovery\Email\ResetRequest|array $request): \Stytch\B2B\Models\Passwords\Discovery\Email\ResetResponse
-    {
+    public function reset(
+        \Stytch\B2B\Models\Passwords\Discovery\Email\ResetRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Discovery\Email\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/discovery/email/reset', $data);
         return \Stytch\B2B\Models\Passwords\Discovery\Email\ResetResponse::fromArray($response);

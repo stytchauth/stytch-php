@@ -38,8 +38,9 @@ class OrganizationsMembersOAuthProviders
          * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse
          */
-    public function google(\Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse
-    {
+    public function google(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/google', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse::fromArray($response);
@@ -55,8 +56,9 @@ class OrganizationsMembersOAuthProviders
          * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse
          */
-    public function microsoft(\Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse
-    {
+    public function microsoft(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/microsoft', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse::fromArray($response);
@@ -70,8 +72,9 @@ class OrganizationsMembersOAuthProviders
          * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse
          */
-    public function slack(\Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse
-    {
+    public function slack(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/slack', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse::fromArray($response);
@@ -87,8 +90,9 @@ class OrganizationsMembersOAuthProviders
          * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse
          */
-    public function hubspot(\Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse
-    {
+    public function hubspot(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/hubspot', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse::fromArray($response);
@@ -104,8 +108,9 @@ class OrganizationsMembersOAuthProviders
          * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse
          */
-    public function github(\Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse
-    {
+    public function github(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/github', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse::fromArray($response);

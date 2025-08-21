@@ -28,8 +28,9 @@ class RecoveryCodes
          * @param \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request
          * @return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse
          */
-    public function recover(\Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request): \Stytch\B2B\Models\RecoveryCodes\RecoverResponse
-    {
+    public function recover(
+        \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\RecoverResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/recovery_codes/recover', $data);
         return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse::fromArray($response);
@@ -41,8 +42,9 @@ class RecoveryCodes
          * @param \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request
          * @return \Stytch\B2B\Models\RecoveryCodes\GetResponse
          */
-    public function get(\Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request): \Stytch\B2B\Models\RecoveryCodes\GetResponse
-    {
+    public function get(
+        \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/recovery_codes/{organization_id}/{member_id}', $data);
         return \Stytch\B2B\Models\RecoveryCodes\GetResponse::fromArray($response);
@@ -55,8 +57,9 @@ class RecoveryCodes
          * @param \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request
          * @return \Stytch\B2B\Models\RecoveryCodes\RotateResponse
          */
-    public function rotate(\Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request): \Stytch\B2B\Models\RecoveryCodes\RotateResponse
-    {
+    public function rotate(
+        \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\RotateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/recovery_codes/rotate', $data);
         return \Stytch\B2B\Models\RecoveryCodes\RotateResponse::fromArray($response);

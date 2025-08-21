@@ -31,8 +31,9 @@ class MagicLinks
          * @param \Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request): \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links/authenticate', $data);
         return \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse::fromArray($response);
@@ -55,8 +56,9 @@ class MagicLinks
          * @param \Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\CreateResponse
          */
-    public function create(\Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request): \Stytch\Consumer\Models\MagicLinks\CreateResponse
-    {
+    public function create(
+        \Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links', $data);
         return \Stytch\Consumer\Models\MagicLinks\CreateResponse::fromArray($response);

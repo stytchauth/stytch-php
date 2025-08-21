@@ -44,8 +44,9 @@ class MagicLinksEmail
          * @param \Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\Email\SendResponse
          */
-    public function send(\Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request): \Stytch\Consumer\Models\MagicLinks\Email\SendResponse
-    {
+    public function send(
+        \Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\Email\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links/email/send', $data);
         return \Stytch\Consumer\Models\MagicLinks\Email\SendResponse::fromArray($response);
@@ -67,8 +68,9 @@ class MagicLinksEmail
          * @param \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse
          */
-    public function loginOrCreate(\Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request): \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse
-    {
+    public function loginOrCreate(
+        \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links/email/login_or_create', $data);
         return \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse::fromArray($response);
@@ -88,8 +90,9 @@ class MagicLinksEmail
          * @param \Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse
          */
-    public function invite(\Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request): \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse
-    {
+    public function invite(
+        \Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links/email/invite', $data);
         return \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse::fromArray($response);
@@ -101,8 +104,9 @@ class MagicLinksEmail
          * @param \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request
          * @return \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse
          */
-    public function revokeInvite(\Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request): \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse
-    {
+    public function revokeInvite(
+        \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request,
+    ): \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links/email/revoke_invite', $data);
         return \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse::fromArray($response);

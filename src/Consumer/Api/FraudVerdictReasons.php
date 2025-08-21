@@ -31,8 +31,9 @@ class FraudVerdictReasons
          * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request
          * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse
          */
-    public function override(\Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request): \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse
-    {
+    public function override(
+        \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request,
+    ): \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/verdict_reasons/override', $data);
         return \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse::fromArray($response);
@@ -49,8 +50,9 @@ class FraudVerdictReasons
          * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request
          * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse
          */
-    public function list(\Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request): \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse
-    {
+    public function list(
+        \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request,
+    ): \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/verdict_reasons/list', $data);
         return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse::fromArray($response);

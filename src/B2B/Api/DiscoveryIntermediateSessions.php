@@ -56,8 +56,9 @@ class DiscoveryIntermediateSessions
          * @param \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeRequest|array $request
          * @return \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeResponse
          */
-    public function exchange(\Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeRequest|array $request): \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeResponse
-    {
+    public function exchange(
+        \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeRequest|array $request,
+    ): \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/discovery/intermediate_sessions/exchange', $data);
         return \Stytch\B2B\Models\Discovery\IntermediateSessions\ExchangeResponse::fromArray($response);

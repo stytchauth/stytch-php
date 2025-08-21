@@ -32,8 +32,9 @@ class PasswordsSessions
          * @param \Stytch\B2B\Models\Passwords\Sessions\ResetRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Sessions\ResetResponse
          */
-    public function reset(\Stytch\B2B\Models\Passwords\Sessions\ResetRequest|array $request): \Stytch\B2B\Models\Passwords\Sessions\ResetResponse
-    {
+    public function reset(
+        \Stytch\B2B\Models\Passwords\Sessions\ResetRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Sessions\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/session/reset', $data);
         return \Stytch\B2B\Models\Passwords\Sessions\ResetResponse::fromArray($response);

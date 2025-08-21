@@ -31,8 +31,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\GetRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\GetResponse
          */
-    public function get(\Stytch\B2B\Models\Sessions\GetRequest|array $request): \Stytch\B2B\Models\Sessions\GetResponse
-    {
+    public function get(
+        \Stytch\B2B\Models\Sessions\GetRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/sessions', $data);
         return \Stytch\B2B\Models\Sessions\GetResponse::fromArray($response);
@@ -64,8 +65,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\Sessions\AuthenticateRequest|array $request): \Stytch\B2B\Models\Sessions\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\Sessions\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sessions/authenticate', $data);
         return \Stytch\B2B\Models\Sessions\AuthenticateResponse::fromArray($response);
@@ -79,10 +81,13 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\RevokeRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\RevokeResponse
          */
-    public function revoke(\Stytch\B2B\Models\Sessions\RevokeRequest|array $request): \Stytch\B2B\Models\Sessions\RevokeResponse
-    {
+    public function revoke(
+        \Stytch\B2B\Models\Sessions\RevokeRequest|array $request,
+        \Stytch\B2B\Models\Sessions\RevokeRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Sessions\RevokeResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/sessions/revoke', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/sessions/revoke', $data, $opts);
         return \Stytch\B2B\Models\Sessions\RevokeResponse::fromArray($response);
     }
 
@@ -123,8 +128,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\ExchangeRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\ExchangeResponse
          */
-    public function exchange(\Stytch\B2B\Models\Sessions\ExchangeRequest|array $request): \Stytch\B2B\Models\Sessions\ExchangeResponse
-    {
+    public function exchange(
+        \Stytch\B2B\Models\Sessions\ExchangeRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\ExchangeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sessions/exchange', $data);
         return \Stytch\B2B\Models\Sessions\ExchangeResponse::fromArray($response);
@@ -148,8 +154,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\ExchangeAccessTokenRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\ExchangeAccessTokenResponse
          */
-    public function exchangeAccessToken(\Stytch\B2B\Models\Sessions\ExchangeAccessTokenRequest|array $request): \Stytch\B2B\Models\Sessions\ExchangeAccessTokenResponse
-    {
+    public function exchangeAccessToken(
+        \Stytch\B2B\Models\Sessions\ExchangeAccessTokenRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\ExchangeAccessTokenResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sessions/exchange_access_token', $data);
         return \Stytch\B2B\Models\Sessions\ExchangeAccessTokenResponse::fromArray($response);
@@ -164,8 +171,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\AttestRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\AttestResponse
          */
-    public function attest(\Stytch\B2B\Models\Sessions\AttestRequest|array $request): \Stytch\B2B\Models\Sessions\AttestResponse
-    {
+    public function attest(
+        \Stytch\B2B\Models\Sessions\AttestRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\AttestResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sessions/attest', $data);
         return \Stytch\B2B\Models\Sessions\AttestResponse::fromArray($response);
@@ -183,8 +191,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\MigrateRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\MigrateResponse
          */
-    public function migrate(\Stytch\B2B\Models\Sessions\MigrateRequest|array $request): \Stytch\B2B\Models\Sessions\MigrateResponse
-    {
+    public function migrate(
+        \Stytch\B2B\Models\Sessions\MigrateRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\MigrateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sessions/migrate', $data);
         return \Stytch\B2B\Models\Sessions\MigrateResponse::fromArray($response);
@@ -214,8 +223,9 @@ class Sessions
          * @param \Stytch\B2B\Models\Sessions\GetJWKSRequest|array $request
          * @return \Stytch\B2B\Models\Sessions\GetJWKSResponse
          */
-    public function getJWKS(\Stytch\B2B\Models\Sessions\GetJWKSRequest|array $request): \Stytch\B2B\Models\Sessions\GetJWKSResponse
-    {
+    public function getJWKS(
+        \Stytch\B2B\Models\Sessions\GetJWKSRequest|array $request,
+    ): \Stytch\B2B\Models\Sessions\GetJWKSResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/sessions/jwks/{project_id}', $data);
         return \Stytch\B2B\Models\Sessions\GetJWKSResponse::fromArray($response);

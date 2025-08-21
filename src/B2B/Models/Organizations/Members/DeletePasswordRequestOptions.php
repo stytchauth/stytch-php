@@ -8,6 +8,8 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
+use Stytch\Shared\MethodOptions\Authorization;
+
 class DeletePasswordRequestOptions
 {
     /**
@@ -15,10 +17,10 @@ class DeletePasswordRequestOptions
     * Pass in an active Stytch Member session token or session JWT and the request
     * will be run using that member's permissions.
      */
-    public ?mixed $authorization = null;
+    public ?Authorization $authorization = null;
 
     public function __construct(
-        ?mixed $authorization = null
+        ?Authorization $authorization = null
     ) {
         $this->authorization = $authorization;
     }

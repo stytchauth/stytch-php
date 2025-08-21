@@ -25,8 +25,9 @@ class IDPOAuth
          * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartRequest|array $request
          * @return \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartResponse
          */
-    public function authorizeStart(\Stytch\B2B\Models\IDP\OAuth\AuthorizeStartRequest|array $request): \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartResponse
-    {
+    public function authorizeStart(
+        \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartRequest|array $request,
+    ): \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/idp/oauth/authorize/start', $data);
         return \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartResponse::fromArray($response);
@@ -36,8 +37,9 @@ class IDPOAuth
          * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeRequest|array $request
          * @return \Stytch\B2B\Models\IDP\OAuth\AuthorizeResponse
          */
-    public function authorize(\Stytch\B2B\Models\IDP\OAuth\AuthorizeRequest|array $request): \Stytch\B2B\Models\IDP\OAuth\AuthorizeResponse
-    {
+    public function authorize(
+        \Stytch\B2B\Models\IDP\OAuth\AuthorizeRequest|array $request,
+    ): \Stytch\B2B\Models\IDP\OAuth\AuthorizeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/idp/oauth/authorize', $data);
         return \Stytch\B2B\Models\IDP\OAuth\AuthorizeResponse::fromArray($response);

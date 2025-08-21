@@ -35,8 +35,9 @@ class M2MClientsSecrets
          * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartResponse
          */
-    public function rotateStart(\Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartResponse
-    {
+    public function rotateStart(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/{client_id}/secrets/rotate/start', $data);
         return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartResponse::fromArray($response);
@@ -52,8 +53,9 @@ class M2MClientsSecrets
          * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelResponse
          */
-    public function rotateCancel(\Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelResponse
-    {
+    public function rotateCancel(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/{client_id}/secrets/rotate/cancel', $data);
         return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelResponse::fromArray($response);
@@ -69,8 +71,9 @@ class M2MClientsSecrets
          * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateRequest|array $request
          * @return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse
          */
-    public function rotate(\Stytch\Consumer\Models\M2M\Clients\Secrets\RotateRequest|array $request): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse
-    {
+    public function rotate(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateRequest|array $request,
+    ): \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/{client_id}/secrets/rotate', $data);
         return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse::fromArray($response);

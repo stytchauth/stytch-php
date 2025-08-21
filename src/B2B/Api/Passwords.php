@@ -57,8 +57,9 @@ class Passwords
          * @param \Stytch\B2B\Models\Passwords\StrengthCheckRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\StrengthCheckResponse
          */
-    public function strengthCheck(\Stytch\B2B\Models\Passwords\StrengthCheckRequest|array $request): \Stytch\B2B\Models\Passwords\StrengthCheckResponse
-    {
+    public function strengthCheck(
+        \Stytch\B2B\Models\Passwords\StrengthCheckRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\StrengthCheckResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/strength_check', $data);
         return \Stytch\B2B\Models\Passwords\StrengthCheckResponse::fromArray($response);
@@ -79,8 +80,9 @@ class Passwords
          * @param \Stytch\B2B\Models\Passwords\MigrateRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\MigrateResponse
          */
-    public function migrate(\Stytch\B2B\Models\Passwords\MigrateRequest|array $request): \Stytch\B2B\Models\Passwords\MigrateResponse
-    {
+    public function migrate(
+        \Stytch\B2B\Models\Passwords\MigrateRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\MigrateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/migrate', $data);
         return \Stytch\B2B\Models\Passwords\MigrateResponse::fromArray($response);
@@ -110,8 +112,9 @@ class Passwords
          * @param \Stytch\B2B\Models\Passwords\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\Passwords\AuthenticateRequest|array $request): \Stytch\B2B\Models\Passwords\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\Passwords\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/authenticate', $data);
         return \Stytch\B2B\Models\Passwords\AuthenticateResponse::fromArray($response);

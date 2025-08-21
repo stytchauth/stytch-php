@@ -37,8 +37,9 @@ class PasswordsEmail
          * @param \Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Email\ResetStartResponse
          */
-    public function resetStart(\Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request): \Stytch\B2B\Models\Passwords\Email\ResetStartResponse
-    {
+    public function resetStart(
+        \Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Email\ResetStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/email/reset/start', $data);
         return \Stytch\B2B\Models\Passwords\Email\ResetStartResponse::fromArray($response);
@@ -67,8 +68,9 @@ class PasswordsEmail
          * @param \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Email\ResetResponse
          */
-    public function reset(\Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request): \Stytch\B2B\Models\Passwords\Email\ResetResponse
-    {
+    public function reset(
+        \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request,
+    ): \Stytch\B2B\Models\Passwords\Email\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/passwords/email/reset', $data);
         return \Stytch\B2B\Models\Passwords\Email\ResetResponse::fromArray($response);
@@ -84,10 +86,13 @@ class PasswordsEmail
          * @param \Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request
          * @return \Stytch\B2B\Models\Passwords\Email\RequireResetResponse
          */
-    public function requireReset(\Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request): \Stytch\B2B\Models\Passwords\Email\RequireResetResponse
-    {
+    public function requireReset(
+        \Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request,
+        \Stytch\B2B\Models\Passwords\Email\RequireResetRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Passwords\Email\RequireResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/passwords/email/require_reset', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/passwords/email/require_reset', $data, $opts);
         return \Stytch\B2B\Models\Passwords\Email\RequireResetResponse::fromArray($response);
     }
 

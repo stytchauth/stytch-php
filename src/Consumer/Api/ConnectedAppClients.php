@@ -29,8 +29,9 @@ class ConnectedAppClients
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse
          */
-    public function get(\Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse
-    {
+    public function get(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/connected_apps/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse::fromArray($response);
@@ -42,8 +43,9 @@ class ConnectedAppClients
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse
          */
-    public function update(\Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse
-    {
+    public function update(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/connected_apps/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse::fromArray($response);
@@ -55,8 +57,9 @@ class ConnectedAppClients
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse
          */
-    public function delete(\Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse
-    {
+    public function delete(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/connected_apps/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse::fromArray($response);
@@ -68,8 +71,9 @@ class ConnectedAppClients
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse
          */
-    public function search(\Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse
-    {
+    public function search(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients/search', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse::fromArray($response);
@@ -87,8 +91,9 @@ class ConnectedAppClients
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse
          */
-    public function create(\Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse
-    {
+    public function create(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse::fromArray($response);

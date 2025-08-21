@@ -37,8 +37,9 @@ class OTPs
          * @param \Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request): \Stytch\Consumer\Models\OTPs\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/authenticate', $data);
         return \Stytch\Consumer\Models\OTPs\AuthenticateResponse::fromArray($response);

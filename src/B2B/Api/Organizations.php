@@ -37,8 +37,9 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\CreateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\CreateResponse
          */
-    public function create(\Stytch\B2B\Models\Organizations\CreateRequest|array $request): \Stytch\B2B\Models\Organizations\CreateResponse
-    {
+    public function create(
+        \Stytch\B2B\Models\Organizations\CreateRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\CreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/organizations', $data);
         return \Stytch\B2B\Models\Organizations\CreateResponse::fromArray($response);
@@ -50,8 +51,9 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\GetRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\GetResponse
          */
-    public function get(\Stytch\B2B\Models\Organizations\GetRequest|array $request): \Stytch\B2B\Models\Organizations\GetResponse
-    {
+    public function get(
+        \Stytch\B2B\Models\Organizations\GetRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}', $data);
         return \Stytch\B2B\Models\Organizations\GetResponse::fromArray($response);
@@ -68,10 +70,13 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\UpdateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\UpdateResponse
          */
-    public function update(\Stytch\B2B\Models\Organizations\UpdateRequest|array $request): \Stytch\B2B\Models\Organizations\UpdateResponse
-    {
+    public function update(
+        \Stytch\B2B\Models\Organizations\UpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\UpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/organizations/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/organizations/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\UpdateResponse::fromArray($response);
     }
 
@@ -82,10 +87,13 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\DeleteRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\DeleteResponse
          */
-    public function delete(\Stytch\B2B\Models\Organizations\DeleteRequest|array $request): \Stytch\B2B\Models\Organizations\DeleteResponse
-    {
+    public function delete(
+        \Stytch\B2B\Models\Organizations\DeleteRequest|array $request,
+        \Stytch\B2B\Models\Organizations\DeleteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\DeleteResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\DeleteResponse::fromArray($response);
     }
 
@@ -97,8 +105,9 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\SearchResponse
          */
-    public function search(\Stytch\B2B\Models\Organizations\SearchRequest|array $request): \Stytch\B2B\Models\Organizations\SearchResponse
-    {
+    public function search(
+        \Stytch\B2B\Models\Organizations\SearchRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\SearchResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/organizations/search', $data);
         return \Stytch\B2B\Models\Organizations\SearchResponse::fromArray($response);
@@ -108,8 +117,9 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\MetricsRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\MetricsResponse
          */
-    public function metrics(\Stytch\B2B\Models\Organizations\MetricsRequest|array $request): \Stytch\B2B\Models\Organizations\MetricsResponse
-    {
+    public function metrics(
+        \Stytch\B2B\Models\Organizations\MetricsRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\MetricsResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/metrics', $data);
         return \Stytch\B2B\Models\Organizations\MetricsResponse::fromArray($response);
@@ -127,10 +137,13 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\ConnectedAppsResponse
          */
-    public function connectedApps(\Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request): \Stytch\B2B\Models\Organizations\ConnectedAppsResponse
-    {
+    public function connectedApps(
+        \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request,
+        \Stytch\B2B\Models\Organizations\ConnectedAppsRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\ConnectedAppsResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/connected_apps', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/connected_apps', $data, $opts);
         return \Stytch\B2B\Models\Organizations\ConnectedAppsResponse::fromArray($response);
     }
 
@@ -144,10 +157,13 @@ class Organizations
          * @param \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse
          */
-    public function getConnectedApp(\Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request): \Stytch\B2B\Models\Organizations\GetConnectedAppResponse
-    {
+    public function getConnectedApp(
+        \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request,
+        \Stytch\B2B\Models\Organizations\GetConnectedAppRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\GetConnectedAppResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/connected_apps/{connected_app_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/connected_apps/{connected_app_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse::fromArray($response);
     }
 

@@ -56,39 +56,43 @@ class Client
     /**
      * Make a GET request
      */
-    public function get(string $path, array $params = []): array
+    public function get(string $path, array $params = [], $opts = []): array
     {
-        return $this->request('GET', $path, ['query' => $params]);
+        return $this->request('GET', $path, ['query' => $params], $opts);
     }
 
     /**
      * Make a POST request
      */
-    public function post(string $path, array $data = []): array
+    public function post(string $path, array $data = [], $opts = []): array
     {
-        return $this->request('POST', $path, ['json' => $data]);
+        return $this->request('POST', $path, ['json' => $data], $opts);
     }
 
     /**
      * Make a PUT request
      */
-    public function put(string $path, array $data = []): array
+    public function put(string $path, array $data = [], $opts = []): array
     {
-        return $this->request('PUT', $path, ['json' => $data]);
+        return $this->request('PUT', $path, ['json' => $data], $opts);
     }
 
     /**
      * Make a DELETE request
      */
-    public function delete(string $path, array $data = []): array
+    public function delete(string $path, array $data = [], $opts = []): array
     {
-        return $this->request('DELETE', $path, ['json' => $data]);
+        return $this->request('DELETE', $path, ['json' => $data], $opts);
     }
 
     /**
      * Make an HTTP request
      */
-    private function request(string $method, string $path, array $options = []): array
+    private function request(
+      string $method, 
+      string $path, 
+      array $options = [], 
+      array $methodOptions = []): array
     {
         try {
             // Extract parameters from both JSON and query data for path substitution
@@ -110,6 +114,19 @@ class Client
             }
             if (isset($options['query'])) {
                 $options['query'] = $this->removePathParams($path, $queryData);
+            }
+
+            // Process additional headers from methodOptions parameter
+            $additionalHeaders = [];
+            if (!empty($methodOptions)) {
+                foreach ($methodOptions as $optValue) {
+                    $additionalHeaders = $optValue->addHeaders($additionalHeaders);
+                }
+            }
+
+            // Add any additional headers to the request options
+            if (!empty($additionalHeaders)) {
+                $options['headers'] = array_merge($options['headers'] ?? [], $additionalHeaders);
             }
 
             $url = $this->apiBase . $processedPath;

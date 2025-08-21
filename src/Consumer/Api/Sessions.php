@@ -32,8 +32,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\GetRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\GetResponse
          */
-    public function get(\Stytch\Consumer\Models\Sessions\GetRequest|array $request): \Stytch\Consumer\Models\Sessions\GetResponse
-    {
+    public function get(
+        \Stytch\Consumer\Models\Sessions\GetRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\GetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/sessions', $data);
         return \Stytch\Consumer\Models\Sessions\GetResponse::fromArray($response);
@@ -54,8 +55,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\Sessions\AuthenticateRequest|array $request): \Stytch\Consumer\Models\Sessions\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\Sessions\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/authenticate', $data);
         return \Stytch\Consumer\Models\Sessions\AuthenticateResponse::fromArray($response);
@@ -69,8 +71,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\RevokeRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\RevokeResponse
          */
-    public function revoke(\Stytch\Consumer\Models\Sessions\RevokeRequest|array $request): \Stytch\Consumer\Models\Sessions\RevokeResponse
-    {
+    public function revoke(
+        \Stytch\Consumer\Models\Sessions\RevokeRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\RevokeResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/revoke', $data);
         return \Stytch\Consumer\Models\Sessions\RevokeResponse::fromArray($response);
@@ -86,8 +89,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\MigrateRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\MigrateResponse
          */
-    public function migrate(\Stytch\Consumer\Models\Sessions\MigrateRequest|array $request): \Stytch\Consumer\Models\Sessions\MigrateResponse
-    {
+    public function migrate(
+        \Stytch\Consumer\Models\Sessions\MigrateRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\MigrateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/migrate', $data);
         return \Stytch\Consumer\Models\Sessions\MigrateResponse::fromArray($response);
@@ -107,8 +111,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse
          */
-    public function exchangeAccessToken(\Stytch\Consumer\Models\Sessions\ExchangeAccessTokenRequest|array $request): \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse
-    {
+    public function exchangeAccessToken(
+        \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/exchange_access_token', $data);
         return \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse::fromArray($response);
@@ -137,8 +142,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\GetJWKSRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\GetJWKSResponse
          */
-    public function getJWKS(\Stytch\Consumer\Models\Sessions\GetJWKSRequest|array $request): \Stytch\Consumer\Models\Sessions\GetJWKSResponse
-    {
+    public function getJWKS(
+        \Stytch\Consumer\Models\Sessions\GetJWKSRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\GetJWKSResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/sessions/jwks/{project_id}', $data);
         return \Stytch\Consumer\Models\Sessions\GetJWKSResponse::fromArray($response);
@@ -153,8 +159,9 @@ class Sessions
          * @param \Stytch\Consumer\Models\Sessions\AttestRequest|array $request
          * @return \Stytch\Consumer\Models\Sessions\AttestResponse
          */
-    public function attest(\Stytch\Consumer\Models\Sessions\AttestRequest|array $request): \Stytch\Consumer\Models\Sessions\AttestResponse
-    {
+    public function attest(
+        \Stytch\Consumer\Models\Sessions\AttestRequest|array $request,
+    ): \Stytch\Consumer\Models\Sessions\AttestResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/attest', $data);
         return \Stytch\Consumer\Models\Sessions\AttestResponse::fromArray($response);

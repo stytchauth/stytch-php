@@ -51,8 +51,9 @@ class OTPsWhatsapp
          * @param \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse
          */
-    public function send(\Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request): \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse
-    {
+    public function send(
+        \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/whatsapp/send', $data);
         return \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse::fromArray($response);
@@ -76,8 +77,9 @@ class OTPsWhatsapp
          * @param \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse
          */
-    public function loginOrCreate(\Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request): \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse
-    {
+    public function loginOrCreate(
+        \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/whatsapp/login_or_create', $data);
         return \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse::fromArray($response);

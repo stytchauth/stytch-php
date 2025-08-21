@@ -27,10 +27,13 @@ class SSOSAML
          * @param \Stytch\B2B\Models\SSO\SAML\CreateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse
          */
-    public function createConnection(\Stytch\B2B\Models\SSO\SAML\CreateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse
-    {
+    public function createConnection(
+        \Stytch\B2B\Models\SSO\SAML\CreateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\CreateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/sso/saml/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/sso/saml/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\SAML\CreateConnectionResponse::fromArray($response);
     }
 
@@ -46,10 +49,13 @@ class SSOSAML
          * @param \Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse
          */
-    public function updateConnection(\Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse
-    {
+    public function updateConnection(
+        \Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\UpdateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\SAML\UpdateConnectionResponse::fromArray($response);
     }
 
@@ -65,10 +71,13 @@ class SSOSAML
          * @param \Stytch\B2B\Models\SSO\SAML\UpdateByURLRequest|array $request
          * @return \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse
          */
-    public function updateByURL(\Stytch\B2B\Models\SSO\SAML\UpdateByURLRequest|array $request): \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse
-    {
+    public function updateByURL(
+        \Stytch\B2B\Models\SSO\SAML\UpdateByURLRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\UpdateByURLRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/url', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/url', $data, $opts);
         return \Stytch\B2B\Models\SSO\SAML\UpdateByURLResponse::fromArray($response);
     }
 
@@ -81,10 +90,13 @@ class SSOSAML
          * @param \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequest|array $request
          * @return \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse
          */
-    public function deleteVerificationCertificate(\Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequest|array $request): \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse
-    {
+    public function deleteVerificationCertificate(
+        \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->delete('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/verification_certificates/{certificate_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/verification_certificates/{certificate_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\SAML\DeleteVerificationCertificateResponse::fromArray($response);
     }
 

@@ -51,8 +51,9 @@ class MagicLinks
          * @param \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\MagicLinks\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request): \Stytch\B2B\Models\MagicLinks\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\MagicLinks\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/magic_links/authenticate', $data);
         return \Stytch\B2B\Models\MagicLinks\AuthenticateResponse::fromArray($response);

@@ -42,8 +42,9 @@ class OTPsEmail
          * @param \Stytch\Consumer\Models\OTPs\Email\SendRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Email\SendResponse
          */
-    public function send(\Stytch\Consumer\Models\OTPs\Email\SendRequest|array $request): \Stytch\Consumer\Models\OTPs\Email\SendResponse
-    {
+    public function send(
+        \Stytch\Consumer\Models\OTPs\Email\SendRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Email\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/email/send', $data);
         return \Stytch\Consumer\Models\OTPs\Email\SendResponse::fromArray($response);
@@ -62,8 +63,9 @@ class OTPsEmail
          * @param \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateRequest|array $request
          * @return \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse
          */
-    public function loginOrCreate(\Stytch\Consumer\Models\OTPs\Email\LoginOrCreateRequest|array $request): \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse
-    {
+    public function loginOrCreate(
+        \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/email/login_or_create', $data);
         return \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse::fromArray($response);

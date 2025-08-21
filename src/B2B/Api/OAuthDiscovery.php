@@ -29,8 +29,9 @@ class OAuthDiscovery
          * @param \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request
          * @return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
          */
-    public function authenticate(\Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request): \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/oauth/discovery/authenticate', $data);
         return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse::fromArray($response);

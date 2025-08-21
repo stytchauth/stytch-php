@@ -27,10 +27,13 @@ class SSOExternal
          * @param \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
          */
-    public function createConnection(\Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
-    {
+    public function createConnection(
+        \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\External\CreateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\External\CreateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/sso/external/{organization_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/sso/external/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse::fromArray($response);
     }
 
@@ -40,10 +43,13 @@ class SSOExternal
          * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
          * @return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
          */
-    public function updateConnection(\Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request): \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
-    {
+    public function updateConnection(
+        \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\External\UpdateConnectionRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->put('/v1/b2b/sso/external/{organization_id}/connections/{connection_id}', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/sso/external/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse::fromArray($response);
     }
 

@@ -33,8 +33,9 @@ class PasswordsSessions
          * @param \Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request
          * @return \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse
          */
-    public function reset(\Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request): \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse
-    {
+    public function reset(
+        \Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/passwords/session/reset', $data);
         return \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse::fromArray($response);

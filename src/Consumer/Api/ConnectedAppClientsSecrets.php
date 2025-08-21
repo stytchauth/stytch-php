@@ -36,8 +36,9 @@ class ConnectedAppClientsSecrets
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse
          */
-    public function rotateStart(\Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse
-    {
+    public function rotateStart(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients/{client_id}/secrets/rotate/start', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse::fromArray($response);
@@ -51,8 +52,9 @@ class ConnectedAppClientsSecrets
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse
          */
-    public function rotateCancel(\Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse
-    {
+    public function rotateCancel(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients/{client_id}/secrets/rotate/cancel', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse::fromArray($response);
@@ -66,8 +68,9 @@ class ConnectedAppClientsSecrets
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request
          * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse
          */
-    public function rotate(\Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse
-    {
+    public function rotate(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request,
+    ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients/{client_id}/secrets/rotate', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse::fromArray($response);

@@ -42,8 +42,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse
          */
-    public function registerStart(\Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request): \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse
-    {
+    public function registerStart(
+        \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/webauthn/register/start', $data);
         return \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse::fromArray($response);
@@ -64,8 +65,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\RegisterResponse
          */
-    public function register(\Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request): \Stytch\Consumer\Models\WebAuthn\RegisterResponse
-    {
+    public function register(
+        \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\RegisterResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/webauthn/register', $data);
         return \Stytch\Consumer\Models\WebAuthn\RegisterResponse::fromArray($response);
@@ -89,8 +91,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse
          */
-    public function authenticateStart(\Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request): \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse
-    {
+    public function authenticateStart(
+        \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/webauthn/authenticate/start', $data);
         return \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse::fromArray($response);
@@ -110,8 +113,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse
          */
-    public function authenticate(\Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request): \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse
-    {
+    public function authenticate(
+        \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/webauthn/authenticate', $data);
         return \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse::fromArray($response);
@@ -123,8 +127,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\UpdateResponse
          */
-    public function update(\Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request): \Stytch\Consumer\Models\WebAuthn\UpdateResponse
-    {
+    public function update(
+        \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\UpdateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/webauthn/{webauthn_registration_id}', $data);
         return \Stytch\Consumer\Models\WebAuthn\UpdateResponse::fromArray($response);
@@ -136,8 +141,9 @@ class WebAuthn
          * @param \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request
          * @return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse
          */
-    public function listCredentials(\Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request): \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse
-    {
+    public function listCredentials(
+        \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request,
+    ): \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/webauthn/credentials/{user_id}/{domain}', $data);
         return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse::fromArray($response);

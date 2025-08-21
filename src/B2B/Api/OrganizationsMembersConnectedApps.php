@@ -31,10 +31,13 @@ class OrganizationsMembersConnectedApps
          * @param \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse
          */
-    public function revoke(\Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request): \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse
-    {
+    public function revoke(
+        \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse {
         $data = is_array($request) ? $request : $request->toArray();
-        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps/{connected_app_id}/revoke', $data);
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps/{connected_app_id}/revoke', $data, $opts);
         return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse::fromArray($response);
     }
 
