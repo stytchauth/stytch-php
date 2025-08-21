@@ -41,6 +41,23 @@ class Sessions
     }
 
     /**
+    * List all active Sessions for a given `user_id`. All timestamps are formatted according to the RFC 3339
+    * standard and are expressed in UTC, e.g. `2021-12-29T12:33:09Z`.
+
+     * @param \Stytch\Consumer\Models\Sessions\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\Consumer\Models\Sessions\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/sessions', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\GetResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Authenticate a session token or session JWT and retrieve associated session data. If
         * `session_duration_minutes` is included, update the lifetime of the session to be that many minutes from
         * now. All timestamps are formatted according to the RFC 3339 standard and are expressed in UTC, e.g.
@@ -64,6 +81,31 @@ class Sessions
     }
 
     /**
+    * Authenticate a session token or session JWT and retrieve associated session data. If
+    * `session_duration_minutes` is included, update the lifetime of the session to be that many minutes from
+    * now. All timestamps are formatted according to the RFC 3339 standard and are expressed in UTC, e.g.
+    * `2021-12-29T12:33:09Z`. This endpoint requires exactly one `session_jwt` or `session_token` as part of
+    * the request. If both are included, you will receive a `too_many_session_arguments` error.
+    *
+    * You may provide a JWT that needs to be refreshed and is expired according to its `exp` claim. A new JWT
+    * will be returned if both the signature and the underlying Session are still valid. See our
+    * [How to use Stytch Session JWTs](https://stytch.com/docs/guides/sessions/using-jwts) guide for more
+    * information.
+
+     * @param \Stytch\Consumer\Models\Sessions\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\Sessions\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/sessions/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\AuthenticateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Revoke a Session, immediately invalidating all of its session tokens. You can revoke a session in three
         * ways: using its ID, or using one of its session tokens, or one of its JWTs. This endpoint requires
         * exactly one of those to be included in the request. It will return an error if multiple are present.
@@ -77,6 +119,24 @@ class Sessions
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/revoke', $data);
         return \Stytch\Consumer\Models\Sessions\RevokeResponse::fromArray($response);
+    }
+
+    /**
+    * Revoke a Session, immediately invalidating all of its session tokens. You can revoke a session in three
+    * ways: using its ID, or using one of its session tokens, or one of its JWTs. This endpoint requires
+    * exactly one of those to be included in the request. It will return an error if multiple are present.
+
+     * @param \Stytch\Consumer\Models\Sessions\RevokeRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function revokeAsync(
+        \Stytch\Consumer\Models\Sessions\RevokeRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/sessions/revoke', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\RevokeResponse::fromArray($response);
+        });
     }
 
     /**
@@ -95,6 +155,26 @@ class Sessions
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/migrate', $data);
         return \Stytch\Consumer\Models\Sessions\MigrateResponse::fromArray($response);
+    }
+
+    /**
+    * Migrate a session from an external OIDC compliant endpoint. Stytch will call the external UserInfo
+    * endpoint defined in your Stytch Project settings in the [Dashboard](https://stytch.com/dashboard), and
+    * then perform a lookup using the `session_token`. If the response contains a valid email address, Stytch
+    * will attempt to match that email address with an existing User and create a Stytch Session. You will
+    * need to create the user before using this endpoint.
+
+     * @param \Stytch\Consumer\Models\Sessions\MigrateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function migrateAsync(
+        \Stytch\Consumer\Models\Sessions\MigrateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/sessions/migrate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\MigrateResponse::fromArray($response);
+        });
     }
 
     /**
@@ -117,6 +197,30 @@ class Sessions
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/exchange_access_token', $data);
         return \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse::fromArray($response);
+    }
+
+    /**
+    * Use this endpoint to exchange a Connected Apps Access Token back into a Stytch Session for the
+    * underlying User.
+    * This session can be used with the Stytch SDKs and APIs.
+    *
+    * The Session returned will be the same Session that was active in your application (the authorizing
+    * party) during the initial authorization flow.
+    *
+    * The Access Token must contain the `full_access` scope (only available to First Party clients) and must
+    * not be more than 5 minutes old. Access Tokens may only be exchanged a single time.
+
+     * @param \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function exchangeAccessTokenAsync(
+        \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/sessions/exchange_access_token', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\ExchangeAccessTokenResponse::fromArray($response);
+        });
     }
 
     /**
@@ -151,6 +255,39 @@ class Sessions
     }
 
     /**
+    * Get the JSON Web Key Set (JWKS) for a project.
+    *
+    * Within the JWKS, the JSON Web Keys are rotated every ~6 months. Upon rotation, new JWTs will be signed
+    * using the new key, and both keys will be returned by this endpoint for a period of 1 month.
+    *
+    * JWTs have a set lifetime of 5 minutes, so there will be a 5 minute period where some JWTs will be signed
+    * by the old keys, and some JWTs will be signed by the new keys. The correct key to use for validation is
+    * determined by matching the `kid` value of the JWT and key.
+    *
+    * If you're using one of our [backend SDKs](https://stytch.com/docs/b2b/sdks), the JSON Web Key (JWK)
+    * rotation will be handled for you.
+    *
+    * If you're using your own JWT validation library, many have built-in support for JWK rotation, and you'll
+    * just need to supply this API endpoint. If not, your application should decide which JWK to use for
+    * validation by inspecting the `kid` value.
+    *
+    * See our [How to use Stytch Session JWTs](https://stytch.com/docs/guides/sessions/using-jwts) guide for
+    * more information.
+
+     * @param \Stytch\Consumer\Models\Sessions\GetJWKSRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getJWKSAsync(
+        \Stytch\Consumer\Models\Sessions\GetJWKSRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/sessions/jwks/{project_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\GetJWKSResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Exchange an auth token issued by a trusted identity provider for a Stytch session. You must first
         * register a Trusted Auth Token profile in the Stytch dashboard
         * [here](https://stytch.com/dashboard/trusted-auth-tokens). If a session token or session JWT is provided,
@@ -165,6 +302,25 @@ class Sessions
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/sessions/attest', $data);
         return \Stytch\Consumer\Models\Sessions\AttestResponse::fromArray($response);
+    }
+
+    /**
+    * Exchange an auth token issued by a trusted identity provider for a Stytch session. You must first
+    * register a Trusted Auth Token profile in the Stytch dashboard
+    * [here](https://stytch.com/dashboard/trusted-auth-tokens). If a session token or session JWT is provided,
+    * it will add the trusted auth token as an authentication factor to the existing session.
+
+     * @param \Stytch\Consumer\Models\Sessions\AttestRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function attestAsync(
+        \Stytch\Consumer\Models\Sessions\AttestRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/sessions/attest', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Sessions\AttestResponse::fromArray($response);
+        });
     }
 
 }

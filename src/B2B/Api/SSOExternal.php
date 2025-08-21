@@ -38,6 +38,24 @@ class SSOExternal
     }
 
     /**
+    * Create a new External SSO Connection.
+
+     * @param \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createConnectionAsync(
+        \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\External\CreateConnectionRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/sso/external/{organization_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Updates an existing External SSO connection.
 
          * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
@@ -51,6 +69,24 @@ class SSOExternal
         $opts = is_array($options) ? $options : $options->toArray();
         $response = $this->client->put('/v1/b2b/sso/external/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse::fromArray($response);
+    }
+
+    /**
+    * Updates an existing External SSO connection.
+
+     * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateConnectionAsync(
+        \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\External\UpdateConnectionRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/sso/external/{organization_id}/connections/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse::fromArray($response);
+        });
     }
 
 }

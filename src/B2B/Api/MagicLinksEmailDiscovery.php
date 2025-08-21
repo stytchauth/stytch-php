@@ -35,4 +35,20 @@ class MagicLinksEmailDiscovery
         return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse::fromArray($response);
     }
 
+    /**
+    * Send a discovery magic link to an email address. The magic link is valid for 60 minutes.
+
+     * @param \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendAsync(
+        \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/magic_links/email/discovery/send', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse::fromArray($response);
+        });
+    }
+
 }

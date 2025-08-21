@@ -37,6 +37,23 @@ class TOTPs
     }
 
     /**
+    * Create a new TOTP instance for a user. The user can use the authenticator application of their choice to
+    * scan the QR code or enter the secret.
+
+     * @param \Stytch\Consumer\Models\TOTPs\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\Consumer\Models\TOTPs\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/totps', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\TOTPs\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Authenticate a TOTP code entered by a user.
 
          * @param \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request
@@ -48,6 +65,22 @@ class TOTPs
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/totps/authenticate', $data);
         return \Stytch\Consumer\Models\TOTPs\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a TOTP code entered by a user.
+
+     * @param \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/totps/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\TOTPs\AuthenticateResponse::fromArray($response);
+        });
     }
 
     /**
@@ -65,6 +98,22 @@ class TOTPs
     }
 
     /**
+    * Retrieve the recovery codes for a TOTP instance tied to a User.
+
+     * @param \Stytch\Consumer\Models\TOTPs\RecoveryCodesRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function recoveryCodesAsync(
+        \Stytch\Consumer\Models\TOTPs\RecoveryCodesRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/totps/recovery_codes', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\TOTPs\RecoveryCodesResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Authenticate a recovery code for a TOTP instance.
 
          * @param \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request
@@ -76,6 +125,22 @@ class TOTPs
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/totps/recover', $data);
         return \Stytch\Consumer\Models\TOTPs\RecoverResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a recovery code for a TOTP instance.
+
+     * @param \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function recoverAsync(
+        \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/totps/recover', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\TOTPs\RecoverResponse::fromArray($response);
+        });
     }
 
 }

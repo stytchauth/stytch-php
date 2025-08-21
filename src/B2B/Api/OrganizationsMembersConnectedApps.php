@@ -41,4 +41,26 @@ class OrganizationsMembersConnectedApps
         return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse::fromArray($response);
     }
 
+    /**
+    * Revoke Connected App revokes a Connected App's access to a Member and revokes all active tokens that
+    * have been created
+    * on the Member's behalf. New tokens cannot be created until the Member completes a new authorization flow
+    * with the
+    * Connected App.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function revokeAsync(
+        \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps/{connected_app_id}/revoke', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse::fromArray($response);
+        });
+    }
+
 }

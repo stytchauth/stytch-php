@@ -37,4 +37,22 @@ class OAuthDiscovery
         return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse::fromArray($response);
     }
 
+    /**
+    * Authenticates the Discovery OAuth token and exchanges it for an Intermediate
+    * Session Token. Intermediate Session Tokens can be used for various Discovery login flows and are valid
+    * for 10 minutes.
+
+     * @param \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/oauth/discovery/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse::fromArray($response);
+        });
+    }
+
 }

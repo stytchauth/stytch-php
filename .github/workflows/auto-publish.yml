@@ -3,7 +3,6 @@ name: Publish stytch Packagist package
 on:
   push:
     branches: [main]
-    tags: ['v*']
 
 jobs:
   build-and-publish:
@@ -36,28 +35,23 @@ jobs:
           composer install --prefer-dist --no-progress
           vendor/bin/phpunit
 
-      - name: Get version from tag
+      - name: Get version from Version.php
         id: version
         run: |
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/}
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "release_tag=$VERSION" >> $GITHUB_OUTPUT
-            echo "is_tag=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_tag=false" >> $GITHUB_OUTPUT
-          fi
+          VERSION=$(php -r "require 'src/Version.php'; echo Stytch\Version::VERSION;")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "release_tag=v$VERSION" >> $GITHUB_OUTPUT
 
       - name: Get changed files
         id: files
         uses: jitterbit/get-changed-files@v1
 
-      - name: Check for composer.json version change
+      - name: Check for Version.php diff
         id: diff
         run: |
           FOUND=0
           for changed_file in ${{ steps.files.outputs.all }}; do
-            if [[ $changed_file == "composer.json" ]]; then
+            if [[ $changed_file == "src/Version.php" ]]; then
               FOUND=1
             fi
           done
@@ -66,14 +60,14 @@ jobs:
       - name: Trigger Packagist update
         env:
           PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
-        if: (steps.version.outputs.is_tag == 'true' || steps.diff.outputs.diff != 0) && env.PACKAGIST_TOKEN != ''
+        if: steps.diff.outputs.diff != 0 && env.PACKAGIST_TOKEN != ''
         run: |
           curl -XPOST -H'content-type:application/json' \
             'https://packagist.org/api/update-package?username=stytch&apiToken=${{ secrets.PACKAGIST_TOKEN }}' \
             -d'{"repository":{"url":"https://github.com/stytch/stytch-php"}}'
 
       - name: Create release
-        if: steps.version.outputs.is_tag == 'true'
+        if: steps.diff.outputs.diff != 0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release create "${{ steps.version.outputs.release_tag }}" --generate-notes

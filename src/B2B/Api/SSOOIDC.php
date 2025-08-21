@@ -38,6 +38,24 @@ class SSOOIDC
     }
 
     /**
+    * Create a new OIDC Connection.
+
+     * @param \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createConnectionAsync(
+        \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\OIDC\CreateConnectionRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/sso/oidc/{organization_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\OIDC\CreateConnectionResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Updates an existing OIDC connection.
         *
         * When the value of `issuer` changes, Stytch will attempt to retrieve the
@@ -76,6 +94,49 @@ class SSOOIDC
         $opts = is_array($options) ? $options : $options->toArray();
         $response = $this->client->put('/v1/b2b/sso/oidc/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse::fromArray($response);
+    }
+
+    /**
+    * Updates an existing OIDC connection.
+    *
+    * When the value of `issuer` changes, Stytch will attempt to retrieve the
+    * [OpenID Provider Metadata](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata)
+    * document found at `$/.well-known/openid-configuration`.
+    * If the metadata document can be retrieved successfully, Stytch will use it to infer the values of
+    * `authorization_url`, `token_url`, `jwks_url`, and `userinfo_url`.
+    * The `client_id` and `client_secret` values cannot be inferred from the metadata document, and *must* be
+    * passed in explicitly.
+    *
+    * If the metadata document cannot be retrieved, Stytch will still update the connection using values from
+    * the request body.
+    *
+    * If the metadata document can be retrieved, and values are passed in the request body, the explicit
+    * values passed in from the request body will take precedence over the values inferred from the metadata
+    * document.
+    *
+    * Note that a newly created connection will not become active until all of the following fields are
+    * provided:
+    * * `issuer`
+    * * `client_id`
+    * * `client_secret`
+    * * `authorization_url`
+    * * `token_url`
+    * * `userinfo_url`
+    * * `jwks_url`
+
+     * @param \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateConnectionAsync(
+        \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/sso/oidc/{organization_id}/connections/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\OIDC\UpdateConnectionResponse::fromArray($response);
+        });
     }
 
 }

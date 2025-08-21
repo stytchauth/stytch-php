@@ -40,6 +40,24 @@ class MagicLinks
     }
 
     /**
+    * Authenticate a User given a Magic Link. This endpoint verifies that the Magic Link token is valid,
+    * hasn't expired or been previously used, and any optional security settings such as IP match or user
+    * agent match are satisfied.
+
+     * @param \Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\MagicLinks\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/magic_links/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\MagicLinks\AuthenticateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Create an Embeddable Magic Link token for a User. Access to this endpoint is restricted. To enable it,
         * please send us a note at support@stytch.com.
         *
@@ -62,6 +80,33 @@ class MagicLinks
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/magic_links', $data);
         return \Stytch\Consumer\Models\MagicLinks\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Create an Embeddable Magic Link token for a User. Access to this endpoint is restricted. To enable it,
+    * please send us a note at support@stytch.com.
+    *
+    * ### Next steps
+    * Send the returned `token` value to the end user in a link which directs to your application. When the
+    * end user follows your link, collect the token, and call
+    * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
+    * authentication.
+    *
+    * **Note:** Authenticating an Embeddable Magic Link token will **not** result in any of the Stytch User's
+    * factors (email address or phone number) being marked as verified, as Stytch cannot confirm where the
+    * user received the token.
+
+     * @param \Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\Consumer\Models\MagicLinks\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/magic_links', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\MagicLinks\CreateResponse::fromArray($response);
+        });
     }
 
 }

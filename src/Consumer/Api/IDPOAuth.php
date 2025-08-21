@@ -34,6 +34,20 @@ class IDPOAuth
     }
 
     /**
+     * @param \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authorizeStartAsync(
+        \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/idp/oauth/authorize/start', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeStartResponse::fromArray($response);
+        });
+    }
+
+    /**
          * @param \Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request
          * @return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse
          */
@@ -43,6 +57,20 @@ class IDPOAuth
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/idp/oauth/authorize', $data);
         return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse::fromArray($response);
+    }
+
+    /**
+     * @param \Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authorizeAsync(
+        \Stytch\Consumer\Models\IDP\OAuth\AuthorizeRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/idp/oauth/authorize', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\IDP\OAuth\AuthorizeResponse::fromArray($response);
+        });
     }
 
 }

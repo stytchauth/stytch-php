@@ -33,4 +33,18 @@ class Project
         return \Stytch\Consumer\Models\Project\MetricsResponse::fromArray($response);
     }
 
+    /**
+     * @param \Stytch\Consumer\Models\Project\MetricsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function metricsAsync(
+        \Stytch\Consumer\Models\Project\MetricsRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/projects/metrics', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Project\MetricsResponse::fromArray($response);
+        });
+    }
+
 }

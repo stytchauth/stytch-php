@@ -5,8 +5,11 @@ namespace Stytch\Tests\Unit\Core;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
 use GuzzleHttp\Psr7\Response;
 use Stytch\Core\Client;
+use Stytch\Core\StytchException;
 use Stytch\Shared\MethodOptions\Authorization;
 use Stytch\Tests\TestCase;
 
@@ -216,5 +219,297 @@ class ClientTest extends TestCase
         // Verify no session headers were added
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));
+    }
+
+    // ASYNC METHODS TESTS
+
+    public function testGetAsync(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'request_id' => 'async-get-123',
+            'data' => ['test' => 'value']
+        ])));
+
+        // Make an async GET request
+        $promise = $this->client->getAsync('/v1/test/endpoint', ['param' => 'value']);
+
+        // Assert we got a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the promise to resolve
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(200, $response['status_code']);
+        $this->assertEquals('async-get-123', $response['request_id']);
+        $this->assertEquals(['test' => 'value'], $response['data']);
+    }
+
+    public function testPostAsync(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(201, [], json_encode([
+            'status_code' => 201,
+            'request_id' => 'async-post-456',
+            'user_id' => 'user-12345'
+        ])));
+
+        // Make an async POST request
+        $promise = $this->client->postAsync('/v1/users', ['email' => 'test@example.com']);
+
+        // Assert we got a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the promise to resolve
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(201, $response['status_code']);
+        $this->assertEquals('async-post-456', $response['request_id']);
+        $this->assertEquals('user-12345', $response['user_id']);
+    }
+
+    public function testPutAsync(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'request_id' => 'async-put-789',
+            'updated' => true
+        ])));
+
+        // Make an async PUT request
+        $promise = $this->client->putAsync('/v1/users/{user_id}', [
+            'user_id' => 'user-123',
+            'name' => ['first_name' => 'Updated']
+        ]);
+
+        // Assert we got a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the promise to resolve
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(200, $response['status_code']);
+        $this->assertEquals('async-put-789', $response['request_id']);
+        $this->assertTrue($response['updated']);
+    }
+
+    public function testDeleteAsync(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'request_id' => 'async-delete-101112'
+        ])));
+
+        // Make an async DELETE request
+        $promise = $this->client->deleteAsync('/v1/users/{user_id}', ['user_id' => 'user-456']);
+
+        // Assert we got a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the promise to resolve
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(200, $response['status_code']);
+        $this->assertEquals('async-delete-101112', $response['request_id']);
+    }
+
+    public function testAsyncWithAuthorization(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'request_id' => 'async-auth-131415'
+        ])));
+
+        // Create authorization
+        $authorization = new Authorization(sessionToken: 'async-session-token');
+
+        // Make an async POST request with authorization
+        $promise = $this->client->postAsync('/v1/test/authenticated', [
+            'test_data' => 'value'
+        ], [$authorization]);
+
+        // Wait for the promise to resolve
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(200, $response['status_code']);
+
+        // Verify the authorization header was added
+        $lastRequest = $this->mockHandler->getLastRequest();
+        $this->assertNotNull($lastRequest);
+        $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-Session'));
+        $this->assertEquals('async-session-token', $lastRequest->getHeaderLine('X-Stytch-Member-Session'));
+    }
+
+    public function testAsyncPromiseChaining(): void
+    {
+        // Mock multiple responses for chaining
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'user_id' => 'user-chain-123'
+        ])));
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'session_token' => 'session-chain-456'
+        ])));
+
+        // Chain async requests
+        $finalPromise = $this->client->postAsync('/v1/users', ['email' => 'chain@example.com'])
+            ->then(function($createResponse) {
+                // Return another async request
+                return $this->client->postAsync('/v1/sessions/authenticate', [
+                    'user_id' => $createResponse['user_id']
+                ]);
+            });
+
+        // Wait for the final result
+        $finalResponse = $finalPromise->wait();
+
+        // Assert the final response
+        $this->assertEquals(200, $finalResponse['status_code']);
+        $this->assertEquals('session-chain-456', $finalResponse['session_token']);
+    }
+
+    public function testAsyncErrorHandling(): void
+    {
+        // Mock an error response
+        $this->mockHandler->append(new Response(400, [], json_encode([
+            'status_code' => 400,
+            'error_type' => 'invalid_request',
+            'error_message' => 'Invalid user ID'
+        ])));
+
+        // Make an async request that will fail
+        $promise = $this->client->getAsync('/v1/users/invalid-id');
+
+        // Expect the promise to be rejected with a StytchException
+        $this->expectException(StytchException::class);
+        $this->expectExceptionMessage('Invalid user ID');
+        $this->expectExceptionCode(400);
+
+        $promise->wait();
+    }
+
+    public function testAsyncErrorHandlingWithOtherwise(): void
+    {
+        // Mock an error response
+        $this->mockHandler->append(new Response(404, [], json_encode([
+            'status_code' => 404,
+            'error_type' => 'user_not_found',
+            'error_message' => 'User not found'
+        ])));
+
+        $errorCaught = false;
+        $errorMessage = null;
+
+        // Make an async request with error handling
+        $promise = $this->client->getAsync('/v1/users/nonexistent')
+            ->otherwise(function($exception) use (&$errorCaught, &$errorMessage) {
+                $errorCaught = true;
+                $errorMessage = $exception->getMessage();
+                return null; // Return fallback value
+            });
+
+        $result = $promise->wait();
+
+        // Assert error was caught and handled
+        $this->assertTrue($errorCaught);
+        $this->assertStringContainsString('User not found', $errorMessage);
+        $this->assertNull($result);
+    }
+
+    public function testConcurrentAsyncRequests(): void
+    {
+        // Mock multiple responses
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'user_id' => 'user-1',
+            'name' => 'User One'
+        ])));
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'user_id' => 'user-2', 
+            'name' => 'User Two'
+        ])));
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'user_id' => 'user-3',
+            'name' => 'User Three'
+        ])));
+
+        // Create concurrent async requests
+        $promises = [
+            'user1' => $this->client->getAsync('/v1/users/user-1'),
+            'user2' => $this->client->getAsync('/v1/users/user-2'),
+            'user3' => $this->client->getAsync('/v1/users/user-3'),
+        ];
+
+        // Wait for all promises to settle
+        $results = Utils::settle($promises)->wait();
+
+        // Assert all requests succeeded
+        foreach ($results as $key => $result) {
+            $this->assertEquals('fulfilled', $result['state']);
+            $this->assertEquals(200, $result['value']['status_code']);
+        }
+
+        // Assert specific results
+        $this->assertEquals('User One', $results['user1']['value']['name']);
+        $this->assertEquals('User Two', $results['user2']['value']['name']);
+        $this->assertEquals('User Three', $results['user3']['value']['name']);
+    }
+
+    public function testAsyncPathSubstitution(): void
+    {
+        // Mock the HTTP response
+        $this->mockHandler->append(new Response(200, [], json_encode([
+            'status_code' => 200,
+            'request_id' => 'path-sub-123',
+            'user_id' => 'user-456'
+        ])));
+
+        // Make request with path parameters
+        $promise = $this->client->getAsync('/v1/users/{user_id}/sessions/{session_id}', [
+            'user_id' => 'user-456',
+            'session_id' => 'session-789',
+            'extra_param' => 'should_remain'
+        ]);
+
+        $response = $promise->wait();
+
+        // Assert the response
+        $this->assertEquals(200, $response['status_code']);
+
+        // Verify the path was correctly substituted and params cleaned
+        $lastRequest = $this->mockHandler->getLastRequest();
+        $this->assertNotNull($lastRequest);
+        $this->assertEquals('/v1/users/user-456/sessions/session-789', $lastRequest->getUri()->getPath());
+        
+        // Verify query parameters were cleaned (path params removed)
+        parse_str($lastRequest->getUri()->getQuery(), $queryParams);
+        $this->assertArrayHasKey('extra_param', $queryParams);
+        $this->assertArrayNotHasKey('user_id', $queryParams);
+        $this->assertArrayNotHasKey('session_id', $queryParams);
+    }
+
+    public function testAsyncJsonDecodeError(): void
+    {
+        // Mock response with invalid JSON
+        $this->mockHandler->append(new Response(200, [], 'invalid-json-response'));
+
+        $promise = $this->client->getAsync('/v1/test');
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Invalid JSON response');
+
+        $promise->wait();
     }
 }

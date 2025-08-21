@@ -55,6 +55,41 @@ class FraudRules
     }
 
     /**
+    * Set a rule for a particular `visitor_id`, `browser_id`, `visitor_fingerprint`, `browser_fingerprint`,
+    * `hardware_fingerprint`, `network_fingerprint`, `cidr_block`, `asn`, or `country_code`. This is helpful
+    * in cases where you want to allow or block a specific user or fingerprint. You should be careful when
+    * setting rules for `browser_fingerprint`, `hardware_fingerprint`, or `network_fingerprint` as they can be
+    * shared across multiple users, and you could affect more users than intended.
+    *
+    * You may not set an `ALLOW` rule for a `country_code`.
+    *
+    * Rules are applied in the order specified above. For example, if an end user has an `ALLOW` rule set for
+    * their `visitor_id` but a `BLOCK` rule set for their `hardware_fingerprint`, they will receive an `ALLOW`
+    * verdict because the `visitor_id` rule takes precedence.
+    *
+    * If there are conflicts between multiple `cidr_block` rules (for example, if the `ip_address` of the end
+    * user overlaps with multiple CIDR blocks that have rules set), the conflicts are resolved as follows:
+    * - The smallest block size takes precedence. For example, if an `ip_address` overlaps with a `cidr_block`
+    * rule of `ALLOW` for a block with a prefix of `/32` and a `cidr_block` rule of `BLOCK` with a prefix of
+    * `/24`, the rule match verdict will be `ALLOW`.
+    * - Among equivalent size blocks, `BLOCK` takes precedence over `CHALLENGE`, which takes precedence over
+    * `ALLOW`. For example, if an `ip_address` overlaps with two `cidr_block` rules with blocks of the same
+    * size that return `CHALLENGE` and `ALLOW`, the rule match verdict will be `CHALLENGE`.
+
+     * @param \Stytch\Consumer\Models\Fraud\Rules\SetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function setAsync(
+        \Stytch\Consumer\Models\Fraud\Rules\SetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/rules/set', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Fraud\Rules\SetResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Get all rules that have been set for your project.
 
          * @param \Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request
@@ -66,6 +101,22 @@ class FraudRules
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/rules/list', $data);
         return \Stytch\Consumer\Models\Fraud\Rules\ListResponse::fromArray($response);
+    }
+
+    /**
+    * Get all rules that have been set for your project.
+
+     * @param \Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listAsync(
+        \Stytch\Consumer\Models\Fraud\Rules\ListRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/rules/list', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Fraud\Rules\ListResponse::fromArray($response);
+        });
     }
 
 }

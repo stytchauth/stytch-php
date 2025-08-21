@@ -44,6 +44,30 @@ class CryptoWallets
     }
 
     /**
+    * Initiate the authentication of a crypto wallet. After calling this endpoint, the user will need to sign
+    * a message containing the returned `challenge` field.
+    *
+    * For Ethereum crypto wallets, you can optionally use the Sign In With Ethereum (SIWE) protocol for the
+    * message by passing in the `siwe_params`. The only required fields are `domain` and `uri`.
+    * If the crypto wallet detects that the domain in the message does not match the website's domain, it will
+    * display a warning to the user.
+    *
+    * If not using the SIWE protocol, the message will simply consist of the project name and a random string.
+
+     * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateStartAsync(
+        \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/crypto_wallets/authenticate/start', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Complete the authentication of a crypto wallet by passing the signature.
 
          * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request
@@ -55,6 +79,22 @@ class CryptoWallets
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/crypto_wallets/authenticate', $data);
         return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Complete the authentication of a crypto wallet by passing the signature.
+
+     * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/crypto_wallets/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse::fromArray($response);
+        });
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace Stytch\Tests\B2B;
 
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
 use Stytch\B2B\Client;
 use Stytch\B2B\Models\Organizations\CreateRequest;
 use Stytch\B2B\Models\Organizations\GetRequest;
@@ -216,5 +218,165 @@ class OrganizationsTest extends TestCase
 
         $createRequest = new CreateRequest('Test Organization', 'Invalid Slug With Spaces');
         $this->client->organizations->create($createRequest);
+    }
+
+    // ASYNC API TESTS
+
+    public function testCreateOrganizationAsync(): void
+    {
+        $organizationName = 'Async Test Org ' . $this->generateRandomString();
+        $organizationSlug = 'async-test-org-' . strtolower($this->generateRandomString());
+
+        $createRequest = new CreateRequest($organizationName, $organizationSlug);
+        
+        // Call async method
+        $promise = $this->client->organizations->createAsync($createRequest);
+
+        // Verify it returns a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the result
+        $response = $promise->wait();
+
+        // Verify the response
+        $this->assertNotEmpty($response->organization->organizationId);
+        $this->assertEquals($organizationName, $response->organization->organizationName);
+        $this->assertEquals($organizationSlug, $response->organization->organizationSlug);
+
+        // Add to cleanup
+        $this->testOrganizations[] = $response->organization->organizationId;
+    }
+
+    public function testGetOrganizationAsync(): void
+    {
+        // First create an organization synchronously
+        $organizationName = 'Test Async Get Org ' . $this->generateRandomString();
+        $organizationSlug = 'test-async-get-' . strtolower($this->generateRandomString());
+        
+        $createRequest = new CreateRequest($organizationName, $organizationSlug);
+        $createResponse = $this->client->organizations->create($createRequest);
+        $this->testOrganizations[] = $createResponse->organization->organizationId;
+
+        // Now get the organization asynchronously
+        $getRequest = new GetRequest($createResponse->organization->organizationId);
+        $promise = $this->client->organizations->getAsync($getRequest);
+
+        // Verify it returns a promise
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        // Wait for the result
+        $response = $promise->wait();
+
+        // Verify the response
+        $this->assertEquals($createResponse->organization->organizationId, $response->organization->organizationId);
+        $this->assertEquals($organizationName, $response->organization->organizationName);
+        $this->assertEquals($organizationSlug, $response->organization->organizationSlug);
+    }
+
+    public function testAsyncOrganizationChaining(): void
+    {
+        $organizationName = 'Chain Test Org ' . $this->generateRandomString();
+        $organizationSlug = 'chain-test-' . strtolower($this->generateRandomString());
+        $updatedName = 'Updated ' . $organizationName;
+
+        $createRequest = new CreateRequest($organizationName, $organizationSlug);
+        
+        // Chain async operations: create -> get -> update -> get
+        $finalPromise = $this->client->organizations->createAsync($createRequest)
+            ->then(function($createResponse) use ($updatedName) {
+                // Organization created, add to cleanup
+                $this->testOrganizations[] = $createResponse->organization->organizationId;
+                
+                // Now update the organization
+                $updateRequest = new UpdateRequest($createResponse->organization->organizationId);
+                $updateRequest->organizationName = $updatedName;
+                
+                return $this->client->organizations->updateAsync($updateRequest);
+            })
+            ->then(function($updateResponse) {
+                // Organization updated, now get it to verify
+                $getRequest = new GetRequest($updateResponse->organization->organizationId);
+                return $this->client->organizations->getAsync($getRequest);
+            });
+
+        // Wait for the final result
+        $finalResponse = $finalPromise->wait();
+
+        // Verify the final response has the updated name
+        $this->assertEquals($updatedName, $finalResponse->organization->organizationName);
+        $this->assertEquals($organizationSlug, $finalResponse->organization->organizationSlug);
+    }
+
+    public function testConcurrentOrganizationRequests(): void
+    {
+        // Create test organizations first
+        $orgData = [
+            ['name' => 'Concurrent Org 1 ' . $this->generateRandomString(), 'slug' => 'concurrent-1-' . strtolower($this->generateRandomString())],
+            ['name' => 'Concurrent Org 2 ' . $this->generateRandomString(), 'slug' => 'concurrent-2-' . strtolower($this->generateRandomString())],
+            ['name' => 'Concurrent Org 3 ' . $this->generateRandomString(), 'slug' => 'concurrent-3-' . strtolower($this->generateRandomString())]
+        ];
+        
+        $organizationIds = [];
+        foreach ($orgData as $data) {
+            $createRequest = new CreateRequest($data['name'], $data['slug']);
+            $response = $this->client->organizations->create($createRequest);
+            $organizationIds[] = $response->organization->organizationId;
+            $this->testOrganizations[] = $response->organization->organizationId;
+        }
+
+        // Now get all organizations concurrently using async
+        $promises = [];
+        foreach ($organizationIds as $organizationId) {
+            $getRequest = new GetRequest($organizationId);
+            $promises[$organizationId] = $this->client->organizations->getAsync($getRequest);
+        }
+
+        // Wait for all promises to complete
+        $results = Utils::settle($promises)->wait();
+
+        // Verify all requests succeeded
+        $this->assertCount(3, $results);
+        foreach ($results as $organizationId => $result) {
+            $this->assertEquals('fulfilled', $result['state'], 
+                "Request for organization {$organizationId} should have succeeded");
+            $this->assertEquals($organizationId, $result['value']->organization->organizationId);
+        }
+    }
+
+    public function testAsyncOrganizationErrorHandling(): void
+    {
+        // Try to get a non-existent organization - this should throw StytchException
+        $getRequest = new GetRequest('organization-test-nonexistent-async');
+        $promise = $this->client->organizations->getAsync($getRequest);
+
+        // Test 1: Direct exception handling with wait()
+        try {
+            $promise->wait();
+            $this->fail('Expected StytchException to be thrown');
+        } catch (StytchException $e) {
+            $this->assertStringContainsString('could not be found', $e->getMessage());
+        }
+
+        // Test 2: Promise error handling with ->otherwise()
+        $errorCaught = false;
+        $errorMessage = null;
+        $fallbackValue = 'org-error-fallback';
+
+        $getRequest2 = new GetRequest('organization-test-nonexistent-async-2');
+        $promise2 = $this->client->organizations->getAsync($getRequest2);
+
+        $handledPromise = $promise2->otherwise(function($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {
+            $errorCaught = true;
+            $errorMessage = $exception->getMessage();
+            $this->assertInstanceOf(StytchException::class, $exception);
+            return $fallbackValue; // Return fallback value
+        });
+
+        $result = $handledPromise->wait();
+
+        // Verify error was caught and fallback returned
+        $this->assertTrue($errorCaught, 'Error should have been caught');
+        $this->assertStringContainsString('could not be found', $errorMessage);
+        $this->assertEquals($fallbackValue, $result, 'Should return fallback value');
     }
 }

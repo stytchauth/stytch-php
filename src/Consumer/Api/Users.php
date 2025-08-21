@@ -37,6 +37,23 @@ class Users
     }
 
     /**
+    * Add a User to Stytch. A `user_id` is returned in the response that can then be used to perform other
+    * operations within Stytch. An `email` or a `phone_number` is required.
+
+     * @param \Stytch\Consumer\Models\Users\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\Consumer\Models\Users\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/users', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Get information about a specific User.
 
          * @param \Stytch\Consumer\Models\Users\GetRequest|array $request
@@ -48,6 +65,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Get information about a specific User.
+
+     * @param \Stytch\Consumer\Models\Users\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\Consumer\Models\Users\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/users/{user_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\GetResponse::fromArray($response);
+        });
     }
 
     /**
@@ -75,6 +108,32 @@ class Users
     }
 
     /**
+    * Search for Users within your Stytch Project.
+    *
+    * Use the `query` object to filter by different fields. See the `query.operands.filter_value`
+    * documentation below for a list of available filters.
+    *
+    * ### Export all User data
+    *
+    * Submit an empty `query` in your Search Users request to return all of your Stytch Project's Users.
+    *
+    * [This Github repository](https://github.com/stytchauth/stytch-node-export-users) contains a utility that
+    * leverages the Search Users endpoint to export all of your User data to a CSV or JSON file.
+
+     * @param \Stytch\Consumer\Models\Users\SearchRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchAsync(
+        \Stytch\Consumer\Models\Users\SearchRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/users/search', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\SearchResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Update a User's attributes.
         *
         * **Note:** In order to add a new email address or phone number to an existing User object, pass the new
@@ -95,6 +154,31 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\UpdateResponse::fromArray($response);
+    }
+
+    /**
+    * Update a User's attributes.
+    *
+    * **Note:** In order to add a new email address or phone number to an existing User object, pass the new
+    * email address or phone number into the respective `/send` endpoint for the authentication method of your
+    * choice. If you specify the existing User's `user_id` while calling the `/send` endpoint, the new,
+    * unverified email address or phone number will be added to the existing User object. If the user
+    * successfully authenticates within 5 minutes of the `/send` request, the new email address or phone
+    * number will be marked as verified and remain permanently on the existing Stytch User. Otherwise, it will
+    * be removed from the User object, and any subsequent login requests using that phone number will create a
+    * new User. We require this process to guard against an account takeover vulnerability.
+
+     * @param \Stytch\Consumer\Models\Users\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\Consumer\Models\Users\UpdateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->putAsync('/v1/users/{user_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\UpdateResponse::fromArray($response);
+        });
     }
 
     /**
@@ -119,6 +203,29 @@ class Users
     }
 
     /**
+    * Exchange a user's email address or phone number for another.
+    *
+    * Must pass either an `email_address` or a `phone_number`.
+    *
+    * This endpoint only works if the user has exactly one factor. You are able to exchange the type of factor
+    * for another as well, i.e. exchange an `email_address` for a `phone_number`.
+    *
+    * Use this endpoint with caution as it performs an admin level action.
+
+     * @param \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function exchangePrimaryFactorAsync(
+        \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->putAsync('/v1/users/{user_id}/exchange_primary_factor', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete a User from Stytch.
 
          * @param \Stytch\Consumer\Models\Users\DeleteRequest|array $request
@@ -130,6 +237,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/{user_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a User from Stytch.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\Consumer\Models\Users\DeleteRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/{user_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteResponse::fromArray($response);
+        });
     }
 
     /**
@@ -147,6 +270,22 @@ class Users
     }
 
     /**
+    * Delete an email from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEmailAsync(
+        \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/emails/{email_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteEmailResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete a phone number from a User.
 
          * @param \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request
@@ -158,6 +297,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/phone_numbers/{phone_id}', $data);
         return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a phone number from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePhoneNumberAsync(
+        \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/phone_numbers/{phone_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse::fromArray($response);
+        });
     }
 
     /**
@@ -175,6 +330,22 @@ class Users
     }
 
     /**
+    * Delete a WebAuthn registration from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteWebAuthnRegistrationAsync(
+        \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/webauthn_registrations/{webauthn_registration_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete a biometric registration from a User.
 
          * @param \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request
@@ -186,6 +357,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/biometric_registrations/{biometric_registration_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a biometric registration from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBiometricRegistrationAsync(
+        \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/biometric_registrations/{biometric_registration_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse::fromArray($response);
+        });
     }
 
     /**
@@ -203,6 +390,22 @@ class Users
     }
 
     /**
+    * Delete a TOTP from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTOTPAsync(
+        \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/totps/{totp_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteTOTPResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete a crypto wallet from a User.
 
          * @param \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request
@@ -214,6 +417,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/crypto_wallets/{crypto_wallet_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a crypto wallet from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteCryptoWalletAsync(
+        \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/crypto_wallets/{crypto_wallet_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse::fromArray($response);
+        });
     }
 
     /**
@@ -231,6 +450,22 @@ class Users
     }
 
     /**
+    * Delete a password from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePasswordAsync(
+        \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/passwords/{password_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeletePasswordResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete an OAuth registration from a User.
 
          * @param \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request
@@ -242,6 +477,22 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/users/oauth/{oauth_user_registration_id}', $data);
         return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse::fromArray($response);
+    }
+
+    /**
+    * Delete an OAuth registration from a User.
+
+     * @param \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteOAuthRegistrationAsync(
+        \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/oauth/{oauth_user_registration_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse::fromArray($response);
+        });
     }
 
     /**
@@ -264,6 +515,27 @@ class Users
     }
 
     /**
+    * User Get Connected Apps retrieves a list of Connected Apps with which the User has successfully
+    * completed an
+    * authorization flow.
+    * If the User revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
+    * Connected App will
+    * no longer be returned in the response.
+
+     * @param \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function connectedAppsAsync(
+        \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/users/{user_id}/connected_apps', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\ConnectedAppsResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Revoke Connected App revokes a Connected App's access to a User and revokes all active tokens that have
         * been created
         * on the User's behalf. New tokens cannot be created until the User completes a new authorization flow
@@ -279,6 +551,26 @@ class Users
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/users/{user_id}/connected_apps/{connected_app_id}/revoke', $data);
         return \Stytch\Consumer\Models\Users\RevokeResponse::fromArray($response);
+    }
+
+    /**
+    * Revoke Connected App revokes a Connected App's access to a User and revokes all active tokens that have
+    * been created
+    * on the User's behalf. New tokens cannot be created until the User completes a new authorization flow
+    * with the
+    * Connected App.
+
+     * @param \Stytch\Consumer\Models\Users\RevokeRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function revokeAsync(
+        \Stytch\Consumer\Models\Users\RevokeRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/users/{user_id}/connected_apps/{connected_app_id}/revoke', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\RevokeResponse::fromArray($response);
+        });
     }
 
 }

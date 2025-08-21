@@ -44,6 +44,30 @@ class M2MClientsSecrets
     }
 
     /**
+    * Initiate the rotation of an M2M client secret. After this endpoint is called, both the client's
+    * `client_secret` and `next_client_secret` will be valid. To complete the secret rotation flow, update all
+    * usages of `client_secret` to `next_client_secret` and call the
+    * [Rotate Secret Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret)[Rotate Secret Endpoint](https://stytch.com/docs/api/m2m-rotate-secret) to complete the flow.Secret rotation can be cancelled using the [Rotate Cancel Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret-cancel)[Rotate Cancel Endpoint](https://stytch.com/docs/api/m2m-rotate-secret-cancel).
+    *
+    * **Important:** This is the only time you will be able to view the generated `next_client_secret` in the
+    * API response. Stytch stores a hash of the `next_client_secret` and cannot recover the value if lost. Be
+    * sure to persist the `next_client_secret` in a secure location. If the `next_client_secret` is lost, you
+    * will need to trigger a secret rotation flow to receive another one.
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateStartAsync(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/m2m/clients/{client_id}/secrets/rotate/start', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateStartResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Cancel the rotation of an M2M client secret started with the
         * [Start Secret Rotation Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret-start)
         * [Start Secret Rotation Endpoint](https://stytch.com/docs/api/m2m-rotate-secret-start).
@@ -62,6 +86,26 @@ class M2MClientsSecrets
     }
 
     /**
+    * Cancel the rotation of an M2M client secret started with the
+    * [Start Secret Rotation Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret-start)
+    * [Start Secret Rotation Endpoint](https://stytch.com/docs/api/m2m-rotate-secret-start).
+    * After this endpoint is called, the client's `next_client_secret` is discarded and only the original
+    * `client_secret` will be valid.
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateCancelAsync(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/m2m/clients/{client_id}/secrets/rotate/cancel', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateCancelResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Complete the rotation of an M2M client secret started with the
         * [Start Secret Rotation Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret-start)
         * [Start Secret Rotation Endpoint](https://stytch.com/docs/api/m2m-rotate-secret-start).
@@ -77,6 +121,26 @@ class M2MClientsSecrets
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/{client_id}/secrets/rotate', $data);
         return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse::fromArray($response);
+    }
+
+    /**
+    * Complete the rotation of an M2M client secret started with the
+    * [Start Secret Rotation Endpoint](https://stytch.com/docs/b2b/api/m2m-rotate-secret-start)
+    * [Start Secret Rotation Endpoint](https://stytch.com/docs/api/m2m-rotate-secret-start).
+    * After this endpoint is called, the client's `next_client_secret` becomes its `client_secret` and the
+    * previous `client_secret` will no longer be valid.
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateAsync(
+        \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/m2m/clients/{client_id}/secrets/rotate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\Secrets\RotateResponse::fromArray($response);
+        });
     }
 
 }

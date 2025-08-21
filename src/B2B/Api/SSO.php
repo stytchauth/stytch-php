@@ -44,6 +44,24 @@ class SSO
     }
 
     /**
+    * Get all SSO Connections owned by the organization.
+
+     * @param \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getConnectionsAsync(
+        \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request,
+        \Stytch\B2B\Models\SSO\GetConnectionsRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/sso/{organization_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\GetConnectionsResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Delete an existing SSO connection.
 
          * @param \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request
@@ -57,6 +75,24 @@ class SSO
         $opts = is_array($options) ? $options : $options->toArray();
         $response = $this->client->delete('/v1/b2b/sso/{organization_id}/connections/{connection_id}', $data, $opts);
         return \Stytch\B2B\Models\SSO\DeleteConnectionResponse::fromArray($response);
+    }
+
+    /**
+    * Delete an existing SSO connection.
+
+     * @param \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteConnectionAsync(
+        \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request,
+        \Stytch\B2B\Models\SSO\DeleteConnectionRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/sso/{organization_id}/connections/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\DeleteConnectionResponse::fromArray($response);
+        });
     }
 
     /**
@@ -90,6 +126,41 @@ class SSO
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/b2b/sso/authenticate', $data);
         return \Stytch\B2B\Models\SSO\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a user given a token.
+    * This endpoint verifies that the user completed the SSO Authentication flow by verifying that the token
+    * is valid and hasn't expired.
+    * Provide the `session_duration_minutes` parameter to set the lifetime of the session.
+    * If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60
+    * minute duration.
+    * To link this authentication event to an existing Stytch session, include either the `session_token` or
+    * `session_jwt` param.
+    *
+    * If the Member is required to complete MFA to log in to the Organization, the returned value of
+    * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
+    * The `intermediate_session_token` can be passed into the
+    * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms),
+    * [TOTP Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-totp),
+    * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
+    * the MFA step and acquire a full member session.
+    * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
+    *
+    * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
+    * MFA step.
+
+     * @param \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/sso/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\AuthenticateResponse::fromArray($response);
+        });
     }
 
 }

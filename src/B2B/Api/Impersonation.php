@@ -41,4 +41,26 @@ class Impersonation
         return \Stytch\B2B\Models\Impersonation\AuthenticateResponse::fromArray($response);
     }
 
+    /**
+    * Authenticate an impersonation token to impersonate a Member. This endpoint requires an impersonation
+    * token that is not expired or previously used.
+    * A Stytch session will be created for the impersonated member with a 60 minute duration. Impersonated
+    * sessions cannot be extended.
+    *
+    * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
+    * member, and clicking the `Impersonate Member` button.
+
+     * @param \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/impersonation/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Impersonation\AuthenticateResponse::fromArray($response);
+        });
+    }
+
 }

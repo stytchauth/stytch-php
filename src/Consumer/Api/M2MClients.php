@@ -38,6 +38,22 @@ class M2MClients
     }
 
     /**
+    * Gets information about an existing M2M Client.
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\Consumer\Models\M2M\Clients\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/m2m/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\GetResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Search for M2M Clients within your Stytch Project. Submit an empty `query` in the request to return all
         * M2M Clients.
         *
@@ -55,6 +71,28 @@ class M2MClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients/search', $data);
         return \Stytch\Consumer\Models\M2M\Clients\SearchResponse::fromArray($response);
+    }
+
+    /**
+    * Search for M2M Clients within your Stytch Project. Submit an empty `query` in the request to return all
+    * M2M Clients.
+    *
+    * The following search filters are supported today:
+    * - `client_id`: Pass in a list of client IDs to get many clients in a single request
+    * - `client_name`: Search for clients by exact match on client name
+    * - `scopes`: Search for clients assigned a specific scope
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\SearchRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchAsync(
+        \Stytch\Consumer\Models\M2M\Clients\SearchRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/m2m/clients/search', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\SearchResponse::fromArray($response);
+        });
     }
 
     /**
@@ -79,6 +117,29 @@ class M2MClients
     }
 
     /**
+    * Updates an existing M2M Client. You can use this endpoint to activate or deactivate a M2M Client by
+    * changing its `status`. A deactivated M2M Client will not be allowed to perform future token exchange
+    * flows until it is reactivated.
+    *
+    * **Important:** Deactivating a M2M Client will not invalidate any existing JWTs issued to the client,
+    * only prevent it from receiving new ones.
+    * To protect more-sensitive routes, pass a lower `max_token_age` value
+    * when[authenticating the token](https://stytch.com/docs/b2b/api/authenticate-m2m-token)[authenticating the token](https://stytch.com/docs/api/authenticate-m2m-token).
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\Consumer\Models\M2M\Clients\UpdateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->putAsync('/v1/m2m/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\UpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Deletes the M2M Client.
         *
         * **Important:** Deleting a M2M Client will not invalidate any existing JWTs issued to the client, only
@@ -95,6 +156,27 @@ class M2MClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->delete('/v1/m2m/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\M2M\Clients\DeleteResponse::fromArray($response);
+    }
+
+    /**
+    * Deletes the M2M Client.
+    *
+    * **Important:** Deleting a M2M Client will not invalidate any existing JWTs issued to the client, only
+    * prevent it from receiving new ones.
+    * To protect more-sensitive routes, pass a lower `max_token_age` value
+    * when[authenticating the token](https://stytch.com/docs/b2b/api/authenticate-m2m-token)[authenticating the token](https://stytch.com/docs/api/authenticate-m2m-token).
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\Consumer\Models\M2M\Clients\DeleteRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/m2m/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\DeleteResponse::fromArray($response);
+        });
     }
 
     /**
@@ -117,6 +199,30 @@ class M2MClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/m2m/clients', $data);
         return \Stytch\Consumer\Models\M2M\Clients\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Creates a new M2M Client. On initial client creation, you may pass in a custom `client_id` or
+    * `client_secret` to import an existing M2M client. If you do not pass in a custom `client_id` or
+    * `client_secret`, one will be generated automatically. The `client_id` must be unique among all clients
+    * in your project.
+    *
+    * **Important:** This is the only time you will be able to view the generated `client_secret` in the API
+    * response. Stytch stores a hash of the `client_secret` and cannot recover the value if lost. Be sure to
+    * persist the `client_secret` in a secure location. If the `client_secret` is lost, you will need to
+    * trigger a secret rotation flow to receive another one.
+
+     * @param \Stytch\Consumer\Models\M2M\Clients\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\Consumer\Models\M2M\Clients\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/m2m/clients', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\M2M\Clients\CreateResponse::fromArray($response);
+        });
     }
 
 }

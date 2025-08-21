@@ -51,6 +51,37 @@ class OTPsEmail
     }
 
     /**
+    * Send a One-Time Passcode (OTP) to a User using their email. If you'd like to create a user and send them
+    * a passcode with one request, use our
+    * [log in or create endpoint](https://stytch.com/docs/api/log-in-or-create-user-by-email-otp).
+    *
+    * ### Add an email to an existing user
+    * This endpoint also allows you to add a new email address to an existing Stytch User. Including a
+    * `user_id`, `session_token`, or `session_jwt` in your Send one-time passcode by email request will add
+    * the new, unverified email address to the existing Stytch User. If the user successfully authenticates
+    * within 5 minutes, the new email address will be marked as verified and remain permanently on the
+    * existing Stytch User. Otherwise, it will be removed from the User object, and any subsequent login
+    * requests using that email address will create a new User.
+    *
+    * ### Next steps
+    * Collect the OTP which was delivered to the user. Call
+    * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
+    * `email_id` found in the response as the `method_id`.
+
+     * @param \Stytch\Consumer\Models\OTPs\Email\SendRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendAsync(
+        \Stytch\Consumer\Models\OTPs\Email\SendRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/otps/email/send', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\OTPs\Email\SendResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Send a one-time passcode (OTP) to a User using their email. If the email is not associated with a User
         * already, a User will be created.
         *
@@ -69,6 +100,29 @@ class OTPsEmail
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/email/login_or_create', $data);
         return \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse::fromArray($response);
+    }
+
+    /**
+    * Send a one-time passcode (OTP) to a User using their email. If the email is not associated with a User
+    * already, a User will be created.
+    *
+    * ### Next steps
+    *
+    * Collect the OTP which was delivered to the User. Call
+    * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
+    * `phone_id` found in the response as the `method_id`.
+
+     * @param \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function loginOrCreateAsync(
+        \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/otps/email/login_or_create', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\OTPs\Email\LoginOrCreateResponse::fromArray($response);
+        });
     }
 
 }

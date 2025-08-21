@@ -51,6 +51,37 @@ class WebAuthn
     }
 
     /**
+    * Initiate the process of creating a new Passkey or WebAuthn registration.
+    *
+    * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
+    *
+    * After calling this endpoint, the browser will need to call
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) with the data
+    * from
+    * [public_key_credential_creation_options](https://w3c.github.io/webauthn/#dictionary-makecredentialoptions)
+    * passed to the [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential)
+    * request via the public key argument. We recommend using the `create()` wrapper provided by the
+    * webauthn-json library.
+    *
+    * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, the
+    * `public_key_credential_creation_options` will need to be converted to a suitable public key by
+    * unmarshalling the JSON, base64 decoding the user ID field, and converting user ID and the challenge
+    * fields into an array buffer.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function registerStartAsync(
+        \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/webauthn/register/start', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Complete the creation of a WebAuthn registration by passing the response from the
         * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) request to
         * this endpoint as the `public_key_credential` parameter.
@@ -71,6 +102,31 @@ class WebAuthn
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/webauthn/register', $data);
         return \Stytch\Consumer\Models\WebAuthn\RegisterResponse::fromArray($response);
+    }
+
+    /**
+    * Complete the creation of a WebAuthn registration by passing the response from the
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) request to
+    * this endpoint as the `public_key_credential` parameter.
+    *
+    * If the [webauthn-json](https://github.com/github/webauthn-json) library's `create()` method was used,
+    * the response can be passed directly to the
+    * [register endpoint](https://stytch.com/docs/api/webauthn-register). If not, some fields (the client data
+    * and the attestation object) from the
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) response will
+    * need to be converted from array buffers to strings and marshalled into JSON.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function registerAsync(
+        \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/webauthn/register', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\RegisterResponse::fromArray($response);
+        });
     }
 
     /**
@@ -100,6 +156,34 @@ class WebAuthn
     }
 
     /**
+    * Initiate the authentication of a Passkey or WebAuthn registration.
+    *
+    * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
+    *
+    * After calling this endpoint, the browser will need to call
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) with the data from
+    * `public_key_credential_request_options` passed to the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request via the
+    * public key argument. We recommend using the `get()` wrapper provided by the webauthn-json library.
+    *
+    * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, `the
+    * public_key_credential_request_options` will need to be converted to a suitable public key by
+    * unmarshalling the JSON and converting some the fields to array buffers.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateStartAsync(
+        \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/webauthn/authenticate/start', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Complete the authentication of a Passkey or WebAuthn registration by passing the response from the
         * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request to the
         * authenticate endpoint.
@@ -122,6 +206,30 @@ class WebAuthn
     }
 
     /**
+    * Complete the authentication of a Passkey or WebAuthn registration by passing the response from the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request to the
+    * authenticate endpoint.
+    *
+    * If the [webauthn-json](https://github.com/github/webauthn-json) library's `get()` method was used, the
+    * response can be passed directly to the
+    * [authenticate endpoint](https://stytch.com/docs/api/webauthn-authenticate). If not some fields from the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) response will need to
+    * be converted from array buffers to strings and marshalled into JSON.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/webauthn/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Updates a Passkey or WebAuthn registration.
 
          * @param \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request
@@ -136,6 +244,22 @@ class WebAuthn
     }
 
     /**
+    * Updates a Passkey or WebAuthn registration.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->putAsync('/v1/webauthn/{webauthn_registration_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\UpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * List the public key credentials of the WebAuthn Registrations or Passkeys registered to a specific User.
 
          * @param \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request
@@ -147,6 +271,22 @@ class WebAuthn
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/webauthn/credentials/{user_id}/{domain}', $data);
         return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse::fromArray($response);
+    }
+
+    /**
+    * List the public key credentials of the WebAuthn Registrations or Passkeys registered to a specific User.
+
+     * @param \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCredentialsAsync(
+        \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/webauthn/credentials/{user_id}/{domain}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse::fromArray($response);
+        });
     }
 
 }

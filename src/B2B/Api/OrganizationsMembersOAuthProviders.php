@@ -47,6 +47,33 @@ class OrganizationsMembersOAuthProviders
     }
 
     /**
+    * Retrieve the saved Google access token and ID token for a member. After a successful OAuth login, Stytch
+    * will save the
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the
+    * access token automatically.
+    *
+    * Google One Tap does not return access tokens. If the member has only authenticated through Google One
+    * Tap and not through a regular Google OAuth flow, this endpoint will not return any tokens.
+    *
+    * __Note:__ Google does not issue a refresh token on every login, and refresh tokens may expire if unused.
+    * To force a refresh token to be issued, pass the `?provider_prompt=consent` query param into the
+    * [Start Google OAuth flow](https://stytch.com/docs/b2b/api/oauth-google-start) endpoint.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function googleAsync(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/google', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Retrieve the saved Microsoft access token and ID token for a member. After a successful OAuth login,
         * Stytch will save the
         * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
@@ -65,6 +92,26 @@ class OrganizationsMembersOAuthProviders
     }
 
     /**
+    * Retrieve the saved Microsoft access token and ID token for a member. After a successful OAuth login,
+    * Stytch will save the
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the
+    * access token automatically.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function microsoftAsync(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/microsoft', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Retrieve the saved Slack access token and ID token for a member. After a successful OAuth login, Stytch
         * will save the
         * issued access token and ID token from the identity provider.
@@ -78,6 +125,24 @@ class OrganizationsMembersOAuthProviders
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/slack', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse::fromArray($response);
+    }
+
+    /**
+    * Retrieve the saved Slack access token and ID token for a member. After a successful OAuth login, Stytch
+    * will save the
+    * issued access token and ID token from the identity provider.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function slackAsync(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/slack', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse::fromArray($response);
+        });
     }
 
     /**
@@ -99,6 +164,26 @@ class OrganizationsMembersOAuthProviders
     }
 
     /**
+    * Retrieve the saved Hubspot access token and ID token for a member. After a successful OAuth login,
+    * Stytch will save the
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the
+    * access token automatically.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function hubspotAsync(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/hubspot', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Retrieve the saved GitHub access token for a Member. After a successful OAuth login, Stytch will save
         * the
         * issued access token from the identity provider. GitHub does not issue refresh tokens, but will
@@ -114,6 +199,26 @@ class OrganizationsMembersOAuthProviders
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/github', $data);
         return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse::fromArray($response);
+    }
+
+    /**
+    * Retrieve the saved GitHub access token for a Member. After a successful OAuth login, Stytch will save
+    * the
+    * issued access token from the identity provider. GitHub does not issue refresh tokens, but will
+    * invalidate access
+    * tokens after very long periods of inactivity.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function githubAsync(
+        \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oauth_providers/github', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse::fromArray($response);
+        });
     }
 
 }

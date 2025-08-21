@@ -40,6 +40,26 @@ class FraudVerdictReasons
     }
 
     /**
+    * Use this endpoint to override the action returned for a specific verdict reason during a fingerprint
+    * lookup. For example, Stytch Device Fingerprinting returns a `CHALLENGE` verdict action by default for
+    * the verdict reason `VIRTUAL_MACHINE`. You can use this endpoint to override that reason to return an
+    * `ALLOW` verdict instead if you expect many legitimate users to be using a browser that runs in a virtual
+    * machine.
+
+     * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function overrideAsync(
+        \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/verdict_reasons/override', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Get the list of verdict reasons returned by the Stytch Device Fingerprinting product along with their
         * default actions and any overrides you may have defined. This is not an exhaustive list of verdict
         * reasons, but it contains all verdict reasons that you may set an override on.
@@ -56,6 +76,27 @@ class FraudVerdictReasons
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/verdict_reasons/list', $data);
         return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse::fromArray($response);
+    }
+
+    /**
+    * Get the list of verdict reasons returned by the Stytch Device Fingerprinting product along with their
+    * default actions and any overrides you may have defined. This is not an exhaustive list of verdict
+    * reasons, but it contains all verdict reasons that you may set an override on.
+    *
+    * For a full list of possible verdict reasons, see
+    * [Warning Flags (Verdict Reasons)](https://stytch.com/docs/docs/fraud/guides/device-fingerprinting/reference/warning-flags-verdict-reasons).
+
+     * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listAsync(
+        \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/verdict_reasons/list', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse::fromArray($response);
+        });
     }
 
 }

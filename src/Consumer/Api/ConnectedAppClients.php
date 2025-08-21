@@ -38,6 +38,22 @@ class ConnectedAppClients
     }
 
     /**
+    * Retrieve details of a specific Connected App by `client_id`.
+
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/connected_apps/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Updates mutable fields of a Connected App. Cannot update Client Type, Client ID, or Secrets.
 
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request
@@ -49,6 +65,22 @@ class ConnectedAppClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->put('/v1/connected_apps/clients/{client_id}', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse::fromArray($response);
+    }
+
+    /**
+    * Updates mutable fields of a Connected App. Cannot update Client Type, Client ID, or Secrets.
+
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->putAsync('/v1/connected_apps/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse::fromArray($response);
+        });
     }
 
     /**
@@ -66,6 +98,22 @@ class ConnectedAppClients
     }
 
     /**
+    * Deletes a Connected App.
+
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/connected_apps/clients/{client_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Search for Connected Apps. Supports cursor-based pagination. Specific filters coming soon.
 
          * @param \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request
@@ -77,6 +125,22 @@ class ConnectedAppClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients/search', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse::fromArray($response);
+    }
+
+    /**
+    * Search for Connected Apps. Supports cursor-based pagination. Specific filters coming soon.
+
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchAsync(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/connected_apps/clients/search', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse::fromArray($response);
+        });
     }
 
     /**
@@ -97,6 +161,28 @@ class ConnectedAppClients
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/connected_apps/clients', $data);
         return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Creates a new Connected App. If the Connected App `client_type` is `first_party` or `third_party` a
+    * `client_secret` is returned.
+    *
+    * **Important:** This is the only time you will be able to view the generated `client_secret` in the API
+    * response. Stytch stores a hash of the `client_secret` and cannot recover the value if lost. Be sure to
+    * persist the `client_secret` in a secure location. If the `client_secret` is lost, you will need to
+    * trigger a secret rotation flow to receive another one.
+
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/connected_apps/clients', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse::fromArray($response);
+        });
     }
 
 }

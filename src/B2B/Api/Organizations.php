@@ -46,6 +46,30 @@ class Organizations
     }
 
     /**
+    * Creates an Organization. An `organization_name` and a unique `organization_slug` are required.
+    *
+    * If no Organization authentication setting parameters are passed in, `email_invites` will default to
+    * `ALL_ALLOWED` so that the Organization has a way to add Members. Otherwise, `email_invites` will default
+    * to `NOT_ALLOWED`.
+    *
+    * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
+    * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
+    * `sso_jit_provisioning`, etc., and their behaviors.
+
+     * @param \Stytch\B2B\Models\Organizations\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\B2B\Models\Organizations\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Returns an Organization specified by `organization_id`.
 
          * @param \Stytch\B2B\Models\Organizations\GetRequest|array $request
@@ -57,6 +81,22 @@ class Organizations
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}', $data);
         return \Stytch\B2B\Models\Organizations\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Returns an Organization specified by `organization_id`.
+
+     * @param \Stytch\B2B\Models\Organizations\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\B2B\Models\Organizations\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\GetResponse::fromArray($response);
+        });
     }
 
     /**
@@ -81,6 +121,29 @@ class Organizations
     }
 
     /**
+    * Updates an Organization specified by `organization_id`. An Organization must always have at least one
+    * auth setting set to either `RESTRICTED` or `ALL_ALLOWED` in order to provision new Members.
+    *
+    * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
+    * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
+    * `sso_jit_provisioning`, etc., and their behaviors.
+
+     * @param \Stytch\B2B\Models\Organizations\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\B2B\Models\Organizations\UpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\UpdateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/organizations/{organization_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\UpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Deletes an Organization specified by `organization_id`. All Members of the Organization will also be
         * deleted.
 
@@ -95,6 +158,25 @@ class Organizations
         $opts = is_array($options) ? $options : $options->toArray();
         $response = $this->client->delete('/v1/b2b/organizations/{organization_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\DeleteResponse::fromArray($response);
+    }
+
+    /**
+    * Deletes an Organization specified by `organization_id`. All Members of the Organization will also be
+    * deleted.
+
+     * @param \Stytch\B2B\Models\Organizations\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\B2B\Models\Organizations\DeleteRequest|array $request,
+        \Stytch\B2B\Models\Organizations\DeleteRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\DeleteResponse::fromArray($response);
+        });
     }
 
     /**
@@ -114,6 +196,24 @@ class Organizations
     }
 
     /**
+    * Search for Organizations. If you send a request with no body params, no filtering will be applied and
+    * the endpoint will return all Organizations. All fuzzy search filters require a minimum of three
+    * characters.
+
+     * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchAsync(
+        \Stytch\B2B\Models\Organizations\SearchRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/search', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\SearchResponse::fromArray($response);
+        });
+    }
+
+    /**
          * @param \Stytch\B2B\Models\Organizations\MetricsRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\MetricsResponse
          */
@@ -123,6 +223,20 @@ class Organizations
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/metrics', $data);
         return \Stytch\B2B\Models\Organizations\MetricsResponse::fromArray($response);
+    }
+
+    /**
+     * @param \Stytch\B2B\Models\Organizations\MetricsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function metricsAsync(
+        \Stytch\B2B\Models\Organizations\MetricsRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/metrics', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\MetricsResponse::fromArray($response);
+        });
     }
 
     /**
@@ -148,6 +262,30 @@ class Organizations
     }
 
     /**
+    * Retrieves a list of Connected Apps for the Organization that have been installed by Members.
+    * Installation comprises
+    * successful completion of an authorization flow with a Connected App that has not been revoked.
+    *
+    * Connected Apps may be uninstalled if an Organization changes its
+    * `first_party_connected_apps_allowed_type`
+    * or `third_party_connected_apps_allowed_type` policies.
+
+     * @param \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function connectedAppsAsync(
+        \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request,
+        \Stytch\B2B\Models\Organizations\ConnectedAppsRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/connected_apps', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\ConnectedAppsResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Get Connected App for Organization retrieves information about the specified Connected App as well as a
         * list of the
         * Organization's Members who have the App installed along with the scopes they requested at completion of
@@ -165,6 +303,28 @@ class Organizations
         $opts = is_array($options) ? $options : $options->toArray();
         $response = $this->client->get('/v1/b2b/organizations/{organization_id}/connected_apps/{connected_app_id}', $data, $opts);
         return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse::fromArray($response);
+    }
+
+    /**
+    * Get Connected App for Organization retrieves information about the specified Connected App as well as a
+    * list of the
+    * Organization's Members who have the App installed along with the scopes they requested at completion of
+    * their last
+    * authorization with the App.
+
+     * @param \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getConnectedAppAsync(
+        \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request,
+        \Stytch\B2B\Models\Organizations\GetConnectedAppRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/connected_apps/{connected_app_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse::fromArray($response);
+        });
     }
 
 }
