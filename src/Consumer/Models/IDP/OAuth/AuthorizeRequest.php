@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\IDP\OAuth;
 
-class AuthorizeRequest
+final class AuthorizeRequest
 {
     public bool $consentGranted;
     public array $scopes;

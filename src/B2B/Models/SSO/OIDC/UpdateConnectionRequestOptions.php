@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\SSO\OIDC;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class UpdateConnectionRequestOptions
+final class UpdateConnectionRequestOptions
 {
     /**
     * Optional authorization object.

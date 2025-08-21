@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
-class MigrateRequest
+final class MigrateRequest
 {
     /** The email address of the Member. */
     public string $emailAddress;

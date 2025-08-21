@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-class DangerouslyGetRequest
+final class DangerouslyGetRequest
 {
     /**
     * Globally unique UUID that identifies a specific Member. The `member_id` is critical to perform

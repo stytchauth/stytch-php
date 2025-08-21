@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Project;
 
-class MetricsResponse
+final class MetricsResponse
 {
     public string $requestId;
     public string $projectId;

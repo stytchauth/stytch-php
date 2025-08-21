@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\SAML;
 
-class DeleteVerificationCertificateRequest
+final class DeleteVerificationCertificateRequest
 {
     /**
     * The organization ID that the SAML connection belongs to. You may also use the organization_slug or

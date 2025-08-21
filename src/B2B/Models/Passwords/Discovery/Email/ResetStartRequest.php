@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords\Discovery\Email;
 
-class ResetStartRequest
+final class ResetStartRequest
 {
     /** The email address of the Member to start the email reset process for. */
     public string $emailAddress;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class SteamOAuthFactor
+final class SteamOAuthFactor
 {
     public string $id;
     public string $providerSubject;

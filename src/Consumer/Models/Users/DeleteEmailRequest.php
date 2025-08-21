@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class DeleteEmailRequest
+final class DeleteEmailRequest
 {
     /** The `email_id` to be deleted. */
     public string $emailId;

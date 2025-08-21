@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AttestRequest
+final class AttestRequest
 {
     /** The ID of the trusted auth token profile to use for attestation. */
     public string $profileId;

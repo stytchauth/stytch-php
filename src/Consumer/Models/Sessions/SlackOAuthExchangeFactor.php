@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class SlackOAuthExchangeFactor
+final class SlackOAuthExchangeFactor
 {
     /** The globally unique UUID of the Member's email. */
     public string $emailId;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OTPs\Sms;
 
-class LoginOrCreateResponse
+final class LoginOrCreateResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

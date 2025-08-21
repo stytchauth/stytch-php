@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-class SAMLConnection
+final class SAMLConnection
 {
     public string $organizationId;
     public string $connectionId;

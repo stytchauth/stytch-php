@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class GithubOAuthFactor
+final class GithubOAuthFactor
 {
     /** The unique ID of an OAuth registration. */
     public string $id;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AuthorizationVerdict
+final class AuthorizationVerdict
 {
     /**
     * Whether the User was authorized to perform the specified action on the specified Resource. Always true

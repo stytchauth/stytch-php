@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OAuth;
 
-class AttachResponse
+final class AttachResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

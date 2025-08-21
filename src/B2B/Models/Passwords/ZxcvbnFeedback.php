@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
-class ZxcvbnFeedback
+final class ZxcvbnFeedback
 {
     /**
     * For zxcvbn validation, contains an end user consumable warning if the password is valid but not strong

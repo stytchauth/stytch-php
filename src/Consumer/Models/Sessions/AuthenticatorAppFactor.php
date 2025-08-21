@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AuthenticatorAppFactor
+final class AuthenticatorAppFactor
 {
     /** Globally unique UUID that identifies a TOTP instance. */
     public string $totpId;

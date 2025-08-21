@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-class ReactivateRequest
+final class ReactivateRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks\Email;
 
-class RevokeInviteRequest
+final class RevokeInviteRequest
 {
     /** The email of the user. */
     public string $email;

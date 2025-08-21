@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Project;
 
-class ProjectMetric
+final class ProjectMetric
 {
     public string $metricType;
     public int $count;

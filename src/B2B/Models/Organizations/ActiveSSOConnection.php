@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class ActiveSSOConnection
+final class ActiveSSOConnection
 {
     /** Globally unique UUID that identifies a specific SSO `connection_id` for a Member. */
     public string $connectionId;

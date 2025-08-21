@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class MemberSession
+final class MemberSession
 {
     /** Globally unique UUID that identifies a specific Session. */
     public string $memberSessionId;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class Session
+final class Session
 {
     /** A unique identifier for a specific Session. */
     public string $sessionId;

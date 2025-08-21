@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations\Members;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class SearchRequestOptions
+final class SearchRequestOptions
 {
     /**
     * Optional authorization object.

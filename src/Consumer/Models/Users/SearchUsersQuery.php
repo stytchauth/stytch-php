@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class SearchUsersQuery
+final class SearchUsersQuery
 {
     /**
     * The action to perform on the operands. The accepted value are:

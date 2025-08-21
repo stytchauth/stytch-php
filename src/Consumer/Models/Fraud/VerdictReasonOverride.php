@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class VerdictReasonOverride
+final class VerdictReasonOverride
 {
     /** The verdict reason that was overridden. */
     public string $verdictReason;

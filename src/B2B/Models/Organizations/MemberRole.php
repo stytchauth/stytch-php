@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class MemberRole
+final class MemberRole
 {
     /**
     * The unique identifier of the RBAC Role, provided by the developer and intended to be human-readable.

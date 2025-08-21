@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-class SearchRequest
+final class SearchRequest
 {
     /**
     * The `cursor` field allows you to paginate through your results. Each result array is limited to 1000

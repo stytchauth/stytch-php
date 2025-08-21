@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class EmbeddableMagicLinkFactor
+final class EmbeddableMagicLinkFactor
 {
     public string $embeddedId;
 

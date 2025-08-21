@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Manager
+final class Manager
 {
     public string $value;
     public string $ref;

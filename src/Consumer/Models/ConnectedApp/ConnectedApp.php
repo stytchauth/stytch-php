@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp;
 
-class ConnectedApp
+final class ConnectedApp
 {
     /** The ID of the Connected App client. */
     public string $clientId;

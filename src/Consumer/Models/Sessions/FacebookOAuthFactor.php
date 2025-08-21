@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class FacebookOAuthFactor
+final class FacebookOAuthFactor
 {
     public string $id;
     public string $providerSubject;

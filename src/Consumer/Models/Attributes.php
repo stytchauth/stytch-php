@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models;
 
-class Attributes
+final class Attributes
 {
     /** The IP address of the user. */
     public ?string $ipAddress = null;

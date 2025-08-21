@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Impersonation;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The User Impersonation token to authenticate. Expires in 5 minutes by default. */
     public string $impersonationToken;

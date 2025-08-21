@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class RevokeRequest
+final class RevokeRequest
 {
     /**
     * Globally unique UUID that identifies a specific Session in the Stytch API. The `member_session_id` is

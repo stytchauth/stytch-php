@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class PhoneNumber
+final class PhoneNumber
 {
     public string $value;
     public string $type;

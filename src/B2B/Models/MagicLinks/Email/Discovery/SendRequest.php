@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\MagicLinks\Email\Discovery;
 
-class SendRequest
+final class SendRequest
 {
     /** The email address of the Member. */
     public string $emailAddress;

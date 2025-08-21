@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\OAuth;
 
-class ProviderValues
+final class ProviderValues
 {
     /**
     * The OAuth scopes included for a given provider. See each provider's section above to see which scopes

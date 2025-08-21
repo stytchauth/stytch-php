@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-class CreateRequest
+final class CreateRequest
 {
     /**
     * The type of Connected App. Supported values are `first_party`, `first_party_public`, `third_party`, and

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class TwitterOAuthFactor
+final class TwitterOAuthFactor
 {
     public string $id;
     public string $providerSubject;

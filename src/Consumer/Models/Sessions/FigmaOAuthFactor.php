@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class FigmaOAuthFactor
+final class FigmaOAuthFactor
 {
     public string $id;
     public string $providerSubject;

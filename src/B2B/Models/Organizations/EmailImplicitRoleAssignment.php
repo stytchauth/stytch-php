@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class EmailImplicitRoleAssignment
+final class EmailImplicitRoleAssignment
 {
     /** Email domain that grants the specified Role. */
     public string $domain;

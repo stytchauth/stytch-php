@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class ExchangeAccessTokenRequest
+final class ExchangeAccessTokenRequest
 {
     /** The access token to exchange for a Stytch Session. Must be granted the `full_access` scope. */
     public string $accessToken;

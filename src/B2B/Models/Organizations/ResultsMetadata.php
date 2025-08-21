@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class ResultsMetadata
+final class ResultsMetadata
 {
     /**
     * The total number of results returned by your search query. If totals have been disabled for your Stytch

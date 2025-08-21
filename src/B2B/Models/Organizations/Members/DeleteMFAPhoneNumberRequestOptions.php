@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations\Members;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class DeleteMFAPhoneNumberRequestOptions
+final class DeleteMFAPhoneNumberRequestOptions
 {
     /**
     * Optional authorization object.

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class VerdictReasonAction
+final class VerdictReasonAction
 {
     /** The verdict reason. */
     public string $verdictReason;

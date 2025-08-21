@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
-class StrengthCheckRequest
+final class StrengthCheckRequest
 {
     /**
     * The password to authenticate, reset, or set for the first time. Any UTF8 character is allowed, e.g.

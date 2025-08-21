@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class IPGeoProperties
+final class IPGeoProperties
 {
     /** The city where the IP is located. */
     public string $city;

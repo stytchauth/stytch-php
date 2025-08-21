@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients\Secrets;
 
-class RotateResponse
+final class RotateResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

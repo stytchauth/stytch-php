@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\MagicLinks\Email;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class InviteRequestOptions
+final class InviteRequestOptions
 {
     /**
     * Optional authorization object.

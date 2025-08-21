@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /**
     * The response of the

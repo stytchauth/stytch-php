@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-class DeleteMFAPhoneNumberResponse
+final class DeleteMFAPhoneNumberResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

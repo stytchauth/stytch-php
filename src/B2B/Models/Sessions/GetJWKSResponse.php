@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class GetJWKSResponse
+final class GetJWKSResponse
 {
     /** The list of JWKs associated with the project. */
     public array $keys;

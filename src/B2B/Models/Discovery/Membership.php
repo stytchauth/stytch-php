@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery;
 
-class Membership
+final class Membership
 {
     /**
     * Either `active_member`, `pending_member`, `invited_member`, `eligible_to_join_by_email_domain`, or

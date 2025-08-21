@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class TikTokOAuthFactor
+final class TikTokOAuthFactor
 {
     public string $id;
     public string $providerSubject;

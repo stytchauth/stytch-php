@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class DeleteRequestOptions
+final class DeleteRequestOptions
 {
     /**
     * Optional authorization object.

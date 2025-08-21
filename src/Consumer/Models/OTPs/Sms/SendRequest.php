@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OTPs\Sms;
 
-class SendRequest
+final class SendRequest
 {
     /**
     * The phone number to use for one-time passcodes. The phone number should be in E.164 format (i.e.

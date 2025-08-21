@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\MagicLinks;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The Email Magic Link token to authenticate. */
     public string $magicLinksToken;

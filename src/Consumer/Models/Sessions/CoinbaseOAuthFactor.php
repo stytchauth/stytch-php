@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class CoinbaseOAuthFactor
+final class CoinbaseOAuthFactor
 {
     public string $id;
     public string $providerSubject;

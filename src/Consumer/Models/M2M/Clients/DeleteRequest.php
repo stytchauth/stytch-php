@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients;
 
-class DeleteRequest
+final class DeleteRequest
 {
     /** The ID of the client. */
     public string $clientId;

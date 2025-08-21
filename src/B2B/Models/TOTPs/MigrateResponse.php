@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\TOTPs;
 
-class MigrateResponse
+final class MigrateResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

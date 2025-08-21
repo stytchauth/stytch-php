@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class CreateRequest
+final class CreateRequest
 {
     /** The email address of the end user. */
     public string $email;

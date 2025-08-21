@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class ConnectedAppsRequestOptions
+final class ConnectedAppsRequestOptions
 {
     /**
     * Optional authorization object.

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class SnapchatOAuthFactor
+final class SnapchatOAuthFactor
 {
     public string $id;
     public string $providerSubject;

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-class GetGroupsRequest
+final class GetGroupsRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

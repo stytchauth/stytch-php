@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords\Email;
 
-class ResetStartRequest
+final class ResetStartRequest
 {
     /** The email of the User that requested the password reset. */
     public string $email;

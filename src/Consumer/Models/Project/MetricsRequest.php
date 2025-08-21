@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Project;
 
-class MetricsRequest
+final class MetricsRequest
 {
     public function __construct(
     ) {

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M;
 
-class M2MClient
+final class M2MClient
 {
     /** The ID of the client. */
     public string $clientId;

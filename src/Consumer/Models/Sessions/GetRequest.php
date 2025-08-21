@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class GetRequest
+final class GetRequest
 {
     /** The `user_id` to get active Sessions for. You may use an `external_id` here if one is set for the user. */
     public string $userId;

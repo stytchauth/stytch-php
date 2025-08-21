@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class OAuthProvider
+final class OAuthProvider
 {
     /**
     * Denotes the OAuth identity provider that the user has authenticated with, e.g. Google, Facebook, GitHub

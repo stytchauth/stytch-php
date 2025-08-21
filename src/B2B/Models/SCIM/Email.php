@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Email
+final class Email
 {
     public string $value;
     public string $type;

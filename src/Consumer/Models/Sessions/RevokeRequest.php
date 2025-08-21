@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class RevokeRequest
+final class RevokeRequest
 {
     /** The `session_id` to revoke. */
     public ?string $sessionId = null;

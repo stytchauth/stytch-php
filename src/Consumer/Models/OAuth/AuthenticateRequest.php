@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OAuth;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /**
     * The OAuth `token` from the `?token=` query parameter in the URL.

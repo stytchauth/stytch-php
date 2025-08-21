@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery\Organizations;
 
-class ListRequest
+final class ListRequest
 {
     /**
     * The Intermediate Session Token. This token does not necessarily belong to a specific instance of a

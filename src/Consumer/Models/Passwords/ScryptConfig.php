@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class ScryptConfig
+final class ScryptConfig
 {
     /** The salt value, which should be in a base64 encoded string form. */
     public string $salt;

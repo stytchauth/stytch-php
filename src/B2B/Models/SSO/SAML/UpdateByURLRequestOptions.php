@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\SSO\SAML;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class UpdateByURLRequestOptions
+final class UpdateByURLRequestOptions
 {
     /**
     * Optional authorization object.

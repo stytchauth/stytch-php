@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class MigrateRequest
+final class MigrateRequest
 {
     /** The authorization token Stytch will pass in to the external userinfo endpoint. */
     public string $sessionToken;

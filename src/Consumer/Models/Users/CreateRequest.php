@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class CreateRequest
+final class CreateRequest
 {
     /** The email address of the end user. */
     public ?string $email = null;

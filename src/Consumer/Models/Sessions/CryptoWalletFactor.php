@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class CryptoWalletFactor
+final class CryptoWalletFactor
 {
     public string $cryptoWalletId;
     public string $cryptoWalletAddress;

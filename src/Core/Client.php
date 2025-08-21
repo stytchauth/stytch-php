@@ -89,11 +89,11 @@ class Client
      * Make an HTTP request
      */
     private function request(
-      string $method, 
-      string $path, 
-      array $options = [], 
-      array $methodOptions = []): array
-    {
+        string $method,
+        string $path,
+        array $options = [],
+        array $methodOptions = []
+    ): array {
         try {
             // Extract parameters from both JSON and query data for path substitution
             $jsonData = $options['json'] ?? [];
@@ -143,6 +143,8 @@ class Client
         } catch (RequestException $e) {
             $this->handleRequestException($e);
         }
+        // Unreachable code, but required for phpstan
+        return [];
     }
 
     /**

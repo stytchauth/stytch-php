@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models;
 
-class MfaRequired
+final class MfaRequired
 {
     /** Information about the Member's options for completing MFA. */
     public ?MemberOptions $memberOptions = null;

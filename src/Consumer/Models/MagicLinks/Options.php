@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks;
 
-class Options
+final class Options
 {
     /** Require that the IP address the Magic Link was requested from matches the IP address it's clicked from. */
     public bool $ipMatchRequired;

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\IDP;
 
-class ScopeResult
+final class ScopeResult
 {
     public string $scope;
     public string $description;

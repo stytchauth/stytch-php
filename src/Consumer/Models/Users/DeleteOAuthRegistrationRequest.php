@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class DeleteOAuthRegistrationRequest
+final class DeleteOAuthRegistrationRequest
 {
     /** The `oauth_user_registration_id` to be deleted. */
     public string $oauthUserRegistrationId;

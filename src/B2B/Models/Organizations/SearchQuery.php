@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class SearchQuery
+final class SearchQuery
 {
     /**
     * The action to perform on the operands. The accepted value are:

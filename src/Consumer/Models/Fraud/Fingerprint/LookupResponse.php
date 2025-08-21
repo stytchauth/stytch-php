@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\Fingerprint;
 
-class LookupResponse
+final class LookupResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

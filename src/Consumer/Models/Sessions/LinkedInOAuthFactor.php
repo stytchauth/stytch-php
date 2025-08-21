@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class LinkedInOAuthFactor
+final class LinkedInOAuthFactor
 {
     public string $id;
     public string $providerSubject;

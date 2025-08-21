@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\TOTPs;
 
-class TOTP
+final class TOTP
 {
     /** The unique ID for a TOTP instance. */
     public string $totpId;

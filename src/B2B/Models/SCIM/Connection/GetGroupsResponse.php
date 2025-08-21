@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-class GetGroupsResponse
+final class GetGroupsResponse
 {
     /** A list of SCIM Connection Groups belonging to the connection. */
     public array $scimGroups;

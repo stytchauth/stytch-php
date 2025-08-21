@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\CryptoWallets;
 
-class SIWEParams
+final class SIWEParams
 {
     /**
     * Only required if `siwe_params` is passed. The domain that is requesting the crypto wallet signature.

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class TwitchOAuthFactor
+final class TwitchOAuthFactor
 {
     public string $id;
     public string $providerSubject;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class WebAuthnFactor
+final class WebAuthnFactor
 {
     public string $webauthnRegistrationId;
     public string $domain;

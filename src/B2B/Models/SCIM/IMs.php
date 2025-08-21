@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class IMs
+final class IMs
 {
     public string $value;
     public string $type;

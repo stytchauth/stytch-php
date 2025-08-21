@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations\Members;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class ReactivateRequestOptions
+final class ReactivateRequestOptions
 {
     /**
     * Optional authorization object.

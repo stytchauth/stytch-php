@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class DeletePhoneNumberRequest
+final class DeletePhoneNumberRequest
 {
     /** The `phone_id` to be deleted. */
     public string $phoneId;

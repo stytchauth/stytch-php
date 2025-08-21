@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery;
 
-class DiscoveredOrganization
+final class DiscoveredOrganization
 {
     /**
     * Indicates whether the Member has all of the factors needed to fully authenticate to this Organization.

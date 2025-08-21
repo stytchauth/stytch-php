@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\TOTPs;
 
-class MigrateRequest
+final class MigrateRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

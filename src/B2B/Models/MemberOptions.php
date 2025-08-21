@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models;
 
-class MemberOptions
+final class MemberOptions
 {
     /** The Member's MFA phone number. */
     public string $mfaPhoneNumber;

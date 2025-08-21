@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\SSO\SAML;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class DeleteVerificationCertificateRequestOptions
+final class DeleteVerificationCertificateRequestOptions
 {
     /**
     * Optional authorization object.

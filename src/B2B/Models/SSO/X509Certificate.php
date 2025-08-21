@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-class X509Certificate
+final class X509Certificate
 {
     public string $certificateId;
     public string $certificate;

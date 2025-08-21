@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class AuthorizationVerdict
+final class AuthorizationVerdict
 {
     /**
     * Whether the Member was authorized to perform the specified action on the specified Resource. Always true

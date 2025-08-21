@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The email address of the end user. */
     public string $email;

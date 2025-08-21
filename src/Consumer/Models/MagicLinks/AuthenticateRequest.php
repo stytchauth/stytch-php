@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /**
     * The Magic Link `token` from the `?token=` query parameter in the URL.

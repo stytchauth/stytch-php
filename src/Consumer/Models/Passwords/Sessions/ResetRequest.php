@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords\Sessions;
 
-class ResetRequest
+final class ResetRequest
 {
     /**
     * The password for the user. Any UTF8 character is allowed, e.g. spaces, emojis, non-English characters,

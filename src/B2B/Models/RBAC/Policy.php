@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\RBAC;
 
-class Policy
+final class Policy
 {
     /** An array of [Role objects](https://stytch.com/docs/b2b/api/rbac-role-object). */
     public array $roles;

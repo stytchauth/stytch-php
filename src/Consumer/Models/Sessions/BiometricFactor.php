@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class BiometricFactor
+final class BiometricFactor
 {
     public string $biometricRegistrationId;
 

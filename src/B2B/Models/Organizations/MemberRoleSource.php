@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class MemberRoleSource
+final class MemberRoleSource
 {
     /**
     * The type of role assignment. The possible values are:

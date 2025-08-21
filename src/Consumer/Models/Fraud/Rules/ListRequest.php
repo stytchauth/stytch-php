@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\Rules;
 
-class ListRequest
+final class ListRequest
 {
     /**
     * The `cursor` field allows you to paginate through your results. Each result array is limited to 100

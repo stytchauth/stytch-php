@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class DeleteTOTPRequest
+final class DeleteTOTPRequest
 {
     /** The `totp_id` to be deleted. */
     public string $totpId;

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class AuthorizationCheck
+final class AuthorizationCheck
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The Organization's ID must match the

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\TOTPs;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /**
     * The `user_id` of an active user the TOTP registration should be tied to. You may use an `external_id`

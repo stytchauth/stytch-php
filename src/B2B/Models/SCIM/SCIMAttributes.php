@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class SCIMAttributes
+final class SCIMAttributes
 {
     public string $userName;
     public string $id;

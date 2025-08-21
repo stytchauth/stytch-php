@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\OTPs\Email\Discovery;
 
-class SendRequest
+final class SendRequest
 {
     /** The email address to start the discovery flow for. */
     public string $emailAddress;

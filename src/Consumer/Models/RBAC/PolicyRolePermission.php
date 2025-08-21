@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
-class PolicyRolePermission
+final class PolicyRolePermission
 {
     /**
     * A unique identifier of the RBAC Resource, provided by the developer and intended to be human-readable.

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class BitbucketOAuthFactor
+final class BitbucketOAuthFactor
 {
     public string $id;
     public string $providerSubject;

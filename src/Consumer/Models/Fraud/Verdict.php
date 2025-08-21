@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class Verdict
+final class Verdict
 {
     /**
     * The suggested action based on the fingerprint review. The available actions are:

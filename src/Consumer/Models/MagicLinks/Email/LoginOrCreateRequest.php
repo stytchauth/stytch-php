@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks\Email;
 
-class LoginOrCreateRequest
+final class LoginOrCreateRequest
 {
     /** The email address of the end user. */
     public string $email;

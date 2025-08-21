@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
-class PolicyScopePermission
+final class PolicyScopePermission
 {
     public string $resourceId;
     public array $actions;

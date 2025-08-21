@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class Metadata
+final class Metadata
 {
     /** An external ID, such as a user ID, that you wish to associate with the telemetry ID. */
     public ?string $externalId = null;

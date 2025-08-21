@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class SlackProviderInfo
+final class SlackProviderInfo
 {
     /**
     * The unique identifier for the User within a given OAuth provider. Also commonly called the `sub` or

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class Feedback
+final class Feedback
 {
     /**
     * For `zxcvbn` validation, contains an end user consumable warning if the password is valid but not strong

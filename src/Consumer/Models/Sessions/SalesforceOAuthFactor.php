@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class SalesforceOAuthFactor
+final class SalesforceOAuthFactor
 {
     public string $id;
     public string $providerSubject;

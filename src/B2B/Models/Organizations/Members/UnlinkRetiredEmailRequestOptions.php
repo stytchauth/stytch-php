@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Organizations\Members;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class UnlinkRetiredEmailRequestOptions
+final class UnlinkRetiredEmailRequestOptions
 {
     /**
     * Optional authorization object.

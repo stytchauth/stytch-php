@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
-class PolicyScope
+final class PolicyScope
 {
     public string $scope;
     public string $description;

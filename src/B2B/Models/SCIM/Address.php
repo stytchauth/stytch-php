@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Address
+final class Address
 {
     public string $formatted;
     public string $streetAddress;

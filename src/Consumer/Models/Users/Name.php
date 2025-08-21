@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class Name
+final class Name
 {
     /** The first name of the user. */
     public ?string $firstName = null;

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\TOTPs;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

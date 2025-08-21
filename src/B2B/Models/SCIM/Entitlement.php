@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Entitlement
+final class Entitlement
 {
     public string $value;
     public string $type;

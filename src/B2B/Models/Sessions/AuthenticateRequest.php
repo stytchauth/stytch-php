@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** A secret token for a given Stytch Session. */
     public ?string $sessionToken = null;

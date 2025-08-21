@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\VerdictReasons;
 
-class OverrideRequest
+final class OverrideRequest
 {
     /**
     * The verdict reason that you wish to override. For a list of possible reasons to override, see

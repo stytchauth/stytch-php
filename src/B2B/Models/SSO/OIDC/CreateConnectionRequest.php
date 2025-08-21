@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\OIDC;
 
-class CreateConnectionRequest
+final class CreateConnectionRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

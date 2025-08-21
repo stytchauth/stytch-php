@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\IDP\OAuth;
 
-class AuthorizeStartResponse
+final class AuthorizeStartResponse
 {
     public string $requestId;
     public string $userId;

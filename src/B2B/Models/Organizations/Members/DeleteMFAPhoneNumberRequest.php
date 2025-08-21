@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-class DeleteMFAPhoneNumberRequest
+final class DeleteMFAPhoneNumberRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

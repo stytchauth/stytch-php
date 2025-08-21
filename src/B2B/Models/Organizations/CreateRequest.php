@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class CreateRequest
+final class CreateRequest
 {
     /** The name of the Organization. Must be between 1 and 128 characters in length. */
     public string $organizationName;

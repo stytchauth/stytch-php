@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class OIDCProviderInfo
+final class OIDCProviderInfo
 {
     /**
     * The unique identifier for the User within a given OAuth provider. Also commonly called the `sub` or

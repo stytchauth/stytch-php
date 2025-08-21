@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class RetiredEmail
+final class RetiredEmail
 {
     /** The globally unique UUID of a Member's email. */
     public string $emailId;

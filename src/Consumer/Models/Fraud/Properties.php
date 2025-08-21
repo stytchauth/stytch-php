@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class Properties
+final class Properties
 {
     public NetworkProperties $networkProperties;
     public BrowserProperties $browserProperties;

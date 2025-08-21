@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class BiometricRegistration
+final class BiometricRegistration
 {
     /** The unique ID for a biometric registration. */
     public string $biometricRegistrationId;

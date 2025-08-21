@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class SCIMRegistration
+final class SCIMRegistration
 {
     /** The ID of the SCIM connection. */
     public string $connectionId;

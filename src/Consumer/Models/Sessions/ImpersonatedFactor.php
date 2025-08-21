@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class ImpersonatedFactor
+final class ImpersonatedFactor
 {
     /**
     * For impersonated sessions initiated via the Stytch Dashboard, the `impersonator_id` will be the

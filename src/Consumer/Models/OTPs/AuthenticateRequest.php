@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OTPs;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The `email_id` or `phone_id` involved in the given authentication. */
     public string $methodId;

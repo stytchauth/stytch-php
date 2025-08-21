@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-class DeleteConnectionRequest
+final class DeleteConnectionRequest
 {
     /**
     * The organization ID that the SSO connection belongs to. You may also use the organization_slug or

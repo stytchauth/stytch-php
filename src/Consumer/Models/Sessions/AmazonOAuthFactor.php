@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AmazonOAuthFactor
+final class AmazonOAuthFactor
 {
     public string $id;
     public string $providerSubject;

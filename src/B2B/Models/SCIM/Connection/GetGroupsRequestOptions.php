@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\SCIM\Connection;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class GetGroupsRequestOptions
+final class GetGroupsRequestOptions
 {
     /**
     * Optional authorization object.

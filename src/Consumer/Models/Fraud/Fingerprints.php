@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class Fingerprints
+final class Fingerprints
 {
     /** Combination of signals associated with a specific network commonly known as TLS fingerprinting. */
     public string $networkFingerprint;

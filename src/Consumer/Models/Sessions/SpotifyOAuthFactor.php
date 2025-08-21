@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class SpotifyOAuthFactor
+final class SpotifyOAuthFactor
 {
     public string $id;
     public string $providerSubject;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class BrowserProperties
+final class BrowserProperties
 {
     /** The user agent of the user's browser. */
     public string $userAgent;

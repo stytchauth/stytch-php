@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\TOTPs;
 
-class RecoveryCodesRequest
+final class RecoveryCodesRequest
 {
     /**
     * The `user_id` of an active user the TOTP registration should be tied to. You may use an `external_id`

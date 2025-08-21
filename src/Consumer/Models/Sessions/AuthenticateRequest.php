@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The session token to authenticate. */
     public ?string $sessionToken = null;

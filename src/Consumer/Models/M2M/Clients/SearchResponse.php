@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients;
 
-class SearchResponse
+final class SearchResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

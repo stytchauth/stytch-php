@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class PhoneNumberFactor
+final class PhoneNumberFactor
 {
     /** The globally unique UUID of the Member's phone number. */
     public string $phoneId;

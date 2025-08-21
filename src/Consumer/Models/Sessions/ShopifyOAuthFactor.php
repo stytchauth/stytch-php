@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class ShopifyOAuthFactor
+final class ShopifyOAuthFactor
 {
     public string $id;
     public string $providerSubject;

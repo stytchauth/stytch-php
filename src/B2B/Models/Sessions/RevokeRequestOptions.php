@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Sessions;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class RevokeRequestOptions
+final class RevokeRequestOptions
 {
     /**
     * Optional authorization object.

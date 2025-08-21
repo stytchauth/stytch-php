@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\RBAC;
 
-class PolicyScopePermission
+final class PolicyScopePermission
 {
     public string $resourceId;
     public array $actions;

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class OrganizationConnectedApp
+final class OrganizationConnectedApp
 {
     public string $connectedAppId;
     public string $name;

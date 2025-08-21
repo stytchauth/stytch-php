@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class JWK
+final class JWK
 {
     public string $kty;
     public string $use;

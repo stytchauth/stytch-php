@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class DiscordOAuthFactor
+final class DiscordOAuthFactor
 {
     public string $id;
     public string $providerSubject;

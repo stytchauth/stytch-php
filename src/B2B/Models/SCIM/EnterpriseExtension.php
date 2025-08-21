@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class EnterpriseExtension
+final class EnterpriseExtension
 {
     public string $employeeNumber;
     public string $costCenter;

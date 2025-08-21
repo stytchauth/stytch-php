@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\Rules;
 
-class SetRequest
+final class SetRequest
 {
     /**
     * The action that should be returned by a fingerprint lookup for that identifier with a `RULE_MATCH`

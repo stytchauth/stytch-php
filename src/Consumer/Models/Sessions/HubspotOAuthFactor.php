@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class HubspotOAuthFactor
+final class HubspotOAuthFactor
 {
     /** The unique ID of an OAuth registration. */
     public string $id;

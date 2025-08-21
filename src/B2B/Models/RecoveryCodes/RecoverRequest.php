@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\RecoveryCodes;
 
-class RecoverRequest
+final class RecoverRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Photo
+final class Photo
 {
     public string $value;
     public string $type;

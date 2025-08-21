@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class UserConnectedApp
+final class UserConnectedApp
 {
     /** The ID of the Connected App. */
     public string $connectedAppId;

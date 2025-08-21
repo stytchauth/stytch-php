@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery\IntermediateSessions;
 
-class ExchangeRequest
+final class ExchangeRequest
 {
     /**
     * The Intermediate Session Token. This token does not necessarily belong to a specific instance of a

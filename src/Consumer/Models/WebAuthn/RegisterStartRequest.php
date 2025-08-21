@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-class RegisterStartRequest
+final class RegisterStartRequest
 {
     /**
     * The `user_id` of an active user the Passkey or WebAuthn registration should be tied to. You may use an

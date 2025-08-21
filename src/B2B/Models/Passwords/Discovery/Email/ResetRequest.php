@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords\Discovery\Email;
 
-class ResetRequest
+final class ResetRequest
 {
     /** The password reset token to authenticate. */
     public string $passwordResetToken;

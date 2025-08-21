@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Group
+final class Group
 {
     public string $value;
     public string $display;

@@ -18,17 +18,17 @@ class ClientTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Create a mock handler for Guzzle
         $this->mockHandler = new MockHandler();
         $handlerStack = HandlerStack::create($this->mockHandler);
-        
+
         // Create the client
         $this->client = new Client(
             'project-test-12345',
             'secret-test-67890'
         );
-        
+
         // Use reflection to replace the httpClient with our mocked one
         $reflection = new \ReflectionClass($this->client);
         $httpClientProperty = $reflection->getProperty('httpClient');
@@ -68,7 +68,7 @@ class ClientTest extends TestCase
         // Get the last request to verify headers were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify the session token header was added
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertEquals('test-session-token-123', $lastRequest->getHeaderLine('X-Stytch-Member-Session'));
@@ -98,7 +98,7 @@ class ClientTest extends TestCase
         // Get the last request to verify headers were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify the session JWT header was added
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));
         $this->assertEquals('test-session-jwt-789', $lastRequest->getHeaderLine('X-Stytch-Member-SessionJWT'));
@@ -129,11 +129,11 @@ class ClientTest extends TestCase
         // Get the last request to verify both headers were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify both headers were added
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertEquals('test-session-token-456', $lastRequest->getHeaderLine('X-Stytch-Member-Session'));
-        
+
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));
         $this->assertEquals('test-session-jwt-123', $lastRequest->getHeaderLine('X-Stytch-Member-SessionJWT'));
     }
@@ -157,7 +157,7 @@ class ClientTest extends TestCase
         // Get the last request to verify no auth headers were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify no session headers were added
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));
@@ -186,11 +186,11 @@ class ClientTest extends TestCase
         // Get the last request to verify headers from both objects were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify headers from both authorization objects were added
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertEquals('token-1', $lastRequest->getHeaderLine('X-Stytch-Member-Session'));
-        
+
         $this->assertTrue($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));
         $this->assertEquals('jwt-2', $lastRequest->getHeaderLine('X-Stytch-Member-SessionJWT'));
     }
@@ -212,7 +212,7 @@ class ClientTest extends TestCase
         // Get the last request to verify no auth headers were added
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
-        
+
         // Verify no session headers were added
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-Session'));
         $this->assertFalse($lastRequest->hasHeader('X-Stytch-Member-SessionJWT'));

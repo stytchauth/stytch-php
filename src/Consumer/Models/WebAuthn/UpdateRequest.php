@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-class UpdateRequest
+final class UpdateRequest
 {
     /**
     * Globally unique UUID that identifies a Passkey or WebAuthn registration in the Stytch API. The

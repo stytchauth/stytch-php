@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-class DeleteResponse
+final class DeleteResponse
 {
     public string $requestId;
     /** The ID of the client. */

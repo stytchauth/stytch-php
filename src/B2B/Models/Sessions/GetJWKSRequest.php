@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class GetJWKSRequest
+final class GetJWKSRequest
 {
     /** The `project_id` to get the JWKS for. */
     public string $projectId;

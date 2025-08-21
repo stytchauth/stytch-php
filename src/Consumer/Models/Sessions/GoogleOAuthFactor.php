@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class GoogleOAuthFactor
+final class GoogleOAuthFactor
 {
     /** The unique ID of an OAuth registration. */
     public string $id;

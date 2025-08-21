@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class CryptoWallet
+final class CryptoWallet
 {
     /** The unique ID for a crypto wallet */
     public string $cryptoWalletId;

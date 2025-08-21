@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class RecoveryCodeFactor
+final class RecoveryCodeFactor
 {
     public string $totpRecoveryCodeId;
 

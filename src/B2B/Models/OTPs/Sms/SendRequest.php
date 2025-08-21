@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\OTPs\Sms;
 
-class SendRequest
+final class SendRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

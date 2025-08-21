@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class SHA1Config
+final class SHA1Config
 {
     /** The salt that should be prepended to the migrated password. */
     public string $prependSalt;

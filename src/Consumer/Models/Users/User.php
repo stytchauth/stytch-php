@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class User
+final class User
 {
     /** The unique ID of the affected User. */
     public string $userId;

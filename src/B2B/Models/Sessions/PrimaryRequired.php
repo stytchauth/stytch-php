@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-class PrimaryRequired
+final class PrimaryRequired
 {
     /**
     * Details the auth method that the member must also complete to fulfill the primary authentication

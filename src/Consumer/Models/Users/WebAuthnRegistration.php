@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class WebAuthnRegistration
+final class WebAuthnRegistration
 {
     /** The unique ID for the Passkey or WebAuthn registration. */
     public string $webauthnRegistrationId;

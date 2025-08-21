@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models;
 
-class DeviceInfo
+final class DeviceInfo
 {
     /**
     * The `visitor_id` (a unique identifier) of the user's device. See the

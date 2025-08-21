@@ -10,7 +10,7 @@ namespace Stytch\B2B\Models\Passwords\Email;
 
 use Stytch\Shared\MethodOptions\Authorization;
 
-class RequireResetRequestOptions
+final class RequireResetRequestOptions
 {
     /**
     * Optional authorization object.

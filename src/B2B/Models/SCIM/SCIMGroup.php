@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class SCIMGroup
+final class SCIMGroup
 {
     /**
     * Stytch-issued, globally unique UUID that identifies a specific SCIM Group. The entity `id` in the SCIM

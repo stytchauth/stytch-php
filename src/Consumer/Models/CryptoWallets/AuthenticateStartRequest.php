@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\CryptoWallets;
 
-class AuthenticateStartRequest
+final class AuthenticateStartRequest
 {
     /**
     * The type of wallet to authenticate. Currently `ethereum` and `solana` are supported. Wallets for any

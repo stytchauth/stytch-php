@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members\OAuthProviders;
 
-class SlackRequest
+final class SlackRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

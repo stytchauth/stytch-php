@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords\Email;
 
-class ResetRequest
+final class ResetRequest
 {
     /**
     * The Passwords `token` from the `?token=` query parameter in the URL.

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class MetricsRequest
+final class MetricsRequest
 {
     public string $organizationId;
 

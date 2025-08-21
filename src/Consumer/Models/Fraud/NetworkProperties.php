@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-class NetworkProperties
+final class NetworkProperties
 {
     /** The IP address of the client. */
     public string $ipAddress;

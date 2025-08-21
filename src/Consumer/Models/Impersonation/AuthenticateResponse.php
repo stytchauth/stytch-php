@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Impersonation;
 
-class AuthenticateResponse
+final class AuthenticateResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging

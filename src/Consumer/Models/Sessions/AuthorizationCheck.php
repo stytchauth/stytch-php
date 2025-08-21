@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AuthorizationCheck
+final class AuthorizationCheck
 {
     /**
     * A unique identifier of the RBAC Resource, provided by the developer and intended to be human-readable.

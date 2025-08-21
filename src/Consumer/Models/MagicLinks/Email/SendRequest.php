@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks\Email;
 
-class SendRequest
+final class SendRequest
 {
     /** The email address of the User to send the Magic Link to. */
     public string $email;

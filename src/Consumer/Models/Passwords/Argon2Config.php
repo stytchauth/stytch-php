@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-class Argon2Config
+final class Argon2Config
 {
     /** The salt value. */
     public string $salt;

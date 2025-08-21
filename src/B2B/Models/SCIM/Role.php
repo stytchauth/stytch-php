@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Role
+final class Role
 {
     public string $value;
     public string $type;

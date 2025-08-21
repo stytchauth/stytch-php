@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M;
 
-class M2MSearchQuery
+final class M2MSearchQuery
 {
     /**
     * The action to perform on the operands. The accepted value are:

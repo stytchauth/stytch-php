@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-class UpdateRequest
+final class UpdateRequest
 {
     /** The ID of the client. */
     public string $clientId;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-class ListCredentialsResponse
+final class ListCredentialsResponse
 {
     /** A list of WebAuthn credential objects. */
     public array $credentials;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-class AuthenticationFactor
+final class AuthenticationFactor
 {
     /**
     * The type of authentication factor. The possible values are: `email_otp`, `impersonated`, `imported`,

@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-class RotateStartRequest
+final class RotateStartRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to

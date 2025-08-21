@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-class Name
+final class Name
 {
     public string $formatted;
     public string $familyName;

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class DeleteBiometricRegistrationRequest
+final class DeleteBiometricRegistrationRequest
 {
     /** The `biometric_registration_id` to be deleted. */
     public string $biometricRegistrationId;

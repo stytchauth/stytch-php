@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients\Secrets;
 
-class RotateRequest
+final class RotateRequest
 {
     /** The ID of the client. */
     public string $clientId;

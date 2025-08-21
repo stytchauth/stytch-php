@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-class AuthenticateRequest
+final class AuthenticateRequest
 {
     /** The token to authenticate. */
     public string $ssoToken;

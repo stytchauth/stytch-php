@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\OTPs\Email;
 
-class SendRequest
+final class SendRequest
 {
     /**
     * The email address of the user to send the one-time passcode to. You may use sandbox@stytch.com to test

@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\IDP\OAuth;
 
-class AuthorizeStartRequest
+final class AuthorizeStartRequest
 {
     public string $clientId;
     public string $redirectUri;

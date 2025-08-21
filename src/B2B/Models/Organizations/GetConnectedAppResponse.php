@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-class GetConnectedAppResponse
+final class GetConnectedAppResponse
 {
     /** The ID of the Connected App. */
     public string $connectedAppId;

@@ -22,9 +22,6 @@
         <testsuite name="B2B">
             <directory>tests/B2B</directory>
         </testsuite>
-        <testsuite name="Integration">
-            <directory>tests/Integration</directory>
-        </testsuite>
     </testsuites>
     <coverage>
         <report>

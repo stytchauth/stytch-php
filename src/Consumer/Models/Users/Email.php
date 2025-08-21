@@ -8,7 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-class Email
+final class Email
 {
     /** The unique ID of a specific email address. */
     public string $emailId;
