@@ -3,8 +3,8 @@
 namespace Stytch\Shared\MethodOptions;
 
 class Authorization {
-  public string ?sessionToken = null;
-  public string ?sessionJwt = null;
+  public ?string $sessionToken = null;
+  public ?string $sessionJwt = null;
 
   public function __construct(
     ?string $sessionToken = null,
