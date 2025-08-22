@@ -20,7 +20,6 @@ try {
 
     echo "Session authenticated successfully!\n";
     echo "Session Token: " . $response->sessionToken . "\n";
-    echo "Status Code: " . $response->statusCode . "\n";
     echo "Request ID: " . $response->requestId . "\n";
 
 } catch (StytchException $e) {

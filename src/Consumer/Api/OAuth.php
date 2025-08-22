@@ -21,4 +21,96 @@ class OAuth
 
     }
 
+    /**
+        * Generate an OAuth Attach Token to pre-associate an OAuth flow with an existing Stytch User. Pass the
+        * returned `oauth_attach_token` to the same provider's OAuth Start endpoint to treat this OAuth flow as a
+        * login for that user instead of a signup for a new user.
+        *
+        * Exactly one of `user_id`, `session_token`, or `session_jwt` must be provided to identify the target
+        * Stytch User.
+        *
+        * **Note**: This is an optional step in the OAuth flow. Stytch can often determine whether to associate a
+        * new OAuth login with an existing User based on verified information (such as an email address) from the
+        * identity provider. This endpoint is useful for cases where we can't, such as missing or unverified
+        * provider information.
+        *
+        * See our [OAuth email address behavior](https://stytch.com/docs/guides/oauth/email-behavior) resource for
+        * additional information.
+
+         * @param \Stytch\Consumer\Models\OAuth\AttachRequest|array $request
+         * @return \Stytch\Consumer\Models\OAuth\AttachResponse
+         */
+    public function attach(
+        \Stytch\Consumer\Models\OAuth\AttachRequest|array $request,
+    ): \Stytch\Consumer\Models\OAuth\AttachResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/oauth/attach', $data);
+        return \Stytch\Consumer\Models\OAuth\AttachResponse::fromArray($response);
+    }
+
+    /**
+    * Generate an OAuth Attach Token to pre-associate an OAuth flow with an existing Stytch User. Pass the
+    * returned `oauth_attach_token` to the same provider's OAuth Start endpoint to treat this OAuth flow as a
+    * login for that user instead of a signup for a new user.
+    *
+    * Exactly one of `user_id`, `session_token`, or `session_jwt` must be provided to identify the target
+    * Stytch User.
+    *
+    * **Note**: This is an optional step in the OAuth flow. Stytch can often determine whether to associate a
+    * new OAuth login with an existing User based on verified information (such as an email address) from the
+    * identity provider. This endpoint is useful for cases where we can't, such as missing or unverified
+    * provider information.
+    *
+    * See our [OAuth email address behavior](https://stytch.com/docs/guides/oauth/email-behavior) resource for
+    * additional information.
+
+     * @param \Stytch\Consumer\Models\OAuth\AttachRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function attachAsync(
+        \Stytch\Consumer\Models\OAuth\AttachRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/oauth/attach', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\OAuth\AttachResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Authenticate a User given a `token`. This endpoint verifies that the user completed the OAuth flow by
+        * verifying that the token is valid and hasn't expired. To initiate a Stytch session for the user while
+        * authenticating their OAuth token, include `session_duration_minutes`; a session with the identity
+        * provider, e.g. Google or Facebook, will always be initiated upon successful authentication.
+
+         * @param \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request
+         * @return \Stytch\Consumer\Models\OAuth\AuthenticateResponse
+         */
+    public function authenticate(
+        \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request,
+    ): \Stytch\Consumer\Models\OAuth\AuthenticateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/oauth/authenticate', $data);
+        return \Stytch\Consumer\Models\OAuth\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a User given a `token`. This endpoint verifies that the user completed the OAuth flow by
+    * verifying that the token is valid and hasn't expired. To initiate a Stytch session for the user while
+    * authenticating their OAuth token, include `session_duration_minutes`; a session with the identity
+    * provider, e.g. Google or Facebook, will always be initiated upon successful authentication.
+
+     * @param \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\Consumer\Models\OAuth\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/oauth/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\OAuth\AuthenticateResponse::fromArray($response);
+        });
+    }
+
 }

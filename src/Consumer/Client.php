@@ -9,10 +9,11 @@
 namespace Stytch\Consumer;
 
 use Stytch\Core\Client as CoreClient;
-use Stytch\Core\ApiBase;
+use Stytch\Shared\PolicyCache;
 use Stytch\Consumer\Api\ConnectedApp;
 use Stytch\Consumer\Api\CryptoWallets;
 use Stytch\Consumer\Api\Fraud;
+use Stytch\Consumer\Api\IDP;
 use Stytch\Consumer\Api\Impersonation;
 use Stytch\Consumer\Api\M2M;
 use Stytch\Consumer\Api\MagicLinks;
@@ -35,10 +36,12 @@ class Client
 {
     private CoreClient $client;
     private string $projectId;
+    private PolicyCache $policyCache;
 
     public ConnectedApp $connected_app;
     public CryptoWallets $crypto_wallets;
     public Fraud $fraud;
+    public IDP $idp;
     public Impersonation $impersonation;
     public M2M $m2m;
     public MagicLinks $magic_links;
@@ -61,11 +64,13 @@ class Client
     ) {
         $this->projectId = $projectId;
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
-        
+
+        $this->policyCache = new PolicyCache();
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->crypto_wallets = new CryptoWallets($this->client);
         $this->fraud = new Fraud($this->client);
+        $this->idp = new IDP($this->client);
         $this->impersonation = new Impersonation($this->client);
         $this->m2m = new M2M($this->client, $this->projectId);
         $this->magic_links = new MagicLinks($this->client);
@@ -74,7 +79,7 @@ class Client
         $this->passwords = new Passwords($this->client);
         $this->project = new Project($this->client);
         $this->rbac = new RBAC($this->client);
-        $this->sessions = new Sessions($this->client, $this->projectId);
+        $this->sessions = new Sessions($this->client, $this->projectId, $this->policyCache);
         $this->totps = new TOTPs($this->client);
         $this->users = new Users($this->client);
         $this->webauthn = new WebAuthn($this->client);

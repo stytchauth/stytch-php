@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         failOnWarning="true"
+         failOnRisky="true"
+         stopOnFailure="false">
+    <php>
+        <env name="STYTCH_PROJECT_ID" value=""/>
+        <env name="STYTCH_PROJECT_SECRET" value=""/>
+        <env name="STYTCH_B2B_PROJECT_ID" value=""/>
+        <env name="STYTCH_B2B_PROJECT_SECRET" value=""/>
+    </php>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Consumer">
+            <directory>tests/Consumer</directory>
+        </testsuite>
+        <testsuite name="B2B">
+            <directory>tests/B2B</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <report>
+            <html outputDirectory="coverage-html"/>
+        </report>
+    </coverage>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+</phpunit>

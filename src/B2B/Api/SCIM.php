@@ -14,11 +14,13 @@ class SCIM
 {
     private Client $client;
 
+    public SCIMConnection $connection;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
 
+        $this->connection = new SCIMConnection($this->client);
     }
 
 }

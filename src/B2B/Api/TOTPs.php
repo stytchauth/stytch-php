@@ -13,14 +13,118 @@ use Stytch\Core\Client;
 class TOTPs
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Create a new TOTP instance for a Member. The Member can use the authenticator application of their
+        * choice to scan the QR code or enter the secret.
+        *
+        * If the Member already has an active MFA factor, then passing an intermediate session token, session
+        * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.
+        *
+        * Otherwise, passing an intermediate session token, session token, or session JWT is not required, but if
+        * passed must match the `member_id` passed.
+
+         * @param \Stytch\B2B\Models\TOTPs\CreateRequest|array $request
+         * @return \Stytch\B2B\Models\TOTPs\CreateResponse
+         */
+    public function create(
+        \Stytch\B2B\Models\TOTPs\CreateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\CreateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/totp', $data);
+        return \Stytch\B2B\Models\TOTPs\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Create a new TOTP instance for a Member. The Member can use the authenticator application of their
+    * choice to scan the QR code or enter the secret.
+    *
+    * If the Member already has an active MFA factor, then passing an intermediate session token, session
+    * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.
+    *
+    * Otherwise, passing an intermediate session token, session token, or session JWT is not required, but if
+    * passed must match the `member_id` passed.
+
+     * @param \Stytch\B2B\Models\TOTPs\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\B2B\Models\TOTPs\CreateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/totp', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\TOTPs\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Authenticate a Member provided TOTP.
+
+         * @param \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\TOTPs\AuthenticateResponse
+         */
+    public function authenticate(
+        \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\AuthenticateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/totp/authenticate', $data);
+        return \Stytch\B2B\Models\TOTPs\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a Member provided TOTP.
+
+     * @param \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/totp/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\TOTPs\AuthenticateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Migrate an existing TOTP instance for a Member. Recovery codes are not required and will be minted for
+        * the Member if not provided.
+
+         * @param \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request
+         * @return \Stytch\B2B\Models\TOTPs\MigrateResponse
+         */
+    public function migrate(
+        \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request,
+    ): \Stytch\B2B\Models\TOTPs\MigrateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/totp/migrate', $data);
+        return \Stytch\B2B\Models\TOTPs\MigrateResponse::fromArray($response);
+    }
+
+    /**
+    * Migrate an existing TOTP instance for a Member. Recovery codes are not required and will be minted for
+    * the Member if not provided.
+
+     * @param \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function migrateAsync(
+        \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/totp/migrate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\TOTPs\MigrateResponse::fromArray($response);
+        });
     }
 
 }

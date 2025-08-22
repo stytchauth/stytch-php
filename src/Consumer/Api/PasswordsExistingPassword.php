@@ -10,7 +10,7 @@ namespace Stytch\Consumer\Api;
 
 use Stytch\Core\Client;
 
-class ExistingPassword
+class PasswordsExistingPassword
 {
     private Client $client;
 
@@ -19,6 +19,42 @@ class ExistingPassword
     {
         $this->client = $client;
 
+    }
+
+    /**
+        * Reset the User's password using their existing password.
+        *
+        * Note that a successful password reset via an existing password will revoke all active sessions for the
+        * `user_id`.
+
+         * @param \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request
+         * @return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse
+         */
+    public function reset(
+        \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request,
+    ): \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/passwords/existing_password/reset', $data);
+        return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse::fromArray($response);
+    }
+
+    /**
+    * Reset the User's password using their existing password.
+    *
+    * Note that a successful password reset via an existing password will revoke all active sessions for the
+    * `user_id`.
+
+     * @param \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function resetAsync(
+        \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/passwords/existing_password/reset', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse::fromArray($response);
+        });
     }
 
 }

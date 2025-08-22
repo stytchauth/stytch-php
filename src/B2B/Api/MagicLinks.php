@@ -13,14 +13,86 @@ use Stytch\Core\Client;
 class MagicLinks
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
+    public MagicLinksEmail $email;
+    public MagicLinksDiscovery $discovery;
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+        $this->email = new MagicLinksEmail($this->client);
+        $this->discovery = new MagicLinksDiscovery($this->client);
+    }
+
+    /**
+        * Authenticate a Member with a Magic Link. This endpoint requires a Magic Link token that is not expired
+        * or previously used. If the Member's status is `pending` or `invited`, they will be updated to `active`.
+        * Provide the `session_duration_minutes` parameter to set the lifetime of the session. If the
+        * `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60 minute
+        * duration.
+        *
+        * If the Member is required to complete MFA to log in to the Organization, the returned value of
+        * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
+        * The `intermediate_session_token` can be passed into the
+        * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms),
+        * [TOTP Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-totp),
+        * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
+        * the MFA step and acquire a full member session.
+        * The `intermediate_session_token` can also be used with the
+        * [Exchange Intermediate Session endpoint](https://stytch.com/docs/b2b/api/exchange-intermediate-session)
+        * or the
+        * [Create Organization via Discovery endpoint](https://stytch.com/docs/b2b/api/create-organization-via-discovery) to join a different Organization or create a new one.
+        * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
+        *
+        * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
+        * MFA step.
+
+         * @param \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\AuthenticateResponse
+         */
+    public function authenticate(
+        \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request,
+    ): \Stytch\B2B\Models\MagicLinks\AuthenticateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/magic_links/authenticate', $data);
+        return \Stytch\B2B\Models\MagicLinks\AuthenticateResponse::fromArray($response);
+    }
+
+    /**
+    * Authenticate a Member with a Magic Link. This endpoint requires a Magic Link token that is not expired
+    * or previously used. If the Member's status is `pending` or `invited`, they will be updated to `active`.
+    * Provide the `session_duration_minutes` parameter to set the lifetime of the session. If the
+    * `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60 minute
+    * duration.
+    *
+    * If the Member is required to complete MFA to log in to the Organization, the returned value of
+    * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
+    * The `intermediate_session_token` can be passed into the
+    * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms),
+    * [TOTP Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-totp),
+    * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
+    * the MFA step and acquire a full member session.
+    * The `intermediate_session_token` can also be used with the
+    * [Exchange Intermediate Session endpoint](https://stytch.com/docs/b2b/api/exchange-intermediate-session)
+    * or the
+    * [Create Organization via Discovery endpoint](https://stytch.com/docs/b2b/api/create-organization-via-discovery) to join a different Organization or create a new one.
+    * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
+    *
+    * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
+    * MFA step.
+
+     * @param \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateAsync(
+        \Stytch\B2B\Models\MagicLinks\AuthenticateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/magic_links/authenticate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\MagicLinks\AuthenticateResponse::fromArray($response);
+        });
     }
 
 }

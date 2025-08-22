@@ -10,17 +10,627 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class Members
+class OrganizationsMembers
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
+    public OrganizationsMembersOAuthProviders $oauthProviders;
+    public OrganizationsMembersConnectedApps $connectedApps;
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+        $this->oauthProviders = new OrganizationsMembersOAuthProviders($this->client);
+        $this->connectedApps = new OrganizationsMembersConnectedApps($this->client);
+    }
+
+    /**
+        * Updates a Member specified by `organization_id` and `member_id`.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\UpdateResponse
+         */
+    public function update(
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\UpdateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\UpdateResponse::fromArray($response);
+    }
+
+    /**
+    * Updates a Member specified by `organization_id` and `member_id`.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UpdateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\UpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Deletes a Member specified by `organization_id` and `member_id`.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteResponse
+         */
+    public function delete(
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\DeleteResponse::fromArray($response);
+    }
+
+    /**
+    * Deletes a Member specified by `organization_id` and `member_id`.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\DeleteResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
+        * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
+        * one verified email where their `email_address_verified` is `true`.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
+         */
+    public function reactivate(
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\ReactivateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/organizations/{organization_id}/members/{member_id}/reactivate', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse::fromArray($response);
+    }
+
+    /**
+    * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
+    * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
+    * one verified email where their `email_address_verified` is `true`.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function reactivateAsync(
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\ReactivateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/reactivate', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Delete a Member's MFA phone number.
+        *
+        * To change a Member's phone number, you must first call this endpoint to delete the existing phone number.
+        *
+        * Existing Member Sessions that include a phone number authentication factor will not be revoked if the
+        * phone number is deleted, and MFA will not be enforced until the Member logs in again.
+        * If you wish to enforce MFA immediately after a phone number is deleted, you can do so by prompting the
+        * Member to enter a new phone number
+        * and calling the [OTP SMS send](https://stytch.com/docs/b2b/api/otp-sms-send) endpoint, then calling the
+        * [OTP SMS Authenticate](https://stytch.com/docs/b2b/api/authenticate-otp-sms) endpoint.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse
+         */
+    public function deleteMfaPhoneNumber(
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/mfa_phone_numbers/{member_id}', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a Member's MFA phone number.
+    *
+    * To change a Member's phone number, you must first call this endpoint to delete the existing phone number.
+    *
+    * Existing Member Sessions that include a phone number authentication factor will not be revoked if the
+    * phone number is deleted, and MFA will not be enforced until the Member logs in again.
+    * If you wish to enforce MFA immediately after a phone number is deleted, you can do so by prompting the
+    * Member to enter a new phone number
+    * and calling the [OTP SMS send](https://stytch.com/docs/b2b/api/otp-sms-send) endpoint, then calling the
+    * [OTP SMS Authenticate](https://stytch.com/docs/b2b/api/authenticate-otp-sms) endpoint.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteMfaPhoneNumberAsync(
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/members/mfa_phone_numbers/{member_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Delete a Member's MFA TOTP registration.
+        *
+        * To mint a new registration for a Member, you must first call this endpoint to delete the existing
+        * registration.
+        *
+        * Existing Member Sessions that include the TOTP authentication factor will not be revoked if the
+        * registration is deleted, and MFA will not be enforced until the Member logs in again.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse
+         */
+    public function deleteTOTP(
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}/totp', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a Member's MFA TOTP registration.
+    *
+    * To mint a new registration for a Member, you must first call this endpoint to delete the existing
+    * registration.
+    *
+    * Existing Member Sessions that include the TOTP authentication factor will not be revoked if the
+    * registration is deleted, and MFA will not be enforced until the Member logs in again.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTOTPAsync(
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/totp', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Search for Members within specified Organizations. An array with at least one `organization_id` is
+        * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
+        *
+        * *All fuzzy search filters require a minimum of three characters.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\SearchResponse
+         */
+    public function search(
+        \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\SearchRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\SearchResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/members/search', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\SearchResponse::fromArray($response);
+    }
+
+    /**
+    * Search for Members within specified Organizations. An array with at least one `organization_id` is
+    * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
+    *
+    * *All fuzzy search filters require a minimum of three characters.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function searchAsync(
+        \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\SearchRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/members/search', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\SearchResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Delete a Member's password.
+        *
+        * This endpoint only works for Organization-scoped passwords. For cross-org password Projects, use
+        * [Require Password Reset By Email](https://stytch.com/docs/b2b/api/passwords-require-reset-by-email)
+        * instead.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse
+         */
+    public function deletePassword(
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/passwords/{member_password_id}', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a Member's password.
+    *
+    * This endpoint only works for Organization-scoped passwords. For cross-org password Projects, use
+    * [Require Password Reset By Email](https://stytch.com/docs/b2b/api/passwords-require-reset-by-email)
+    * instead.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePasswordAsync(
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/members/passwords/{member_password_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Get a Member by `member_id`. This endpoint does not require an `organization_id`, enabling you to get
+        * members across organizations. This is a dangerous operation. Incorrect use may open you up to indirect
+        * object reference (IDOR) attacks. We recommend using the
+        * [Get Member](https://stytch.com/docs/b2b/api/get-member) API instead.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
+         */
+    public function dangerouslyGet(
+        \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\GetResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/members/dangerously_get/{member_id}', $data);
+        return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Get a Member by `member_id`. This endpoint does not require an `organization_id`, enabling you to get
+    * members across organizations. This is a dangerous operation. Incorrect use may open you up to indirect
+    * object reference (IDOR) attacks. We recommend using the
+    * [Get Member](https://stytch.com/docs/b2b/api/get-member) API instead.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function dangerouslyGetAsync(
+        \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/members/dangerously_get/{member_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Retrieve the saved OIDC access tokens and ID tokens for a member. After a successful OIDC login, Stytch
+        * will save the
+        * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+        * will refresh the
+        * access token automatically.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse
+         */
+    public function oidcProviders(
+        \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/oidc_providers', $data);
+        return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse::fromArray($response);
+    }
+
+    /**
+    * Retrieve the saved OIDC access tokens and ID tokens for a member. After a successful OIDC login, Stytch
+    * will save the
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the
+    * access token automatically.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function oidcProvidersAsync(
+        \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/oidc_providers', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Unlinks a retired email address from a Member specified by their `organization_id` and `member_id`. The
+        * email address
+        * to be retired can be identified in the request body by either its `email_id`, its `email_address`, or
+        * both. If using
+        * both identifiers they must refer to the same email.
+        *
+        * A previously active email address can be marked as retired in one of two ways:
+        *
+        * - It's replaced with a new primary email address during an explicit Member update.
+        * - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email address
+        * becomes the
+        *   Member's primary email address and the old primary email address is retired.
+        *
+        * A retired email address cannot be used by other Members in the same Organization. However, unlinking
+        * retired email
+        * addresses allows them to be subsequently re-used by other Organization Members. Retired email addresses
+        * can be viewed
+        * on the [Member object](https://stytch.com/docs/b2b/api/member-object).
+
+         * @param \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse
+         */
+    public function unlinkRetiredEmail(
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/unlink_retired_email', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse::fromArray($response);
+    }
+
+    /**
+    * Unlinks a retired email address from a Member specified by their `organization_id` and `member_id`. The
+    * email address
+    * to be retired can be identified in the request body by either its `email_id`, its `email_address`, or
+    * both. If using
+    * both identifiers they must refer to the same email.
+    *
+    * A previously active email address can be marked as retired in one of two ways:
+    *
+    * - It's replaced with a new primary email address during an explicit Member update.
+    * - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email address
+    * becomes the
+    *   Member's primary email address and the old primary email address is retired.
+    *
+    * A retired email address cannot be used by other Members in the same Organization. However, unlinking
+    * retired email
+    * addresses allows them to be subsequently re-used by other Organization Members. Retired email addresses
+    * can be viewed
+    * on the [Member object](https://stytch.com/docs/b2b/api/member-object).
+
+     * @param \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function unlinkRetiredEmailAsync(
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/unlink_retired_email', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Starts a self-serve email update for a Member specified by their `organization_id` and `member_id`.
+        * To perform a self-serve update, members must be active and have an active, verified email address.
+        *
+        * The new email address must meet the following requirements:
+        *
+        * - Must not be in use by another member (retired emails count as used until they are
+        * [unlinked](https://stytch.com/docs/b2b/api/unlink-retired-member-email))
+        * - Must not be updating for another member (i.e. two members cannot attempt to update to the same email
+        * at once)
+        *
+        * The member will receive an Email Magic Link that expires in 5 minutes. If they do not verify their new
+        * email address in that timeframe, the email
+        * will be freed up for other members to use.
+        *
+        * The Magic Link will redirect to your `login_redirect_url` (or the configured default if one isn't
+        * provided), and you should invoke the
+        * [Authenticate Magic Link](https://stytch.com/docs/b2b/api/authenticate-magic-link) endpoint as normal to
+        * complete the flow.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse
+         */
+    public function startEmailUpdate(
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members/{member_id}/start_email_update', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse::fromArray($response);
+    }
+
+    /**
+    * Starts a self-serve email update for a Member specified by their `organization_id` and `member_id`.
+    * To perform a self-serve update, members must be active and have an active, verified email address.
+    *
+    * The new email address must meet the following requirements:
+    *
+    * - Must not be in use by another member (retired emails count as used until they are
+    * [unlinked](https://stytch.com/docs/b2b/api/unlink-retired-member-email))
+    * - Must not be updating for another member (i.e. two members cannot attempt to update to the same email
+    * at once)
+    *
+    * The member will receive an Email Magic Link that expires in 5 minutes. If they do not verify their new
+    * email address in that timeframe, the email
+    * will be freed up for other members to use.
+    *
+    * The Magic Link will redirect to your `login_redirect_url` (or the configured default if one isn't
+    * provided), and you should invoke the
+    * [Authenticate Magic Link](https://stytch.com/docs/b2b/api/authenticate-magic-link) endpoint as normal to
+    * complete the flow.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function startEmailUpdateAsync(
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/start_email_update', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Member Get Connected Apps retrieves a list of Connected Apps with which the Member has successfully
+        * completed an
+        * authorization flow.
+        * If the Member revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
+        * Connected App will
+        * no longer be returned in the response. A Connected App's access may also be revoked if the
+        * Organization's allowed Connected
+        * App policy changes.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse
+         */
+    public function getConnectedApps(
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse::fromArray($response);
+    }
+
+    /**
+    * Member Get Connected Apps retrieves a list of Connected Apps with which the Member has successfully
+    * completed an
+    * authorization flow.
+    * If the Member revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
+    * Connected App will
+    * no longer be returned in the response. A Connected App's access may also be revoked if the
+    * Organization's allowed Connected
+    * App policy changes.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getConnectedAppsAsync(
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/connected_apps', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Creates a Member. An `organization_id` and `email_address` are required.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\CreateResponse
+         */
+    public function create(
+        \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\CreateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\CreateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/organizations/{organization_id}/members', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Creates a Member. An `organization_id` and `email_address` are required.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\CreateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/organizations/{organization_id}/members', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Get a Member by `member_id` or `email_address`.
+
+         * @param \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
+         */
+    public function get(
+        \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request,
+    ): \Stytch\B2B\Models\Organizations\Members\GetResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->get('/v1/b2b/organizations/{organization_id}/member', $data);
+        return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Get a Member by `member_id` or `email_address`.
+
+     * @param \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/organizations/{organization_id}/member', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\GetResponse::fromArray($response);
+        });
     }
 
 }

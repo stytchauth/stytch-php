@@ -10,17 +10,293 @@ namespace Stytch\B2B\Api;
 
 use Stytch\Core\Client;
 
-class Connection
+class SCIMConnection
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Update a SCIM Connection.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\UpdateResponse
+         */
+    public function update(
+        \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\UpdateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\UpdateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->put('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\UpdateResponse::fromArray($response);
+    }
+
+    /**
+    * Update a SCIM Connection.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateAsync(
+        \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\UpdateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->putAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\UpdateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Deletes a SCIM Connection.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\DeleteResponse
+         */
+    public function delete(
+        \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\DeleteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\DeleteResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\DeleteResponse::fromArray($response);
+    }
+
+    /**
+    * Deletes a SCIM Connection.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAsync(
+        \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\DeleteRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\DeleteResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Start a SCIM token rotation.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse
+         */
+    public function rotateStart(
+        \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateStartRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/start', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse::fromArray($response);
+    }
+
+    /**
+    * Start a SCIM token rotation.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateStartAsync(
+        \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateStartRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/start', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Completes a SCIM token rotation. This will complete the current token rotation process and update the
+        * active token to be the new token supplied in the
+        * [start SCIM token rotation](https://stytch.com/docs/b2b/api/scim-rotate-token-start) response.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse
+         */
+    public function rotateComplete(
+        \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/complete', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse::fromArray($response);
+    }
+
+    /**
+    * Completes a SCIM token rotation. This will complete the current token rotation process and update the
+    * active token to be the new token supplied in the
+    * [start SCIM token rotation](https://stytch.com/docs/b2b/api/scim-rotate-token-start) response.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateCompleteAsync(
+        \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/complete', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Cancel a SCIM token rotation. This will cancel the current token rotation process, keeping the original
+        * token active.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse
+         */
+    public function rotateCancel(
+        \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/cancel', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse::fromArray($response);
+    }
+
+    /**
+    * Cancel a SCIM token rotation. This will cancel the current token rotation process, keeping the original
+    * token active.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateCancelAsync(
+        \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}/rotate/cancel', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Gets a paginated list of all SCIM Groups associated with a given Connection.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse
+         */
+    public function getGroups(
+        \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse::fromArray($response);
+    }
+
+    /**
+    * Gets a paginated list of all SCIM Groups associated with a given Connection.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getGroupsAsync(
+        \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/scim/{organization_id}/connection/{connection_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Create a new SCIM Connection.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\CreateResponse
+         */
+    public function create(
+        \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\CreateRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\CreateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->post('/v1/b2b/scim/{organization_id}/connection', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\CreateResponse::fromArray($response);
+    }
+
+    /**
+    * Create a new SCIM Connection.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAsync(
+        \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\CreateRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/scim/{organization_id}/connection', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\CreateResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Get SCIM Connection.
+
+         * @param \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request
+         * @return \Stytch\B2B\Models\SCIM\Connection\GetResponse
+         */
+    public function get(
+        \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\GetRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SCIM\Connection\GetResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->get('/v1/b2b/scim/{organization_id}/connection', $data, $opts);
+        return \Stytch\B2B\Models\SCIM\Connection\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Get SCIM Connection.
+
+     * @param \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request,
+        \Stytch\B2B\Models\SCIM\Connection\GetRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/scim/{organization_id}/connection', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SCIM\Connection\GetResponse::fromArray($response);
+        });
     }
 
 }

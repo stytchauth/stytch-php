@@ -13,14 +13,106 @@ use Stytch\Core\Client;
 class RecoveryCodes
 {
     private Client $client;
-    private PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, PolicyCache $policyCache)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->policyCache = $policyCache;
 
+    }
+
+    /**
+        * Allows a Member to complete an MFA flow by consuming a recovery code. This consumes the recovery code
+        * and returns a session token that can be used to authenticate the Member.
+
+         * @param \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request
+         * @return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse
+         */
+    public function recover(
+        \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\RecoverResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/recovery_codes/recover', $data);
+        return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse::fromArray($response);
+    }
+
+    /**
+    * Allows a Member to complete an MFA flow by consuming a recovery code. This consumes the recovery code
+    * and returns a session token that can be used to authenticate the Member.
+
+     * @param \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function recoverAsync(
+        \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/recovery_codes/recover', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Returns a Member's full set of active recovery codes.
+
+         * @param \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request
+         * @return \Stytch\B2B\Models\RecoveryCodes\GetResponse
+         */
+    public function get(
+        \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\GetResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->get('/v1/b2b/recovery_codes/{organization_id}/{member_id}', $data);
+        return \Stytch\B2B\Models\RecoveryCodes\GetResponse::fromArray($response);
+    }
+
+    /**
+    * Returns a Member's full set of active recovery codes.
+
+     * @param \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAsync(
+        \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->getAsync('/v1/b2b/recovery_codes/{organization_id}/{member_id}', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\RecoveryCodes\GetResponse::fromArray($response);
+        });
+    }
+
+    /**
+        * Rotate a Member's recovery codes. This invalidates all existing recovery codes and generates a new set
+        * of recovery codes.
+
+         * @param \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request
+         * @return \Stytch\B2B\Models\RecoveryCodes\RotateResponse
+         */
+    public function rotate(
+        \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request,
+    ): \Stytch\B2B\Models\RecoveryCodes\RotateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->post('/v1/b2b/recovery_codes/rotate', $data);
+        return \Stytch\B2B\Models\RecoveryCodes\RotateResponse::fromArray($response);
+    }
+
+    /**
+    * Rotate a Member's recovery codes. This invalidates all existing recovery codes and generates a new set
+    * of recovery codes.
+
+     * @param \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function rotateAsync(
+        \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->postAsync('/v1/b2b/recovery_codes/rotate', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\RecoveryCodes\RotateResponse::fromArray($response);
+        });
     }
 
 }
