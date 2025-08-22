@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         run: |
           composer install --prefer-dist --no-progress
-          vendor/bin/phpunit
+          vendor/bin/phpunit --no-coverage
 
       - name: Get version from Version.php
         id: version
@@ -59,11 +59,12 @@ jobs:
 
       - name: Trigger Packagist update
         env:
+          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
           PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
         if: steps.diff.outputs.diff != 0 && env.PACKAGIST_TOKEN != ''
         run: |
           curl -XPOST -H'content-type:application/json' \
-            'https://packagist.org/api/update-package?username=stytch&apiToken=${{ secrets.PACKAGIST_TOKEN }}' \
+            'https://packagist.org/api/update-package?username={{ secrets.PACKAGIST_USERNAME }}&apiToken=${{ secrets.PACKAGIST_TOKEN }}' \
             -d'{"repository":{"url":"https://github.com/stytch/stytch-php"}}'
 
       - name: Create release
