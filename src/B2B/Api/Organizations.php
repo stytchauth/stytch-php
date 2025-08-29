@@ -23,20 +23,20 @@ class Organizations
         $this->members = new OrganizationsMembers($this->client);
     }
 
-    /**
-        * Creates an Organization. An `organization_name` and a unique `organization_slug` are required.
-        *
-        * If no Organization authentication setting parameters are passed in, `email_invites` will default to
-        * `ALL_ALLOWED` so that the Organization has a way to add Members. Otherwise, `email_invites` will default
-        * to `NOT_ALLOWED`.
-        *
-        * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
-        * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
-        * `sso_jit_provisioning`, etc., and their behaviors.
+/**
+    * Creates an Organization. An `organization_name` and a unique `organization_slug` are required.
+    * 
+    * If no Organization authentication setting parameters are passed in, `email_invites` will default to
+    * `ALL_ALLOWED` so that the Organization has a way to add Members. Otherwise, `email_invites` will default
+    * to `NOT_ALLOWED`.
+    * 
+    * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
+    * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
+    * `sso_jit_provisioning`, etc., and their behaviors.
 
-         * @param \Stytch\B2B\Models\Organizations\CreateRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\CreateResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\CreateRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\CreateResponse
+     */
     public function create(
         \Stytch\B2B\Models\Organizations\CreateRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\CreateResponse {
@@ -47,11 +47,11 @@ class Organizations
 
     /**
     * Creates an Organization. An `organization_name` and a unique `organization_slug` are required.
-    *
+    * 
     * If no Organization authentication setting parameters are passed in, `email_invites` will default to
     * `ALL_ALLOWED` so that the Organization has a way to add Members. Otherwise, `email_invites` will default
     * to `NOT_ALLOWED`.
-    *
+    * 
     * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
     * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
     * `sso_jit_provisioning`, etc., and their behaviors.
@@ -69,12 +69,12 @@ class Organizations
         });
     }
 
-    /**
-        * Returns an Organization specified by `organization_id`.
+/**
+    * Returns an Organization specified by `organization_id`.
 
-         * @param \Stytch\B2B\Models\Organizations\GetRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\GetResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\GetRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\GetResponse
+     */
     public function get(
         \Stytch\B2B\Models\Organizations\GetRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\GetResponse {
@@ -99,17 +99,17 @@ class Organizations
         });
     }
 
-    /**
-        * Updates an Organization specified by `organization_id`. An Organization must always have at least one
-        * auth setting set to either `RESTRICTED` or `ALL_ALLOWED` in order to provision new Members.
-        *
-        * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
-        * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
-        * `sso_jit_provisioning`, etc., and their behaviors.
+/**
+    * Updates an Organization specified by `organization_id`. An Organization must always have at least one
+    * auth setting set to either `RESTRICTED` or `ALL_ALLOWED` in order to provision new Members.
+    * 
+    * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
+    * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
+    * `sso_jit_provisioning`, etc., and their behaviors.
 
-         * @param \Stytch\B2B\Models\Organizations\UpdateRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\UpdateResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\UpdateRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\UpdateResponse
+     */
     public function update(
         \Stytch\B2B\Models\Organizations\UpdateRequest|array $request,
         \Stytch\B2B\Models\Organizations\UpdateRequestOptions|array $options = [],
@@ -123,7 +123,7 @@ class Organizations
     /**
     * Updates an Organization specified by `organization_id`. An Organization must always have at least one
     * auth setting set to either `RESTRICTED` or `ALL_ALLOWED` in order to provision new Members.
-    *
+    * 
     * *See the [Organization authentication settings](https://stytch.com/docs/b2b/api/org-auth-settings)
     * resource to learn more about fields like `email_jit_provisioning`, `email_invites`,
     * `sso_jit_provisioning`, etc., and their behaviors.
@@ -143,13 +143,13 @@ class Organizations
         });
     }
 
-    /**
-        * Deletes an Organization specified by `organization_id`. All Members of the Organization will also be
-        * deleted.
+/**
+    * Deletes an Organization specified by `organization_id`. All Members of the Organization will also be
+    * deleted.
 
-         * @param \Stytch\B2B\Models\Organizations\DeleteRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\DeleteResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\DeleteRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\DeleteResponse
+     */
     public function delete(
         \Stytch\B2B\Models\Organizations\DeleteRequest|array $request,
         \Stytch\B2B\Models\Organizations\DeleteRequestOptions|array $options = [],
@@ -179,14 +179,16 @@ class Organizations
         });
     }
 
-    /**
-        * Search for Organizations. If you send a request with no body params, no filtering will be applied and
-        * the endpoint will return all Organizations. All fuzzy search filters require a minimum of three
-        * characters.
+/**
+    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+    * limits are set to 100 requests/second.
+    * 
+    * Search across your Organizations. Returns an array of Organization objects.
 
-         * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\SearchResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\SearchResponse
+     */
     public function search(
         \Stytch\B2B\Models\Organizations\SearchRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\SearchResponse {
@@ -196,9 +198,11 @@ class Organizations
     }
 
     /**
-    * Search for Organizations. If you send a request with no body params, no filtering will be applied and
-    * the endpoint will return all Organizations. All fuzzy search filters require a minimum of three
-    * characters.
+    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+    * limits are set to 100 requests/second.
+    * 
+    * Search across your Organizations. Returns an array of Organization objects.
 
      * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -213,10 +217,10 @@ class Organizations
         });
     }
 
-    /**
-         * @param \Stytch\B2B\Models\Organizations\MetricsRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\MetricsResponse
-         */
+/**
+     * @param \Stytch\B2B\Models\Organizations\MetricsRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\MetricsResponse
+     */
     public function metrics(
         \Stytch\B2B\Models\Organizations\MetricsRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\MetricsResponse {
@@ -239,18 +243,18 @@ class Organizations
         });
     }
 
-    /**
-        * Retrieves a list of Connected Apps for the Organization that have been installed by Members.
-        * Installation comprises
-        * successful completion of an authorization flow with a Connected App that has not been revoked.
-        *
-        * Connected Apps may be uninstalled if an Organization changes its
-        * `first_party_connected_apps_allowed_type`
-        * or `third_party_connected_apps_allowed_type` policies.
+/**
+    * Retrieves a list of Connected Apps for the Organization that have been installed by Members.
+    * Installation comprises
+    * successful completion of an authorization flow with a Connected App that has not been revoked.
+    * 
+    * Connected Apps may be uninstalled if an Organization changes its
+    * `first_party_connected_apps_allowed_type`
+    * or `third_party_connected_apps_allowed_type` policies.
 
-         * @param \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\ConnectedAppsResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\ConnectedAppsResponse
+     */
     public function connectedApps(
         \Stytch\B2B\Models\Organizations\ConnectedAppsRequest|array $request,
         \Stytch\B2B\Models\Organizations\ConnectedAppsRequestOptions|array $options = [],
@@ -265,7 +269,7 @@ class Organizations
     * Retrieves a list of Connected Apps for the Organization that have been installed by Members.
     * Installation comprises
     * successful completion of an authorization flow with a Connected App that has not been revoked.
-    *
+    * 
     * Connected Apps may be uninstalled if an Organization changes its
     * `first_party_connected_apps_allowed_type`
     * or `third_party_connected_apps_allowed_type` policies.
@@ -285,16 +289,16 @@ class Organizations
         });
     }
 
-    /**
-        * Get Connected App for Organization retrieves information about the specified Connected App as well as a
-        * list of the
-        * Organization's Members who have the App installed along with the scopes they requested at completion of
-        * their last
-        * authorization with the App.
+/**
+    * Get Connected App for Organization retrieves information about the specified Connected App as well as a
+    * list of the
+    * Organization's Members who have the App installed along with the scopes they requested at completion of
+    * their last
+    * authorization with the App.
 
-         * @param \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\GetConnectedAppResponse
+     */
     public function getConnectedApp(
         \Stytch\B2B\Models\Organizations\GetConnectedAppRequest|array $request,
         \Stytch\B2B\Models\Organizations\GetConnectedAppRequestOptions|array $options = [],

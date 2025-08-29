@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
+
 final class ListCredentialsRequest
 {
     /** The `user_id` of an active user the Passkey or WebAuthn registration should be tied to. */

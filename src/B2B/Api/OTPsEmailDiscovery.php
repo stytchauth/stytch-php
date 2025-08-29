@@ -21,14 +21,14 @@ class OTPsEmailDiscovery
 
     }
 
-    /**
-        * Send a discovery OTP to an email address. The OTP is valid for 10 minutes. Only the most recently sent
-        * OTP is valid: when an OTP is sent, all OTPs previously sent to the same email address are invalidated,
-        * even if unused or unexpired.
+/**
+    * Send a discovery OTP to an email address. The OTP is valid for 10 minutes. Only the most recently sent
+    * OTP is valid: when an OTP is sent, all OTPs previously sent to the same email address are invalidated,
+    * even if unused or unexpired.
 
-         * @param \Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request
-         * @return \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse
-         */
+     * @param \Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request
+     * @return \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse
+     */
     public function send(
         \Stytch\B2B\Models\OTPs\Email\Discovery\SendRequest|array $request,
     ): \Stytch\B2B\Models\OTPs\Email\Discovery\SendResponse {
@@ -55,13 +55,13 @@ class OTPsEmailDiscovery
         });
     }
 
-    /**
-        * Authenticates the OTP and returns an intermediate session token. Intermediate session tokens can be used
-        * for various Discovery login flows and are valid for 10 minutes.
+/**
+    * Authenticates the OTP and returns an intermediate session token. Intermediate session tokens can be used
+    * for various Discovery login flows and are valid for 10 minutes.
 
-         * @param \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request
-         * @return \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse
-         */
+     * @param \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request
+     * @return \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\OTPs\Email\Discovery\AuthenticateResponse {

@@ -21,10 +21,10 @@ class Project
 
     }
 
-    /**
-         * @param \Stytch\Consumer\Models\Project\MetricsRequest|array $request
-         * @return \Stytch\Consumer\Models\Project\MetricsResponse
-         */
+/**
+     * @param \Stytch\Consumer\Models\Project\MetricsRequest|array $request
+     * @return \Stytch\Consumer\Models\Project\MetricsResponse
+     */
     public function metrics(
         \Stytch\Consumer\Models\Project\MetricsRequest|array $request,
     ): \Stytch\Consumer\Models\Project\MetricsResponse {

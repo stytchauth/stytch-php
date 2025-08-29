@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
+
 final class ReactivateRequest
 {
     /**
@@ -18,8 +19,7 @@ final class ReactivateRequest
     public string $organizationId;
     /**
     * Globally unique UUID that identifies a specific Member. The `member_id` is critical to perform
-    * operations on a Member, so be sure to preserve this value. You may use an external_id here if one is set
-    * for the member.
+    * operations on a Member, so be sure to preserve this value.
      */
     public string $memberId;
 

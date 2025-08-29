@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
+
 final class GetResponse
 {
     /**
@@ -43,7 +44,7 @@ final class GetResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['sessions']) ? array_map(fn ($item) => Session::fromArray($item), $data['sessions']) : [],
+            isset($data['sessions']) ? array_map(fn($item) => Session::fromArray($item), $data['sessions']) : [],
             $data['status_code']
         );
     }

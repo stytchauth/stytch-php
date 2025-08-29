@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\OAuth\Discovery;
 
+
 final class AuthenticateRequest
 {
     /** The Discovery OAuth token to authenticate. */

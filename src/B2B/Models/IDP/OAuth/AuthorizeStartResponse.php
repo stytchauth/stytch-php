@@ -8,14 +8,24 @@
 
 namespace Stytch\B2B\Models\IDP\OAuth;
 
+
 final class AuthorizeStartResponse
 {
+    /**
+    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
+    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
+     */
     public string $requestId;
+    /** Globally unique UUID that identifies a specific Member. */
     public string $memberId;
+    /** The [Member object](https://stytch.com/docs/b2b/api/member-object) */
     public \Stytch\B2B\Models\Organizations\Member $member;
+    /** The [Organization object](https://stytch.com/docs/b2b/api/organization-object). */
     public \Stytch\B2B\Models\Organizations\Organization $organization;
     public \Stytch\Consumer\Models\ConnectedApp\ConnectedAppPublic $client;
+    /** Whether the user must provide explicit consent for the authorization request. */
     public bool $consentRequired;
+    /** Details about each requested scope. */
     public array $scopeResults;
     public int $statusCode;
 
@@ -54,7 +64,7 @@ final class AuthorizeStartResponse
             \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             \Stytch\Consumer\Models\ConnectedApp\ConnectedAppPublic::fromArray($data['client']),
             $data['consent_required'],
-            isset($data['scope_results']) ? array_map(fn ($item) => \Stytch\B2B\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
+            isset($data['scope_results']) ? array_map(fn($item) => \Stytch\B2B\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
             $data['status_code']
         );
     }

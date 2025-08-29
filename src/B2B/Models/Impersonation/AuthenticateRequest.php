@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Impersonation;
 
+
 final class AuthenticateRequest
 {
     /** The Member Impersonation token to authenticate. Expires in 5 minutes by default. */

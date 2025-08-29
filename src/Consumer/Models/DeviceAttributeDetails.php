@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models;
 
+
 final class DeviceAttributeDetails
 {
     /** Whether this `ip_geo_country` has been seen before for this user. */

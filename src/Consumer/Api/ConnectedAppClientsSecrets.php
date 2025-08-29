@@ -21,21 +21,21 @@ class ConnectedAppClientsSecrets
 
     }
 
-    /**
-        * Initiate the rotation of a Connected App client secret. After this endpoint is called, both the client's
-        * `client_secret` and `next_client_secret` will be valid. To complete the secret rotation flow, update all
-        * usages of `client_secret` to `next_client_secret` and call the Rotate Secret Endpoint to complete the
-        * flow.
-        * Secret rotation can be cancelled using the Cancel Secret Rotation endpoint.
-        *
-        * **Important:** This is the only time you will be able to view the generated `next_client_secret` in the
-        * API response. Stytch stores a hash of the `next_client_secret` and cannot recover the value if lost. Be
-        * sure to persist the `next_client_secret` in a secure location. If the `next_client_secret` is lost, you
-        * will need to trigger a secret rotation flow to receive another one.
+/**
+    * Initiate the rotation of a Connected App client secret. After this endpoint is called, both the client's
+    * `client_secret` and `next_client_secret` will be valid. To complete the secret rotation flow, update all
+    * usages of `client_secret` to `next_client_secret` and call the Rotate Secret Endpoint to complete the
+    * flow.
+    * Secret rotation can be cancelled using the Cancel Secret Rotation endpoint.
+    * 
+    * **Important:** This is the only time you will be able to view the generated `next_client_secret` in the
+    * API response. Stytch stores a hash of the `next_client_secret` and cannot recover the value if lost. Be
+    * sure to persist the `next_client_secret` in a secure location. If the `next_client_secret` is lost, you
+    * will need to trigger a secret rotation flow to receive another one.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse
+     */
     public function rotateStart(
         \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateStartResponse {
@@ -50,7 +50,7 @@ class ConnectedAppClientsSecrets
     * usages of `client_secret` to `next_client_secret` and call the Rotate Secret Endpoint to complete the
     * flow.
     * Secret rotation can be cancelled using the Cancel Secret Rotation endpoint.
-    *
+    * 
     * **Important:** This is the only time you will be able to view the generated `next_client_secret` in the
     * API response. Stytch stores a hash of the `next_client_secret` and cannot recover the value if lost. Be
     * sure to persist the `next_client_secret` in a secure location. If the `next_client_secret` is lost, you
@@ -69,14 +69,14 @@ class ConnectedAppClientsSecrets
         });
     }
 
-    /**
-        * Cancel the rotation of a Connected App client secret started with the Start Secret Rotation Endpoint.
-        * After this endpoint is called, the client's `next_client_secret` is discarded and only the original
-        * `client_secret` will be valid.
+/**
+    * Cancel the rotation of a Connected App client secret started with the Start Secret Rotation Endpoint.
+    * After this endpoint is called, the client's `next_client_secret` is discarded and only the original
+    * `client_secret` will be valid.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse
+     */
     public function rotateCancel(
         \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateCancelResponse {
@@ -103,14 +103,14 @@ class ConnectedAppClientsSecrets
         });
     }
 
-    /**
-        * Complete the rotation of a Connected App client secret started with the Rotate Secret Start Endpoint.
-        * After this endpoint is called, the client's `next_client_secret` becomes its `client_secret` and the
-        * previous `client_secret` will no longer be valid.
+/**
+    * Complete the rotation of a Connected App client secret started with the Rotate Secret Start Endpoint.
+    * After this endpoint is called, the client's `next_client_secret` becomes its `client_secret` and the
+    * previous `client_secret` will no longer be valid.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse
+     */
     public function rotate(
         \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\Secrets\RotateResponse {

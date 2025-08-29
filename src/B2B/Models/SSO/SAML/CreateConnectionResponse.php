@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\SAML;
 
+
 final class CreateConnectionResponse
 {
     /**

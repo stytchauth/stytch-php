@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
+
 final class StrengthCheckResponse
 {
     /**
@@ -17,10 +18,10 @@ final class StrengthCheckResponse
     public string $requestId;
     /**
     * Returns `true` if the password passes our password validation. We offer two validation options,
-    *   [zxcvbn](https://stytch.com/docs/passwords#strength-requirements) is the default option which offers a
-    * high level of sophistication.
-    *   We also offer [LUDS](https://stytch.com/docs/passwords#strength-requirements). If an email address is
-    * included in the call we also
+    *   [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy) is the default option which offers
+    * a high level of sophistication.
+    *   We also offer [LUDS](https://stytch.com/docs/b2b/guides/passwords/strength-policy). If an email
+    * address is included in the call we also
     *   require that the password hasn't been compromised using built-in breach detection powered by
     * [HaveIBeenPwned](https://haveibeenpwned.com/)
      */
@@ -51,12 +52,12 @@ final class StrengthCheckResponse
     public int $statusCode;
     /**
     * Feedback for how to improve the password's strength using
-    * [luds](https://stytch.com/docs/passwords#strength-requirements).
+    * [luds](https://stytch.com/docs/guides/passwords/strength-policy).
      */
     public ?LudsFeedback $ludsFeedback = null;
     /**
     * Feedback for how to improve the password's strength using
-    * [zxcvbn](https://stytch.com/docs/passwords#strength-requirements).
+    * [zxcvbn](https://stytch.com/docs/b2b/guides/passwords/strength-policy).
      */
     public ?ZxcvbnFeedback $zxcvbnFeedback = null;
 

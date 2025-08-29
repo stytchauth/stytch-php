@@ -8,8 +8,10 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
+
 final class PolicyRequest
 {
+
     public function __construct(
     ) {
     }

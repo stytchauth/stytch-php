@@ -21,27 +21,27 @@ class WebAuthn
 
     }
 
-    /**
-        * Initiate the process of creating a new Passkey or WebAuthn registration.
-        *
-        * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
-        *
-        * After calling this endpoint, the browser will need to call
-        * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) with the data
-        * from
-        * [public_key_credential_creation_options](https://w3c.github.io/webauthn/#dictionary-makecredentialoptions)
-        * passed to the [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential)
-        * request via the public key argument. We recommend using the `create()` wrapper provided by the
-        * webauthn-json library.
-        *
-        * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, the
-        * `public_key_credential_creation_options` will need to be converted to a suitable public key by
-        * unmarshalling the JSON, base64 decoding the user ID field, and converting user ID and the challenge
-        * fields into an array buffer.
+/**
+    * Initiate the process of creating a new Passkey or WebAuthn registration. 
+    * 
+    * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
+    * 
+    * After calling this endpoint, the browser will need to call
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) with the data
+    * from
+    * [public_key_credential_creation_options](https://w3c.github.io/webauthn/#dictionary-makecredentialoptions)
+    * passed to the [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential)
+    * request via the public key argument. We recommend using the `create()` wrapper provided by the
+    * webauthn-json library. 
+    * 
+    * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, the
+    * `public_key_credential_creation_options` will need to be converted to a suitable public key by
+    * unmarshalling the JSON, base64 decoding the user ID field, and converting user ID and the challenge
+    * fields into an array buffer.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse
+     */
     public function registerStart(
         \Stytch\Consumer\Models\WebAuthn\RegisterStartRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\RegisterStartResponse {
@@ -51,18 +51,18 @@ class WebAuthn
     }
 
     /**
-    * Initiate the process of creating a new Passkey or WebAuthn registration.
-    *
+    * Initiate the process of creating a new Passkey or WebAuthn registration. 
+    * 
     * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
-    *
+    * 
     * After calling this endpoint, the browser will need to call
     * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) with the data
     * from
     * [public_key_credential_creation_options](https://w3c.github.io/webauthn/#dictionary-makecredentialoptions)
     * passed to the [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential)
     * request via the public key argument. We recommend using the `create()` wrapper provided by the
-    * webauthn-json library.
-    *
+    * webauthn-json library. 
+    * 
     * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, the
     * `public_key_credential_creation_options` will need to be converted to a suitable public key by
     * unmarshalling the JSON, base64 decoding the user ID field, and converting user ID and the challenge
@@ -81,21 +81,21 @@ class WebAuthn
         });
     }
 
-    /**
-        * Complete the creation of a WebAuthn registration by passing the response from the
-        * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) request to
-        * this endpoint as the `public_key_credential` parameter.
-        *
-        * If the [webauthn-json](https://github.com/github/webauthn-json) library's `create()` method was used,
-        * the response can be passed directly to the
-        * [register endpoint](https://stytch.com/docs/api/webauthn-register). If not, some fields (the client data
-        * and the attestation object) from the
-        * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) response will
-        * need to be converted from array buffers to strings and marshalled into JSON.
+/**
+    * Complete the creation of a WebAuthn registration by passing the response from the
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) request to
+    * this endpoint as the `public_key_credential` parameter. 
+    * 
+    * If the [webauthn-json](https://github.com/github/webauthn-json) library's `create()` method was used,
+    * the response can be passed directly to the
+    * [register endpoint](https://stytch.com/docs/api/webauthn-register). If not, some fields (the client data
+    * and the attestation object) from the
+    * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) response will
+    * need to be converted from array buffers to strings and marshalled into JSON.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\RegisterResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\RegisterResponse
+     */
     public function register(
         \Stytch\Consumer\Models\WebAuthn\RegisterRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\RegisterResponse {
@@ -107,8 +107,8 @@ class WebAuthn
     /**
     * Complete the creation of a WebAuthn registration by passing the response from the
     * [navigator.credentials.create()](https://www.w3.org/TR/webauthn-2/#sctn-createCredential) request to
-    * this endpoint as the `public_key_credential` parameter.
-    *
+    * this endpoint as the `public_key_credential` parameter. 
+    * 
     * If the [webauthn-json](https://github.com/github/webauthn-json) library's `create()` method was used,
     * the response can be passed directly to the
     * [register endpoint](https://stytch.com/docs/api/webauthn-register). If not, some fields (the client data
@@ -129,24 +129,24 @@ class WebAuthn
         });
     }
 
-    /**
-        * Initiate the authentication of a Passkey or WebAuthn registration.
-        *
-        * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
-        *
-        * After calling this endpoint, the browser will need to call
-        * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) with the data from
-        * `public_key_credential_request_options` passed to the
-        * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request via the
-        * public key argument. We recommend using the `get()` wrapper provided by the webauthn-json library.
-        *
-        * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, `the
-        * public_key_credential_request_options` will need to be converted to a suitable public key by
-        * unmarshalling the JSON and converting some the fields to array buffers.
+/**
+    * Initiate the authentication of a Passkey or WebAuthn registration. 
+    * 
+    * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
+    * 
+    * After calling this endpoint, the browser will need to call
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) with the data from
+    * `public_key_credential_request_options` passed to the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request via the
+    * public key argument. We recommend using the `get()` wrapper provided by the webauthn-json library. 
+    * 
+    * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, `the
+    * public_key_credential_request_options` will need to be converted to a suitable public key by
+    * unmarshalling the JSON and converting some the fields to array buffers.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse
+     */
     public function authenticateStart(
         \Stytch\Consumer\Models\WebAuthn\AuthenticateStartRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\AuthenticateStartResponse {
@@ -156,16 +156,16 @@ class WebAuthn
     }
 
     /**
-    * Initiate the authentication of a Passkey or WebAuthn registration.
-    *
+    * Initiate the authentication of a Passkey or WebAuthn registration. 
+    * 
     * To optimize for Passkeys, set the `return_passkey_credential_options` field to `true`.
-    *
+    * 
     * After calling this endpoint, the browser will need to call
     * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) with the data from
     * `public_key_credential_request_options` passed to the
     * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request via the
-    * public key argument. We recommend using the `get()` wrapper provided by the webauthn-json library.
-    *
+    * public key argument. We recommend using the `get()` wrapper provided by the webauthn-json library. 
+    * 
     * If you are not using the [webauthn-json](https://github.com/github/webauthn-json) library, `the
     * public_key_credential_request_options` will need to be converted to a suitable public key by
     * unmarshalling the JSON and converting some the fields to array buffers.
@@ -183,20 +183,20 @@ class WebAuthn
         });
     }
 
-    /**
-        * Complete the authentication of a Passkey or WebAuthn registration by passing the response from the
-        * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request to the
-        * authenticate endpoint.
-        *
-        * If the [webauthn-json](https://github.com/github/webauthn-json) library's `get()` method was used, the
-        * response can be passed directly to the
-        * [authenticate endpoint](https://stytch.com/docs/api/webauthn-authenticate). If not some fields from the
-        * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) response will need to
-        * be converted from array buffers to strings and marshalled into JSON.
+/**
+    * Complete the authentication of a Passkey or WebAuthn registration by passing the response from the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request to the
+    * authenticate endpoint. 
+    * 
+    * If the [webauthn-json](https://github.com/github/webauthn-json) library's `get()` method was used, the
+    * response can be passed directly to the
+    * [authenticate endpoint](https://stytch.com/docs/api/webauthn-authenticate). If not some fields from the
+    * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) response will need to
+    * be converted from array buffers to strings and marshalled into JSON.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\Consumer\Models\WebAuthn\AuthenticateRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\AuthenticateResponse {
@@ -208,8 +208,8 @@ class WebAuthn
     /**
     * Complete the authentication of a Passkey or WebAuthn registration by passing the response from the
     * [navigator.credentials.get()](https://www.w3.org/TR/webauthn-2/#sctn-getAssertion) request to the
-    * authenticate endpoint.
-    *
+    * authenticate endpoint. 
+    * 
     * If the [webauthn-json](https://github.com/github/webauthn-json) library's `get()` method was used, the
     * response can be passed directly to the
     * [authenticate endpoint](https://stytch.com/docs/api/webauthn-authenticate). If not some fields from the
@@ -229,12 +229,12 @@ class WebAuthn
         });
     }
 
-    /**
-        * Updates a Passkey or WebAuthn registration.
+/**
+    * Updates a Passkey or WebAuthn registration.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\UpdateResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\UpdateResponse
+     */
     public function update(
         \Stytch\Consumer\Models\WebAuthn\UpdateRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\UpdateResponse {
@@ -259,12 +259,12 @@ class WebAuthn
         });
     }
 
-    /**
-        * List the public key credentials of the WebAuthn Registrations or Passkeys registered to a specific User.
+/**
+    * List the public key credentials of the WebAuthn Registrations or Passkeys registered to a specific User.
 
-         * @param \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request
-         * @return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse
-         */
+     * @param \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request
+     * @return \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse
+     */
     public function listCredentials(
         \Stytch\Consumer\Models\WebAuthn\ListCredentialsRequest|array $request,
     ): \Stytch\Consumer\Models\WebAuthn\ListCredentialsResponse {

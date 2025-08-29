@@ -8,8 +8,10 @@
 
 namespace Stytch\Consumer\Models\Project;
 
+
 final class MetricsRequest
 {
+
     public function __construct(
     ) {
     }

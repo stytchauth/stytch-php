@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
+
 final class OIDCSSOFactor
 {
     /** The unique ID of an SSO Registration. */

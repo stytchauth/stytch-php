@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\VerdictReasons;
 
+
 final class ListRequest
 {
     /** Whether to return only verdict reasons that have overrides set. Defaults to false. */

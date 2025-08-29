@@ -64,13 +64,13 @@ class Client
     ) {
         $this->projectId = $projectId;
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
-
+        
         $this->policyCache = new PolicyCache();
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->crypto_wallets = new CryptoWallets($this->client);
         $this->fraud = new Fraud($this->client);
-        $this->idp = new IDP($this->client);
+        $this->idp = new IDP($this->client, $this->projectId, $this->policyCache);
         $this->impersonation = new Impersonation($this->client);
         $this->m2m = new M2M($this->client, $this->projectId);
         $this->magic_links = new MagicLinks($this->client);

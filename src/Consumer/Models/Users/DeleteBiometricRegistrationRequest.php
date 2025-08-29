@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
+
 final class DeleteBiometricRegistrationRequest
 {
     /** The `biometric_registration_id` to be deleted. */

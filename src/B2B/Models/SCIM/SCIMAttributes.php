@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
+
 final class SCIMAttributes
 {
     public string $userName;
@@ -97,7 +98,7 @@ final class SCIMAttributes
             $data['id'],
             $data['external_id'],
             $data['active'],
-            isset($data['groups']) ? array_map(fn ($item) => Group::fromArray($item), $data['groups']) : [],
+            isset($data['groups']) ? array_map(fn($item) => Group::fromArray($item), $data['groups']) : [],
             $data['display_name'],
             $data['nick_name'],
             $data['profile_url'],
@@ -106,14 +107,14 @@ final class SCIMAttributes
             $data['preferred_language'],
             $data['locale'],
             $data['timezone'],
-            isset($data['emails']) ? array_map(fn ($item) => Email::fromArray($item), $data['emails']) : [],
-            isset($data['phone_numbers']) ? array_map(fn ($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
-            isset($data['addresses']) ? array_map(fn ($item) => Address::fromArray($item), $data['addresses']) : [],
-            isset($data['ims']) ? array_map(fn ($item) => IMs::fromArray($item), $data['ims']) : [],
-            isset($data['photos']) ? array_map(fn ($item) => Photo::fromArray($item), $data['photos']) : [],
-            isset($data['entitlements']) ? array_map(fn ($item) => Entitlement::fromArray($item), $data['entitlements']) : [],
-            isset($data['roles']) ? array_map(fn ($item) => Role::fromArray($item), $data['roles']) : [],
-            isset($data['x509certificates']) ? array_map(fn ($item) => X509Certificate::fromArray($item), $data['x509certificates']) : [],
+            isset($data['emails']) ? array_map(fn($item) => Email::fromArray($item), $data['emails']) : [],
+            isset($data['phone_numbers']) ? array_map(fn($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
+            isset($data['addresses']) ? array_map(fn($item) => Address::fromArray($item), $data['addresses']) : [],
+            isset($data['ims']) ? array_map(fn($item) => IMs::fromArray($item), $data['ims']) : [],
+            isset($data['photos']) ? array_map(fn($item) => Photo::fromArray($item), $data['photos']) : [],
+            isset($data['entitlements']) ? array_map(fn($item) => Entitlement::fromArray($item), $data['entitlements']) : [],
+            isset($data['roles']) ? array_map(fn($item) => Role::fromArray($item), $data['roles']) : [],
+            isset($data['x509certificates']) ? array_map(fn($item) => X509Certificate::fromArray($item), $data['x509certificates']) : [],
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['enterprise_extension'] !== null ? EnterpriseExtension::fromArray($data['enterprise_extension']) : null
         );

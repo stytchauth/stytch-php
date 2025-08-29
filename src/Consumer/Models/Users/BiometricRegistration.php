@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
+
 final class BiometricRegistration
 {
     /** The unique ID for a biometric registration. */

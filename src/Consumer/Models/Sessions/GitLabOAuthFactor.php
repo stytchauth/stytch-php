@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
+
 final class GitLabOAuthFactor
 {
     public string $id;

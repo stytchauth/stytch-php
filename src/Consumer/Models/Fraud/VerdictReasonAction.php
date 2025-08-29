@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
+
 final class VerdictReasonAction
 {
     /** The verdict reason. */

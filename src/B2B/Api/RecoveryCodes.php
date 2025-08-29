@@ -21,13 +21,13 @@ class RecoveryCodes
 
     }
 
-    /**
-        * Allows a Member to complete an MFA flow by consuming a recovery code. This consumes the recovery code
-        * and returns a session token that can be used to authenticate the Member.
+/**
+    * Allows a Member to complete an MFA flow by consuming a recovery code. This consumes the recovery code
+    * and returns a session token that can be used to authenticate the Member.
 
-         * @param \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request
-         * @return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse
-         */
+     * @param \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request
+     * @return \Stytch\B2B\Models\RecoveryCodes\RecoverResponse
+     */
     public function recover(
         \Stytch\B2B\Models\RecoveryCodes\RecoverRequest|array $request,
     ): \Stytch\B2B\Models\RecoveryCodes\RecoverResponse {
@@ -53,12 +53,12 @@ class RecoveryCodes
         });
     }
 
-    /**
-        * Returns a Member's full set of active recovery codes.
+/**
+    * Returns a Member's full set of active recovery codes.
 
-         * @param \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request
-         * @return \Stytch\B2B\Models\RecoveryCodes\GetResponse
-         */
+     * @param \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request
+     * @return \Stytch\B2B\Models\RecoveryCodes\GetResponse
+     */
     public function get(
         \Stytch\B2B\Models\RecoveryCodes\GetRequest|array $request,
     ): \Stytch\B2B\Models\RecoveryCodes\GetResponse {
@@ -83,13 +83,13 @@ class RecoveryCodes
         });
     }
 
-    /**
-        * Rotate a Member's recovery codes. This invalidates all existing recovery codes and generates a new set
-        * of recovery codes.
+/**
+    * Rotate a Member's recovery codes. This invalidates all existing recovery codes and generates a new set
+    * of recovery codes.
 
-         * @param \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request
-         * @return \Stytch\B2B\Models\RecoveryCodes\RotateResponse
-         */
+     * @param \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request
+     * @return \Stytch\B2B\Models\RecoveryCodes\RotateResponse
+     */
     public function rotate(
         \Stytch\B2B\Models\RecoveryCodes\RotateRequest|array $request,
     ): \Stytch\B2B\Models\RecoveryCodes\RotateResponse {

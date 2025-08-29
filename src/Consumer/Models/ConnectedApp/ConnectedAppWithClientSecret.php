@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp;
 
+
 final class ConnectedAppWithClientSecret
 {
     /** The ID of the Connected App client. */

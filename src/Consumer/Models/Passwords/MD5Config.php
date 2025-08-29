@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
+
 final class MD5Config
 {
     /** The salt that should be prepended to the migrated password. */

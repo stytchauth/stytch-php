@@ -21,29 +21,29 @@ class MagicLinksEmail
 
     }
 
-    /**
-        * Send a magic link to an existing Stytch user using their email address. If you'd like to create a user
-        * and send them a magic link by email with one request, use our
-        * [log in or create endpoint](https://stytch.com/docs/api/log-in-or-create-user-by-email).
-        *
-        * ### Add an email to an existing user
-        * This endpoint also allows you to add a new email address to an existing Stytch User. Including a
-        * `user_id`, `session_token`, or `session_jwt` in your Send Magic Link by email request will add the new,
-        * unverified email address to the existing Stytch User. If the user successfully authenticates within 5
-        * minutes, the new email address will be marked as verified and remain permanently on the existing Stytch
-        * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
-        * email address will create a new User.
-        *
-        * ### Next steps
-        * The user is emailed a magic link which redirects them to the provided
-        * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
-        * the `token` from the URL query parameters, and call
-        * [Authenticate magic link](https://stytch.com/docs/api/authenticate-magic-link) to complete
-        * authentication.
+/**
+    * Send a magic link to an existing Stytch user using their email address. If you'd like to create a user
+    * and send them a magic link by email with one request, use our
+    * [log in or create endpoint](https://stytch.com/docs/api/log-in-or-create-user-by-email).
+    * 
+    * ### Add an email to an existing user
+    * This endpoint also allows you to add a new email address to an existing Stytch User. Including a
+    * `user_id`, `session_token`, or `session_jwt` in your Send Magic Link by email request will add the new,
+    * unverified email address to the existing Stytch User. If the user successfully authenticates within 5
+    * minutes, the new email address will be marked as verified and remain permanently on the existing Stytch
+    * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
+    * email address will create a new User.
+    * 
+    * ### Next steps
+    * The user is emailed a magic link which redirects them to the provided
+    * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
+    * the `token` from the URL query parameters, and call
+    * [Authenticate magic link](https://stytch.com/docs/api/authenticate-magic-link) to complete
+    * authentication.
 
-         * @param \Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request
-         * @return \Stytch\Consumer\Models\MagicLinks\Email\SendResponse
-         */
+     * @param \Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request
+     * @return \Stytch\Consumer\Models\MagicLinks\Email\SendResponse
+     */
     public function send(
         \Stytch\Consumer\Models\MagicLinks\Email\SendRequest|array $request,
     ): \Stytch\Consumer\Models\MagicLinks\Email\SendResponse {
@@ -56,7 +56,7 @@ class MagicLinksEmail
     * Send a magic link to an existing Stytch user using their email address. If you'd like to create a user
     * and send them a magic link by email with one request, use our
     * [log in or create endpoint](https://stytch.com/docs/api/log-in-or-create-user-by-email).
-    *
+    * 
     * ### Add an email to an existing user
     * This endpoint also allows you to add a new email address to an existing Stytch User. Including a
     * `user_id`, `session_token`, or `session_jwt` in your Send Magic Link by email request will add the new,
@@ -64,7 +64,7 @@ class MagicLinksEmail
     * minutes, the new email address will be marked as verified and remain permanently on the existing Stytch
     * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
     * email address will create a new User.
-    *
+    * 
     * ### Next steps
     * The user is emailed a magic link which redirects them to the provided
     * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
@@ -85,22 +85,22 @@ class MagicLinksEmail
         });
     }
 
-    /**
-        * Send either a login or signup Magic Link to the User based on if the email is associated with a User
-        * already. A new or pending User will receive a signup Magic Link. An active User will receive a login
-        * Magic Link. For more information on how to control the status your Users are created in see the
-        * `create_user_as_pending` flag.
-        *
-        * ### Next steps
-        * The User is emailed a Magic Link which redirects them to the provided
-        * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
-        * the `token` from the URL query parameters and call
-        * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
-        * authentication.
+/**
+    * Send either a login or signup Magic Link to the User based on if the email is associated with a User
+    * already. A new or pending User will receive a signup Magic Link. An active User will receive a login
+    * Magic Link. For more information on how to control the status your Users are created in see the
+    * `create_user_as_pending` flag.
+    * 
+    * ### Next steps
+    * The User is emailed a Magic Link which redirects them to the provided
+    * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
+    * the `token` from the URL query parameters and call
+    * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
+    * authentication.
 
-         * @param \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request
-         * @return \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse
-         */
+     * @param \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request
+     * @return \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse
+     */
     public function loginOrCreate(
         \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateRequest|array $request,
     ): \Stytch\Consumer\Models\MagicLinks\Email\LoginOrCreateResponse {
@@ -114,7 +114,7 @@ class MagicLinksEmail
     * already. A new or pending User will receive a signup Magic Link. An active User will receive a login
     * Magic Link. For more information on how to control the status your Users are created in see the
     * `create_user_as_pending` flag.
-    *
+    * 
     * ### Next steps
     * The User is emailed a Magic Link which redirects them to the provided
     * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
@@ -135,20 +135,20 @@ class MagicLinksEmail
         });
     }
 
-    /**
-        * Create a User and send an invite Magic Link to the provided `email`. The User will be created with a
-        * `pending` status until they click the Magic Link in the invite email.
-        *
-        * ### Next steps
-        * The User is emailed a Magic Link which redirects them to the provided
-        * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
-        * the `token` from the URL query parameters and call
-        * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
-        * authentication.
+/**
+    * Create a User and send an invite Magic Link to the provided `email`. The User will be created with a
+    * `pending` status until they click the Magic Link in the invite email.
+    * 
+    * ### Next steps
+    * The User is emailed a Magic Link which redirects them to the provided
+    * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
+    * the `token` from the URL query parameters and call
+    * [Authenticate Magic Link](https://stytch.com/docs/api/authenticate-magic-link) to complete
+    * authentication.
 
-         * @param \Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request
-         * @return \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse
-         */
+     * @param \Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request
+     * @return \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse
+     */
     public function invite(
         \Stytch\Consumer\Models\MagicLinks\Email\InviteRequest|array $request,
     ): \Stytch\Consumer\Models\MagicLinks\Email\InviteResponse {
@@ -160,7 +160,7 @@ class MagicLinksEmail
     /**
     * Create a User and send an invite Magic Link to the provided `email`. The User will be created with a
     * `pending` status until they click the Magic Link in the invite email.
-    *
+    * 
     * ### Next steps
     * The User is emailed a Magic Link which redirects them to the provided
     * [redirect URL](https://stytch.com/docs/guides/magic-links/email-magic-links/redirect-routing). Collect
@@ -181,12 +181,12 @@ class MagicLinksEmail
         });
     }
 
-    /**
-        * Revoke a pending invite based on the `email` provided.
+/**
+    * Revoke a pending invite based on the `email` provided.
 
-         * @param \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request
-         * @return \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse
-         */
+     * @param \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request
+     * @return \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse
+     */
     public function revokeInvite(
         \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteRequest|array $request,
     ): \Stytch\Consumer\Models\MagicLinks\Email\RevokeInviteResponse {

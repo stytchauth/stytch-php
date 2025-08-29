@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members\OAuthProviders;
 
+
 final class HubspotResponse
 {
     /**
@@ -51,7 +52,7 @@ final class HubspotResponse
         return new static(
             $data['request_id'],
             $data['provider_type'],
-            isset($data['registrations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\HubspotProviderInfo::fromArray($item), $data['registrations']) : [],
+            isset($data['registrations']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\HubspotProviderInfo::fromArray($item), $data['registrations']) : [],
             $data['status_code']
         );
     }

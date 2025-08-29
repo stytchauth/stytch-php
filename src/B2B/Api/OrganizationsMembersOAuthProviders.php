@@ -21,23 +21,23 @@ class OrganizationsMembersOAuthProviders
 
     }
 
-    /**
-        * Retrieve the saved Google access token and ID token for a member. After a successful OAuth login, Stytch
-        * will save the
-        * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-        * will refresh the
-        * access token automatically.
-        *
-        * Google One Tap does not return access tokens. If the member has only authenticated through Google One
-        * Tap and not through a regular Google OAuth flow, this endpoint will not return any tokens.
-        *
-        * __Note:__ Google does not issue a refresh token on every login, and refresh tokens may expire if unused.
-        * To force a refresh token to be issued, pass the `?provider_prompt=consent` query param into the
-        * [Start Google OAuth flow](https://stytch.com/docs/b2b/api/oauth-google-start) endpoint.
+/**
+    * Retrieve the saved Google access token and ID token for a member. After a successful OAuth login, Stytch
+    * will save the 
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the 
+    * access token automatically.
+    * 
+    * Google One Tap does not return access tokens. If the member has only authenticated through Google One
+    * Tap and not through a regular Google OAuth flow, this endpoint will not return any tokens.
+    * 
+    * __Note:__ Google does not issue a refresh token on every login, and refresh tokens may expire if unused.
+    * To force a refresh token to be issued, pass the `?provider_prompt=consent` query param into the
+    * [Start Google OAuth flow](https://stytch.com/docs/b2b/api/oauth-google-start) endpoint.
 
-         * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse
+     */
     public function google(
         \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GoogleResponse {
@@ -48,14 +48,14 @@ class OrganizationsMembersOAuthProviders
 
     /**
     * Retrieve the saved Google access token and ID token for a member. After a successful OAuth login, Stytch
-    * will save the
+    * will save the 
     * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-    * will refresh the
+    * will refresh the 
     * access token automatically.
-    *
+    * 
     * Google One Tap does not return access tokens. If the member has only authenticated through Google One
     * Tap and not through a regular Google OAuth flow, this endpoint will not return any tokens.
-    *
+    * 
     * __Note:__ Google does not issue a refresh token on every login, and refresh tokens may expire if unused.
     * To force a refresh token to be issued, pass the `?provider_prompt=consent` query param into the
     * [Start Google OAuth flow](https://stytch.com/docs/b2b/api/oauth-google-start) endpoint.
@@ -73,16 +73,16 @@ class OrganizationsMembersOAuthProviders
         });
     }
 
-    /**
-        * Retrieve the saved Microsoft access token and ID token for a member. After a successful OAuth login,
-        * Stytch will save the
-        * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-        * will refresh the
-        * access token automatically.
+/**
+    * Retrieve the saved Microsoft access token and ID token for a member. After a successful OAuth login,
+    * Stytch will save the
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the
+    * access token automatically.
 
-         * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse
+     */
     public function microsoft(
         \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\MicrosoftResponse {
@@ -111,14 +111,14 @@ class OrganizationsMembersOAuthProviders
         });
     }
 
-    /**
-        * Retrieve the saved Slack access token and ID token for a member. After a successful OAuth login, Stytch
-        * will save the
-        * issued access token and ID token from the identity provider.
+/**
+    * Retrieve the saved Slack access token and ID token for a member. After a successful OAuth login, Stytch
+    * will save the 
+    * issued access token and ID token from the identity provider.
 
-         * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse
+     */
     public function slack(
         \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackResponse {
@@ -129,7 +129,7 @@ class OrganizationsMembersOAuthProviders
 
     /**
     * Retrieve the saved Slack access token and ID token for a member. After a successful OAuth login, Stytch
-    * will save the
+    * will save the 
     * issued access token and ID token from the identity provider.
 
      * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\SlackRequest|array $request
@@ -145,16 +145,16 @@ class OrganizationsMembersOAuthProviders
         });
     }
 
-    /**
-        * Retrieve the saved Hubspot access token and ID token for a member. After a successful OAuth login,
-        * Stytch will save the
-        * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-        * will refresh the
-        * access token automatically.
+/**
+    * Retrieve the saved Hubspot access token and ID token for a member. After a successful OAuth login,
+    * Stytch will save the 
+    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+    * will refresh the 
+    * access token automatically.
 
-         * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse
+     */
     public function hubspot(
         \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\HubspotResponse {
@@ -165,9 +165,9 @@ class OrganizationsMembersOAuthProviders
 
     /**
     * Retrieve the saved Hubspot access token and ID token for a member. After a successful OAuth login,
-    * Stytch will save the
+    * Stytch will save the 
     * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-    * will refresh the
+    * will refresh the 
     * access token automatically.
 
      * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
@@ -183,16 +183,16 @@ class OrganizationsMembersOAuthProviders
         });
     }
 
-    /**
-        * Retrieve the saved GitHub access token for a Member. After a successful OAuth login, Stytch will save
-        * the
-        * issued access token from the identity provider. GitHub does not issue refresh tokens, but will
-        * invalidate access
-        * tokens after very long periods of inactivity.
+/**
+    * Retrieve the saved GitHub access token for a Member. After a successful OAuth login, Stytch will save
+    * the 
+    * issued access token from the identity provider. GitHub does not issue refresh tokens, but will
+    * invalidate access
+    * tokens after very long periods of inactivity.
 
-         * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
-         * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse
-         */
+     * @param \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request
+     * @return \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse
+     */
     public function github(
         \Stytch\B2B\Models\Organizations\Members\OAuthProviders\ProviderInformationRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OAuthProviders\GithubResponse {
@@ -203,7 +203,7 @@ class OrganizationsMembersOAuthProviders
 
     /**
     * Retrieve the saved GitHub access token for a Member. After a successful OAuth login, Stytch will save
-    * the
+    * the 
     * issued access token from the identity provider. GitHub does not issue refresh tokens, but will
     * invalidate access
     * tokens after very long periods of inactivity.

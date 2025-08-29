@@ -21,18 +21,18 @@ class PasswordsSessions
 
     }
 
-    /**
-        * Reset the user’s password using their existing session. The endpoint will error if the session does not
-        * have a password, email magic link, or email OTP authentication factor that has been issued within the
-        * last 5 minutes. This endpoint requires either a `session_jwt` or `session_token` be included in the
-        * request.
-        *
-        * Note that a successful password reset via an existing session will revoke all active sessions for the
-        * `user_id`, except for the one used during the reset flow.
+/**
+    * Reset the user’s password using their existing session. The endpoint will error if the session does not
+    * have a password, email magic link, or email OTP authentication factor that has been issued within the
+    * last 5 minutes. This endpoint requires either a `session_jwt` or `session_token` be included in the
+    * request.
+    * 
+    * Note that a successful password reset via an existing session will revoke all active sessions for the
+    * `user_id`, except for the one used during the reset flow.
 
-         * @param \Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request
-         * @return \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse
-         */
+     * @param \Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request
+     * @return \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse
+     */
     public function reset(
         \Stytch\Consumer\Models\Passwords\Sessions\ResetRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\Sessions\ResetResponse {
@@ -46,7 +46,7 @@ class PasswordsSessions
     * have a password, email magic link, or email OTP authentication factor that has been issued within the
     * last 5 minutes. This endpoint requires either a `session_jwt` or `session_token` be included in the
     * request.
-    *
+    * 
     * Note that a successful password reset via an existing session will revoke all active sessions for the
     * `user_id`, except for the one used during the reset flow.
 

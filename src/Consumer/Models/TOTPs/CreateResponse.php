@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\TOTPs;
 
+
 final class CreateResponse
 {
     /**

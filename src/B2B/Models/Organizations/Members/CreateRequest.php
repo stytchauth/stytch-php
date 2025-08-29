@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
+
 final class CreateRequest
 {
     /**
@@ -40,8 +41,8 @@ final class CreateRequest
     * Identifies the Member as a break glass user - someone who has permissions to authenticate into an
     * Organization by bypassing the Organization's settings. A break glass account is typically used for
     * emergency purposes to gain access outside of normal authentication procedures. Refer to the
-    * [Organization object](organization-object) and its `auth_methods` and `allowed_auth_methods` fields for
-    * more details.
+    * [Organization object](https://stytch.com/docs/b2b/api/organization-object) and its `auth_methods` and
+    * `allowed_auth_methods` fields for more details.
      */
     public ?bool $isBreakglass = null;
     /**
@@ -62,7 +63,7 @@ final class CreateRequest
      */
     public ?array $roles = null;
     /**
-    * An identifier that can be used in API calls wherever a member_id is expected. This is a string
+    * An identifier that can be used in most API calls where a `member_id` is expected. This is a string
     * consisting of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
     * External IDs must be unique within an organization, but may be reused across different organizations in
     * the same project.

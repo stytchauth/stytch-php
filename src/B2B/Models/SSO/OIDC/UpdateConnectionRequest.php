@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\OIDC;
 
+
 final class UpdateConnectionRequest
 {
     /**
@@ -51,7 +52,7 @@ final class UpdateConnectionRequest
     * Name of the IdP. Enum with possible values: `classlink`, `cyberark`, `duo`, `google-workspace`,
     * `jumpcloud`, `keycloak`, `miniorange`, `microsoft-entra`, `okta`, `onelogin`, `pingfederate`,
     * `rippling`, `salesforce`, `shibboleth`, or `generic`.
-    *
+    * 
     * Specifying a known provider allows Stytch to handle any provider-specific logic.
      */
     public ?string $identityProvider = null;

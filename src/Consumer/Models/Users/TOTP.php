@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
+
 final class TOTP
 {
     /** The unique ID for a TOTP instance. */

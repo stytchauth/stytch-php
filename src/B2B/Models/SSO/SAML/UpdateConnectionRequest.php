@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\SAML;
 
+
 final class UpdateConnectionRequest
 {
     /**
@@ -65,7 +66,7 @@ final class UpdateConnectionRequest
     * Name of the IdP. Enum with possible values: `classlink`, `cyberark`, `duo`, `google-workspace`,
     * `jumpcloud`, `keycloak`, `miniorange`, `microsoft-entra`, `okta`, `onelogin`, `pingfederate`,
     * `rippling`, `salesforce`, `shibboleth`, or `generic`.
-    *
+    * 
     * Specifying a known provider allows Stytch to handle any provider-specific logic.
      */
     public ?string $identityProvider = null;
@@ -94,6 +95,10 @@ final class UpdateConnectionRequest
     * Initiated Auth is enabled).
      */
     public ?bool $idpInitiatedAuthDisabled = null;
+    /**
+    * A PKCS1 format RSA private key used to decrypt encrypted SAML assertions. Only PKCS1 format (starting
+    * with "-----BEGIN RSA PRIVATE KEY-----") is supported.
+     */
     public ?string $samlEncryptionPrivateKey = null;
 
     public function __construct(
@@ -148,8 +153,8 @@ final class UpdateConnectionRequest
             $data['attribute_mapping'] ?? null,
             $data['x509_certificate'] ?? null,
             $data['idp_sso_url'] ?? null,
-            isset($data['saml_connection_implicit_role_assignments']) && $data['saml_connection_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\SSO\SAMLConnectionImplicitRoleAssignment::fromArray($item), $data['saml_connection_implicit_role_assignments']) : null,
-            isset($data['saml_group_implicit_role_assignments']) && $data['saml_group_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\SSO\SAMLGroupImplicitRoleAssignment::fromArray($item), $data['saml_group_implicit_role_assignments']) : null,
+            isset($data['saml_connection_implicit_role_assignments']) && $data['saml_connection_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\SSO\SAMLConnectionImplicitRoleAssignment::fromArray($item), $data['saml_connection_implicit_role_assignments']) : null,
+            isset($data['saml_group_implicit_role_assignments']) && $data['saml_group_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\SSO\SAMLGroupImplicitRoleAssignment::fromArray($item), $data['saml_group_implicit_role_assignments']) : null,
             $data['alternative_audience_uri'] ?? null,
             $data['identity_provider'] ?? null,
             $data['signing_private_key'] ?? null,

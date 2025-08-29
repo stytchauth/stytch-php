@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
+
 final class UpdateRequest
 {
     /**
@@ -24,7 +25,7 @@ final class UpdateRequest
     public string $memberId;
     /**
     * The name of the Member.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.info.name` action on the `stytch.member` Resource. Alternatively, if
     * the Member Session matches the Member associated with the `member_id` passed in the request, the
@@ -44,7 +45,7 @@ final class UpdateRequest
     *   frontend SDK, and should not be used to store critical information. See the
     * [Metadata resource](https://stytch.com/docs/b2b/api/metadata)
     *   for complete field behavior details.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.info.untrusted-metadata` action on the `stytch.member` Resource.
     * Alternatively, if the Member Session matches the Member associated with the `member_id` passed in the
@@ -56,9 +57,9 @@ final class UpdateRequest
     * Identifies the Member as a break glass user - someone who has permissions to authenticate into an
     * Organization by bypassing the Organization's settings. A break glass account is typically used for
     * emergency purposes to gain access outside of normal authentication procedures. Refer to the
-    * [Organization object](organization-object) and its `auth_methods` and `allowed_auth_methods` fields for
-    * more details.
-    *
+    * [Organization object](https://stytch.com/docs/b2b/api/organization-object) and its `auth_methods` and
+    * `allowed_auth_methods` fields for more details.
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.settings.is-breakglass` action on the `stytch.member` Resource.
      */
@@ -68,7 +69,7 @@ final class UpdateRequest
     * Member's phone number, use the
     * [Delete member phone number endpoint](https://stytch.com/docs/b2b/api/delete-member-mfa-phone-number) to
     * delete the Member's existing phone number first.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.info.mfa-phone` action on the `stytch.member` Resource. Alternatively,
     * if the Member Session matches the Member associated with the `member_id` passed in the request, the
@@ -80,7 +81,7 @@ final class UpdateRequest
     * Sets whether the Member is enrolled in MFA. If true, the Member must complete an MFA step whenever they
     * wish to log in to their Organization. If false, the Member only needs to complete an MFA step if the
     * Organization's MFA policy is set to `REQUIRED_FOR_ALL`.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.settings.mfa-enrolled` action on the `stytch.member` Resource.
     * Alternatively, if the Member Session matches the Member associated with the `member_id` passed in the
@@ -93,14 +94,14 @@ final class UpdateRequest
     *  Will completely replace any existing explicitly assigned roles. See the
     *  [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
     * assignment.
-    *
+    * 
     *    If a Role is removed from a Member, and the Member is also implicitly assigned this Role from an SSO
     * connection
     *    or an SSO group, we will by default revoke any existing sessions for the Member that contain any SSO
     *    authentication factors with the affected connection ID. You can preserve these sessions by passing in
     * the
     *    `preserve_existing_sessions` parameter with a value of `true`.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.settings.roles` action on the `stytch.member` Resource.
      */
@@ -116,7 +117,7 @@ final class UpdateRequest
     * The Member's default MFA method. This value is used to determine which secondary MFA method to use in
     * the case of multiple methods registered for a Member. The current possible values are `sms_otp` and
     * `totp`.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.settings.default-mfa-method` action on the `stytch.member` Resource.
     * Alternatively, if the Member Session matches the Member associated with the `member_id` passed in the
@@ -125,18 +126,19 @@ final class UpdateRequest
      */
     public ?string $defaultMfaMethod = null;
     /**
-    * Updates the Member's `email_address`, if provided.
+    * Updates the Member's `email_address`, if provided. This will clear any existing passwords and require
+    * re-verification of the new email address.
     *         If a Member's email address is changed, other Members in the same Organization cannot use the
     * old email address, although the Member may update back to their old email address.
     *         A Member's email address can only be useable again by other Members if the Member is deleted.
-    *
+    * 
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.info.email` action on the `stytch.member` Resource. Members cannot
     * update their own email address.
      */
     public ?string $emailAddress = null;
     /**
-    * An identifier that can be used in API calls wherever a member_id is expected. This is a string
+    * An identifier that can be used in most API calls where a `member_id` is expected. This is a string
     * consisting of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
     * External IDs must be unique within an organization, but may be reused across different organizations in
     * the same project.

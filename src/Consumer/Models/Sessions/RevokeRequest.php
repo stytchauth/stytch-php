@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
+
 final class RevokeRequest
 {
     /** The `session_id` to revoke. */

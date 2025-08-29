@@ -8,13 +8,20 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
+
 final class AttestRequest
 {
     /** The ID of the trusted auth token profile to use for attestation. */
     public string $profileId;
-    /** The trusted auth token to authenticate. */
+    /**
+    * The trusted auth token to authenticate. The token must have an organization ID claim if JIT provisioning
+    * is enabled.
+     */
     public string $token;
-    /** The organization ID that the session should be authenticated in. */
+    /**
+    * The organization ID that the session should be authenticated in. Must be provided if the trusted auth
+    * token does not have an organization ID claim.
+     */
     public ?string $organizationId = null;
     /**
     * Set the session lifetime to be this many minutes from now. This will start a new session if one doesn't
@@ -22,12 +29,12 @@ final class AttestRequest
     *   returning both an opaque `session_token` and `session_jwt` for this session. Remember that the
     * `session_jwt` will have a fixed lifetime of
     *   five minutes regardless of the underlying session duration, and will need to be refreshed over time.
-    *
+    * 
     *   This value must be a minimum of 5 and a maximum of 527040 minutes (366 days).
-    *
+    * 
     *   If a `session_token` or `session_jwt` is provided then a successful authentication will continue to
     * extend the session this many minutes.
-    *
+    * 
     *   If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a
     * 60 minute duration. If you don't want
     *   to use the Stytch session product, you can ignore the session fields in the response.
@@ -50,8 +57,8 @@ final class AttestRequest
     /**
     * If the `telemetry_id` is passed, as part of this request, Stytch will call the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) and store the associated
-    * fingerprints and IPGEO information for the Member. See the User Device History guide (coming soon) for
-    * more information. Your workspace must be enabled for Device Fingerprinting to use this feature.
+    * fingerprints and IPGEO information for the Member. Your workspace must be enabled for Device
+    * Fingerprinting to use this feature.
      */
     public ?string $telemetryId = null;
 

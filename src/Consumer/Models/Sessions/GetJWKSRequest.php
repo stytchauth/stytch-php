@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
+
 final class GetJWKSRequest
 {
     /** The `project_id` to get the JWKS for. */

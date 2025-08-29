@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
+
 final class WebAuthnCredential
 {
     /** The unique, public ID of the WebAuthn credential. */

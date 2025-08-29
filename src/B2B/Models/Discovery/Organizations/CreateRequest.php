@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery\Organizations;
 
+
 final class CreateRequest
 {
     /**
@@ -30,12 +31,12 @@ final class CreateRequest
     *   returning both an opaque `session_token` and `session_jwt` for this session. Remember that the
     * `session_jwt` will have a fixed lifetime of
     *   five minutes regardless of the underlying session duration, and will need to be refreshed over time.
-    *
+    * 
     *   This value must be a minimum of 5 and a maximum of 527040 minutes (366 days).
-    *
+    * 
     *   If a `session_token` or `session_jwt` is provided then a successful authentication will continue to
     * extend the session this many minutes.
-    *
+    * 
     *   If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a
     * 60 minute duration. If you don't want
     *   to use the Stytch session product, you can ignore the session fields in the response.
@@ -74,21 +75,21 @@ final class CreateRequest
     /**
     * The authentication setting that controls the JIT provisioning of Members when authenticating via SSO.
     * The accepted values are:
-    *
+    *  
     *   `ALL_ALLOWED` – the default setting, new Members will be automatically provisioned upon successful
     * authentication via any of the Organization's `sso_active_connections`.
-    *
+    *  
     *   `RESTRICTED` – only new Members with SSO logins that comply with
     * `sso_jit_provisioning_allowed_connections` can be provisioned upon authentication.
-    *
+    *  
     *   `NOT_ALLOWED` – disable JIT provisioning via SSO.
      */
     public ?string $ssoJITProvisioning = null;
     /**
     * An array of email domains that allow invites or JIT provisioning for new Members. This list is enforced
     * when either `email_invites` or `email_jit_provisioning` is set to `RESTRICTED`.
-    *
-    *
+    *    
+    *    
     *     Common domains such as `gmail.com` are not allowed. See the
     * [common email domains resource](https://stytch.com/docs/b2b/api/common-email-domains) for the full list.
      */
@@ -96,31 +97,31 @@ final class CreateRequest
     /**
     * The authentication setting that controls how a new Member can be provisioned by authenticating via Email
     * Magic Link or OAuth. The accepted values are:
-    *
+    *  
     *   `RESTRICTED` – only new Members with verified emails that comply with `email_allowed_domains` can be
     * provisioned upon authentication via Email Magic Link or OAuth.
-    *
+    *  
     *   `NOT_ALLOWED` – the default setting, disables JIT provisioning via Email Magic Link and OAuth.
      */
     public ?string $emailJITProvisioning = null;
     /**
     * The authentication setting that controls how a new Member can be invited to an organization by email.
     * The accepted values are:
-    *
+    *  
     *   `ALL_ALLOWED` – any new Member can be invited to join via email.
-    *
+    *  
     *   `RESTRICTED` – only new Members with verified emails that comply with `email_allowed_domains` can be
     * invited via email.
-    *
+    *  
     *   `NOT_ALLOWED` – disable email invites.
      */
     public ?string $emailInvites = null;
     /**
     * The setting that controls which authentication methods can be used by Members of an Organization. The
     * accepted values are:
-    *
+    *  
     *   `ALL_ALLOWED` – the default setting which allows all authentication methods to be used.
-    *
+    *  
     *   `RESTRICTED` – only methods that comply with `allowed_auth_methods` can be used for authentication.
     * This setting does not apply to Members with `is_breakglass` set to `true`.
      */
@@ -134,11 +135,11 @@ final class CreateRequest
     public ?array $allowedAuthMethods = null;
     /**
     * The setting that controls the MFA policy for all Members in the Organization. The accepted values are:
-    *
+    *  
     *   `REQUIRED_FOR_ALL` – All Members within the Organization will be required to complete MFA every time
     * they wish to log in. However, any active Session that existed prior to this setting change will remain
     * valid.
-    *
+    *  
     *   `OPTIONAL` – The default value. The Organization does not require MFA by default for all Members.
     * Members will be required to complete MFA only if their `mfa_enrolled` status is set to true.
      */
@@ -155,9 +156,9 @@ final class CreateRequest
     /**
     * The setting that controls which MFA methods can be used by Members of an Organization. The accepted
     * values are:
-    *
+    *  
     *   `ALL_ALLOWED` – the default setting which allows all authentication methods to be used.
-    *
+    *  
     *   `RESTRICTED` – only methods that comply with `allowed_mfa_methods` can be used for authentication.
     * This setting does not apply to Members with `is_breakglass` set to `true`.
      */
@@ -171,9 +172,9 @@ final class CreateRequest
     /**
     * The authentication setting that controls how a new Member can JIT provision into an organization by
     * tenant. The accepted values are:
-    *
+    *  
     *   `RESTRICTED` – only new Members with tenants in `allowed_oauth_tenants` can JIT provision via tenant.
-    *
+    *  
     *   `NOT_ALLOWED` – the default setting, disables JIT provisioning by OAuth Tenant.
      */
     public ?string $oauthTenantJITProvisioning = null;
@@ -185,13 +186,13 @@ final class CreateRequest
     /**
     * The authentication setting that sets the Organization's policy towards first party Connected Apps. The
     * accepted values are:
-    *
+    *  
     *   `ALL_ALLOWED` – the default setting, any first party Connected App in the Project is permitted for use
     * by Members.
-    *
+    *  
     *   `RESTRICTED` – only first party Connected Apps with IDs in `allowed_first_party_connected_apps` can be
     * used by Members.
-    *
+    *  
     *   `NOT_ALLOWED` – no first party Connected Apps are permitted.
      */
     public ?string $firstPartyConnectedAppsAllowedType = null;
@@ -203,13 +204,13 @@ final class CreateRequest
     /**
     * The authentication setting that sets the Organization's policy towards third party Connected Apps. The
     * accepted values are:
-    *
+    *  
     *   `ALL_ALLOWED` – the default setting, any third party Connected App in the Project is permitted for use
     * by Members.
-    *
+    *  
     *   `RESTRICTED` – only third party Connected Apps with IDs in `allowed_first_party_connected_apps` can be
     * used by Members.
-    *
+    *  
     *   `NOT_ALLOWED` – no third party Connected Apps are permitted.
      */
     public ?string $thirdPartyConnectedAppsAllowedType = null;
@@ -221,8 +222,8 @@ final class CreateRequest
     /**
     * If the `telemetry_id` is passed, as part of this request, Stytch will call the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) and store the associated
-    * fingerprints and IPGEO information for the Member. See the User Device History guide (coming soon) for
-    * more information. Your workspace must be enabled for Device Fingerprinting to use this feature.
+    * fingerprints and IPGEO information for the Member. Your workspace must be enabled for Device
+    * Fingerprinting to use this feature.
      */
     public ?string $telemetryId = null;
 
@@ -301,7 +302,7 @@ final class CreateRequest
             $data['auth_methods'] ?? null,
             $data['allowed_auth_methods'] ?? null,
             $data['mfa_policy'] ?? null,
-            isset($data['rbac_email_implicit_role_assignments']) && $data['rbac_email_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : null,
+            isset($data['rbac_email_implicit_role_assignments']) && $data['rbac_email_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : null,
             $data['mfa_methods'] ?? null,
             $data['allowed_mfa_methods'] ?? null,
             $data['oauth_tenant_jit_provisioning'] ?? null,

@@ -23,12 +23,12 @@ class ConnectedAppClients
         $this->secrets = new ConnectedAppClientsSecrets($this->client);
     }
 
-    /**
-        * Retrieve details of a specific Connected App by `client_id`.
+/**
+    * Retrieve details of a specific Connected App by `client_id`.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse
+     */
     public function get(
         \Stytch\Consumer\Models\ConnectedApp\Clients\GetRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\GetResponse {
@@ -53,12 +53,12 @@ class ConnectedAppClients
         });
     }
 
-    /**
-        * Updates mutable fields of a Connected App. Cannot update Client Type, Client ID, or Secrets.
+/**
+    * Updates mutable fields of a Connected App. Cannot update Client Type, Client ID, or Secrets.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse
+     */
     public function update(
         \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\UpdateResponse {
@@ -83,12 +83,12 @@ class ConnectedAppClients
         });
     }
 
-    /**
-        * Deletes a Connected App.
+/**
+    * Deletes a Connected App.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse
+     */
     public function delete(
         \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\DeleteResponse {
@@ -113,12 +113,12 @@ class ConnectedAppClients
         });
     }
 
-    /**
-        * Search for Connected Apps. Supports cursor-based pagination. Specific filters coming soon.
+/**
+    * Search for Connected Apps. Supports cursor-based pagination. Specific filters coming soon.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse
+     */
     public function search(
         \Stytch\Consumer\Models\ConnectedApp\Clients\SearchRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\SearchResponse {
@@ -143,18 +143,18 @@ class ConnectedAppClients
         });
     }
 
-    /**
-        * Creates a new Connected App. If the Connected App `client_type` is `first_party` or `third_party` a
-        * `client_secret` is returned.
-        *
-        * **Important:** This is the only time you will be able to view the generated `client_secret` in the API
-        * response. Stytch stores a hash of the `client_secret` and cannot recover the value if lost. Be sure to
-        * persist the `client_secret` in a secure location. If the `client_secret` is lost, you will need to
-        * trigger a secret rotation flow to receive another one.
+/**
+    * Creates a new Connected App. If the Connected App `client_type` is `first_party` or `third_party` a
+    * `client_secret` is returned.
+    * 
+    * **Important:** This is the only time you will be able to view the generated `client_secret` in the API
+    * response. Stytch stores a hash of the `client_secret` and cannot recover the value if lost. Be sure to
+    * persist the `client_secret` in a secure location. If the `client_secret` is lost, you will need to
+    * trigger a secret rotation flow to receive another one.
 
-         * @param \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request
-         * @return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse
-         */
+     * @param \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request
+     * @return \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse
+     */
     public function create(
         \Stytch\Consumer\Models\ConnectedApp\Clients\CreateRequest|array $request,
     ): \Stytch\Consumer\Models\ConnectedApp\Clients\CreateResponse {
@@ -166,7 +166,7 @@ class ConnectedAppClients
     /**
     * Creates a new Connected App. If the Connected App `client_type` is `first_party` or `third_party` a
     * `client_secret` is returned.
-    *
+    * 
     * **Important:** This is the only time you will be able to view the generated `client_secret` in the API
     * response. Stytch stores a hash of the `client_secret` and cannot recover the value if lost. Be sure to
     * persist the `client_secret` in a secure location. If the `client_secret` is lost, you will need to

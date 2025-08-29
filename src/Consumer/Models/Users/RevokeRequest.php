@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
+
 final class RevokeRequest
 {
     /** The unique ID of a specific User. You may use an `external_id` here if one is set for the user. */

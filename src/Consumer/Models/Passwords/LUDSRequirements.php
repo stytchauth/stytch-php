@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
+
 final class LUDSRequirements
 {
     /** For LUDS validation, whether the password contains at least one lowercase letter. */

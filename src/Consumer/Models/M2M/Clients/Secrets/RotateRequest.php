@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients\Secrets;
 
+
 final class RotateRequest
 {
     /** The ID of the client. */

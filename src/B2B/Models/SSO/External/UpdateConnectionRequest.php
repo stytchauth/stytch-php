@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\External;
 
+
 final class UpdateConnectionRequest
 {
     /**
@@ -67,8 +68,8 @@ final class UpdateConnectionRequest
             $data['organization_id'],
             $data['connection_id'],
             $data['display_name'] ?? null,
-            isset($data['external_connection_implicit_role_assignments']) && $data['external_connection_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\SSO\ConnectionImplicitRoleAssignment::fromArray($item), $data['external_connection_implicit_role_assignments']) : null,
-            isset($data['external_group_implicit_role_assignments']) && $data['external_group_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\SSO\GroupImplicitRoleAssignment::fromArray($item), $data['external_group_implicit_role_assignments']) : null
+            isset($data['external_connection_implicit_role_assignments']) && $data['external_connection_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\SSO\ConnectionImplicitRoleAssignment::fromArray($item), $data['external_connection_implicit_role_assignments']) : null,
+            isset($data['external_group_implicit_role_assignments']) && $data['external_group_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\SSO\GroupImplicitRoleAssignment::fromArray($item), $data['external_group_implicit_role_assignments']) : null
         );
     }
 

@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud\Rules;
 
+
 final class ListResponse
 {
     /**
@@ -51,7 +52,7 @@ final class ListResponse
         return new static(
             $data['request_id'],
             $data['next_cursor'],
-            isset($data['rules']) ? array_map(fn ($item) => \Stytch\Consumer\Models\Fraud\Rule::fromArray($item), $data['rules']) : [],
+            isset($data['rules']) ? array_map(fn($item) => \Stytch\Consumer\Models\Fraud\Rule::fromArray($item), $data['rules']) : [],
             $data['status_code']
         );
     }

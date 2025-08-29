@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
+
 final class SearchResponse
 {
     /**
@@ -15,7 +16,7 @@ final class SearchResponse
     * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
      */
     public string $requestId;
-    /** An array of [Member objects](member-object). */
+    /** An array of [Member objects](https://stytch.com/docs/b2b/api/member-object). */
     public array $members;
     /**
     * The search `results_metadata` object contains metadata relevant to your specific query like `total` and
@@ -58,7 +59,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['members']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\Member::fromArray($item), $data['members']) : [],
+            isset($data['members']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\Member::fromArray($item), $data['members']) : [],
             \Stytch\B2B\Models\Organizations\ResultsMetadata::fromArray($data['results_metadata']),
             $data['organizations'],
             $data['status_code']

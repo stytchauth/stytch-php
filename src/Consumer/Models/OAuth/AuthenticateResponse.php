@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\OAuth;
 
+
 final class AuthenticateResponse
 {
     /**
@@ -35,7 +36,7 @@ final class AuthenticateResponse
     * The `provider_values` object lists relevant identifiers, values, and scopes for a given OAuth provider.
     * For example this object will include a provider's `access_token` that you can use to access the
     * provider's API for a given user.
-    *
+    * 
     *   Note that these values will vary based on the OAuth provider in question, e.g. `id_token` is only
     * returned by OIDC compliant identity providers.
      */
@@ -61,15 +62,14 @@ final class AuthenticateResponse
     /**
     * A `Session` object. For backwards compatibility reasons, the session from an OAuth authenticate call is
     * labeled as `user_session`, but is otherwise just a standard stytch `Session` object.
-    *
+    * 
     *   See [Session object](https://stytch.com/docs/api/session-object) for complete response fields.
      */
     public ?\Stytch\Consumer\Models\Sessions\Session $userSession = null;
     /**
     * If a valid `telemetry_id` was passed in the request and the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) returned results, the
-    * `user_device` response field will contain information about the user's device attributes. See the User
-    * Device History guide (coming soon) for more information.
+    * `user_device` response field will contain information about the user's device attributes.
      */
     public ?\Stytch\Consumer\Models\DeviceInfo $userDevice = null;
 

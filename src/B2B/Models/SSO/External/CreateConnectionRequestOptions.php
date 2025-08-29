@@ -8,7 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\External;
 
-use Stytch\Shared\MethodOptions\Authorization;
+use \Stytch\Shared\MethodOptions\Authorization;
 
 final class CreateConnectionRequestOptions
 {

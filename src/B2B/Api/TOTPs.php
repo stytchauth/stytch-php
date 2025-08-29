@@ -21,19 +21,19 @@ class TOTPs
 
     }
 
-    /**
-        * Create a new TOTP instance for a Member. The Member can use the authenticator application of their
-        * choice to scan the QR code or enter the secret.
-        *
-        * If the Member already has an active MFA factor, then passing an intermediate session token, session
-        * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.
-        *
-        * Otherwise, passing an intermediate session token, session token, or session JWT is not required, but if
-        * passed must match the `member_id` passed.
+/**
+    * Create a new TOTP instance for a Member. The Member can use the authenticator application of their
+    * choice to scan the QR code or enter the secret. 
+    * 
+    * If the Member already has an active MFA factor, then passing an intermediate session token, session
+    * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.  
+    * 
+    * Otherwise, passing an intermediate session token, session token, or session JWT is not required, but if
+    * passed must match the `member_id` passed.
 
-         * @param \Stytch\B2B\Models\TOTPs\CreateRequest|array $request
-         * @return \Stytch\B2B\Models\TOTPs\CreateResponse
-         */
+     * @param \Stytch\B2B\Models\TOTPs\CreateRequest|array $request
+     * @return \Stytch\B2B\Models\TOTPs\CreateResponse
+     */
     public function create(
         \Stytch\B2B\Models\TOTPs\CreateRequest|array $request,
     ): \Stytch\B2B\Models\TOTPs\CreateResponse {
@@ -44,11 +44,11 @@ class TOTPs
 
     /**
     * Create a new TOTP instance for a Member. The Member can use the authenticator application of their
-    * choice to scan the QR code or enter the secret.
-    *
+    * choice to scan the QR code or enter the secret. 
+    * 
     * If the Member already has an active MFA factor, then passing an intermediate session token, session
-    * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.
-    *
+    * token, or session JWT with the existing MFA factor on it is required to prevent bypassing MFA.  
+    * 
     * Otherwise, passing an intermediate session token, session token, or session JWT is not required, but if
     * passed must match the `member_id` passed.
 
@@ -65,12 +65,12 @@ class TOTPs
         });
     }
 
-    /**
-        * Authenticate a Member provided TOTP.
+/**
+    * Authenticate a Member provided TOTP.
 
-         * @param \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request
-         * @return \Stytch\B2B\Models\TOTPs\AuthenticateResponse
-         */
+     * @param \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request
+     * @return \Stytch\B2B\Models\TOTPs\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\B2B\Models\TOTPs\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\TOTPs\AuthenticateResponse {
@@ -95,13 +95,13 @@ class TOTPs
         });
     }
 
-    /**
-        * Migrate an existing TOTP instance for a Member. Recovery codes are not required and will be minted for
-        * the Member if not provided.
+/**
+    * Migrate an existing TOTP instance for a Member. Recovery codes are not required and will be minted for
+    * the Member if not provided.
 
-         * @param \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request
-         * @return \Stytch\B2B\Models\TOTPs\MigrateResponse
-         */
+     * @param \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request
+     * @return \Stytch\B2B\Models\TOTPs\MigrateResponse
+     */
     public function migrate(
         \Stytch\B2B\Models\TOTPs\MigrateRequest|array $request,
     ): \Stytch\B2B\Models\TOTPs\MigrateResponse {

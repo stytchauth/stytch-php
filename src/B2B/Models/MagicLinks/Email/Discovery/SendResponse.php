@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\MagicLinks\Email\Discovery;
 
+
 final class SendResponse
 {
     /**

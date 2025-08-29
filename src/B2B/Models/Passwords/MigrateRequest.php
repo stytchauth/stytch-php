@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
+
 final class MigrateRequest
 {
     /** The email address of the Member. */
@@ -54,7 +55,7 @@ final class MigrateRequest
     *  Will completely replace any existing explicitly assigned roles. See the
     *  [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
     * assignment.
-    *
+    * 
     *    If a Role is removed from a Member, and the Member is also implicitly assigned this Role from an SSO
     * connection
     *    or an SSO group, we will by default revoke any existing sessions for the Member that contain any SSO
@@ -82,8 +83,8 @@ final class MigrateRequest
      */
     public ?bool $setPhoneNumberVerified = null;
     /**
-    * If a new member is created, this will set an identifier that can be used in API calls wherever a
-    * member_id is expected. This is a string consisting of alphanumeric, `.`, `_`, `-`, or `|` characters
+    * If a new member is created, this will set an identifier that can be used in most API calls where a
+    * `member_id` is expected. This is a string consisting of alphanumeric, `.`, `_`, `-`, or `|` characters
     * with a maximum length of 128 characters. External IDs must be unique within an organization, but may be
     * reused across different organizations in the same project. Note that if a member already exists, this
     * field will be ignored.

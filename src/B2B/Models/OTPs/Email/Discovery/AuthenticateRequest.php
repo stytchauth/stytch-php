@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\OTPs\Email\Discovery;
 
+
 final class AuthenticateRequest
 {
     /** The email address of the Member. */

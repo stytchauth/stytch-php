@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Users;
 
+
 final class Email
 {
     /** The unique ID of a specific email address. */

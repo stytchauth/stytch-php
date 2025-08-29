@@ -27,16 +27,16 @@ class OTPs
         $this->email = new OTPsEmail($this->client);
     }
 
-    /**
-        * Authenticate a User given a `method_id` (the associated `email_id` or `phone_id`) and a `code`. This
-        * endpoint verifies that the code is valid, hasn't expired or been previously used, and any optional
-        * security settings such as IP match or user agent match are satisfied. A given `method_id` may only have
-        * a single active OTP code at any given time, if a User requests another OTP code before the first one has
-        * expired, the first one will be invalidated.
+/**
+    * Authenticate a User given a `method_id` (the associated `email_id` or `phone_id`) and a `code`. This
+    * endpoint verifies that the code is valid, hasn't expired or been previously used, and any optional
+    * security settings such as IP match or user agent match are satisfied. A given `method_id` may only have
+    * a single active OTP code at any given time, if a User requests another OTP code before the first one has
+    * expired, the first one will be invalidated.
 
-         * @param \Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request
-         * @return \Stytch\Consumer\Models\OTPs\AuthenticateResponse
-         */
+     * @param \Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request
+     * @return \Stytch\Consumer\Models\OTPs\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\Consumer\Models\OTPs\AuthenticateRequest|array $request,
     ): \Stytch\Consumer\Models\OTPs\AuthenticateResponse {

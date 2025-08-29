@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Passwords\Discovery\Email;
 
+
 final class ResetStartResponse
 {
     /**

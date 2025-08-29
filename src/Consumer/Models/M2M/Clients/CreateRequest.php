@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients;
 
+
 final class CreateRequest
 {
     /** An array of scopes assigned to the client. */

@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
+
 final class MigrateRequest
 {
     /** The email address of the end user. */
@@ -67,6 +68,11 @@ final class MigrateRequest
     * maximum length of 128 characters.
      */
     public ?string $externalId = null;
+    /**
+    * Roles to explicitly assign to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
     public ?array $roles = null;
 
     public function __construct(

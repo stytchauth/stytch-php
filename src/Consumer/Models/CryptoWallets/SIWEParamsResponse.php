@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\CryptoWallets;
 
+
 final class SIWEParamsResponse
 {
     /** The domain that requested the crypto wallet signature. */

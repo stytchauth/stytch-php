@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Discovery\Organizations;
 
+
 final class ListRequest
 {
     /**

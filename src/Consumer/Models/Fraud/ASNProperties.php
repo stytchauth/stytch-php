@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
+
 final class ASNProperties
 {
     /** The Autonomous System Number of the user's network. */

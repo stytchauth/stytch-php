@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\MagicLinks;
 
+
 final class AuthenticateResponse
 {
     /**
@@ -42,15 +43,14 @@ final class AuthenticateResponse
     /**
     * If you initiate a Session, by including `session_duration_minutes` in your authenticate call, you'll
     * receive a full Session object in the response.
-    *
+    * 
     *   See [Session object](https://stytch.com/docs/api/session-object) for complete response fields.
      */
     public ?\Stytch\Consumer\Models\Sessions\Session $session = null;
     /**
     * If a valid `telemetry_id` was passed in the request and the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) returned results, the
-    * `user_device` response field will contain information about the user's device attributes. See the User
-    * Device History guide (coming soon) for more information.
+    * `user_device` response field will contain information about the user's device attributes.
      */
     public ?\Stytch\Consumer\Models\DeviceInfo $userDevice = null;
 

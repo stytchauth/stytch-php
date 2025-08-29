@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients;
 
+
 final class SearchResponse
 {
     /**
@@ -50,7 +51,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['m2m_clients']) ? array_map(fn ($item) => \Stytch\Consumer\Models\M2M\M2MClient::fromArray($item), $data['m2m_clients']) : [],
+            isset($data['m2m_clients']) ? array_map(fn($item) => \Stytch\Consumer\Models\M2M\M2MClient::fromArray($item), $data['m2m_clients']) : [],
             \Stytch\Consumer\Models\M2M\ResultsMetadata::fromArray($data['results_metadata']),
             $data['status_code']
         );

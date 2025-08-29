@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\TOTPs;
 
+
 final class RecoveryCodesResponse
 {
     /**
@@ -51,7 +52,7 @@ final class RecoveryCodesResponse
         return new static(
             $data['request_id'],
             $data['user_id'],
-            isset($data['totps']) ? array_map(fn ($item) => TOTP::fromArray($item), $data['totps']) : [],
+            isset($data['totps']) ? array_map(fn($item) => TOTP::fromArray($item), $data['totps']) : [],
             $data['status_code']
         );
     }

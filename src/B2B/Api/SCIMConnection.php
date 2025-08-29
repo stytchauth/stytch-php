@@ -21,12 +21,12 @@ class SCIMConnection
 
     }
 
-    /**
-        * Update a SCIM Connection.
+/**
+    * Update a SCIM Connection.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\UpdateResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\UpdateResponse
+     */
     public function update(
         \Stytch\B2B\Models\SCIM\Connection\UpdateRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\UpdateRequestOptions|array $options = [],
@@ -55,12 +55,12 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Deletes a SCIM Connection.
+/**
+    * Deletes a SCIM Connection.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\DeleteResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\DeleteResponse
+     */
     public function delete(
         \Stytch\B2B\Models\SCIM\Connection\DeleteRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\DeleteRequestOptions|array $options = [],
@@ -89,12 +89,12 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Start a SCIM token rotation.
+/**
+    * Start a SCIM token rotation.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\RotateStartResponse
+     */
     public function rotateStart(
         \Stytch\B2B\Models\SCIM\Connection\RotateStartRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\RotateStartRequestOptions|array $options = [],
@@ -123,14 +123,14 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Completes a SCIM token rotation. This will complete the current token rotation process and update the
-        * active token to be the new token supplied in the
-        * [start SCIM token rotation](https://stytch.com/docs/b2b/api/scim-rotate-token-start) response.
+/**
+    * Completes a SCIM token rotation. This will complete the current token rotation process and update the
+    * active token to be the new token supplied in the
+    * [start SCIM token rotation](https://stytch.com/docs/b2b/api/scim-rotate-token-start) response.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\RotateCompleteResponse
+     */
     public function rotateComplete(
         \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\RotateCompleteRequestOptions|array $options = [],
@@ -161,13 +161,13 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Cancel a SCIM token rotation. This will cancel the current token rotation process, keeping the original
-        * token active.
+/**
+    * Cancel a SCIM token rotation. This will cancel the current token rotation process, keeping the original
+    * token active.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\RotateCancelResponse
+     */
     public function rotateCancel(
         \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\RotateCancelRequestOptions|array $options = [],
@@ -197,12 +197,12 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Gets a paginated list of all SCIM Groups associated with a given Connection.
+/**
+    * Gets a paginated list of all SCIM Groups associated with a given Connection.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\GetGroupsResponse
+     */
     public function getGroups(
         \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\GetGroupsRequestOptions|array $options = [],
@@ -231,12 +231,12 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Create a new SCIM Connection.
+/**
+    * Create a new SCIM Connection.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\CreateResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\CreateResponse
+     */
     public function create(
         \Stytch\B2B\Models\SCIM\Connection\CreateRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\CreateRequestOptions|array $options = [],
@@ -265,12 +265,12 @@ class SCIMConnection
         });
     }
 
-    /**
-        * Get SCIM Connection.
+/**
+    * Get SCIM Connection.
 
-         * @param \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request
-         * @return \Stytch\B2B\Models\SCIM\Connection\GetResponse
-         */
+     * @param \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request
+     * @return \Stytch\B2B\Models\SCIM\Connection\GetResponse
+     */
     public function get(
         \Stytch\B2B\Models\SCIM\Connection\GetRequest|array $request,
         \Stytch\B2B\Models\SCIM\Connection\GetRequestOptions|array $options = [],

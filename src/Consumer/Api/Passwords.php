@@ -27,27 +27,27 @@ class Passwords
         $this->sessions = new PasswordsSessions($this->client);
     }
 
-    /**
-        * Create a new user with a password. If `session_duration_minutes` is specified, a new session will be
-        * started as well.
-        *
-        * If a user with this email already exists in your Stytch project, this endpoint will return a
-        * `duplicate_email` error. To add a password to an existing passwordless user, you'll need to either call
-        * the [Migrate password endpoint](https://stytch.com/docs/api/password-migrate) or prompt the user to
-        * complete one of our password reset flows.
-        *
-        * This endpoint will return an error if the password provided does not meet our strength requirements,
-        * which you can check beforehand via the
-        * [Password strength check endpoint](https://stytch.com/docs/api/password-strength-check).
-        *
-        * When creating new Passwords users, it's good practice to enforce an email verification flow. We'd
-        * recommend checking out our
-        * [Email verification guide](https://stytch.com/docs/guides/passwords/email-verification/overview) for
-        * more information.
+/**
+    * Create a new user with a password. If `session_duration_minutes` is specified, a new session will be
+    * started as well.
+    * 
+    * If a user with this email already exists in your Stytch project, this endpoint will return a
+    * `duplicate_email` error. To add a password to an existing passwordless user, you'll need to either call
+    * the [Migrate password endpoint](https://stytch.com/docs/api/password-migrate) or prompt the user to
+    * complete one of our password reset flows.
+    * 
+    * This endpoint will return an error if the password provided does not meet our strength requirements,
+    * which you can check beforehand via the
+    * [Password strength check endpoint](https://stytch.com/docs/api/password-strength-check).
+    * 
+    * When creating new Passwords users, it's good practice to enforce an email verification flow. We'd
+    * recommend checking out our
+    * [Email verification guide](https://stytch.com/docs/guides/passwords/email-verification/overview) for
+    * more information.
 
-         * @param \Stytch\Consumer\Models\Passwords\CreateRequest|array $request
-         * @return \Stytch\Consumer\Models\Passwords\CreateResponse
-         */
+     * @param \Stytch\Consumer\Models\Passwords\CreateRequest|array $request
+     * @return \Stytch\Consumer\Models\Passwords\CreateResponse
+     */
     public function create(
         \Stytch\Consumer\Models\Passwords\CreateRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\CreateResponse {
@@ -59,16 +59,16 @@ class Passwords
     /**
     * Create a new user with a password. If `session_duration_minutes` is specified, a new session will be
     * started as well.
-    *
+    * 
     * If a user with this email already exists in your Stytch project, this endpoint will return a
     * `duplicate_email` error. To add a password to an existing passwordless user, you'll need to either call
     * the [Migrate password endpoint](https://stytch.com/docs/api/password-migrate) or prompt the user to
     * complete one of our password reset flows.
-    *
+    * 
     * This endpoint will return an error if the password provided does not meet our strength requirements,
     * which you can check beforehand via the
     * [Password strength check endpoint](https://stytch.com/docs/api/password-strength-check).
-    *
+    * 
     * When creating new Passwords users, it's good practice to enforce an email verification flow. We'd
     * recommend checking out our
     * [Email verification guide](https://stytch.com/docs/guides/passwords/email-verification/overview) for
@@ -87,30 +87,30 @@ class Passwords
         });
     }
 
-    /**
-        * Authenticate a user with their email address and password. This endpoint verifies that the user has a
-        * password currently set, and that the entered password is correct. There are two instances where the
-        * endpoint will return a `reset_password` error even if they enter their previous password:
-        *
-        * **One:** The user's credentials appeared in the HaveIBeenPwned dataset. We force a password reset to
-        * ensure that the user is the legitimate owner of the email address, and not a malicious actor abusing the
-        * compromised credentials.
-        *
-        * **Two:** A user that has previously authenticated with email/password uses a passwordless authentication
-        * method tied to the same email address (e.g. Magic Links, Google OAuth) for the first time. Any
-        * subsequent email/password authentication attempt will result in this error. We force a password reset in
-        * this instance in order to safely deduplicate the account by email address, without introducing the risk
-        * of a pre-hijack account takeover attack.
-        *
-        * Imagine a bad actor creates many accounts using passwords and the known email addresses of their
-        * victims. If a victim comes to the site and logs in for the first time with an email-based passwordless
-        * authentication method then both the victim and the bad actor have credentials to access to the same
-        * account. To prevent this, any further email/password login attempts first require a password reset which
-        * can only be accomplished by someone with access to the underlying email address.
+/**
+    * Authenticate a user with their email address and password. This endpoint verifies that the user has a
+    * password currently set, and that the entered password is correct. There are two instances where the
+    * endpoint will return a `reset_password` error even if they enter their previous password:
+    * 
+    * **One:** The user's credentials appeared in the HaveIBeenPwned dataset. We force a password reset to
+    * ensure that the user is the legitimate owner of the email address, and not a malicious actor abusing the
+    * compromised credentials.
+    * 
+    * **Two:** A user that has previously authenticated with email/password uses a passwordless authentication
+    * method tied to the same email address (e.g. Magic Links, Google OAuth) for the first time. Any
+    * subsequent email/password authentication attempt will result in this error. We force a password reset in
+    * this instance in order to safely deduplicate the account by email address, without introducing the risk
+    * of a pre-hijack account takeover attack. 
+    * 
+    * Imagine a bad actor creates many accounts using passwords and the known email addresses of their
+    * victims. If a victim comes to the site and logs in for the first time with an email-based passwordless
+    * authentication method then both the victim and the bad actor have credentials to access to the same
+    * account. To prevent this, any further email/password login attempts first require a password reset which
+    * can only be accomplished by someone with access to the underlying email address.
 
-         * @param \Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request
-         * @return \Stytch\Consumer\Models\Passwords\AuthenticateResponse
-         */
+     * @param \Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request
+     * @return \Stytch\Consumer\Models\Passwords\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\Consumer\Models\Passwords\AuthenticateRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\AuthenticateResponse {
@@ -123,17 +123,17 @@ class Passwords
     * Authenticate a user with their email address and password. This endpoint verifies that the user has a
     * password currently set, and that the entered password is correct. There are two instances where the
     * endpoint will return a `reset_password` error even if they enter their previous password:
-    *
+    * 
     * **One:** The user's credentials appeared in the HaveIBeenPwned dataset. We force a password reset to
     * ensure that the user is the legitimate owner of the email address, and not a malicious actor abusing the
     * compromised credentials.
-    *
+    * 
     * **Two:** A user that has previously authenticated with email/password uses a passwordless authentication
     * method tied to the same email address (e.g. Magic Links, Google OAuth) for the first time. Any
     * subsequent email/password authentication attempt will result in this error. We force a password reset in
     * this instance in order to safely deduplicate the account by email address, without introducing the risk
-    * of a pre-hijack account takeover attack.
-    *
+    * of a pre-hijack account takeover attack. 
+    * 
     * Imagine a bad actor creates many accounts using passwords and the known email addresses of their
     * victims. If a victim comes to the site and logs in for the first time with an email-based passwordless
     * authentication method then both the victim and the bad actor have credentials to access to the same
@@ -153,34 +153,34 @@ class Passwords
         });
     }
 
-    /**
-        * This API allows you to check whether or not the user’s provided password is valid, and to provide
-        * feedback to the user on how to increase the strength of their password.
-        *
-        * This endpoint adapts to your Project's password strength configuration. If you're using
-        * [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your passwords are
-        * considered valid if the strength score is >= 3. If you're using
-        * [LUDS](https://stytch.com/docs/guides/passwords/strength-policy), your passwords are considered valid if
-        * they meet the requirements that you've set with Stytch. You may update your password strength
-        * configuration in the [Stytch Dashboard](https://stytch.com/dashboard/password-strength-config).
-        *
-        *
-        * ### Password feedback
-        *
-        * The `feedback` object contains relevant fields for you to relay feedback to users that failed to create
-        * a strong enough password.
-        *
-        * If you're using zxcvbn, the `feedback` object will contain `warning` and `suggestions` for any password
-        * that does not meet the zxcvbn strength requirements. You can return these strings directly to the user
-        * to help them craft a strong password.
-        *
-        * If you're using LUDS, the `feedback` object will contain an object named `luds_requirements` which
-        * contain a collection of fields that the user failed or passed. You'll want to prompt the user to create
-        * a password that meets all of the requirements that they failed.
+/**
+    * This API allows you to check whether or not the user’s provided password is valid, and to provide
+    * feedback to the user on how to increase the strength of their password.
+    * 
+    * This endpoint adapts to your Project's password strength configuration. If you're using
+    * [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your passwords are
+    * considered valid if the strength score is >= 3. If you're using
+    * [LUDS](https://stytch.com/docs/guides/passwords/strength-policy), your passwords are considered valid if
+    * they meet the requirements that you've set with Stytch. You may update your password strength
+    * configuration in the [Stytch Dashboard](https://stytch.com/dashboard/password-strength-config).
+    * 
+    * 
+    * ### Password feedback
+    * 
+    * The `feedback` object contains relevant fields for you to relay feedback to users that failed to create
+    * a strong enough password.
+    * 
+    * If you're using zxcvbn, the `feedback` object will contain `warning` and `suggestions` for any password
+    * that does not meet the zxcvbn strength requirements. You can return these strings directly to the user
+    * to help them craft a strong password.
+    * 
+    * If you're using LUDS, the `feedback` object will contain an object named `luds_requirements` which
+    * contain a collection of fields that the user failed or passed. You'll want to prompt the user to create
+    * a password that meets all of the requirements that they failed.
 
-         * @param \Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request
-         * @return \Stytch\Consumer\Models\Passwords\StrengthCheckResponse
-         */
+     * @param \Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request
+     * @return \Stytch\Consumer\Models\Passwords\StrengthCheckResponse
+     */
     public function strengthCheck(
         \Stytch\Consumer\Models\Passwords\StrengthCheckRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\StrengthCheckResponse {
@@ -192,24 +192,24 @@ class Passwords
     /**
     * This API allows you to check whether or not the user’s provided password is valid, and to provide
     * feedback to the user on how to increase the strength of their password.
-    *
+    * 
     * This endpoint adapts to your Project's password strength configuration. If you're using
     * [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your passwords are
     * considered valid if the strength score is >= 3. If you're using
     * [LUDS](https://stytch.com/docs/guides/passwords/strength-policy), your passwords are considered valid if
     * they meet the requirements that you've set with Stytch. You may update your password strength
     * configuration in the [Stytch Dashboard](https://stytch.com/dashboard/password-strength-config).
-    *
-    *
+    * 
+    * 
     * ### Password feedback
-    *
+    * 
     * The `feedback` object contains relevant fields for you to relay feedback to users that failed to create
     * a strong enough password.
-    *
+    * 
     * If you're using zxcvbn, the `feedback` object will contain `warning` and `suggestions` for any password
     * that does not meet the zxcvbn strength requirements. You can return these strings directly to the user
     * to help them craft a strong password.
-    *
+    * 
     * If you're using LUDS, the `feedback` object will contain an object named `luds_requirements` which
     * contain a collection of fields that the user failed or passed. You'll want to prompt the user to create
     * a password that meets all of the requirements that they failed.
@@ -227,14 +227,14 @@ class Passwords
         });
     }
 
-    /**
-        * Adds an existing password to a User's email that doesn't have a password yet. We support migrating users
-        * from passwords stored with `bcrypt`, `scrypt`, `argon2`, `MD-5`, `SHA-1`, or `PBKDF2`. This endpoint has
-        * a rate limit of 100 requests per second.
+/**
+    * Adds an existing password to a User's email that doesn't have a password yet. We support migrating users
+    * from passwords stored with `bcrypt`, `scrypt`, `argon2`, `MD-5`, `SHA-1`, or `PBKDF2`. This endpoint has
+    * a rate limit of 100 requests per second.
 
-         * @param \Stytch\Consumer\Models\Passwords\MigrateRequest|array $request
-         * @return \Stytch\Consumer\Models\Passwords\MigrateResponse
-         */
+     * @param \Stytch\Consumer\Models\Passwords\MigrateRequest|array $request
+     * @return \Stytch\Consumer\Models\Passwords\MigrateResponse
+     */
     public function migrate(
         \Stytch\Consumer\Models\Passwords\MigrateRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\MigrateResponse {

@@ -21,14 +21,14 @@ class OAuthDiscovery
 
     }
 
-    /**
-        * Authenticates the Discovery OAuth token and exchanges it for an Intermediate
-        * Session Token. Intermediate Session Tokens can be used for various Discovery login flows and are valid
-        * for 10 minutes.
+/**
+    * Authenticates the Discovery OAuth token and exchanges it for an Intermediate
+    * Session Token. Intermediate Session Tokens can be used for various Discovery login flows and are valid
+    * for 10 minutes.
 
-         * @param \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request
-         * @return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
-         */
+     * @param \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request
+     * @return \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse
+     */
     public function authenticate(
         \Stytch\B2B\Models\OAuth\Discovery\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\OAuth\Discovery\AuthenticateResponse {

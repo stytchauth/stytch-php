@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\RBAC;
 
+
 final class PolicyScope
 {
     public string $scope;
@@ -35,7 +36,7 @@ final class PolicyScope
         return new static(
             $data['scope'],
             $data['description'],
-            isset($data['permissions']) ? array_map(fn ($item) => PolicyScopePermission::fromArray($item), $data['permissions']) : []
+            isset($data['permissions']) ? array_map(fn($item) => PolicyScopePermission::fromArray($item), $data['permissions']) : []
         );
     }
 

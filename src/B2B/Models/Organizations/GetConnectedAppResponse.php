@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
+
 final class GetConnectedAppResponse
 {
     /** The ID of the Connected App. */
@@ -57,7 +58,7 @@ final class GetConnectedAppResponse
             $data['name'],
             $data['description'],
             $data['client_type'],
-            isset($data['active_members']) ? array_map(fn ($item) => OrganizationConnectedAppActiveMember::fromArray($item), $data['active_members']) : [],
+            isset($data['active_members']) ? array_map(fn($item) => OrganizationConnectedAppActiveMember::fromArray($item), $data['active_members']) : [],
             $data['status_code'],
             $data['logo_url'] ?? null
         );

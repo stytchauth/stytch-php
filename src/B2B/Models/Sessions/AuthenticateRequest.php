@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
+
 final class AuthenticateRequest
 {
     /** A secret token for a given Stytch Session. */
@@ -18,12 +19,12 @@ final class AuthenticateRequest
     *   returning both an opaque `session_token` and `session_jwt` for this session. Remember that the
     * `session_jwt` will have a fixed lifetime of
     *   five minutes regardless of the underlying session duration, and will need to be refreshed over time.
-    *
+    * 
     *   This value must be a minimum of 5 and a maximum of 527040 minutes (366 days).
-    *
+    * 
     *   If a `session_token` or `session_jwt` is provided then a successful authentication will continue to
     * extend the session this many minutes.
-    *
+    * 
     *   If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a
     * 60 minute duration. If you don't want
     *   to use the Stytch session product, you can ignore the session fields in the response.
@@ -50,13 +51,13 @@ final class AuthenticateRequest
     * permissions.
     *   In addition, the `organization_id` passed in the authorization check must match the Member's
     * Organization.
-    *
+    * 
     *   The Roles on the Member Session may differ from the Roles you see on the Member object - Roles that
     * are implicitly
     *   assigned by SSO connection or SSO group will only be valid for a Member Session if there is at least
     * one authentication
     *   factor on the Member Session from the specified SSO connection.
-    *
+    * 
     *   If the Member is not authorized to perform the specified action on the specified Resource, or if the
     *   `organization_id` does not match the Member's Organization, a 403 error will be thrown.
     *   Otherwise, the response will contain a list of Roles that satisfied the authorization check.

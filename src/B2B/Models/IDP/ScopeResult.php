@@ -8,10 +8,17 @@
 
 namespace Stytch\B2B\Models\IDP;
 
+
 final class ScopeResult
 {
+    /** The name of the scope. */
     public string $scope;
+    /** A human-readable description of the scope, taken from the RBAC Policy. */
     public string $description;
+    /**
+    * Indicates whether the scope can be granted. Users can only grant scopes if they have the required
+    * permissions.
+     */
     public bool $isGrantable;
 
     public function __construct(

@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
+
 final class PolicyResponse
 {
     /**

@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\RBAC;
 
+
 final class Policy
 {
     /** An array of [Role objects](https://stytch.com/docs/b2b/api/rbac-role-object). */
@@ -35,9 +36,9 @@ final class Policy
     public static function fromArray(array $data): static
     {
         return new static(
-            isset($data['roles']) ? array_map(fn ($item) => PolicyRole::fromArray($item), $data['roles']) : [],
-            isset($data['resources']) ? array_map(fn ($item) => PolicyResource::fromArray($item), $data['resources']) : [],
-            isset($data['scopes']) ? array_map(fn ($item) => PolicyScope::fromArray($item), $data['scopes']) : []
+            isset($data['roles']) ? array_map(fn($item) => PolicyRole::fromArray($item), $data['roles']) : [],
+            isset($data['resources']) ? array_map(fn($item) => PolicyResource::fromArray($item), $data['resources']) : [],
+            isset($data['scopes']) ? array_map(fn($item) => PolicyScope::fromArray($item), $data['scopes']) : []
         );
     }
 

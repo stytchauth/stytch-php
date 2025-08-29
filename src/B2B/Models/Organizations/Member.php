@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
+
 final class Member
 {
     /**
@@ -29,16 +30,17 @@ final class Member
     /** The name of the Member. */
     public string $name;
     /**
-    * An array of registered [SAML Connection](saml-connection-object) or
-    * [OIDC Connection](oidc-connection-object) objects the Member has authenticated with.
+    * An array of registered [SAML Connection](https://stytch.com/docs/b2b/api/saml-connection-object) or
+    * [OIDC Connection](https://stytch.com/docs/b2b/api/oidc-connection-object) objects the Member has
+    * authenticated with.
      */
     public array $ssoRegistrations;
     /**
     * Identifies the Member as a break glass user - someone who has permissions to authenticate into an
     * Organization by bypassing the Organization's settings. A break glass account is typically used for
     * emergency purposes to gain access outside of normal authentication procedures. Refer to the
-    * [Organization object](organization-object) and its `auth_methods` and `allowed_auth_methods` fields for
-    * more details.
+    * [Organization object](https://stytch.com/docs/b2b/api/organization-object) and its `auth_methods` and
+    * `allowed_auth_methods` fields for more details.
      */
     public bool $isBreakglass;
     /** Globally unique UUID that identifies a Member's password. */
@@ -64,7 +66,7 @@ final class Member
     *   - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email
     * address becomes the
     *   Member's primary email address and the old primary email address is retired.
-    *
+    *  
     *   A retired email address cannot be used by other Members in the same Organization. However, unlinking
     * retired email
     *   addresses allows them to be subsequently re-used by other Organization Members. Retired email
@@ -111,8 +113,9 @@ final class Member
      */
     public ?string $updatedAt = null;
     /**
-    * A scim member registration, referencing a [SCIM Connection](scim-connection-object) object in use for
-    * the Member creation.
+    * A scim member registration, referencing a
+    * [SCIM Connection](https://stytch.com/docs/b2b/api/scim-connection-object) object in use for the Member
+    * creation.
      */
     public ?SCIMRegistration $scimRegistration = null;
     /** The ID of the member given by the identity provider. */
@@ -192,20 +195,20 @@ final class Member
             $data['email_address'],
             $data['status'],
             $data['name'],
-            isset($data['sso_registrations']) ? array_map(fn ($item) => SSORegistration::fromArray($item), $data['sso_registrations']) : [],
+            isset($data['sso_registrations']) ? array_map(fn($item) => SSORegistration::fromArray($item), $data['sso_registrations']) : [],
             $data['is_breakglass'],
             $data['member_password_id'],
-            isset($data['oauth_registrations']) ? array_map(fn ($item) => OAuthRegistration::fromArray($item), $data['oauth_registrations']) : [],
+            isset($data['oauth_registrations']) ? array_map(fn($item) => OAuthRegistration::fromArray($item), $data['oauth_registrations']) : [],
             $data['email_address_verified'],
             $data['mfa_phone_number_verified'],
             $data['is_admin'],
             $data['totp_registration_id'],
-            isset($data['retired_email_addresses']) ? array_map(fn ($item) => RetiredEmail::fromArray($item), $data['retired_email_addresses']) : [],
+            isset($data['retired_email_addresses']) ? array_map(fn($item) => RetiredEmail::fromArray($item), $data['retired_email_addresses']) : [],
             $data['is_locked'],
             $data['mfa_enrolled'],
             $data['mfa_phone_number'],
             $data['default_mfa_method'],
-            isset($data['roles']) ? array_map(fn ($item) => MemberRole::fromArray($item), $data['roles']) : [],
+            isset($data['roles']) ? array_map(fn($item) => MemberRole::fromArray($item), $data['roles']) : [],
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
             $data['created_at'] ?? null,

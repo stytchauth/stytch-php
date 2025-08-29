@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\RecoveryCodes;
 
+
 final class RecoverRequest
 {
     /**
@@ -51,12 +52,12 @@ final class RecoverRequest
     *   returning both an opaque `session_token` and `session_jwt` for this session. Remember that the
     * `session_jwt` will have a fixed lifetime of
     *   five minutes regardless of the underlying session duration, and will need to be refreshed over time.
-    *
+    * 
     *   This value must be a minimum of 5 and a maximum of 527040 minutes (366 days).
-    *
+    * 
     *   If a `session_token` or `session_jwt` is provided then a successful authentication will continue to
     * extend the session this many minutes.
-    *
+    * 
     *   If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a
     * 60 minute duration. If you don't want
     *   to use the Stytch session product, you can ignore the session fields in the response.
@@ -75,8 +76,8 @@ final class RecoverRequest
     /**
     * If the `telemetry_id` is passed, as part of this request, Stytch will call the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) and store the associated
-    * fingerprints and IPGEO information for the Member. See the User Device History guide (coming soon) for
-    * more information. Your workspace must be enabled for Device Fingerprinting to use this feature.
+    * fingerprints and IPGEO information for the Member. Your workspace must be enabled for Device
+    * Fingerprinting to use this feature.
      */
     public ?string $telemetryId = null;
 

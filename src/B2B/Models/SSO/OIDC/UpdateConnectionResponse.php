@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\OIDC;
 
+
 final class UpdateConnectionResponse
 {
     /**

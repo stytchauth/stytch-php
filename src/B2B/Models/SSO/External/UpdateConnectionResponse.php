@@ -8,6 +8,7 @@
 
 namespace Stytch\B2B\Models\SSO\External;
 
+
 final class UpdateConnectionResponse
 {
     /**

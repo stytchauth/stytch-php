@@ -8,6 +8,7 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
+
 final class Verdict
 {
     /**
@@ -79,7 +80,7 @@ final class Verdict
             $data['reasons'],
             $data['detected_device_type'],
             $data['is_authentic_device'],
-            isset($data['verdict_reason_overrides']) ? array_map(fn ($item) => VerdictReasonOverride::fromArray($item), $data['verdict_reason_overrides']) : [],
+            isset($data['verdict_reason_overrides']) ? array_map(fn($item) => VerdictReasonOverride::fromArray($item), $data['verdict_reason_overrides']) : [],
             $data['rule_match_type'] ?? null,
             $data['rule_match_identifier'] ?? null
         );

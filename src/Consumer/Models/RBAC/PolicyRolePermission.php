@@ -8,11 +8,12 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
+
 final class PolicyRolePermission
 {
     /**
     * A unique identifier of the RBAC Resource, provided by the developer and intended to be human-readable.
-    *
+    * 
     *   A `resource_id` is not allowed to start with `stytch`, which is a special prefix used for Stytch
     * default Resources with reserved `resource_id`s.
      */

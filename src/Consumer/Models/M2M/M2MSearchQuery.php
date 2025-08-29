@@ -8,13 +8,14 @@
 
 namespace Stytch\Consumer\Models\M2M;
 
+
 final class M2MSearchQuery
 {
     /**
     * The action to perform on the operands. The accepted value are:
-    *
+    * 
     *   `AND` – all the operand values provided must match.
-    *
+    *   
     *   `OR` – the operator will return any matches to at least one of the operand values you supply.
      */
     public string $operator;
