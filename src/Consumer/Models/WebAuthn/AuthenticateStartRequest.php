@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-
 final class AuthenticateStartRequest
 {
     /** The domain for Passkeys or WebAuthn. Defaults to `window.location.hostname`. */

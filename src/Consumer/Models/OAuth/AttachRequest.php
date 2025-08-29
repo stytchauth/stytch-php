@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\OAuth;
 
-
 final class AttachRequest
 {
     /** The OAuth provider's name. */

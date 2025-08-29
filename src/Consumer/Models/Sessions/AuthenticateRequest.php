@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class AuthenticateRequest
 {
     /** The session token to authenticate. */
@@ -29,7 +28,7 @@ final class AuthenticateRequest
     * initialized by providing a value in `session_duration_minutes`. Claims will be included on the Session
     * object and in the JWT. To update a key in an existing Session, supply a new value. To delete a key,
     * supply a null value.
-    * 
+    *
     *   Custom claims made with reserved claims ("iss", "sub", "aud", "exp", "nbf", "iat", "jti") will be
     * ignored. Total custom claims size cannot exceed four kilobytes.
      */
@@ -38,7 +37,7 @@ final class AuthenticateRequest
     * If an `authorization_check` object is passed in, this endpoint will also check if the User is
     *   authorized to perform the given action on the given Resource. A User is authorized if they are
     * assigned a Role with adequate permissions.
-    * 
+    *
     *   If the User is not authorized to perform the specified action on the specified Resource, a 403 error
     * will be thrown.
     *   Otherwise, the response will contain a list of Roles that satisfied the authorization check.

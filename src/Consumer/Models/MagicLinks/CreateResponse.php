@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\MagicLinks;
 
-
 final class CreateResponse
 {
     /**

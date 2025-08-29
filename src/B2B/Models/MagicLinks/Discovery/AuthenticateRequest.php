@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\MagicLinks\Discovery;
 
-
 final class AuthenticateRequest
 {
     /** The Discovery Email Magic Link token to authenticate. */

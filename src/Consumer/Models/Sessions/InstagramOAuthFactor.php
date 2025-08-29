@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class InstagramOAuthFactor
 {
     public string $id;

@@ -68,7 +68,7 @@ class Client
     ) {
         $this->projectId = $projectId;
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
-        
+
         $this->policyCache = new PolicyCache();
 
         $this->connected_app = new ConnectedApp($this->client);

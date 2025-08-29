@@ -21,22 +21,22 @@ class PasswordsEmail
 
     }
 
-/**
-    * Initiates a password reset for the email address provided. This will trigger an email to be sent to the
-    * address, containing a magic link that will allow them to set a new password and authenticate.
-    * 
-    * This endpoint adapts to your Project's password strength configuration.
-    * If you're using [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your
-    * passwords are considered valid
-    * if the strength score is >= 3. If you're using
-    * [LUDS](https://stytch.com/docs/guides/passwords/strength-policy), your passwords are
-    * considered valid if they meet the requirements that you've set with Stytch.
-    * You may update your password strength configuration on the
-    * [Passwords Policy page](https://stytch.com/dashboard/password-strength-config) in the Stytch Dashboard.
+    /**
+        * Initiates a password reset for the email address provided. This will trigger an email to be sent to the
+        * address, containing a magic link that will allow them to set a new password and authenticate.
+        *
+        * This endpoint adapts to your Project's password strength configuration.
+        * If you're using [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your
+        * passwords are considered valid
+        * if the strength score is >= 3. If you're using
+        * [LUDS](https://stytch.com/docs/guides/passwords/strength-policy), your passwords are
+        * considered valid if they meet the requirements that you've set with Stytch.
+        * You may update your password strength configuration on the
+        * [Passwords Policy page](https://stytch.com/dashboard/password-strength-config) in the Stytch Dashboard.
 
-     * @param \Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request
-     * @return \Stytch\B2B\Models\Passwords\Email\ResetStartResponse
-     */
+         * @param \Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request
+         * @return \Stytch\B2B\Models\Passwords\Email\ResetStartResponse
+         */
     public function resetStart(
         \Stytch\B2B\Models\Passwords\Email\ResetStartRequest|array $request,
     ): \Stytch\B2B\Models\Passwords\Email\ResetStartResponse {
@@ -48,7 +48,7 @@ class PasswordsEmail
     /**
     * Initiates a password reset for the email address provided. This will trigger an email to be sent to the
     * address, containing a magic link that will allow them to set a new password and authenticate.
-    * 
+    *
     * This endpoint adapts to your Project's password strength configuration.
     * If you're using [zxcvbn](https://stytch.com/docs/guides/passwords/strength-policy), the default, your
     * passwords are considered valid
@@ -71,29 +71,29 @@ class PasswordsEmail
         });
     }
 
-/**
-    * Reset the Member's password and authenticate them. This endpoint checks that the password reset token is
-    * valid, hasn’t expired, or already been used.
-    * 
-    * The provided password needs to meet our password strength requirements, which can be checked in advance
-    * with the password strength endpoint. If the token and password are accepted, the password is securely
-    * stored for future authentication and the user is authenticated.
-    * 
-    * If the Member is required to complete MFA to log in to the Organization, the returned value of
-    * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
-    * The `intermediate_session_token` can be passed into the
-    * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms) to complete the
-    * MFA step and acquire a full member session.
-    * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
-    * 
-    * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
-    * MFA step.
-    * 
-    * Note that a successful password reset by email will revoke all active sessions for the `member_id`.
+    /**
+        * Reset the Member's password and authenticate them. This endpoint checks that the password reset token is
+        * valid, hasn’t expired, or already been used.
+        *
+        * The provided password needs to meet our password strength requirements, which can be checked in advance
+        * with the password strength endpoint. If the token and password are accepted, the password is securely
+        * stored for future authentication and the user is authenticated.
+        *
+        * If the Member is required to complete MFA to log in to the Organization, the returned value of
+        * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
+        * The `intermediate_session_token` can be passed into the
+        * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms) to complete the
+        * MFA step and acquire a full member session.
+        * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
+        *
+        * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
+        * MFA step.
+        *
+        * Note that a successful password reset by email will revoke all active sessions for the `member_id`.
 
-     * @param \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request
-     * @return \Stytch\B2B\Models\Passwords\Email\ResetResponse
-     */
+         * @param \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request
+         * @return \Stytch\B2B\Models\Passwords\Email\ResetResponse
+         */
     public function reset(
         \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request,
     ): \Stytch\B2B\Models\Passwords\Email\ResetResponse {
@@ -105,21 +105,21 @@ class PasswordsEmail
     /**
     * Reset the Member's password and authenticate them. This endpoint checks that the password reset token is
     * valid, hasn’t expired, or already been used.
-    * 
+    *
     * The provided password needs to meet our password strength requirements, which can be checked in advance
     * with the password strength endpoint. If the token and password are accepted, the password is securely
     * stored for future authentication and the user is authenticated.
-    * 
+    *
     * If the Member is required to complete MFA to log in to the Organization, the returned value of
     * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
     * The `intermediate_session_token` can be passed into the
     * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms) to complete the
     * MFA step and acquire a full member session.
     * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
-    * 
+    *
     * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
     * MFA step.
-    * 
+    *
     * Note that a successful password reset by email will revoke all active sessions for the `member_id`.
 
      * @param \Stytch\B2B\Models\Passwords\Email\ResetRequest|array $request
@@ -135,16 +135,16 @@ class PasswordsEmail
         });
     }
 
-/**
-    * Require a password be reset by the associated email address. This endpoint is only functional for
-    * cross-org password use cases.
-    * 
-    * If there are is only one active Member using the associated email address in the Project, the password
-    * will be deleted.
+    /**
+        * Require a password be reset by the associated email address. This endpoint is only functional for
+        * cross-org password use cases.
+        *
+        * If there are is only one active Member using the associated email address in the Project, the password
+        * will be deleted.
 
-     * @param \Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request
-     * @return \Stytch\B2B\Models\Passwords\Email\RequireResetResponse
-     */
+         * @param \Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request
+         * @return \Stytch\B2B\Models\Passwords\Email\RequireResetResponse
+         */
     public function requireReset(
         \Stytch\B2B\Models\Passwords\Email\RequireResetRequest|array $request,
         \Stytch\B2B\Models\Passwords\Email\RequireResetRequestOptions|array $options = [],
@@ -158,7 +158,7 @@ class PasswordsEmail
     /**
     * Require a password be reset by the associated email address. This endpoint is only functional for
     * cross-org password use cases.
-    * 
+    *
     * If there are is only one active Member using the associated email address in the Project, the password
     * will be deleted.
 

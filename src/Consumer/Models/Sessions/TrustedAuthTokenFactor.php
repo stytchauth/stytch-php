@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class TrustedAuthTokenFactor
 {
     /** The ID of the trusted auth token. */

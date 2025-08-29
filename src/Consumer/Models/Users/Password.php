@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class Password
 {
     /** The unique ID of a specific password */

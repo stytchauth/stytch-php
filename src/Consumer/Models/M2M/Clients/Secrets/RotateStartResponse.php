@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients\Secrets;
 
-
 final class RotateStartResponse
 {
     /**

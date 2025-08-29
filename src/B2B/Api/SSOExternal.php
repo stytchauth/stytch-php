@@ -21,12 +21,12 @@ class SSOExternal
 
     }
 
-/**
-    * Create a new External SSO Connection.
+    /**
+        * Create a new External SSO Connection.
 
-     * @param \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request
-     * @return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
-     */
+         * @param \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\External\CreateConnectionResponse
+         */
     public function createConnection(
         \Stytch\B2B\Models\SSO\External\CreateConnectionRequest|array $request,
         \Stytch\B2B\Models\SSO\External\CreateConnectionRequestOptions|array $options = [],
@@ -55,12 +55,12 @@ class SSOExternal
         });
     }
 
-/**
-    * Updates an existing External SSO connection.
+    /**
+        * Updates an existing External SSO connection.
 
-     * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
-     * @return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
-     */
+         * @param \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\External\UpdateConnectionResponse
+         */
     public function updateConnection(
         \Stytch\B2B\Models\SSO\External\UpdateConnectionRequest|array $request,
         \Stytch\B2B\Models\SSO\External\UpdateConnectionRequestOptions|array $options = [],

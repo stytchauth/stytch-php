@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models;
 
-
 final class Attributes
 {
     /** The IP address of the user. */

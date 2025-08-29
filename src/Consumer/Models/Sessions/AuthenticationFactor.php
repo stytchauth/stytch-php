@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class AuthenticationFactor
 {
     /**
@@ -19,18 +18,18 @@ final class AuthenticationFactor
     public string $type;
     /**
     * The method that was used to deliver the authentication factor. The possible values depend on the `type`:
-    *      
+    *
     *       `email_otp` – Only `email`.
-    *      
+    *
     *       `impersonated` – Only `impersonation`.
-    *       
+    *
     *       `imported` – Only `imported_auth0`.
-    *      
+    *
     *       `magic_link` – Only `email`.
-    *      
+    *
     *       `oauth` – The delivery method is determined by the specific OAuth provider used. The possible
     * values are `oauth_google`, `oauth_microsoft`, `oauth_hubspot`, `oauth_slack`, or `oauth_github`.
-    *       
+    *
     *         In addition, you may see an 'exchange' delivery method when a non-email-verifying OAuth factor
     * originally authenticated in one organization is exchanged for a factor in another organization.
     *         This can happen during authentication flows such as
@@ -39,20 +38,20 @@ final class AuthenticationFactor
     *         Google is also considered non-email-verifying when the HD claim is empty.
     *         The possible exchange values are `oauth_exchange_google`, `oauth_exchange_hubspot`,
     * `oauth_exchange_slack`, or `oauth_exchange_github`.
-    *        
+    *
     *         The final possible value is `oauth_access_token_exchange`, if this factor came from an
     * [access token exchange flow](https://stytch.com/docs/b2b/api/connected-app-access-token-exchange).
-    *      
+    *
     *       `otp` –  Only `sms`.
-    *      
+    *
     *       `password` – Only `knowledge`.
-    *      
+    *
     *       `recovery_codes` – Only `recovery_code`.
-    *      
+    *
     *       `sso` – Either `sso_saml` or `sso_oidc`.
-    *      
+    *
     *       `trusted_auth_token` – Only `trusted_token_exchange`.
-    *      
+    *
     *       `totp` – Only `authenticator_app`.
      */
     public string $deliveryMethod;

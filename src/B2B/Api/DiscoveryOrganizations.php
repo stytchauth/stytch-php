@@ -21,43 +21,43 @@ class DiscoveryOrganizations
 
     }
 
-/**
-    * This endpoint allows you to exchange the `intermediate_session_token` returned when the user
-    * successfully completes a Discovery authentication flow to create a new
-    * [Organization](https://stytch.com/docs/b2b/api/organization-object) and
-    * [Member](https://stytch.com/docs/b2b/api/member-object) and log the user in. If the user wants to log
-    * into an existing Organization, use the
-    * [Exchange Intermediate Session endpoint](https://stytch.com/docs/b2b/api/exchange-intermediate-session)
-    * instead.
-    * 
-    * Stytch **requires that users verify their email address** prior to creating a new Organization in order
-    * to prevent Account Takeover (ATO) attacks and phishing.
-    * 
-    * If the user authenticated using a method that **does not** provide real-time email verification
-    * (returning password auth, Github/Slack/Hubspot OAuth) this API will return `member_authenticated: false`
-    * and an `intermediate_session_token` to indicate that the user must perform additional authentication via
-    * one of the options listed in `primary_required.allowed_auth_methods` to finish logging in.
-    * 
-    * If you specified an `mfa_policy: REQUIRED_FOR_ALL` in the request, this API will return
-    * `member_authenticated: false`, an `intermediate_session_token`, and `mfa_required` in order to indicate
-    * that you must prompt the user to enroll in MFA.
-    * 
-    * Include the `intermediate_session_token` when calling the `authenticate()` method that the user needed
-    * to perform to verify their email or enroll in MFA. Once the user has completed the authentication
-    * requirements they were missing, they will be granted a full `session_token` and `session_jwt` and be
-    * successfully logged in.
-    * 
-    * If the user logged in with a method that **does** provide real-time email verification (Email Magic
-    * Links, Email OTP, Google/Microsoft OAuth, initial email verification when creating a new password) this
-    * API will return `member_authenticated: true` and a `session_jwt` and `session_token` to indicate that
-    * the user has successfully logged in.
-    * 
-    * The Member created by this endpoint will automatically be granted the `stytch_admin` Role. See the 
-    * [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/stytch-default) for more details on this Role.
+    /**
+        * This endpoint allows you to exchange the `intermediate_session_token` returned when the user
+        * successfully completes a Discovery authentication flow to create a new
+        * [Organization](https://stytch.com/docs/b2b/api/organization-object) and
+        * [Member](https://stytch.com/docs/b2b/api/member-object) and log the user in. If the user wants to log
+        * into an existing Organization, use the
+        * [Exchange Intermediate Session endpoint](https://stytch.com/docs/b2b/api/exchange-intermediate-session)
+        * instead.
+        *
+        * Stytch **requires that users verify their email address** prior to creating a new Organization in order
+        * to prevent Account Takeover (ATO) attacks and phishing.
+        *
+        * If the user authenticated using a method that **does not** provide real-time email verification
+        * (returning password auth, Github/Slack/Hubspot OAuth) this API will return `member_authenticated: false`
+        * and an `intermediate_session_token` to indicate that the user must perform additional authentication via
+        * one of the options listed in `primary_required.allowed_auth_methods` to finish logging in.
+        *
+        * If you specified an `mfa_policy: REQUIRED_FOR_ALL` in the request, this API will return
+        * `member_authenticated: false`, an `intermediate_session_token`, and `mfa_required` in order to indicate
+        * that you must prompt the user to enroll in MFA.
+        *
+        * Include the `intermediate_session_token` when calling the `authenticate()` method that the user needed
+        * to perform to verify their email or enroll in MFA. Once the user has completed the authentication
+        * requirements they were missing, they will be granted a full `session_token` and `session_jwt` and be
+        * successfully logged in.
+        *
+        * If the user logged in with a method that **does** provide real-time email verification (Email Magic
+        * Links, Email OTP, Google/Microsoft OAuth, initial email verification when creating a new password) this
+        * API will return `member_authenticated: true` and a `session_jwt` and `session_token` to indicate that
+        * the user has successfully logged in.
+        *
+        * The Member created by this endpoint will automatically be granted the `stytch_admin` Role. See the
+        * [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/stytch-default) for more details on this Role.
 
-     * @param \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request
-     * @return \Stytch\B2B\Models\Discovery\Organizations\CreateResponse
-     */
+         * @param \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request
+         * @return \Stytch\B2B\Models\Discovery\Organizations\CreateResponse
+         */
     public function create(
         \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request,
     ): \Stytch\B2B\Models\Discovery\Organizations\CreateResponse {
@@ -74,30 +74,30 @@ class DiscoveryOrganizations
     * into an existing Organization, use the
     * [Exchange Intermediate Session endpoint](https://stytch.com/docs/b2b/api/exchange-intermediate-session)
     * instead.
-    * 
+    *
     * Stytch **requires that users verify their email address** prior to creating a new Organization in order
     * to prevent Account Takeover (ATO) attacks and phishing.
-    * 
+    *
     * If the user authenticated using a method that **does not** provide real-time email verification
     * (returning password auth, Github/Slack/Hubspot OAuth) this API will return `member_authenticated: false`
     * and an `intermediate_session_token` to indicate that the user must perform additional authentication via
     * one of the options listed in `primary_required.allowed_auth_methods` to finish logging in.
-    * 
+    *
     * If you specified an `mfa_policy: REQUIRED_FOR_ALL` in the request, this API will return
     * `member_authenticated: false`, an `intermediate_session_token`, and `mfa_required` in order to indicate
     * that you must prompt the user to enroll in MFA.
-    * 
+    *
     * Include the `intermediate_session_token` when calling the `authenticate()` method that the user needed
     * to perform to verify their email or enroll in MFA. Once the user has completed the authentication
     * requirements they were missing, they will be granted a full `session_token` and `session_jwt` and be
     * successfully logged in.
-    * 
+    *
     * If the user logged in with a method that **does** provide real-time email verification (Email Magic
     * Links, Email OTP, Google/Microsoft OAuth, initial email verification when creating a new password) this
     * API will return `member_authenticated: true` and a `session_jwt` and `session_token` to indicate that
     * the user has successfully logged in.
-    * 
-    * The Member created by this endpoint will automatically be granted the `stytch_admin` Role. See the 
+    *
+    * The Member created by this endpoint will automatically be granted the `stytch_admin` Role. See the
     * [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/stytch-default) for more details on this Role.
 
      * @param \Stytch\B2B\Models\Discovery\Organizations\CreateRequest|array $request
@@ -113,30 +113,30 @@ class DiscoveryOrganizations
         });
     }
 
-/**
-    * List all possible organization relationships connected to a
-    * [Member Session](https://stytch.com/docs/b2b/api/session-object) or Intermediate Session.
-    * 
-    * When a Member Session is passed in, relationships with a type of `active_member`, `pending_member`, or
-    * `invited_member`
-    * will be returned, and any membership can be assumed by calling the
-    * [Exchange Session](https://stytch.com/docs/b2b/api/exchange-session) endpoint.
-    * 
-    * When an Intermediate Session is passed in, all relationship types - `active_member`, `pending_member`,
-    * `invited_member`, 
-    * `eligible_to_join_by_email_domain`, and `eligible_to_join_by_oauth_tenant` - will be returned, 
-    * and any membership can be assumed by calling the
-    * [Exchange Intermediate Session](https://stytch.com/docs/b2b/api/exchange-intermediate-session) endpoint. 
-    * 
-    * This endpoint requires either an `intermediate_session_token`, `session_jwt` or `session_token` be
-    * included in the request.
-    * It will return an error if multiple are present.
-    * 
-    * This operation does not consume the Intermediate Session or Session Token passed in.
+    /**
+        * List all possible organization relationships connected to a
+        * [Member Session](https://stytch.com/docs/b2b/api/session-object) or Intermediate Session.
+        *
+        * When a Member Session is passed in, relationships with a type of `active_member`, `pending_member`, or
+        * `invited_member`
+        * will be returned, and any membership can be assumed by calling the
+        * [Exchange Session](https://stytch.com/docs/b2b/api/exchange-session) endpoint.
+        *
+        * When an Intermediate Session is passed in, all relationship types - `active_member`, `pending_member`,
+        * `invited_member`,
+        * `eligible_to_join_by_email_domain`, and `eligible_to_join_by_oauth_tenant` - will be returned,
+        * and any membership can be assumed by calling the
+        * [Exchange Intermediate Session](https://stytch.com/docs/b2b/api/exchange-intermediate-session) endpoint.
+        *
+        * This endpoint requires either an `intermediate_session_token`, `session_jwt` or `session_token` be
+        * included in the request.
+        * It will return an error if multiple are present.
+        *
+        * This operation does not consume the Intermediate Session or Session Token passed in.
 
-     * @param \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request
-     * @return \Stytch\B2B\Models\Discovery\Organizations\ListResponse
-     */
+         * @param \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request
+         * @return \Stytch\B2B\Models\Discovery\Organizations\ListResponse
+         */
     public function list(
         \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request,
     ): \Stytch\B2B\Models\Discovery\Organizations\ListResponse {
@@ -148,22 +148,22 @@ class DiscoveryOrganizations
     /**
     * List all possible organization relationships connected to a
     * [Member Session](https://stytch.com/docs/b2b/api/session-object) or Intermediate Session.
-    * 
+    *
     * When a Member Session is passed in, relationships with a type of `active_member`, `pending_member`, or
     * `invited_member`
     * will be returned, and any membership can be assumed by calling the
     * [Exchange Session](https://stytch.com/docs/b2b/api/exchange-session) endpoint.
-    * 
+    *
     * When an Intermediate Session is passed in, all relationship types - `active_member`, `pending_member`,
-    * `invited_member`, 
-    * `eligible_to_join_by_email_domain`, and `eligible_to_join_by_oauth_tenant` - will be returned, 
+    * `invited_member`,
+    * `eligible_to_join_by_email_domain`, and `eligible_to_join_by_oauth_tenant` - will be returned,
     * and any membership can be assumed by calling the
-    * [Exchange Intermediate Session](https://stytch.com/docs/b2b/api/exchange-intermediate-session) endpoint. 
-    * 
+    * [Exchange Intermediate Session](https://stytch.com/docs/b2b/api/exchange-intermediate-session) endpoint.
+    *
     * This endpoint requires either an `intermediate_session_token`, `session_jwt` or `session_token` be
     * included in the request.
     * It will return an error if multiple are present.
-    * 
+    *
     * This operation does not consume the Intermediate Session or Session Token passed in.
 
      * @param \Stytch\B2B\Models\Discovery\Organizations\ListRequest|array $request

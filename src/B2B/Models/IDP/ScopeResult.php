@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\IDP;
 
-
 final class ScopeResult
 {
     /** The name of the scope. */

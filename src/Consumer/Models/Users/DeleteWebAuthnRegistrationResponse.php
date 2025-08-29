@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class DeleteWebAuthnRegistrationResponse
 {
     /**

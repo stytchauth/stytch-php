@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\MagicLinks;
 
-
 final class CreateRequest
 {
     /** The unique ID of a specific User. You may use an `external_id` here if one is set for the user. */

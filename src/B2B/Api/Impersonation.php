@@ -21,18 +21,18 @@ class Impersonation
 
     }
 
-/**
-    * Authenticate an impersonation token to impersonate a Member. This endpoint requires an impersonation
-    * token that is not expired or previously used. 
-    * A Stytch session will be created for the impersonated member with a 60 minute duration. Impersonated
-    * sessions cannot be extended.
-    * 
-    * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
-    * member, and clicking the `Impersonate Member` button.
+    /**
+        * Authenticate an impersonation token to impersonate a Member. This endpoint requires an impersonation
+        * token that is not expired or previously used.
+        * A Stytch session will be created for the impersonated member with a 60 minute duration. Impersonated
+        * sessions cannot be extended.
+        *
+        * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
+        * member, and clicking the `Impersonate Member` button.
 
-     * @param \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request
-     * @return \Stytch\B2B\Models\Impersonation\AuthenticateResponse
-     */
+         * @param \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\Impersonation\AuthenticateResponse
+         */
     public function authenticate(
         \Stytch\B2B\Models\Impersonation\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\Impersonation\AuthenticateResponse {
@@ -43,10 +43,10 @@ class Impersonation
 
     /**
     * Authenticate an impersonation token to impersonate a Member. This endpoint requires an impersonation
-    * token that is not expired or previously used. 
+    * token that is not expired or previously used.
     * A Stytch session will be created for the impersonated member with a 60 minute duration. Impersonated
     * sessions cannot be extended.
-    * 
+    *
     * Prior to this step, you can generate an impersonation token by visiting the Stytch Dashboard, viewing a
     * member, and clicking the `Impersonate Member` button.
 

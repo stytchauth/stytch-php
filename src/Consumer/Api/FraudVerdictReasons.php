@@ -21,16 +21,16 @@ class FraudVerdictReasons
 
     }
 
-/**
-    * Use this endpoint to override the action returned for a specific verdict reason during a fingerprint
-    * lookup. For example, Stytch Device Fingerprinting returns a `CHALLENGE` verdict action by default for
-    * the verdict reason `VIRTUAL_MACHINE`. You can use this endpoint to override that reason to return an
-    * `ALLOW` verdict instead if you expect many legitimate users to be using a browser that runs in a virtual
-    * machine.
+    /**
+        * Use this endpoint to override the action returned for a specific verdict reason during a fingerprint
+        * lookup. For example, Stytch Device Fingerprinting returns a `CHALLENGE` verdict action by default for
+        * the verdict reason `VIRTUAL_MACHINE`. You can use this endpoint to override that reason to return an
+        * `ALLOW` verdict instead if you expect many legitimate users to be using a browser that runs in a virtual
+        * machine.
 
-     * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request
-     * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse
-     */
+         * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request
+         * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse
+         */
     public function override(
         \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideRequest|array $request,
     ): \Stytch\Consumer\Models\Fraud\VerdictReasons\OverrideResponse {
@@ -59,17 +59,17 @@ class FraudVerdictReasons
         });
     }
 
-/**
-    * Get the list of verdict reasons returned by the Stytch Device Fingerprinting product along with their
-    * default actions and any overrides you may have defined. This is not an exhaustive list of verdict
-    * reasons, but it contains all verdict reasons that you may set an override on.
-    * 
-    * For a full list of possible verdict reasons, see
-    * [Warning Flags (Verdict Reasons)](https://stytch.com/docs/docs/fraud/guides/device-fingerprinting/reference/warning-flags-verdict-reasons).
+    /**
+        * Get the list of verdict reasons returned by the Stytch Device Fingerprinting product along with their
+        * default actions and any overrides you may have defined. This is not an exhaustive list of verdict
+        * reasons, but it contains all verdict reasons that you may set an override on.
+        *
+        * For a full list of possible verdict reasons, see
+        * [Warning Flags (Verdict Reasons)](https://stytch.com/docs/docs/fraud/guides/device-fingerprinting/reference/warning-flags-verdict-reasons).
 
-     * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request
-     * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse
-     */
+         * @param \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request
+         * @return \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse
+         */
     public function list(
         \Stytch\Consumer\Models\Fraud\VerdictReasons\ListRequest|array $request,
     ): \Stytch\Consumer\Models\Fraud\VerdictReasons\ListResponse {
@@ -82,7 +82,7 @@ class FraudVerdictReasons
     * Get the list of verdict reasons returned by the Stytch Device Fingerprinting product along with their
     * default actions and any overrides you may have defined. This is not an exhaustive list of verdict
     * reasons, but it contains all verdict reasons that you may set an override on.
-    * 
+    *
     * For a full list of possible verdict reasons, see
     * [Warning Flags (Verdict Reasons)](https://stytch.com/docs/docs/fraud/guides/device-fingerprinting/reference/warning-flags-verdict-reasons).
 

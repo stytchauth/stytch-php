@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-
 final class X509Certificate
 {
     public string $value;

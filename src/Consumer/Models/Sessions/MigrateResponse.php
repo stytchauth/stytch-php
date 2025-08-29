@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class MigrateResponse
 {
     /**
@@ -31,7 +30,7 @@ final class MigrateResponse
     /**
     * If you initiate a Session, by including `session_duration_minutes` in your authenticate call, you'll
     * receive a full Session object in the response.
-    * 
+    *
     *   See [Session object](https://stytch.com/docs/api/session-object) for complete response fields.
      */
     public ?Session $session = null;

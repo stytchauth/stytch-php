@@ -21,16 +21,16 @@ class OrganizationsMembersConnectedApps
 
     }
 
-/**
-    * Revoke Connected App revokes a Connected App's access to a Member and revokes all active tokens that
-    * have been created
-    * on the Member's behalf. New tokens cannot be created until the Member completes a new authorization flow
-    * with the
-    * Connected App.
+    /**
+        * Revoke Connected App revokes a Connected App's access to a Member and revokes all active tokens that
+        * have been created
+        * on the Member's behalf. New tokens cannot be created until the Member completes a new authorization flow
+        * with the
+        * Connected App.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeResponse
+         */
     public function revoke(
         \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\ConnectedApps\RevokeRequestOptions|array $options = [],

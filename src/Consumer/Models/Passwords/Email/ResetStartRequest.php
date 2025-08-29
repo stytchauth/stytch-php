@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Passwords\Email;
 
-
 final class ResetStartRequest
 {
     /** The email of the User that requested the password reset. */
@@ -42,7 +41,7 @@ final class ResetStartRequest
     * The URL Stytch redirects to after the OAuth flow is completed for a user that already exists. This URL
     * should be a route in your application which will run `oauth.authenticate` (see below) and finish the
     * login.
-    * 
+    *
     *   The URL must be configured as a Login URL in the
     * [Redirect URL page](https://stytch.com/dashboard/redirect-urls). If the field is not specified, the
     * default Login URL will be used.
@@ -51,10 +50,10 @@ final class ResetStartRequest
     /**
     * Used to determine which language to use when sending the user this delivery method. Parameter is a
     * [IETF BCP 47 language tag](https://www.w3.org/International/articles/language-tags/), e.g. `"en"`.
-    * 
+    *
     * Currently supported languages are English (`"en"`), Spanish (`"es"`), French (`"fr"`) and Brazilian
     * Portuguese (`"pt-br"`); if no value is provided, the copy defaults to English.
-    * 
+    *
     * Request support for additional languages
     * [here](https://docs.google.com/forms/d/e/1FAIpQLScZSpAu_m2AmLXRT3F3kap-s_mcV6UTBitYn6CdyWP0-o7YjQ/viewform?usp=sf_link")!
      */

@@ -21,20 +21,20 @@ class CryptoWallets
 
     }
 
-/**
-    * Initiate the authentication of a crypto wallet. After calling this endpoint, the user will need to sign
-    * a message containing the returned `challenge` field.
-    * 
-    * For Ethereum crypto wallets, you can optionally use the Sign In With Ethereum (SIWE) protocol for the
-    * message by passing in the `siwe_params`. The only required fields are `domain` and `uri`.
-    * If the crypto wallet detects that the domain in the message does not match the website's domain, it will
-    * display a warning to the user.
-    * 
-    * If not using the SIWE protocol, the message will simply consist of the project name and a random string.
+    /**
+        * Initiate the authentication of a crypto wallet. After calling this endpoint, the user will need to sign
+        * a message containing the returned `challenge` field.
+        *
+        * For Ethereum crypto wallets, you can optionally use the Sign In With Ethereum (SIWE) protocol for the
+        * message by passing in the `siwe_params`. The only required fields are `domain` and `uri`.
+        * If the crypto wallet detects that the domain in the message does not match the website's domain, it will
+        * display a warning to the user.
+        *
+        * If not using the SIWE protocol, the message will simply consist of the project name and a random string.
 
-     * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request
-     * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse
-     */
+         * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request
+         * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse
+         */
     public function authenticateStart(
         \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request,
     ): \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartResponse {
@@ -46,12 +46,12 @@ class CryptoWallets
     /**
     * Initiate the authentication of a crypto wallet. After calling this endpoint, the user will need to sign
     * a message containing the returned `challenge` field.
-    * 
+    *
     * For Ethereum crypto wallets, you can optionally use the Sign In With Ethereum (SIWE) protocol for the
     * message by passing in the `siwe_params`. The only required fields are `domain` and `uri`.
     * If the crypto wallet detects that the domain in the message does not match the website's domain, it will
     * display a warning to the user.
-    * 
+    *
     * If not using the SIWE protocol, the message will simply consist of the project name and a random string.
 
      * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateStartRequest|array $request
@@ -67,12 +67,12 @@ class CryptoWallets
         });
     }
 
-/**
-    * Complete the authentication of a crypto wallet by passing the signature.
+    /**
+        * Complete the authentication of a crypto wallet by passing the signature.
 
-     * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request
-     * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse
-     */
+         * @param \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request
+         * @return \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse
+         */
     public function authenticate(
         \Stytch\Consumer\Models\CryptoWallets\AuthenticateRequest|array $request,
     ): \Stytch\Consumer\Models\CryptoWallets\AuthenticateResponse {

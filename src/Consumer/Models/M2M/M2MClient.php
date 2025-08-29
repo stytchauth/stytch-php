@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\M2M;
 
-
 final class M2MClient
 {
     /** The ID of the client. */

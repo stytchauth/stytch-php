@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-
 final class SearchRequest
 {
     /** An array of organization_ids. At least one value is required. */

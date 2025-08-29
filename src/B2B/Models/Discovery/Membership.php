@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Discovery;
 
-
 final class Membership
 {
     /**

@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models;
 
-
 final class MfaRequired
 {
     /** Information about the Member's options for completing MFA. */

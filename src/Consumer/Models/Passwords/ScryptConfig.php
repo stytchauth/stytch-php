@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-
 final class ScryptConfig
 {
     /** The salt value, which should be in a base64 encoded string form. */

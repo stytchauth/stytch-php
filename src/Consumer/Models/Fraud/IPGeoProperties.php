@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-
 final class IPGeoProperties
 {
     /** The city where the IP is located. */

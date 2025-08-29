@@ -25,12 +25,12 @@ class OrganizationsMembers
         $this->connectedApps = new OrganizationsMembersConnectedApps($this->client);
     }
 
-/**
-    * Updates a Member specified by `organization_id` and `member_id`.
+    /**
+        * Updates a Member specified by `organization_id` and `member_id`.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\UpdateResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\UpdateResponse
+         */
     public function update(
         \Stytch\B2B\Models\Organizations\Members\UpdateRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\UpdateRequestOptions|array $options = [],
@@ -59,12 +59,12 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Deletes a Member specified by `organization_id` and `member_id`.
+    /**
+        * Deletes a Member specified by `organization_id` and `member_id`.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\DeleteResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteResponse
+         */
     public function delete(
         \Stytch\B2B\Models\Organizations\Members\DeleteRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\DeleteRequestOptions|array $options = [],
@@ -93,16 +93,16 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
-    * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
-    * one verified email where their `email_address_verified` is `true`.
-    * 
-    * Note that this endpoint does not accept an `external_id`. The Stytch `member_id` must be provided.
+    /**
+        * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
+        * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
+        * one verified email where their `email_address_verified` is `true`.
+        *
+        * Note that this endpoint does not accept an `external_id`. The Stytch `member_id` must be provided.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
+         */
     public function reactivate(
         \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\ReactivateRequestOptions|array $options = [],
@@ -117,7 +117,7 @@ class OrganizationsMembers
     * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
     * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
     * one verified email where their `email_address_verified` is `true`.
-    * 
+    *
     * Note that this endpoint does not accept an `external_id`. The Stytch `member_id` must be provided.
 
      * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
@@ -135,21 +135,21 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Delete a Member's MFA phone number. 
-    * 
-    * To change a Member's phone number, you must first call this endpoint to delete the existing phone number.
-    * 
-    * Existing Member Sessions that include a phone number authentication factor will not be revoked if the
-    * phone number is deleted, and MFA will not be enforced until the Member logs in again.
-    * If you wish to enforce MFA immediately after a phone number is deleted, you can do so by prompting the
-    * Member to enter a new phone number
-    * and calling the [OTP SMS send](https://stytch.com/docs/b2b/api/otp-sms-send) endpoint, then calling the
-    * [OTP SMS Authenticate](https://stytch.com/docs/b2b/api/authenticate-otp-sms) endpoint.
+    /**
+        * Delete a Member's MFA phone number.
+        *
+        * To change a Member's phone number, you must first call this endpoint to delete the existing phone number.
+        *
+        * Existing Member Sessions that include a phone number authentication factor will not be revoked if the
+        * phone number is deleted, and MFA will not be enforced until the Member logs in again.
+        * If you wish to enforce MFA immediately after a phone number is deleted, you can do so by prompting the
+        * Member to enter a new phone number
+        * and calling the [OTP SMS send](https://stytch.com/docs/b2b/api/otp-sms-send) endpoint, then calling the
+        * [OTP SMS Authenticate](https://stytch.com/docs/b2b/api/authenticate-otp-sms) endpoint.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberResponse
+         */
     public function deleteMfaPhoneNumber(
         \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\DeleteMFAPhoneNumberRequestOptions|array $options = [],
@@ -161,10 +161,10 @@ class OrganizationsMembers
     }
 
     /**
-    * Delete a Member's MFA phone number. 
-    * 
+    * Delete a Member's MFA phone number.
+    *
     * To change a Member's phone number, you must first call this endpoint to delete the existing phone number.
-    * 
+    *
     * Existing Member Sessions that include a phone number authentication factor will not be revoked if the
     * phone number is deleted, and MFA will not be enforced until the Member logs in again.
     * If you wish to enforce MFA immediately after a phone number is deleted, you can do so by prompting the
@@ -187,18 +187,18 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Delete a Member's MFA TOTP registration.
-    * 
-    * To mint a new registration for a Member, you must first call this endpoint to delete the existing
-    * registration.
-    * 
-    * Existing Member Sessions that include the TOTP authentication factor will not be revoked if the
-    * registration is deleted, and MFA will not be enforced until the Member logs in again.
+    /**
+        * Delete a Member's MFA TOTP registration.
+        *
+        * To mint a new registration for a Member, you must first call this endpoint to delete the existing
+        * registration.
+        *
+        * Existing Member Sessions that include the TOTP authentication factor will not be revoked if the
+        * registration is deleted, and MFA will not be enforced until the Member logs in again.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteTOTPResponse
+         */
     public function deleteTOTP(
         \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\DeleteTOTPRequestOptions|array $options = [],
@@ -211,10 +211,10 @@ class OrganizationsMembers
 
     /**
     * Delete a Member's MFA TOTP registration.
-    * 
+    *
     * To mint a new registration for a Member, you must first call this endpoint to delete the existing
     * registration.
-    * 
+    *
     * Existing Member Sessions that include the TOTP authentication factor will not be revoked if the
     * registration is deleted, and MFA will not be enforced until the Member logs in again.
 
@@ -233,19 +233,19 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
-    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
-    * limits are set to 100 requests/second.
-    * 
-    * Search for Members within specified Organizations. An array with at least one `organization_id` is
-    * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
-    * 
-    * All fuzzy search filters require a minimum of three characters.
+    /**
+        * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+        * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+        * limits are set to 100 requests/second.
+        *
+        * Search for Members within specified Organizations. An array with at least one `organization_id` is
+        * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
+        *
+        * All fuzzy search filters require a minimum of three characters.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\SearchResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\SearchResponse
+         */
     public function search(
         \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\SearchRequestOptions|array $options = [],
@@ -260,10 +260,10 @@ class OrganizationsMembers
     * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
     * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
     * limits are set to 100 requests/second.
-    * 
+    *
     * Search for Members within specified Organizations. An array with at least one `organization_id` is
     * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
-    * 
+    *
     * All fuzzy search filters require a minimum of three characters.
 
      * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
@@ -281,16 +281,16 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Delete a Member's password. 
-    * 
-    * This endpoint only works for Organization-scoped passwords. For cross-org password Projects, use
-    * [Require Password Reset By Email](https://stytch.com/docs/b2b/api/passwords-require-reset-by-email)
-    * instead.
+    /**
+        * Delete a Member's password.
+        *
+        * This endpoint only works for Organization-scoped passwords. For cross-org password Projects, use
+        * [Require Password Reset By Email](https://stytch.com/docs/b2b/api/passwords-require-reset-by-email)
+        * instead.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeletePasswordResponse
+         */
     public function deletePassword(
         \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\DeletePasswordRequestOptions|array $options = [],
@@ -302,8 +302,8 @@ class OrganizationsMembers
     }
 
     /**
-    * Delete a Member's password. 
-    * 
+    * Delete a Member's password.
+    *
     * This endpoint only works for Organization-scoped passwords. For cross-org password Projects, use
     * [Require Password Reset By Email](https://stytch.com/docs/b2b/api/passwords-require-reset-by-email)
     * instead.
@@ -323,15 +323,15 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Get a Member by `member_id`. This endpoint does not require an `organization_id`, enabling you to get
-    * members across organizations. This is a dangerous operation. Incorrect use may open you up to indirect
-    * object reference (IDOR) attacks. We recommend using the
-    * [Get Member](https://stytch.com/docs/b2b/api/get-member) API instead.
+    /**
+        * Get a Member by `member_id`. This endpoint does not require an `organization_id`, enabling you to get
+        * members across organizations. This is a dangerous operation. Incorrect use may open you up to indirect
+        * object reference (IDOR) attacks. We recommend using the
+        * [Get Member](https://stytch.com/docs/b2b/api/get-member) API instead.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
+         */
     public function dangerouslyGet(
         \Stytch\B2B\Models\Organizations\Members\DangerouslyGetRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\GetResponse {
@@ -359,16 +359,16 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Retrieve the saved OIDC access tokens and ID tokens for a member. After a successful OIDC login, Stytch
-    * will save the 
-    * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-    * will refresh the 
-    * access token automatically.
+    /**
+        * Retrieve the saved OIDC access tokens and ID tokens for a member. After a successful OIDC login, Stytch
+        * will save the
+        * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
+        * will refresh the
+        * access token automatically.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse
+         */
     public function oidcProviders(
         \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\OIDCProvidersResponse {
@@ -379,9 +379,9 @@ class OrganizationsMembers
 
     /**
     * Retrieve the saved OIDC access tokens and ID tokens for a member. After a successful OIDC login, Stytch
-    * will save the 
+    * will save the
     * issued access token and ID token from the identity provider. If a refresh token has been issued, Stytch
-    * will refresh the 
+    * will refresh the
     * access token automatically.
 
      * @param \Stytch\B2B\Models\Organizations\Members\OIDCProviderInformationRequest|array $request
@@ -397,29 +397,29 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Unlinks a retired email address from a Member specified by their `organization_id` and `member_id`. The
-    * email address
-    * to be retired can be identified in the request body by either its `email_id`, its `email_address`, or
-    * both. If using
-    * both identifiers they must refer to the same email.
-    * 
-    * A previously active email address can be marked as retired in one of two ways:
-    * 
-    * - It's replaced with a new primary email address during an explicit Member update.
-    * - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email address
-    * becomes the
-    *   Member's primary email address and the old primary email address is retired.
-    * 
-    * A retired email address cannot be used by other Members in the same Organization. However, unlinking
-    * retired email
-    * addresses allows them to be subsequently re-used by other Organization Members. Retired email addresses
-    * can be viewed
-    * on the [Member object](https://stytch.com/docs/b2b/api/member-object).
+    /**
+        * Unlinks a retired email address from a Member specified by their `organization_id` and `member_id`. The
+        * email address
+        * to be retired can be identified in the request body by either its `email_id`, its `email_address`, or
+        * both. If using
+        * both identifiers they must refer to the same email.
+        *
+        * A previously active email address can be marked as retired in one of two ways:
+        *
+        * - It's replaced with a new primary email address during an explicit Member update.
+        * - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email address
+        * becomes the
+        *   Member's primary email address and the old primary email address is retired.
+        *
+        * A retired email address cannot be used by other Members in the same Organization. However, unlinking
+        * retired email
+        * addresses allows them to be subsequently re-used by other Organization Members. Retired email addresses
+        * can be viewed
+        * on the [Member object](https://stytch.com/docs/b2b/api/member-object).
 
-     * @param \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailResponse
+         */
     public function unlinkRetiredEmail(
         \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\UnlinkRetiredEmailRequestOptions|array $options = [],
@@ -436,14 +436,14 @@ class OrganizationsMembers
     * to be retired can be identified in the request body by either its `email_id`, its `email_address`, or
     * both. If using
     * both identifiers they must refer to the same email.
-    * 
+    *
     * A previously active email address can be marked as retired in one of two ways:
-    * 
+    *
     * - It's replaced with a new primary email address during an explicit Member update.
     * - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email address
     * becomes the
     *   Member's primary email address and the old primary email address is retired.
-    * 
+    *
     * A retired email address cannot be used by other Members in the same Organization. However, unlinking
     * retired email
     * addresses allows them to be subsequently re-used by other Organization Members. Retired email addresses
@@ -465,29 +465,29 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Starts a self-serve email update for a Member specified by their `organization_id` and `member_id`.
-    * To perform a self-serve update, members must be active and have an active, verified email address.
-    * 
-    * The new email address must meet the following requirements:
-    * 
-    * - Must not be in use by another member (retired emails count as used until they are
-    * [unlinked](https://stytch.com/docs/b2b/api/unlink-retired-member-email))
-    * - Must not be updating for another member (i.e. two members cannot attempt to update to the same email
-    * at once)
-    * 
-    * The member will receive an Email Magic Link that expires in 5 minutes. If they do not verify their new
-    * email address in that timeframe, the email
-    * will be freed up for other members to use.
-    * 
-    * The Magic Link will redirect to your `login_redirect_url` (or the configured default if one isn't
-    * provided), and you should invoke the
-    * [Authenticate Magic Link](https://stytch.com/docs/b2b/api/authenticate-magic-link) endpoint as normal to
-    * complete the flow.
+    /**
+        * Starts a self-serve email update for a Member specified by their `organization_id` and `member_id`.
+        * To perform a self-serve update, members must be active and have an active, verified email address.
+        *
+        * The new email address must meet the following requirements:
+        *
+        * - Must not be in use by another member (retired emails count as used until they are
+        * [unlinked](https://stytch.com/docs/b2b/api/unlink-retired-member-email))
+        * - Must not be updating for another member (i.e. two members cannot attempt to update to the same email
+        * at once)
+        *
+        * The member will receive an Email Magic Link that expires in 5 minutes. If they do not verify their new
+        * email address in that timeframe, the email
+        * will be freed up for other members to use.
+        *
+        * The Magic Link will redirect to your `login_redirect_url` (or the configured default if one isn't
+        * provided), and you should invoke the
+        * [Authenticate Magic Link](https://stytch.com/docs/b2b/api/authenticate-magic-link) endpoint as normal to
+        * complete the flow.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateResponse
+         */
     public function startEmailUpdate(
         \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\StartEmailUpdateRequestOptions|array $options = [],
@@ -501,18 +501,18 @@ class OrganizationsMembers
     /**
     * Starts a self-serve email update for a Member specified by their `organization_id` and `member_id`.
     * To perform a self-serve update, members must be active and have an active, verified email address.
-    * 
+    *
     * The new email address must meet the following requirements:
-    * 
+    *
     * - Must not be in use by another member (retired emails count as used until they are
     * [unlinked](https://stytch.com/docs/b2b/api/unlink-retired-member-email))
     * - Must not be updating for another member (i.e. two members cannot attempt to update to the same email
     * at once)
-    * 
+    *
     * The member will receive an Email Magic Link that expires in 5 minutes. If they do not verify their new
     * email address in that timeframe, the email
     * will be freed up for other members to use.
-    * 
+    *
     * The Magic Link will redirect to your `login_redirect_url` (or the configured default if one isn't
     * provided), and you should invoke the
     * [Authenticate Magic Link](https://stytch.com/docs/b2b/api/authenticate-magic-link) endpoint as normal to
@@ -533,19 +533,19 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Member Get Connected Apps retrieves a list of Connected Apps with which the Member has successfully
-    * completed an
-    * authorization flow.
-    * If the Member revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
-    * Connected App will
-    * no longer be returned in the response. A Connected App's access may also be revoked if the
-    * Organization's allowed Connected
-    * App policy changes.
+    /**
+        * Member Get Connected Apps retrieves a list of Connected Apps with which the Member has successfully
+        * completed an
+        * authorization flow.
+        * If the Member revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
+        * Connected App will
+        * no longer be returned in the response. A Connected App's access may also be revoked if the
+        * Organization's allowed Connected
+        * App policy changes.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsResponse
+         */
     public function getConnectedApps(
         \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\GetConnectedAppsRequestOptions|array $options = [],
@@ -581,12 +581,12 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Creates a Member. An `organization_id` and `email_address` are required.
+    /**
+        * Creates a Member. An `organization_id` and `email_address` are required.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\CreateResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\CreateResponse
+         */
     public function create(
         \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request,
         \Stytch\B2B\Models\Organizations\Members\CreateRequestOptions|array $options = [],
@@ -615,12 +615,12 @@ class OrganizationsMembers
         });
     }
 
-/**
-    * Get a Member by `member_id` or `email_address`.
+    /**
+        * Get a Member by `member_id` or `email_address`.
 
-     * @param \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request
-     * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
-     */
+         * @param \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\GetResponse
+         */
     public function get(
         \Stytch\B2B\Models\Organizations\Members\GetRequest|array $request,
     ): \Stytch\B2B\Models\Organizations\Members\GetResponse {

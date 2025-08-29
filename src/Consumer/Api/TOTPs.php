@@ -21,13 +21,13 @@ class TOTPs
 
     }
 
-/**
-    * Create a new TOTP instance for a user. The user can use the authenticator application of their choice to
-    * scan the QR code or enter the secret.
+    /**
+        * Create a new TOTP instance for a user. The user can use the authenticator application of their choice to
+        * scan the QR code or enter the secret.
 
-     * @param \Stytch\Consumer\Models\TOTPs\CreateRequest|array $request
-     * @return \Stytch\Consumer\Models\TOTPs\CreateResponse
-     */
+         * @param \Stytch\Consumer\Models\TOTPs\CreateRequest|array $request
+         * @return \Stytch\Consumer\Models\TOTPs\CreateResponse
+         */
     public function create(
         \Stytch\Consumer\Models\TOTPs\CreateRequest|array $request,
     ): \Stytch\Consumer\Models\TOTPs\CreateResponse {
@@ -53,12 +53,12 @@ class TOTPs
         });
     }
 
-/**
-    * Authenticate a TOTP code entered by a user.
+    /**
+        * Authenticate a TOTP code entered by a user.
 
-     * @param \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request
-     * @return \Stytch\Consumer\Models\TOTPs\AuthenticateResponse
-     */
+         * @param \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request
+         * @return \Stytch\Consumer\Models\TOTPs\AuthenticateResponse
+         */
     public function authenticate(
         \Stytch\Consumer\Models\TOTPs\AuthenticateRequest|array $request,
     ): \Stytch\Consumer\Models\TOTPs\AuthenticateResponse {
@@ -83,12 +83,12 @@ class TOTPs
         });
     }
 
-/**
-    * Retrieve the recovery codes for a TOTP instance tied to a User.
+    /**
+        * Retrieve the recovery codes for a TOTP instance tied to a User.
 
-     * @param \Stytch\Consumer\Models\TOTPs\RecoveryCodesRequest|array $request
-     * @return \Stytch\Consumer\Models\TOTPs\RecoveryCodesResponse
-     */
+         * @param \Stytch\Consumer\Models\TOTPs\RecoveryCodesRequest|array $request
+         * @return \Stytch\Consumer\Models\TOTPs\RecoveryCodesResponse
+         */
     public function recoveryCodes(
         \Stytch\Consumer\Models\TOTPs\RecoveryCodesRequest|array $request,
     ): \Stytch\Consumer\Models\TOTPs\RecoveryCodesResponse {
@@ -113,12 +113,12 @@ class TOTPs
         });
     }
 
-/**
-    * Authenticate a recovery code for a TOTP instance.
+    /**
+        * Authenticate a recovery code for a TOTP instance.
 
-     * @param \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request
-     * @return \Stytch\Consumer\Models\TOTPs\RecoverResponse
-     */
+         * @param \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request
+         * @return \Stytch\Consumer\Models\TOTPs\RecoverResponse
+         */
     public function recover(
         \Stytch\Consumer\Models\TOTPs\RecoverRequest|array $request,
     ): \Stytch\Consumer\Models\TOTPs\RecoverResponse {

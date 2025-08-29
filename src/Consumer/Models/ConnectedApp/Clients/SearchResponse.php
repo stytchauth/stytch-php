@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-
 final class SearchResponse
 {
     /**
@@ -50,7 +49,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['connected_apps']) ? array_map(fn($item) => \Stytch\Consumer\Models\ConnectedApp\ConnectedApp::fromArray($item), $data['connected_apps']) : [],
+            isset($data['connected_apps']) ? array_map(fn ($item) => \Stytch\Consumer\Models\ConnectedApp\ConnectedApp::fromArray($item), $data['connected_apps']) : [],
             \Stytch\Consumer\Models\ConnectedApp\ResultsMetadata::fromArray($data['results_metadata']),
             $data['status_code']
         );

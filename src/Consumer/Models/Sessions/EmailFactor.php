@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class EmailFactor
 {
     /** The globally unique UUID of the Member's email. */

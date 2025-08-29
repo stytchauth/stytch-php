@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\CryptoWallets;
 
-
 final class SIWEParams
 {
     /**

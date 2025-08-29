@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-
 final class GetConnectionsResponse
 {
     /**
@@ -61,9 +60,9 @@ final class GetConnectionsResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['saml_connections']) ? array_map(fn($item) => SAMLConnection::fromArray($item), $data['saml_connections']) : [],
-            isset($data['oidc_connections']) ? array_map(fn($item) => OIDCConnection::fromArray($item), $data['oidc_connections']) : [],
-            isset($data['external_connections']) ? array_map(fn($item) => Connection::fromArray($item), $data['external_connections']) : [],
+            isset($data['saml_connections']) ? array_map(fn ($item) => SAMLConnection::fromArray($item), $data['saml_connections']) : [],
+            isset($data['oidc_connections']) ? array_map(fn ($item) => OIDCConnection::fromArray($item), $data['oidc_connections']) : [],
+            isset($data['external_connections']) ? array_map(fn ($item) => Connection::fromArray($item), $data['external_connections']) : [],
             $data['status_code']
         );
     }

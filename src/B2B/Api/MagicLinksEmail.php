@@ -23,16 +23,16 @@ class MagicLinksEmail
         $this->discovery = new MagicLinksEmailDiscovery($this->client);
     }
 
-/**
-    * Send either a login or signup magic link to a Member. A new, pending, or invited Member will receive a
-    * signup Email Magic Link. Members will have a `pending` status until they successfully authenticate. An
-    * active Member will receive a login Email Magic Link.
-    * 
-    * The magic link is valid for 60 minutes.
+    /**
+        * Send either a login or signup magic link to a Member. A new, pending, or invited Member will receive a
+        * signup Email Magic Link. Members will have a `pending` status until they successfully authenticate. An
+        * active Member will receive a login Email Magic Link.
+        *
+        * The magic link is valid for 60 minutes.
 
-     * @param \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request
-     * @return \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse
-     */
+         * @param \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse
+         */
     public function loginOrSignup(
         \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request,
     ): \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupResponse {
@@ -45,7 +45,7 @@ class MagicLinksEmail
     * Send either a login or signup magic link to a Member. A new, pending, or invited Member will receive a
     * signup Email Magic Link. Members will have a `pending` status until they successfully authenticate. An
     * active Member will receive a login Email Magic Link.
-    * 
+    *
     * The magic link is valid for 60 minutes.
 
      * @param \Stytch\B2B\Models\MagicLinks\Email\LoginOrSignupRequest|array $request
@@ -61,22 +61,22 @@ class MagicLinksEmail
         });
     }
 
-/**
-    * Send an invite email to a new Member to join an Organization. The Member will be created with an
-    * `invited` status until they successfully authenticate. Sending invites to `pending` Members will update
-    * their status to `invited`. Sending invites to already `active` Members will return an error.
-    * 
-    * The magic link invite will be valid for 1 week.
-    * 
-    * ## Revoke an invite
-    * 
-    * To revoke an existing invite, use the [Delete Member](https://stytch.com/docs/b2b/api/delete-member)
-    * endpoint. This will both delete the invited Member from the target Organization and revoke all existing
-    * invite emails.
+    /**
+        * Send an invite email to a new Member to join an Organization. The Member will be created with an
+        * `invited` status until they successfully authenticate. Sending invites to `pending` Members will update
+        * their status to `invited`. Sending invites to already `active` Members will return an error.
+        *
+        * The magic link invite will be valid for 1 week.
+        *
+        * ## Revoke an invite
+        *
+        * To revoke an existing invite, use the [Delete Member](https://stytch.com/docs/b2b/api/delete-member)
+        * endpoint. This will both delete the invited Member from the target Organization and revoke all existing
+        * invite emails.
 
-     * @param \Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request
-     * @return \Stytch\B2B\Models\MagicLinks\Email\InviteResponse
-     */
+         * @param \Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\Email\InviteResponse
+         */
     public function invite(
         \Stytch\B2B\Models\MagicLinks\Email\InviteRequest|array $request,
         \Stytch\B2B\Models\MagicLinks\Email\InviteRequestOptions|array $options = [],
@@ -91,11 +91,11 @@ class MagicLinksEmail
     * Send an invite email to a new Member to join an Organization. The Member will be created with an
     * `invited` status until they successfully authenticate. Sending invites to `pending` Members will update
     * their status to `invited`. Sending invites to already `active` Members will return an error.
-    * 
+    *
     * The magic link invite will be valid for 1 week.
-    * 
+    *
     * ## Revoke an invite
-    * 
+    *
     * To revoke an existing invite, use the [Delete Member](https://stytch.com/docs/b2b/api/delete-member)
     * endpoint. This will both delete the invited Member from the target Organization and revoke all existing
     * invite emails.

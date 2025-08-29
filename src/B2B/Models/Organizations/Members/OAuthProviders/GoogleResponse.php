@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations\Members\OAuthProviders;
 
-
 final class GoogleResponse
 {
     /**

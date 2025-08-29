@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class ConnectedAppsResponse
 {
     /**
@@ -39,7 +38,7 @@ final class ConnectedAppsResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['connected_apps']) ? array_map(fn($item) => OrganizationConnectedApp::fromArray($item), $data['connected_apps']) : [],
+            isset($data['connected_apps']) ? array_map(fn ($item) => OrganizationConnectedApp::fromArray($item), $data['connected_apps']) : [],
             $data['status_code']
         );
     }

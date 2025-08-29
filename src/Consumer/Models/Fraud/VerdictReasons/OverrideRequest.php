@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Fraud\VerdictReasons;
 
-
 final class OverrideRequest
 {
     /**

@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Fraud\Rules;
 
-
 final class ListRequest
 {
     /**

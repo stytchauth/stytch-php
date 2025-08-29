@@ -21,13 +21,13 @@ class Users
 
     }
 
-/**
-    * Add a User to Stytch. A `user_id` is returned in the response that can then be used to perform other
-    * operations within Stytch. An `email` or a `phone_number` is required.
+    /**
+        * Add a User to Stytch. A `user_id` is returned in the response that can then be used to perform other
+        * operations within Stytch. An `email` or a `phone_number` is required.
 
-     * @param \Stytch\Consumer\Models\Users\CreateRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\CreateResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\CreateRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\CreateResponse
+         */
     public function create(
         \Stytch\Consumer\Models\Users\CreateRequest|array $request,
     ): \Stytch\Consumer\Models\Users\CreateResponse {
@@ -53,12 +53,12 @@ class Users
         });
     }
 
-/**
-    * Get information about a specific User.
+    /**
+        * Get information about a specific User.
 
-     * @param \Stytch\Consumer\Models\Users\GetRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\GetResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\GetRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\GetResponse
+         */
     public function get(
         \Stytch\Consumer\Models\Users\GetRequest|array $request,
     ): \Stytch\Consumer\Models\Users\GetResponse {
@@ -83,26 +83,26 @@ class Users
         });
     }
 
-/**
-    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
-    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
-    * limits are set to 150 requests/second.
-    * 
-    * Search for Users within your Stytch Project.
-    * 
-    * Use the `query` object to filter by different fields. See the `query.operands.filter_value`
-    * documentation below for a list of available filters.
-    * 
-    * ### Export all User data
-    * 
-    * Submit an empty `query` in your Search Users request to return all of your Stytch Project's Users.
-    * 
-    * [This Github repository](https://github.com/stytchauth/stytch-node-export-users) contains a utility that
-    * leverages the Search Users endpoint to export all of your User data to a CSV or JSON file.
+    /**
+        * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+        * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+        * limits are set to 150 requests/second.
+        *
+        * Search for Users within your Stytch Project.
+        *
+        * Use the `query` object to filter by different fields. See the `query.operands.filter_value`
+        * documentation below for a list of available filters.
+        *
+        * ### Export all User data
+        *
+        * Submit an empty `query` in your Search Users request to return all of your Stytch Project's Users.
+        *
+        * [This Github repository](https://github.com/stytchauth/stytch-node-export-users) contains a utility that
+        * leverages the Search Users endpoint to export all of your User data to a CSV or JSON file.
 
-     * @param \Stytch\Consumer\Models\Users\SearchRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\SearchResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\SearchRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\SearchResponse
+         */
     public function search(
         \Stytch\Consumer\Models\Users\SearchRequest|array $request,
     ): \Stytch\Consumer\Models\Users\SearchResponse {
@@ -115,16 +115,16 @@ class Users
     * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
     * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
     * limits are set to 150 requests/second.
-    * 
+    *
     * Search for Users within your Stytch Project.
-    * 
+    *
     * Use the `query` object to filter by different fields. See the `query.operands.filter_value`
     * documentation below for a list of available filters.
-    * 
+    *
     * ### Export all User data
-    * 
+    *
     * Submit an empty `query` in your Search Users request to return all of your Stytch Project's Users.
-    * 
+    *
     * [This Github repository](https://github.com/stytchauth/stytch-node-export-users) contains a utility that
     * leverages the Search Users endpoint to export all of your User data to a CSV or JSON file.
 
@@ -141,21 +141,21 @@ class Users
         });
     }
 
-/**
-    * Update a User's attributes.
-    * 
-    * **Note:** In order to add a new email address or phone number to an existing User object, pass the new
-    * email address or phone number into the respective `/send` endpoint for the authentication method of your
-    * choice. If you specify the existing User's `user_id` while calling the `/send` endpoint, the new,
-    * unverified email address or phone number will be added to the existing User object. If the user
-    * successfully authenticates within 5 minutes of the `/send` request, the new email address or phone
-    * number will be marked as verified and remain permanently on the existing Stytch User. Otherwise, it will
-    * be removed from the User object, and any subsequent login requests using that phone number will create a
-    * new User. We require this process to guard against an account takeover vulnerability.
+    /**
+        * Update a User's attributes.
+        *
+        * **Note:** In order to add a new email address or phone number to an existing User object, pass the new
+        * email address or phone number into the respective `/send` endpoint for the authentication method of your
+        * choice. If you specify the existing User's `user_id` while calling the `/send` endpoint, the new,
+        * unverified email address or phone number will be added to the existing User object. If the user
+        * successfully authenticates within 5 minutes of the `/send` request, the new email address or phone
+        * number will be marked as verified and remain permanently on the existing Stytch User. Otherwise, it will
+        * be removed from the User object, and any subsequent login requests using that phone number will create a
+        * new User. We require this process to guard against an account takeover vulnerability.
 
-     * @param \Stytch\Consumer\Models\Users\UpdateRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\UpdateResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\UpdateRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\UpdateResponse
+         */
     public function update(
         \Stytch\Consumer\Models\Users\UpdateRequest|array $request,
     ): \Stytch\Consumer\Models\Users\UpdateResponse {
@@ -166,7 +166,7 @@ class Users
 
     /**
     * Update a User's attributes.
-    * 
+    *
     * **Note:** In order to add a new email address or phone number to an existing User object, pass the new
     * email address or phone number into the respective `/send` endpoint for the authentication method of your
     * choice. If you specify the existing User's `user_id` while calling the `/send` endpoint, the new,
@@ -189,19 +189,19 @@ class Users
         });
     }
 
-/**
-    * Exchange a user's email address or phone number for another.
-    * 
-    * Must pass either an `email_address` or a `phone_number`.
-    * 
-    * This endpoint only works if the user has exactly one factor. You are able to exchange the type of factor
-    * for another as well, i.e. exchange an `email_address` for a `phone_number`.
-    * 
-    * Use this endpoint with caution as it performs an admin level action.
+    /**
+        * Exchange a user's email address or phone number for another.
+        *
+        * Must pass either an `email_address` or a `phone_number`.
+        *
+        * This endpoint only works if the user has exactly one factor. You are able to exchange the type of factor
+        * for another as well, i.e. exchange an `email_address` for a `phone_number`.
+        *
+        * Use this endpoint with caution as it performs an admin level action.
 
-     * @param \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse
+         */
     public function exchangePrimaryFactor(
         \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request,
     ): \Stytch\Consumer\Models\Users\ExchangePrimaryFactorResponse {
@@ -212,12 +212,12 @@ class Users
 
     /**
     * Exchange a user's email address or phone number for another.
-    * 
+    *
     * Must pass either an `email_address` or a `phone_number`.
-    * 
+    *
     * This endpoint only works if the user has exactly one factor. You are able to exchange the type of factor
     * for another as well, i.e. exchange an `email_address` for a `phone_number`.
-    * 
+    *
     * Use this endpoint with caution as it performs an admin level action.
 
      * @param \Stytch\Consumer\Models\Users\ExchangePrimaryFactorRequest|array $request
@@ -233,12 +233,12 @@ class Users
         });
     }
 
-/**
-    * Delete a User from Stytch.
+    /**
+        * Delete a User from Stytch.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteResponse
+         */
     public function delete(
         \Stytch\Consumer\Models\Users\DeleteRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteResponse {
@@ -263,12 +263,12 @@ class Users
         });
     }
 
-/**
-    * Delete an email from a User.
+    /**
+        * Delete an email from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteEmailResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteEmailResponse
+         */
     public function deleteEmail(
         \Stytch\Consumer\Models\Users\DeleteEmailRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteEmailResponse {
@@ -293,12 +293,12 @@ class Users
         });
     }
 
-/**
-    * Delete a phone number from a User.
+    /**
+        * Delete a phone number from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse
+         */
     public function deletePhoneNumber(
         \Stytch\Consumer\Models\Users\DeletePhoneNumberRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeletePhoneNumberResponse {
@@ -323,12 +323,12 @@ class Users
         });
     }
 
-/**
-    * Delete a WebAuthn registration from a User.
+    /**
+        * Delete a WebAuthn registration from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse
+         */
     public function deleteWebAuthnRegistration(
         \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteWebAuthnRegistrationResponse {
@@ -353,12 +353,12 @@ class Users
         });
     }
 
-/**
-    * Delete a biometric registration from a User.
+    /**
+        * Delete a biometric registration from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse
+         */
     public function deleteBiometricRegistration(
         \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteBiometricRegistrationResponse {
@@ -383,12 +383,12 @@ class Users
         });
     }
 
-/**
-    * Delete a TOTP from a User.
+    /**
+        * Delete a TOTP from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteTOTPResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteTOTPResponse
+         */
     public function deleteTOTP(
         \Stytch\Consumer\Models\Users\DeleteTOTPRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteTOTPResponse {
@@ -413,12 +413,12 @@ class Users
         });
     }
 
-/**
-    * Delete a crypto wallet from a User.
+    /**
+        * Delete a crypto wallet from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse
+         */
     public function deleteCryptoWallet(
         \Stytch\Consumer\Models\Users\DeleteCryptoWalletRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteCryptoWalletResponse {
@@ -443,12 +443,12 @@ class Users
         });
     }
 
-/**
-    * Delete a password from a User.
+    /**
+        * Delete a password from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeletePasswordResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeletePasswordResponse
+         */
     public function deletePassword(
         \Stytch\Consumer\Models\Users\DeletePasswordRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeletePasswordResponse {
@@ -473,12 +473,12 @@ class Users
         });
     }
 
-/**
-    * Delete an OAuth registration from a User.
+    /**
+        * Delete an OAuth registration from a User.
 
-     * @param \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse
+         */
     public function deleteOAuthRegistration(
         \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationRequest|array $request,
     ): \Stytch\Consumer\Models\Users\DeleteOAuthRegistrationResponse {
@@ -503,17 +503,17 @@ class Users
         });
     }
 
-/**
-    * User Get Connected Apps retrieves a list of Connected Apps with which the User has successfully
-    * completed an
-    * authorization flow.
-    * If the User revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
-    * Connected App will
-    * no longer be returned in the response.
+    /**
+        * User Get Connected Apps retrieves a list of Connected Apps with which the User has successfully
+        * completed an
+        * authorization flow.
+        * If the User revokes a Connected App's access (e.g. via the Revoke Connected App endpoint) then the
+        * Connected App will
+        * no longer be returned in the response.
 
-     * @param \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\ConnectedAppsResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\ConnectedAppsResponse
+         */
     public function connectedApps(
         \Stytch\Consumer\Models\Users\ConnectedAppsRequest|array $request,
     ): \Stytch\Consumer\Models\Users\ConnectedAppsResponse {
@@ -543,16 +543,16 @@ class Users
         });
     }
 
-/**
-    * Revoke Connected App revokes a Connected App's access to a User and revokes all active tokens that have
-    * been created
-    * on the User's behalf. New tokens cannot be created until the User completes a new authorization flow
-    * with the
-    * Connected App.
+    /**
+        * Revoke Connected App revokes a Connected App's access to a User and revokes all active tokens that have
+        * been created
+        * on the User's behalf. New tokens cannot be created until the User completes a new authorization flow
+        * with the
+        * Connected App.
 
-     * @param \Stytch\Consumer\Models\Users\RevokeRequest|array $request
-     * @return \Stytch\Consumer\Models\Users\RevokeResponse
-     */
+         * @param \Stytch\Consumer\Models\Users\RevokeRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\RevokeResponse
+         */
     public function revoke(
         \Stytch\Consumer\Models\Users\RevokeRequest|array $request,
     ): \Stytch\Consumer\Models\Users\RevokeResponse {

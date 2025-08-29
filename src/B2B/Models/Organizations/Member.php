@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class Member
 {
     /**
@@ -66,7 +65,7 @@ final class Member
     *   - A new email address is surfaced by an OAuth, SAML or OIDC provider. In this case the new email
     * address becomes the
     *   Member's primary email address and the old primary email address is retired.
-    *  
+    *
     *   A retired email address cannot be used by other Members in the same Organization. However, unlinking
     * retired email
     *   addresses allows them to be subsequently re-used by other Organization Members. Retired email
@@ -195,20 +194,20 @@ final class Member
             $data['email_address'],
             $data['status'],
             $data['name'],
-            isset($data['sso_registrations']) ? array_map(fn($item) => SSORegistration::fromArray($item), $data['sso_registrations']) : [],
+            isset($data['sso_registrations']) ? array_map(fn ($item) => SSORegistration::fromArray($item), $data['sso_registrations']) : [],
             $data['is_breakglass'],
             $data['member_password_id'],
-            isset($data['oauth_registrations']) ? array_map(fn($item) => OAuthRegistration::fromArray($item), $data['oauth_registrations']) : [],
+            isset($data['oauth_registrations']) ? array_map(fn ($item) => OAuthRegistration::fromArray($item), $data['oauth_registrations']) : [],
             $data['email_address_verified'],
             $data['mfa_phone_number_verified'],
             $data['is_admin'],
             $data['totp_registration_id'],
-            isset($data['retired_email_addresses']) ? array_map(fn($item) => RetiredEmail::fromArray($item), $data['retired_email_addresses']) : [],
+            isset($data['retired_email_addresses']) ? array_map(fn ($item) => RetiredEmail::fromArray($item), $data['retired_email_addresses']) : [],
             $data['is_locked'],
             $data['mfa_enrolled'],
             $data['mfa_phone_number'],
             $data['default_mfa_method'],
-            isset($data['roles']) ? array_map(fn($item) => MemberRole::fromArray($item), $data['roles']) : [],
+            isset($data['roles']) ? array_map(fn ($item) => MemberRole::fromArray($item), $data['roles']) : [],
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
             $data['created_at'] ?? null,

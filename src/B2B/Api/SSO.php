@@ -27,12 +27,12 @@ class SSO
         $this->external = new SSOExternal($this->client);
     }
 
-/**
-    * Get all SSO Connections owned by the organization.
+    /**
+        * Get all SSO Connections owned by the organization.
 
-     * @param \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request
-     * @return \Stytch\B2B\Models\SSO\GetConnectionsResponse
-     */
+         * @param \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\GetConnectionsResponse
+         */
     public function getConnections(
         \Stytch\B2B\Models\SSO\GetConnectionsRequest|array $request,
         \Stytch\B2B\Models\SSO\GetConnectionsRequestOptions|array $options = [],
@@ -61,12 +61,12 @@ class SSO
         });
     }
 
-/**
-    * Delete an existing SSO connection.
+    /**
+        * Delete an existing SSO connection.
 
-     * @param \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request
-     * @return \Stytch\B2B\Models\SSO\DeleteConnectionResponse
-     */
+         * @param \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\DeleteConnectionResponse
+         */
     public function deleteConnection(
         \Stytch\B2B\Models\SSO\DeleteConnectionRequest|array $request,
         \Stytch\B2B\Models\SSO\DeleteConnectionRequestOptions|array $options = [],
@@ -95,31 +95,31 @@ class SSO
         });
     }
 
-/**
-    * Authenticate a user given a token. 
-    * This endpoint verifies that the user completed the SSO Authentication flow by verifying that the token
-    * is valid and hasn't expired.
-    * Provide the `session_duration_minutes` parameter to set the lifetime of the session. 
-    * If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60
-    * minute duration.
-    * To link this authentication event to an existing Stytch session, include either the `session_token` or
-    * `session_jwt` param.
-    * 
-    * If the Member is required to complete MFA to log in to the Organization, the returned value of
-    * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
-    * The `intermediate_session_token` can be passed into the
-    * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms),
-    * [TOTP Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-totp),
-    * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
-    * the MFA step and acquire a full member session.
-    * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
-    * 
-    * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
-    * MFA step.
+    /**
+        * Authenticate a user given a token.
+        * This endpoint verifies that the user completed the SSO Authentication flow by verifying that the token
+        * is valid and hasn't expired.
+        * Provide the `session_duration_minutes` parameter to set the lifetime of the session.
+        * If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60
+        * minute duration.
+        * To link this authentication event to an existing Stytch session, include either the `session_token` or
+        * `session_jwt` param.
+        *
+        * If the Member is required to complete MFA to log in to the Organization, the returned value of
+        * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
+        * The `intermediate_session_token` can be passed into the
+        * [OTP SMS Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-otp-sms),
+        * [TOTP Authenticate endpoint](https://stytch.com/docs/b2b/api/authenticate-totp),
+        * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
+        * the MFA step and acquire a full member session.
+        * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
+        *
+        * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
+        * MFA step.
 
-     * @param \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request
-     * @return \Stytch\B2B\Models\SSO\AuthenticateResponse
-     */
+         * @param \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\AuthenticateResponse
+         */
     public function authenticate(
         \Stytch\B2B\Models\SSO\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\SSO\AuthenticateResponse {
@@ -129,15 +129,15 @@ class SSO
     }
 
     /**
-    * Authenticate a user given a token. 
+    * Authenticate a user given a token.
     * This endpoint verifies that the user completed the SSO Authentication flow by verifying that the token
     * is valid and hasn't expired.
-    * Provide the `session_duration_minutes` parameter to set the lifetime of the session. 
+    * Provide the `session_duration_minutes` parameter to set the lifetime of the session.
     * If the `session_duration_minutes` parameter is not specified, a Stytch session will be created with a 60
     * minute duration.
     * To link this authentication event to an existing Stytch session, include either the `session_token` or
     * `session_jwt` param.
-    * 
+    *
     * If the Member is required to complete MFA to log in to the Organization, the returned value of
     * `member_authenticated` will be `false`, and an `intermediate_session_token` will be returned.
     * The `intermediate_session_token` can be passed into the
@@ -146,7 +146,7 @@ class SSO
     * or [Recovery Codes Recover endpoint](https://stytch.com/docs/b2b/api/recovery-codes-recover) to complete
     * the MFA step and acquire a full member session.
     * The `session_duration_minutes` and `session_custom_claims` parameters will be ignored.
-    * 
+    *
     * If a valid `session_token` or `session_jwt` is passed in, the Member will not be required to complete an
     * MFA step.
 

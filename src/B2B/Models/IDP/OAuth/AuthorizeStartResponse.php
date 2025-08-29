@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\IDP\OAuth;
 
-
 final class AuthorizeStartResponse
 {
     /**
@@ -64,7 +63,7 @@ final class AuthorizeStartResponse
             \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             \Stytch\Consumer\Models\ConnectedApp\ConnectedAppPublic::fromArray($data['client']),
             $data['consent_required'],
-            isset($data['scope_results']) ? array_map(fn($item) => \Stytch\B2B\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
+            isset($data['scope_results']) ? array_map(fn ($item) => \Stytch\B2B\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
             $data['status_code']
         );
     }

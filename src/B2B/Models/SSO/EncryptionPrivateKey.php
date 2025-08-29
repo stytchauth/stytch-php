@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-
 final class EncryptionPrivateKey
 {
     public string $privateKeyId;

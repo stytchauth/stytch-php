@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class DeleteCryptoWalletRequest
 {
     /** The `crypto_wallet_id` to be deleted. */

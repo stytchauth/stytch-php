@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class YahooOAuthFactor
 {
     public string $id;

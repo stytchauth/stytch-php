@@ -8,12 +8,11 @@
 
 namespace Stytch\Consumer\Models\RBAC;
 
-
 final class PolicyRole
 {
     /**
     * The unique identifier of the RBAC Role, provided by the developer and intended to be human-readable.
-    * 
+    *
     *   The `stytch_user` `role_id` is predefined by Stytch.
     *   Check out the [RBAC guide](https://stytch.com/docs/guides/rbac/overview) for a more detailed
     * explanation.
@@ -48,7 +47,7 @@ final class PolicyRole
         return new static(
             $data['role_id'],
             $data['description'],
-            isset($data['permissions']) ? array_map(fn($item) => PolicyRolePermission::fromArray($item), $data['permissions']) : []
+            isset($data['permissions']) ? array_map(fn ($item) => PolicyRolePermission::fromArray($item), $data['permissions']) : []
         );
     }
 

@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class DeleteWebAuthnRegistrationRequest
 {
     /** The `webauthn_registration_id` to be deleted. */

@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class ActiveSCIMConnection
 {
     /** The ID of the SCIM connection. */

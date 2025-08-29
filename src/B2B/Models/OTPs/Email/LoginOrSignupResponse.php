@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\OTPs\Email;
 
-
 final class LoginOrSignupResponse
 {
     /**

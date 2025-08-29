@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class PhoneNumber
 {
     /** The unique ID for the phone number. */

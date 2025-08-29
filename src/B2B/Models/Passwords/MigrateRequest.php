@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
-
 final class MigrateRequest
 {
     /** The email address of the Member. */
@@ -55,7 +54,7 @@ final class MigrateRequest
     *  Will completely replace any existing explicitly assigned roles. See the
     *  [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
     * assignment.
-    * 
+    *
     *    If a Role is removed from a Member, and the Member is also implicitly assigned this Role from an SSO
     * connection
     *    or an SSO group, we will by default revoke any existing sessions for the Member that contain any SSO

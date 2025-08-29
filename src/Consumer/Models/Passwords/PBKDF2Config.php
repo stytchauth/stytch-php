@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-
 final class PBKDF2Config
 {
     /** The salt value, which should be in a base64 encoded string form. */

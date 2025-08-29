@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class User
 {
     /** The unique ID of the affected User. */
@@ -108,14 +107,14 @@ final class User
     {
         return new static(
             $data['user_id'],
-            isset($data['emails']) ? array_map(fn($item) => Email::fromArray($item), $data['emails']) : [],
+            isset($data['emails']) ? array_map(fn ($item) => Email::fromArray($item), $data['emails']) : [],
             $data['status'],
-            isset($data['phone_numbers']) ? array_map(fn($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
-            isset($data['webauthn_registrations']) ? array_map(fn($item) => WebAuthnRegistration::fromArray($item), $data['webauthn_registrations']) : [],
-            isset($data['providers']) ? array_map(fn($item) => OAuthProvider::fromArray($item), $data['providers']) : [],
-            isset($data['totps']) ? array_map(fn($item) => TOTP::fromArray($item), $data['totps']) : [],
-            isset($data['crypto_wallets']) ? array_map(fn($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
-            isset($data['biometric_registrations']) ? array_map(fn($item) => BiometricRegistration::fromArray($item), $data['biometric_registrations']) : [],
+            isset($data['phone_numbers']) ? array_map(fn ($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
+            isset($data['webauthn_registrations']) ? array_map(fn ($item) => WebAuthnRegistration::fromArray($item), $data['webauthn_registrations']) : [],
+            isset($data['providers']) ? array_map(fn ($item) => OAuthProvider::fromArray($item), $data['providers']) : [],
+            isset($data['totps']) ? array_map(fn ($item) => TOTP::fromArray($item), $data['totps']) : [],
+            isset($data['crypto_wallets']) ? array_map(fn ($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
+            isset($data['biometric_registrations']) ? array_map(fn ($item) => BiometricRegistration::fromArray($item), $data['biometric_registrations']) : [],
             $data['is_locked'],
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['created_at'] ?? null,

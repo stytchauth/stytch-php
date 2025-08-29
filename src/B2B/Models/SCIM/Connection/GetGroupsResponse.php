@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-
 final class GetGroupsResponse
 {
     /** A list of SCIM Connection Groups belonging to the connection. */
@@ -39,7 +38,7 @@ final class GetGroupsResponse
     public static function fromArray(array $data): static
     {
         return new static(
-            isset($data['scim_groups']) ? array_map(fn($item) => \Stytch\B2B\Models\SCIM\SCIMGroup::fromArray($item), $data['scim_groups']) : [],
+            isset($data['scim_groups']) ? array_map(fn ($item) => \Stytch\B2B\Models\SCIM\SCIMGroup::fromArray($item), $data['scim_groups']) : [],
             $data['status_code'],
             $data['next_cursor'] ?? null
         );

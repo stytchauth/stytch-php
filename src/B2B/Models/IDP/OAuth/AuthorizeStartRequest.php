@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\IDP\OAuth;
 
-
 final class AuthorizeStartRequest
 {
     /** The ID of the Connected App client. */

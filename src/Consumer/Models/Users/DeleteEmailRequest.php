@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class DeleteEmailRequest
 {
     /** The `email_id` to be deleted. */

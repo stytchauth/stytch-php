@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Fraud\Fingerprint;
 
-
 final class LookupRequest
 {
     /** The telemetry ID associated with the fingerprint getting looked up. */

@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\OAuth;
 
-
 final class AuthenticateResponse
 {
     /**
@@ -74,7 +73,7 @@ final class AuthenticateResponse
     * The `provider_values` object lists relevant identifiers, values, and scopes for a given OAuth provider.
     * For example this object will include a provider's `access_token` that you can use to access the
     * provider's API for a given user.
-    * 
+    *
     *   Note that these values will vary based on the OAuth provider in question, e.g. `id_token` is only
     * returned by Microsoft. Google One Tap does not return access tokens or refresh tokens.
      */

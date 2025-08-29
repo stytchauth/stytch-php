@@ -8,14 +8,13 @@
 
 namespace Stytch\Consumer\Models\Passwords\Email;
 
-
 final class ResetRequest
 {
     /**
     * The Passwords `token` from the `?token=` query parameter in the URL.
-    * 
+    *
     *       In the redirect URL, the `stytch_token_type` will be `login` or `reset_password`.
-    * 
+    *
     *       See examples and read more about redirect URLs
     * [here](https://stytch.com/docs/workspace-management/redirect-urls).
      */
@@ -33,12 +32,12 @@ final class ResetRequest
     *   returning both an opaque `session_token` and `session_jwt` for this session. Remember that the
     * `session_jwt` will have a fixed lifetime of
     *   five minutes regardless of the underlying session duration, and will need to be refreshed over time.
-    * 
+    *
     *   This value must be a minimum of 5 and a maximum of 527040 minutes (366 days).
-    * 
+    *
     *   If a `session_token` or `session_jwt` is provided then a successful authentication will continue to
     * extend the session this many minutes.
-    * 
+    *
     *   If the `session_duration_minutes` parameter is not specified, a Stytch session will not be created.
      */
     public ?int $sessionDurationMinutes = null;
@@ -51,7 +50,7 @@ final class ResetRequest
     * initialized by providing a value in `session_duration_minutes`. Claims will be included on the Session
     * object and in the JWT. To update a key in an existing Session, supply a new value. To delete a key,
     * supply a null value.
-    * 
+    *
     *   Custom claims made with reserved claims ("iss", "sub", "aud", "exp", "nbf", "iat", "jti") will be
     * ignored. Total custom claims size cannot exceed four kilobytes.
      */

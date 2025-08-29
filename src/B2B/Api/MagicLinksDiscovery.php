@@ -21,13 +21,13 @@ class MagicLinksDiscovery
 
     }
 
-/**
-    * Authenticates the Discovery Magic Link token and exchanges it for an Intermediate Session Token.
-    * Intermediate Session Tokens can be used for various Discovery login flows and are valid for 10 minutes.
+    /**
+        * Authenticates the Discovery Magic Link token and exchanges it for an Intermediate Session Token.
+        * Intermediate Session Tokens can be used for various Discovery login flows and are valid for 10 minutes.
 
-     * @param \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateRequest|array $request
-     * @return \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateResponse
-     */
+         * @param \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateResponse
+         */
     public function authenticate(
         \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateRequest|array $request,
     ): \Stytch\B2B\Models\MagicLinks\Discovery\AuthenticateResponse {

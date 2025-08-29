@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Passwords\Sessions;
 
-
 final class ResetResponse
 {
     /**

@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class Organization
 {
     /**
@@ -31,13 +30,13 @@ final class Organization
     /**
     * The authentication setting that controls the JIT provisioning of Members when authenticating via SSO.
     * The accepted values are:
-    *  
+    *
     *   `ALL_ALLOWED` – the default setting, new Members will be automatically provisioned upon successful
     * authentication via any of the Organization's `sso_active_connections`.
-    *  
+    *
     *   `RESTRICTED` – only new Members with SSO logins that comply with
     * `sso_jit_provisioning_allowed_connections` can be provisioned upon authentication.
-    *  
+    *
     *   `NOT_ALLOWED` – disable JIT provisioning via SSO.
      */
     public string $ssoJITProvisioning;
@@ -56,8 +55,8 @@ final class Organization
     /**
     * An array of email domains that allow invites or JIT provisioning for new Members. This list is enforced
     * when either `email_invites` or `email_jit_provisioning` is set to `RESTRICTED`.
-    *    
-    *    
+    *
+    *
     *     Common domains such as `gmail.com` are not allowed. See the
     * [common email domains resource](https://stytch.com/docs/b2b/api/common-email-domains) for the full list.
      */
@@ -65,31 +64,31 @@ final class Organization
     /**
     * The authentication setting that controls how a new Member can be provisioned by authenticating via Email
     * Magic Link or OAuth. The accepted values are:
-    *  
+    *
     *   `RESTRICTED` – only new Members with verified emails that comply with `email_allowed_domains` can be
     * provisioned upon authentication via Email Magic Link or OAuth.
-    *  
+    *
     *   `NOT_ALLOWED` – the default setting, disables JIT provisioning via Email Magic Link and OAuth.
      */
     public string $emailJITProvisioning;
     /**
     * The authentication setting that controls how a new Member can be invited to an organization by email.
     * The accepted values are:
-    *  
+    *
     *   `ALL_ALLOWED` – any new Member can be invited to join via email.
-    *  
+    *
     *   `RESTRICTED` – only new Members with verified emails that comply with `email_allowed_domains` can be
     * invited via email.
-    *  
+    *
     *   `NOT_ALLOWED` – disable email invites.
      */
     public string $emailInvites;
     /**
     * The setting that controls which authentication methods can be used by Members of an Organization. The
     * accepted values are:
-    *  
+    *
     *   `ALL_ALLOWED` – the default setting which allows all authentication methods to be used.
-    *  
+    *
     *   `RESTRICTED` – only methods that comply with `allowed_auth_methods` can be used for authentication.
     * This setting does not apply to Members with `is_breakglass` set to `true`.
      */
@@ -114,9 +113,9 @@ final class Organization
     /**
     * The setting that controls which MFA methods can be used by Members of an Organization. The accepted
     * values are:
-    *  
+    *
     *   `ALL_ALLOWED` – the default setting which allows all authentication methods to be used.
-    *  
+    *
     *   `RESTRICTED` – only methods that comply with `allowed_mfa_methods` can be used for authentication.
     * This setting does not apply to Members with `is_breakglass` set to `true`.
      */
@@ -130,9 +129,9 @@ final class Organization
     /**
     * The authentication setting that controls how a new Member can JIT provision into an organization by
     * tenant. The accepted values are:
-    *  
+    *
     *   `RESTRICTED` – only new Members with tenants in `allowed_oauth_tenants` can JIT provision via tenant.
-    *  
+    *
     *   `NOT_ALLOWED` – the default setting, disables JIT provisioning by OAuth Tenant.
      */
     public string $oauthTenantJITProvisioning;
@@ -140,13 +139,13 @@ final class Organization
     /**
     * The authentication setting that sets the Organization's policy towards first party Connected Apps. The
     * accepted values are:
-    *  
+    *
     *   `ALL_ALLOWED` – the default setting, any first party Connected App in the Project is permitted for use
     * by Members.
-    *  
+    *
     *   `RESTRICTED` – only first party Connected Apps with IDs in `allowed_first_party_connected_apps` can be
     * used by Members.
-    *  
+    *
     *   `NOT_ALLOWED` – no first party Connected Apps are permitted.
      */
     public string $firstPartyConnectedAppsAllowedType;
@@ -158,13 +157,13 @@ final class Organization
     /**
     * The authentication setting that sets the Organization's policy towards third party Connected Apps. The
     * accepted values are:
-    *  
+    *
     *   `ALL_ALLOWED` – the default setting, any third party Connected App in the Project is permitted for use
     * by Members.
-    *  
+    *
     *   `RESTRICTED` – only third party Connected Apps with IDs in `allowed_first_party_connected_apps` can be
     * used by Members.
-    *  
+    *
     *   `NOT_ALLOWED` – no third party Connected Apps are permitted.
      */
     public string $thirdPartyConnectedAppsAllowedType;
@@ -274,14 +273,14 @@ final class Organization
             $data['organization_slug'],
             $data['sso_jit_provisioning'],
             $data['sso_jit_provisioning_allowed_connections'],
-            isset($data['sso_active_connections']) ? array_map(fn($item) => ActiveSSOConnection::fromArray($item), $data['sso_active_connections']) : [],
+            isset($data['sso_active_connections']) ? array_map(fn ($item) => ActiveSSOConnection::fromArray($item), $data['sso_active_connections']) : [],
             $data['email_allowed_domains'],
             $data['email_jit_provisioning'],
             $data['email_invites'],
             $data['auth_methods'],
             $data['allowed_auth_methods'],
             $data['mfa_policy'],
-            isset($data['rbac_email_implicit_role_assignments']) ? array_map(fn($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : [],
+            isset($data['rbac_email_implicit_role_assignments']) ? array_map(fn ($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : [],
             $data['mfa_methods'],
             $data['allowed_mfa_methods'],
             $data['oauth_tenant_jit_provisioning'],

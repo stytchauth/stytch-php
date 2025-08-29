@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Passwords\Email;
 
-
 final class RequireResetRequest
 {
     /** The email address of the Member to start the email reset process for. */

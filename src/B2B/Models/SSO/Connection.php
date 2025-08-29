@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-
 final class Connection
 {
     public string $organizationId;
@@ -55,8 +54,8 @@ final class Connection
             $data['external_connection_id'],
             $data['display_name'],
             $data['status'],
-            isset($data['external_connection_implicit_role_assignments']) ? array_map(fn($item) => ConnectionImplicitRoleAssignment::fromArray($item), $data['external_connection_implicit_role_assignments']) : [],
-            isset($data['external_group_implicit_role_assignments']) ? array_map(fn($item) => GroupImplicitRoleAssignment::fromArray($item), $data['external_group_implicit_role_assignments']) : []
+            isset($data['external_connection_implicit_role_assignments']) ? array_map(fn ($item) => ConnectionImplicitRoleAssignment::fromArray($item), $data['external_connection_implicit_role_assignments']) : [],
+            isset($data['external_group_implicit_role_assignments']) ? array_map(fn ($item) => GroupImplicitRoleAssignment::fromArray($item), $data['external_group_implicit_role_assignments']) : []
         );
     }
 

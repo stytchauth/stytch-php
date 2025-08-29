@@ -21,15 +21,15 @@ class PasswordsExistingPassword
 
     }
 
-/**
-    * Reset the User's password using their existing password.
-    * 
-    * Note that a successful password reset via an existing password will revoke all active sessions for the
-    * `user_id`.
+    /**
+        * Reset the User's password using their existing password.
+        *
+        * Note that a successful password reset via an existing password will revoke all active sessions for the
+        * `user_id`.
 
-     * @param \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request
-     * @return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse
-     */
+         * @param \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request
+         * @return \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse
+         */
     public function reset(
         \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetRequest|array $request,
     ): \Stytch\Consumer\Models\Passwords\ExistingPassword\ResetResponse {
@@ -40,7 +40,7 @@ class PasswordsExistingPassword
 
     /**
     * Reset the User's password using their existing password.
-    * 
+    *
     * Note that a successful password reset via an existing password will revoke all active sessions for the
     * `user_id`.
 

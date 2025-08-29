@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\OAuth;
 
-
 final class ProviderValues
 {
     /** The `access_token` that you may use to access the User's data in the provider's API. */

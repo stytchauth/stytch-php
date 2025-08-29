@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class SearchResponse
 {
     /**
@@ -51,7 +50,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['organizations']) ? array_map(fn($item) => Organization::fromArray($item), $data['organizations']) : [],
+            isset($data['organizations']) ? array_map(fn ($item) => Organization::fromArray($item), $data['organizations']) : [],
             ResultsMetadata::fromArray($data['results_metadata']),
             $data['status_code']
         );

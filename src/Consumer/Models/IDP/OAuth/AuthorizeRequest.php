@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\IDP\OAuth;
 
-
 final class AuthorizeRequest
 {
     /** Indicates whether the user granted the requested scopes. */

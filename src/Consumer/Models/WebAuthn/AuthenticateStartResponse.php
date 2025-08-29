@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-
 final class AuthenticateStartResponse
 {
     /**

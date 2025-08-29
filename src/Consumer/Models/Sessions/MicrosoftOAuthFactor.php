@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class MicrosoftOAuthFactor
 {
     /** The unique ID of an OAuth registration. */

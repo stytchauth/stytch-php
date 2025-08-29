@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SCIM;
 
-
 final class SCIMConnectionWithToken
 {
     public string $organizationId;
@@ -59,7 +58,7 @@ final class SCIMConnectionWithToken
             $data['identity_provider'],
             $data['base_url'],
             $data['bearer_token'],
-            isset($data['scim_group_implicit_role_assignments']) ? array_map(fn($item) => SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : [],
+            isset($data['scim_group_implicit_role_assignments']) ? array_map(fn ($item) => SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : [],
             $data['bearer_token_expires_at'] ?? null
         );
     }

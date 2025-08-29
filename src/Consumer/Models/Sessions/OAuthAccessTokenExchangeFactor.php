@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class OAuthAccessTokenExchangeFactor
 {
     /** The ID of the Connected App client. */

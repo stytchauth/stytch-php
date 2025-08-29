@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-
 final class OrganizationConnectedAppActiveMember
 {
     /** Globally unique UUID that identifies a specific Member. */

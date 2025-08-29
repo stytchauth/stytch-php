@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-
 final class GetJWKSResponse
 {
     /** The list of JWKs associated with the project. */
@@ -43,7 +42,7 @@ final class GetJWKSResponse
     public static function fromArray(array $data): static
     {
         return new static(
-            isset($data['keys']) ? array_map(fn($item) => \Stytch\Consumer\Models\Sessions\JWK::fromArray($item), $data['keys']) : [],
+            isset($data['keys']) ? array_map(fn ($item) => \Stytch\Consumer\Models\Sessions\JWK::fromArray($item), $data['keys']) : [],
             $data['request_id'],
             $data['status_code']
         );

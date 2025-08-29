@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-
 final class DangerouslyGetRequest
 {
     /**

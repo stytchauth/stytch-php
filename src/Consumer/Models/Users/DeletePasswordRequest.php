@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-
 final class DeletePasswordRequest
 {
     /** The `password_id` to be deleted. */

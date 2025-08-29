@@ -21,12 +21,12 @@ class MagicLinksEmailDiscovery
 
     }
 
-/**
-    * Send a discovery magic link to an email address. The magic link is valid for 60 minutes.
+    /**
+        * Send a discovery magic link to an email address. The magic link is valid for 60 minutes.
 
-     * @param \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request
-     * @return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
-     */
+         * @param \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request
+         * @return \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse
+         */
     public function send(
         \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendRequest|array $request,
     ): \Stytch\B2B\Models\MagicLinks\Email\Discovery\SendResponse {

@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\WebAuthn;
 
-
 final class ListCredentialsResponse
 {
     /** A list of WebAuthn credential objects. */
@@ -43,7 +42,7 @@ final class ListCredentialsResponse
     public static function fromArray(array $data): static
     {
         return new static(
-            isset($data['credentials']) ? array_map(fn($item) => WebAuthnCredential::fromArray($item), $data['credentials']) : [],
+            isset($data['credentials']) ? array_map(fn ($item) => WebAuthnCredential::fromArray($item), $data['credentials']) : [],
             $data['request_id'],
             $data['status_code']
         );

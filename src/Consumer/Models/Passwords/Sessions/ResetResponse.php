@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Passwords\Sessions;
 
-
 final class ResetResponse
 {
     /**
@@ -35,7 +34,7 @@ final class ResetResponse
     /**
     * If you initiate a Session, by including `session_duration_minutes` in your authenticate call, you'll
     * receive a full Session object in the response.
-    * 
+    *
     *   See [Session object](https://stytch.com/docs/api/session-object) for complete response fields.
      */
     public ?\Stytch\Consumer\Models\Sessions\Session $session = null;

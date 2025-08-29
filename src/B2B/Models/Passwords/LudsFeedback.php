@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Passwords;
 
-
 final class LudsFeedback
 {
     /** For LUDS validation, whether the password contains at least one lowercase letter. */

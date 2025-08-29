@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-
 final class SlackOAuthFactor
 {
     /** The unique ID of an OAuth registration. */

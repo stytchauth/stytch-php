@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Passwords\Discovery;
 
-
 final class AuthenticateRequest
 {
     /** The email address of the Member. */

@@ -8,7 +8,6 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-
 final class NetworkProperties
 {
     /** The IP address of the client. */

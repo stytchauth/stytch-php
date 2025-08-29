@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-
 final class UpdateRequest
 {
     /**
@@ -55,7 +54,7 @@ final class UpdateRequest
             $data['connection_id'],
             $data['display_name'] ?? null,
             $data['identity_provider'] ?? null,
-            isset($data['scim_group_implicit_role_assignments']) && $data['scim_group_implicit_role_assignments'] !== null ? array_map(fn($item) => \Stytch\B2B\Models\SCIM\SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : null
+            isset($data['scim_group_implicit_role_assignments']) && $data['scim_group_implicit_role_assignments'] !== null ? array_map(fn ($item) => \Stytch\B2B\Models\SCIM\SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : null
         );
     }
 

@@ -21,45 +21,45 @@ class OTPsSms
 
     }
 
-/**
-    * Send a one-time passcode (OTP) to a user's phone number. If you'd like to create a user and send them a
-    * passcode with one request, use our
-    * [log in or create](https://stytch.com/docs/api/log-in-or-create-user-by-sms) endpoint.
-    * 
-    * Note that sending another OTP code before the first has expired will invalidate the first code.
-    * 
-    * ### Cost to send SMS OTP
-    * Before configuring SMS or WhatsApp OTPs, please review how Stytch
-    * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
-    * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
-    * 
-    * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
-    * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
-    * countries to your Project's allowlist via the
-    * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
-    * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
-    * 
-    * Even when international SMS is enabled, we do not support sending SMS to countries on our
-    * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
-    * 
-    * ### Add a phone number to an existing user
-    * 
-    * This endpoint also allows you to add a new phone number to an existing Stytch User. Including a
-    * `user_id`, `session_token`, or `session_jwt` in your Send one-time passcode by SMS request will add the
-    * new, unverified phone number to the existing Stytch User. If the user successfully authenticates within
-    * 5 minutes, the new phone number will be marked as verified and remain permanently on the existing Stytch
-    * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
-    * phone number will create a new User.
-    * 
-    * ### Next steps
-    * 
-    * Collect the OTP which was delivered to the user. Call
-    * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
-    * `phone_id` found in the response as the `method_id`.
+    /**
+        * Send a one-time passcode (OTP) to a user's phone number. If you'd like to create a user and send them a
+        * passcode with one request, use our
+        * [log in or create](https://stytch.com/docs/api/log-in-or-create-user-by-sms) endpoint.
+        *
+        * Note that sending another OTP code before the first has expired will invalidate the first code.
+        *
+        * ### Cost to send SMS OTP
+        * Before configuring SMS or WhatsApp OTPs, please review how Stytch
+        * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
+        * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
+        *
+        * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
+        * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
+        * countries to your Project's allowlist via the
+        * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
+        * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
+        *
+        * Even when international SMS is enabled, we do not support sending SMS to countries on our
+        * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
+        *
+        * ### Add a phone number to an existing user
+        *
+        * This endpoint also allows you to add a new phone number to an existing Stytch User. Including a
+        * `user_id`, `session_token`, or `session_jwt` in your Send one-time passcode by SMS request will add the
+        * new, unverified phone number to the existing Stytch User. If the user successfully authenticates within
+        * 5 minutes, the new phone number will be marked as verified and remain permanently on the existing Stytch
+        * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
+        * phone number will create a new User.
+        *
+        * ### Next steps
+        *
+        * Collect the OTP which was delivered to the user. Call
+        * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
+        * `phone_id` found in the response as the `method_id`.
 
-     * @param \Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request
-     * @return \Stytch\Consumer\Models\OTPs\Sms\SendResponse
-     */
+         * @param \Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request
+         * @return \Stytch\Consumer\Models\OTPs\Sms\SendResponse
+         */
     public function send(
         \Stytch\Consumer\Models\OTPs\Sms\SendRequest|array $request,
     ): \Stytch\Consumer\Models\OTPs\Sms\SendResponse {
@@ -72,34 +72,34 @@ class OTPsSms
     * Send a one-time passcode (OTP) to a user's phone number. If you'd like to create a user and send them a
     * passcode with one request, use our
     * [log in or create](https://stytch.com/docs/api/log-in-or-create-user-by-sms) endpoint.
-    * 
+    *
     * Note that sending another OTP code before the first has expired will invalidate the first code.
-    * 
+    *
     * ### Cost to send SMS OTP
     * Before configuring SMS or WhatsApp OTPs, please review how Stytch
     * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
     * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
-    * 
+    *
     * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
     * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
     * countries to your Project's allowlist via the
     * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
     * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
-    * 
+    *
     * Even when international SMS is enabled, we do not support sending SMS to countries on our
     * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
-    * 
+    *
     * ### Add a phone number to an existing user
-    * 
+    *
     * This endpoint also allows you to add a new phone number to an existing Stytch User. Including a
     * `user_id`, `session_token`, or `session_jwt` in your Send one-time passcode by SMS request will add the
     * new, unverified phone number to the existing Stytch User. If the user successfully authenticates within
     * 5 minutes, the new phone number will be marked as verified and remain permanently on the existing Stytch
     * User. Otherwise, it will be removed from the User object, and any subsequent login requests using that
     * phone number will create a new User.
-    * 
+    *
     * ### Next steps
-    * 
+    *
     * Collect the OTP which was delivered to the user. Call
     * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
     * `phone_id` found in the response as the `method_id`.
@@ -117,33 +117,33 @@ class OTPsSms
         });
     }
 
-/**
-    * Send a One-Time Passcode (OTP) to a User using their phone number. If the phone number is not associated
-    * with a user already, a user will be created.
-    * 
-    * ### Cost to send SMS OTP
-    * Before configuring SMS or WhatsApp OTPs, please review how Stytch
-    * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
-    * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
-    * 
-    * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
-    * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
-    * countries to your Project's allowlist via the
-    * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
-    * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
-    * 
-    * Even when international SMS is enabled, we do not support sending SMS to countries on our
-    * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
-    * 
-    * ### Next steps
-    * 
-    * Collect the OTP which was delivered to the User. Call
-    * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
-    * `phone_id` found in the response as the `method_id`.
+    /**
+        * Send a One-Time Passcode (OTP) to a User using their phone number. If the phone number is not associated
+        * with a user already, a user will be created.
+        *
+        * ### Cost to send SMS OTP
+        * Before configuring SMS or WhatsApp OTPs, please review how Stytch
+        * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
+        * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
+        *
+        * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
+        * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
+        * countries to your Project's allowlist via the
+        * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
+        * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
+        *
+        * Even when international SMS is enabled, we do not support sending SMS to countries on our
+        * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
+        *
+        * ### Next steps
+        *
+        * Collect the OTP which was delivered to the User. Call
+        * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
+        * `phone_id` found in the response as the `method_id`.
 
-     * @param \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request
-     * @return \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse
-     */
+         * @param \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request
+         * @return \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse
+         */
     public function loginOrCreate(
         \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateRequest|array $request,
     ): \Stytch\Consumer\Models\OTPs\Sms\LoginOrCreateResponse {
@@ -155,23 +155,23 @@ class OTPsSms
     /**
     * Send a One-Time Passcode (OTP) to a User using their phone number. If the phone number is not associated
     * with a user already, a user will be created.
-    * 
+    *
     * ### Cost to send SMS OTP
     * Before configuring SMS or WhatsApp OTPs, please review how Stytch
     * [bills the costs of international OTPs](https://stytch.com/pricing) and understand how to protect your
     * app against [toll fraud](https://stytch.com/docs/guides/passcodes/toll-fraud/overview).
-    * 
+    *
     * __Note:__ SMS to phone numbers outside of the US and Canada is disabled by default for customers who did
     * not use SMS prior to October 2023. If you're interested in sending international SMS, please add those
     * countries to your Project's allowlist via the
     * [Dashboard](https://stytch.com/dashboard/country-code-allowlists) or
     * [Programmatic Workspace Actions](https://stytch.com/docs/workspace-management/pwa/set-allowed-country-codes), and [add credit card details](https://stytch.com/dashboard/settings/billing) to your account.
-    * 
+    *
     * Even when international SMS is enabled, we do not support sending SMS to countries on our
     * [Unsupported countries list](https://stytch.com/docs/guides/passcodes/unsupported-countries).
-    * 
+    *
     * ### Next steps
-    * 
+    *
     * Collect the OTP which was delivered to the User. Call
     * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
     * `phone_id` found in the response as the `method_id`.

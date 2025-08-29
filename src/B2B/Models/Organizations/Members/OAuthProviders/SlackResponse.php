@@ -8,7 +8,6 @@
 
 namespace Stytch\B2B\Models\Organizations\Members\OAuthProviders;
 
-
 final class SlackResponse
 {
     /**
@@ -52,7 +51,7 @@ final class SlackResponse
         return new static(
             $data['request_id'],
             $data['provider_type'],
-            isset($data['registrations']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\SlackProviderInfo::fromArray($item), $data['registrations']) : [],
+            isset($data['registrations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\SlackProviderInfo::fromArray($item), $data['registrations']) : [],
             $data['status_code']
         );
     }
