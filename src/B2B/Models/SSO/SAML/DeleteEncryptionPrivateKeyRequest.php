@@ -6,9 +6,9 @@
 // or your changes may be overwritten later!
 // !!!
 
-namespace Stytch\B2B\Models\Organizations\Members;
+namespace Stytch\B2B\Models\SSO\SAML;
 
-final class ReactivateRequest
+final class DeleteEncryptionPrivateKeyRequest
 {
     /**
     * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
@@ -16,18 +16,19 @@ final class ReactivateRequest
     * organization_slug or organization_external_id here as a convenience.
      */
     public string $organizationId;
-    /**
-    * Globally unique UUID that identifies a specific Member. The `member_id` is critical to perform
-    * operations on a Member, so be sure to preserve this value.
-     */
-    public string $memberId;
+    /** Globally unique UUID that identifies a specific SSO `connection_id` for a Member. */
+    public string $connectionId;
+    /** The ID of the encryption private key to be deleted. */
+    public string $privateKeyId;
 
     public function __construct(
         string $organizationId,
-        string $memberId
+        string $connectionId,
+        string $privateKeyId
     ) {
         $this->organizationId = $organizationId;
-        $this->memberId = $memberId;
+        $this->connectionId = $connectionId;
+        $this->privateKeyId = $privateKeyId;
     }
 
     /**
@@ -40,7 +41,8 @@ final class ReactivateRequest
     {
         return new static(
             $data['organization_id'],
-            $data['member_id']
+            $data['connection_id'],
+            $data['private_key_id']
         );
     }
 
@@ -53,7 +55,8 @@ final class ReactivateRequest
     {
         return [
             'organization_id' => $this->organizationId,
-            'member_id' => $this->memberId,
+            'connection_id' => $this->connectionId,
+            'private_key_id' => $this->privateKeyId,
         ];
     }
 }

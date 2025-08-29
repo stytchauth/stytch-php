@@ -10,13 +10,27 @@ namespace Stytch\Consumer\Models\IDP\OAuth;
 
 final class AuthorizeStartRequest
 {
+    /** The ID of the Connected App client. */
     public string $clientId;
+    /**
+    * The callback URI used to redirect the user after authentication. This is the same URI provided at the
+    * start of the OAuth flow.  This field is required when using the `authorization_code` grant.
+     */
     public string $redirectUri;
+    /** The OAuth 2.0 response type. For authorization code flows this value is `code`. */
     public string $responseType;
+    /** An array of scopes requested by the client. */
     public array $scopes;
+    /** The unique ID of a specific User. You may use an `external_id` here if one is set for the user. */
     public ?string $userId = null;
+    /** The `session_token` associated with a User's existing Session. */
     public ?string $sessionToken = null;
+    /** The `session_jwt` associated with a User's existing Session. */
     public ?string $sessionJwt = null;
+    /**
+    * Space separated list that specifies how the Authorization Server should prompt the user for
+    * reauthentication and consent. Only `consent` is supported today.
+     */
     public ?string $prompt = null;
 
     public function __construct(

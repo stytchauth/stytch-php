@@ -97,6 +97,8 @@ class OrganizationsMembers
         * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
         * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
         * one verified email where their `email_address_verified` is `true`.
+        *
+        * Note that this endpoint does not accept an `external_id`. The Stytch `member_id` must be provided.
 
          * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\ReactivateResponse
@@ -115,6 +117,8 @@ class OrganizationsMembers
     * Reactivates a deleted Member's status and its associated email status (if applicable) to active,
     * specified by `organization_id` and `member_id`. This endpoint will only work for Members with at least
     * one verified email where their `email_address_verified` is `true`.
+    *
+    * Note that this endpoint does not accept an `external_id`. The Stytch `member_id` must be provided.
 
      * @param \Stytch\B2B\Models\Organizations\Members\ReactivateRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -230,10 +234,14 @@ class OrganizationsMembers
     }
 
     /**
+        * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+        * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+        * limits are set to 100 requests/second.
+        *
         * Search for Members within specified Organizations. An array with at least one `organization_id` is
         * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
         *
-        * *All fuzzy search filters require a minimum of three characters.
+        * All fuzzy search filters require a minimum of three characters.
 
          * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\Members\SearchResponse
@@ -249,10 +257,14 @@ class OrganizationsMembers
     }
 
     /**
+    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+    * limits are set to 100 requests/second.
+    *
     * Search for Members within specified Organizations. An array with at least one `organization_id` is
     * required. Submitting an empty `query` returns all non-deleted Members within the specified Organizations.
     *
-    * *All fuzzy search filters require a minimum of three characters.
+    * All fuzzy search filters require a minimum of three characters.
 
      * @param \Stytch\B2B\Models\Organizations\Members\SearchRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface

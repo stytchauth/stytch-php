@@ -56,8 +56,8 @@ final class UpdateRequest
     * Identifies the Member as a break glass user - someone who has permissions to authenticate into an
     * Organization by bypassing the Organization's settings. A break glass account is typically used for
     * emergency purposes to gain access outside of normal authentication procedures. Refer to the
-    * [Organization object](organization-object) and its `auth_methods` and `allowed_auth_methods` fields for
-    * more details.
+    * [Organization object](https://stytch.com/docs/b2b/api/organization-object) and its `auth_methods` and
+    * `allowed_auth_methods` fields for more details.
     *
     * If this field is provided and a session header is passed into the request, the Member Session must have
     * permission to perform the `update.settings.is-breakglass` action on the `stytch.member` Resource.
@@ -125,7 +125,8 @@ final class UpdateRequest
      */
     public ?string $defaultMfaMethod = null;
     /**
-    * Updates the Member's `email_address`, if provided.
+    * Updates the Member's `email_address`, if provided. This will clear any existing passwords and require
+    * re-verification of the new email address.
     *         If a Member's email address is changed, other Members in the same Organization cannot use the
     * old email address, although the Member may update back to their old email address.
     *         A Member's email address can only be useable again by other Members if the Member is deleted.
@@ -136,7 +137,7 @@ final class UpdateRequest
      */
     public ?string $emailAddress = null;
     /**
-    * An identifier that can be used in API calls wherever a member_id is expected. This is a string
+    * An identifier that can be used in most API calls where a `member_id` is expected. This is a string
     * consisting of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
     * External IDs must be unique within an organization, but may be reused across different organizations in
     * the same project.

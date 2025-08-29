@@ -187,4 +187,38 @@ class SSOSAML
         });
     }
 
+    /**
+        * Delete a SAML encryption private key.
+
+         * @param \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequest|array $request
+         * @return \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyResponse
+         */
+    public function deleteEncryptionPrivateKey(
+        \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/encryption_private_keys/{private_key_id}', $data, $opts);
+        return \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyResponse::fromArray($response);
+    }
+
+    /**
+    * Delete a SAML encryption private key.
+
+     * @param \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEncryptionPrivateKeyAsync(
+        \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequest|array $request,
+        \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/sso/saml/{organization_id}/connections/{connection_id}/encryption_private_keys/{private_key_id}', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\SSO\SAML\DeleteEncryptionPrivateKeyResponse::fromArray($response);
+        });
+    }
+
 }

@@ -12,9 +12,15 @@ final class AttestRequest
 {
     /** The ID of the trusted auth token profile to use for attestation. */
     public string $profileId;
-    /** The trusted auth token to authenticate. */
+    /**
+    * The trusted auth token to authenticate. The token must have an organization ID claim if JIT provisioning
+    * is enabled.
+     */
     public string $token;
-    /** The organization ID that the session should be authenticated in. */
+    /**
+    * The organization ID that the session should be authenticated in. Must be provided if the trusted auth
+    * token does not have an organization ID claim.
+     */
     public ?string $organizationId = null;
     /**
     * Set the session lifetime to be this many minutes from now. This will start a new session if one doesn't
@@ -50,8 +56,8 @@ final class AttestRequest
     /**
     * If the `telemetry_id` is passed, as part of this request, Stytch will call the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) and store the associated
-    * fingerprints and IPGEO information for the Member. See the User Device History guide (coming soon) for
-    * more information. Your workspace must be enabled for Device Fingerprinting to use this feature.
+    * fingerprints and IPGEO information for the Member. Your workspace must be enabled for Device
+    * Fingerprinting to use this feature.
      */
     public ?string $telemetryId = null;
 

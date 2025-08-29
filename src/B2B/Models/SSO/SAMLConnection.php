@@ -20,6 +20,7 @@ final class SAMLConnection
     public string $audienceUri;
     public array $signingCertificates;
     public array $verificationCertificates;
+    public array $encryptionPrivateKeys;
     public array $samlConnectionImplicitRoleAssignments;
     public array $samlGroupImplicitRoleAssignments;
     public string $alternativeAudienceUri;
@@ -40,6 +41,7 @@ final class SAMLConnection
         string $audienceUri,
         array $signingCertificates,
         array $verificationCertificates,
+        array $encryptionPrivateKeys,
         array $samlConnectionImplicitRoleAssignments,
         array $samlGroupImplicitRoleAssignments,
         string $alternativeAudienceUri,
@@ -59,6 +61,7 @@ final class SAMLConnection
         $this->audienceUri = $audienceUri;
         $this->signingCertificates = $signingCertificates;
         $this->verificationCertificates = $verificationCertificates;
+        $this->encryptionPrivateKeys = $encryptionPrivateKeys;
         $this->samlConnectionImplicitRoleAssignments = $samlConnectionImplicitRoleAssignments;
         $this->samlGroupImplicitRoleAssignments = $samlGroupImplicitRoleAssignments;
         $this->alternativeAudienceUri = $alternativeAudienceUri;
@@ -88,6 +91,7 @@ final class SAMLConnection
             $data['audience_uri'],
             isset($data['signing_certificates']) ? array_map(fn ($item) => X509Certificate::fromArray($item), $data['signing_certificates']) : [],
             isset($data['verification_certificates']) ? array_map(fn ($item) => X509Certificate::fromArray($item), $data['verification_certificates']) : [],
+            isset($data['encryption_private_keys']) ? array_map(fn ($item) => EncryptionPrivateKey::fromArray($item), $data['encryption_private_keys']) : [],
             isset($data['saml_connection_implicit_role_assignments']) ? array_map(fn ($item) => SAMLConnectionImplicitRoleAssignment::fromArray($item), $data['saml_connection_implicit_role_assignments']) : [],
             isset($data['saml_group_implicit_role_assignments']) ? array_map(fn ($item) => SAMLGroupImplicitRoleAssignment::fromArray($item), $data['saml_group_implicit_role_assignments']) : [],
             $data['alternative_audience_uri'],
@@ -117,6 +121,7 @@ final class SAMLConnection
             'audience_uri' => $this->audienceUri,
             'signing_certificates' => $this->signingCertificates,
             'verification_certificates' => $this->verificationCertificates,
+            'encryption_private_keys' => $this->encryptionPrivateKeys,
             'saml_connection_implicit_role_assignments' => $this->samlConnectionImplicitRoleAssignments,
             'saml_group_implicit_role_assignments' => $this->samlGroupImplicitRoleAssignments,
             'alternative_audience_uri' => $this->alternativeAudienceUri,

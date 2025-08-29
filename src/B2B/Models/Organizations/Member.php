@@ -29,16 +29,17 @@ final class Member
     /** The name of the Member. */
     public string $name;
     /**
-    * An array of registered [SAML Connection](saml-connection-object) or
-    * [OIDC Connection](oidc-connection-object) objects the Member has authenticated with.
+    * An array of registered [SAML Connection](https://stytch.com/docs/b2b/api/saml-connection-object) or
+    * [OIDC Connection](https://stytch.com/docs/b2b/api/oidc-connection-object) objects the Member has
+    * authenticated with.
      */
     public array $ssoRegistrations;
     /**
     * Identifies the Member as a break glass user - someone who has permissions to authenticate into an
     * Organization by bypassing the Organization's settings. A break glass account is typically used for
     * emergency purposes to gain access outside of normal authentication procedures. Refer to the
-    * [Organization object](organization-object) and its `auth_methods` and `allowed_auth_methods` fields for
-    * more details.
+    * [Organization object](https://stytch.com/docs/b2b/api/organization-object) and its `auth_methods` and
+    * `allowed_auth_methods` fields for more details.
      */
     public bool $isBreakglass;
     /** Globally unique UUID that identifies a Member's password. */
@@ -111,8 +112,9 @@ final class Member
      */
     public ?string $updatedAt = null;
     /**
-    * A scim member registration, referencing a [SCIM Connection](scim-connection-object) object in use for
-    * the Member creation.
+    * A scim member registration, referencing a
+    * [SCIM Connection](https://stytch.com/docs/b2b/api/scim-connection-object) object in use for the Member
+    * creation.
      */
     public ?SCIMRegistration $scimRegistration = null;
     /** The ID of the member given by the identity provider. */

@@ -10,18 +10,45 @@ namespace Stytch\B2B\Models\IDP\OAuth;
 
 final class AuthorizeRequest
 {
+    /** Indicates whether the user granted the requested scopes. */
     public bool $consentGranted;
+    /** An array of scopes requested by the client. */
     public array $scopes;
+    /** The ID of the Connected App client. */
     public string $clientId;
+    /**
+    * The callback URI used to redirect the user after authentication. This is the same URI provided at the
+    * start of the OAuth flow.  This field is required when using the `authorization_code` grant.
+     */
     public string $redirectUri;
+    /** The OAuth 2.0 response type. For authorization code flows this value is `code`. */
     public string $responseType;
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public ?string $organizationId = null;
+    /**
+    * Globally unique UUID that identifies a specific Member. The `member_id` is critical to perform
+    * operations on a Member, so be sure to preserve this value. You may use an external_id here if one is set
+    * for the member.
+     */
     public ?string $memberId = null;
+    /** A secret token for a given Stytch Session. */
     public ?string $sessionToken = null;
+    /** The JSON Web Token (JWT) for a given Stytch Session. */
     public ?string $sessionJwt = null;
+    /**
+    * Space separated list that specifies how the Authorization Server should prompt the user for
+    * reauthentication and consent. Only `consent` is supported today.
+     */
     public ?string $prompt = null;
+    /** An opaque value used to maintain state between the request and callback. */
     public ?string $state = null;
+    /** A string used to associate a client session with an ID token to mitigate replay attacks. */
     public ?string $nonce = null;
+    /** A base64url encoded challenge derived from the code verifier for PKCE flows. */
     public ?string $codeChallenge = null;
 
     public function __construct(

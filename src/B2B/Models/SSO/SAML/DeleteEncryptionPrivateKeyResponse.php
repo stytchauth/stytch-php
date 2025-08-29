@@ -6,28 +6,17 @@
 // or your changes may be overwritten later!
 // !!!
 
-namespace Stytch\B2B\Models\Organizations\Members;
+namespace Stytch\B2B\Models\SSO\SAML;
 
-final class SearchResponse
+final class DeleteEncryptionPrivateKeyResponse
 {
     /**
     * Globally unique UUID that is returned with every API call. This value is important to log for debugging
     * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
      */
     public string $requestId;
-    /** An array of [Member objects](https://stytch.com/docs/b2b/api/member-object). */
-    public array $members;
-    /**
-    * The search `results_metadata` object contains metadata relevant to your specific query like `total` and
-    * `next_cursor`.
-     */
-    public \Stytch\B2B\Models\Organizations\ResultsMetadata $resultsMetadata;
-    /**
-    * A map from `organization_id` to
-    * [Organization object](https://stytch.com/docs/b2b/api/organization-object). The map only contains the
-    * Organizations that the Members belongs to.
-     */
-    public array $organizations;
+    /** The ID of the encryption private key. */
+    public string $privateKeyId;
     /**
     * The HTTP status code of the response. Stytch follows standard HTTP response status code patterns, e.g.
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
@@ -36,15 +25,11 @@ final class SearchResponse
 
     public function __construct(
         string $requestId,
-        array $members,
-        \Stytch\B2B\Models\Organizations\ResultsMetadata $resultsMetadata,
-        array $organizations,
+        string $privateKeyId,
         int $statusCode
     ) {
         $this->requestId = $requestId;
-        $this->members = $members;
-        $this->resultsMetadata = $resultsMetadata;
-        $this->organizations = $organizations;
+        $this->privateKeyId = $privateKeyId;
         $this->statusCode = $statusCode;
     }
 
@@ -58,9 +43,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['members']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\Member::fromArray($item), $data['members']) : [],
-            \Stytch\B2B\Models\Organizations\ResultsMetadata::fromArray($data['results_metadata']),
-            $data['organizations'],
+            $data['private_key_id'],
             $data['status_code']
         );
     }
@@ -74,9 +57,7 @@ final class SearchResponse
     {
         return [
             'request_id' => $this->requestId,
-            'members' => $this->members,
-            'results_metadata' => $this->resultsMetadata,
-            'organizations' => $this->organizations,
+            'private_key_id' => $this->privateKeyId,
             'status_code' => $this->statusCode,
         ];
     }

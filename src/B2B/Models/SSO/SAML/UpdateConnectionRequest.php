@@ -94,6 +94,10 @@ final class UpdateConnectionRequest
     * Initiated Auth is enabled).
      */
     public ?bool $idpInitiatedAuthDisabled = null;
+    /**
+    * A PKCS1 format RSA private key used to decrypt encrypted SAML assertions. Only PKCS1 format (starting
+    * with "-----BEGIN RSA PRIVATE KEY-----") is supported.
+     */
     public ?string $samlEncryptionPrivateKey = null;
 
     public function __construct(

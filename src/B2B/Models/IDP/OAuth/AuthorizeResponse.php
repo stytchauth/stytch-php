@@ -10,9 +10,18 @@ namespace Stytch\B2B\Models\IDP\OAuth;
 
 final class AuthorizeResponse
 {
+    /**
+    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
+    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
+     */
     public string $requestId;
+    /**
+    * The callback URI used to redirect the user after authentication. This is the same URI provided at the
+    * start of the OAuth flow.  This field is required when using the `authorization_code` grant.
+     */
     public string $redirectUri;
     public int $statusCode;
+    /** A one-time use code that can be exchanged for tokens. */
     public ?string $authorizationCode = null;
 
     public function __construct(

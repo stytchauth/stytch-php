@@ -180,9 +180,11 @@ class Organizations
     }
 
     /**
-        * Search for Organizations. If you send a request with no body params, no filtering will be applied and
-        * the endpoint will return all Organizations. All fuzzy search filters require a minimum of three
-        * characters.
+        * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+        * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+        * limits are set to 100 requests/second.
+        *
+        * Search across your Organizations. Returns an array of Organization objects.
 
          * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
          * @return \Stytch\B2B\Models\Organizations\SearchResponse
@@ -196,9 +198,11 @@ class Organizations
     }
 
     /**
-    * Search for Organizations. If you send a request with no body params, no filtering will be applied and
-    * the endpoint will return all Organizations. All fuzzy search filters require a minimum of three
-    * characters.
+    * **Warning**: This endpoint is not recommended for use in login flows. Scaling issues may occur, as
+    * search performance may vary from ~150 milliseconds to 9 seconds depending on query complexity and rate
+    * limits are set to 100 requests/second.
+    *
+    * Search across your Organizations. Returns an array of Organization objects.
 
      * @param \Stytch\B2B\Models\Organizations\SearchRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface

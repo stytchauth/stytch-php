@@ -22,6 +22,31 @@ class IDPOAuth
     }
 
     /**
+        * Initiates a request for authorization of a Connected App to access a Member's account.
+        *
+        * Call this endpoint using the query parameters from an OAuth Authorization request.
+        * This endpoint validates various fields (`scope`, `client_id`, `redirect_uri`, `prompt`, etc...) are
+        * correct and returns
+        * relevant information for rendering an OAuth Consent Screen.
+        *
+        * This endpoint returns:
+        * - A public representation of the Connected App requesting authorization
+        * - Whether _explicit_ consent must be granted before proceeding with the authorization
+        * - A list of scopes the Member has the ability to grant the Connected App
+        *
+        * Use this response to prompt the Member for consent (if necessary) before calling the
+        * [Submit OAuth Authorization](https://stytch.com/docs/b2b/api/connected-apps-oauth-authorize) endpoint.
+        *
+        * Exactly one of the following must be provided to identify the Member granting authorization:
+        * - `organization_id` + `member_id`
+        * - `session_token`
+        * - `session_jwt`
+        *
+        * If a `session_token` or `session_jwt` is passed, the OAuth Authorization will be linked to the Member's
+        * session for tracking purposes.
+        * One of these fields must be used if the Connected App intends to complete the
+        * [Exchange Access Token](https://stytch.com/docs/b2b/api/connected-app-access-token-exchange) flow.
+
          * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartRequest|array $request
          * @return \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartResponse
          */
@@ -34,6 +59,31 @@ class IDPOAuth
     }
 
     /**
+    * Initiates a request for authorization of a Connected App to access a Member's account.
+    *
+    * Call this endpoint using the query parameters from an OAuth Authorization request.
+    * This endpoint validates various fields (`scope`, `client_id`, `redirect_uri`, `prompt`, etc...) are
+    * correct and returns
+    * relevant information for rendering an OAuth Consent Screen.
+    *
+    * This endpoint returns:
+    * - A public representation of the Connected App requesting authorization
+    * - Whether _explicit_ consent must be granted before proceeding with the authorization
+    * - A list of scopes the Member has the ability to grant the Connected App
+    *
+    * Use this response to prompt the Member for consent (if necessary) before calling the
+    * [Submit OAuth Authorization](https://stytch.com/docs/b2b/api/connected-apps-oauth-authorize) endpoint.
+    *
+    * Exactly one of the following must be provided to identify the Member granting authorization:
+    * - `organization_id` + `member_id`
+    * - `session_token`
+    * - `session_jwt`
+    *
+    * If a `session_token` or `session_jwt` is passed, the OAuth Authorization will be linked to the Member's
+    * session for tracking purposes.
+    * One of these fields must be used if the Connected App intends to complete the
+    * [Exchange Access Token](https://stytch.com/docs/b2b/api/connected-app-access-token-exchange) flow.
+
      * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeStartRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -48,6 +98,29 @@ class IDPOAuth
     }
 
     /**
+        * Completes a request for authorization of a Connected App to access a Member's account.
+        *
+        * Call this endpoint using the query parameters from an OAuth Authorization request, after previously
+        * validating those parameters using the
+        * [Preflight Check](https://stytch.com/docs/b2b/api/connected-apps-oauth-authorize-start) API.
+        * Note that this endpoint takes in a few additional parameters the preflight check does not- `state`,
+        * `nonce`, and `code_challenge`.
+        *
+        * If the authorization was successful, the `redirect_uri` will contain a valid `authorization_code`
+        * embedded as a query parameter.
+        * If the authorization was unsuccessful, the `redirect_uri` will contain an OAuth2.1 `error_code`.
+        * In both cases, redirect the Member to the location for the response to be consumed by the Connected App.
+        *
+        * Exactly one of the following must be provided to identify the Member granting authorization:
+        * - `organization_id` + `member_id`
+        * - `session_token`
+        * - `session_jwt`
+        *
+        * If a `session_token` or `session_jwt` is passed, the OAuth Authorization will be linked to the Member's
+        * session for tracking purposes.
+        * One of these fields must be used if the Connected App intends to complete the
+        * [Exchange Access Token](https://stytch.com/docs/b2b/api/connected-app-access-token-exchange) flow.
+
          * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeRequest|array $request
          * @return \Stytch\B2B\Models\IDP\OAuth\AuthorizeResponse
          */
@@ -60,6 +133,29 @@ class IDPOAuth
     }
 
     /**
+    * Completes a request for authorization of a Connected App to access a Member's account.
+    *
+    * Call this endpoint using the query parameters from an OAuth Authorization request, after previously
+    * validating those parameters using the
+    * [Preflight Check](https://stytch.com/docs/b2b/api/connected-apps-oauth-authorize-start) API.
+    * Note that this endpoint takes in a few additional parameters the preflight check does not- `state`,
+    * `nonce`, and `code_challenge`.
+    *
+    * If the authorization was successful, the `redirect_uri` will contain a valid `authorization_code`
+    * embedded as a query parameter.
+    * If the authorization was unsuccessful, the `redirect_uri` will contain an OAuth2.1 `error_code`.
+    * In both cases, redirect the Member to the location for the response to be consumed by the Connected App.
+    *
+    * Exactly one of the following must be provided to identify the Member granting authorization:
+    * - `organization_id` + `member_id`
+    * - `session_token`
+    * - `session_jwt`
+    *
+    * If a `session_token` or `session_jwt` is passed, the OAuth Authorization will be linked to the Member's
+    * session for tracking purposes.
+    * One of these fields must be used if the Connected App intends to complete the
+    * [Exchange Access Token](https://stytch.com/docs/b2b/api/connected-app-access-token-exchange) flow.
+
      * @param \Stytch\B2B\Models\IDP\OAuth\AuthorizeRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
      */

@@ -67,8 +67,7 @@ final class AuthenticateResponse
     /**
     * If a valid `telemetry_id` was passed in the request and the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) returned results, the
-    * `member_device` response field will contain information about the member's device attributes. See the
-    * User Device History guide (coming soon) for more information.
+    * `member_device` response field will contain information about the member's device attributes.
      */
     public ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null;
 

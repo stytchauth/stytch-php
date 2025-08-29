@@ -75,8 +75,8 @@ final class ExchangeRequest
     /**
     * If the `telemetry_id` is passed, as part of this request, Stytch will call the
     * [Fingerprint Lookup API](https://stytch.com/docs/fraud/api/fingerprint-lookup) and store the associated
-    * fingerprints and IPGEO information for the Member. See the User Device History guide (coming soon) for
-    * more information. Your workspace must be enabled for Device Fingerprinting to use this feature.
+    * fingerprints and IPGEO information for the Member. Your workspace must be enabled for Device
+    * Fingerprinting to use this feature.
      */
     public ?string $telemetryId = null;
 

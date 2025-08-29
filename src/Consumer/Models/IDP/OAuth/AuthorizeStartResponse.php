@@ -10,11 +10,22 @@ namespace Stytch\Consumer\Models\IDP\OAuth;
 
 final class AuthorizeStartResponse
 {
+    /**
+    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
+    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
+     */
     public string $requestId;
+    /** The unique ID of the affected User. */
     public string $userId;
+    /**
+    * The `user` object affected by this API call. See the
+    * [Get user endpoint](https://stytch.com/docs/api/get-user) for complete response field details.
+     */
     public \Stytch\Consumer\Models\Users\User $user;
     public \Stytch\Consumer\Models\ConnectedApp\ConnectedAppPublic $client;
+    /** Whether the user must provide explicit consent for the authorization request. */
     public bool $consentRequired;
+    /** Details about each requested scope. */
     public array $scopeResults;
     public int $statusCode;
 
