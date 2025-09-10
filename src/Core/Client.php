@@ -189,7 +189,7 @@ class Client
         return preg_replace_callback('/\{([^}]+)\}/', function ($matches) use ($data) {
             $paramName = $matches[1];
             if (isset($data[$paramName])) {
-                return $data[$paramName];
+                return rawurlencode($data[$paramName]);
             }
             return $matches[0]; // Return unchanged if parameter not found
         }, $path);
