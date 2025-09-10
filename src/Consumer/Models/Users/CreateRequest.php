@@ -10,6 +10,12 @@ namespace Stytch\Consumer\Models\Users;
 
 final class CreateRequest
 {
+    /**
+    * Roles to explicitly assign to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
+    public array $roles;
     /** The email address of the end user. */
     public ?string $email = null;
     /** The name of the user. Each field in the name object is optional. */
@@ -49,6 +55,7 @@ final class CreateRequest
     public ?string $externalId = null;
 
     public function __construct(
+        array $roles,
         ?string $email = null,
         ?Name $name = null,
         ?\Stytch\Consumer\Models\Attributes $attributes = null,
@@ -58,6 +65,7 @@ final class CreateRequest
         ?array $untrustedMetadata = null,
         ?string $externalId = null
     ) {
+        $this->roles = $roles;
         $this->email = $email;
         $this->name = $name;
         $this->attributes = $attributes;
@@ -77,6 +85,7 @@ final class CreateRequest
     public static function fromArray(array $data): static
     {
         return new static(
+            $data['roles'],
             $data['email'] ?? null,
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
@@ -96,6 +105,7 @@ final class CreateRequest
     public function toArray(): array
     {
         return [
+            'roles' => $this->roles,
             'email' => $this->email,
             'name' => $this->name,
             'attributes' => $this->attributes,

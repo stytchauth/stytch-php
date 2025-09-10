@@ -28,6 +28,7 @@ final class SAMLConnection
     public string $nameidFormat;
     public string $alternativeAcsURL;
     public bool $idpInitiatedAuthDisabled;
+    public bool $allowGatewayCallback;
     public ?array $attributeMapping = null;
 
     public function __construct(
@@ -49,6 +50,7 @@ final class SAMLConnection
         string $nameidFormat,
         string $alternativeAcsURL,
         bool $idpInitiatedAuthDisabled,
+        bool $allowGatewayCallback,
         ?array $attributeMapping = null
     ) {
         $this->organizationId = $organizationId;
@@ -69,6 +71,7 @@ final class SAMLConnection
         $this->nameidFormat = $nameidFormat;
         $this->alternativeAcsURL = $alternativeAcsURL;
         $this->idpInitiatedAuthDisabled = $idpInitiatedAuthDisabled;
+        $this->allowGatewayCallback = $allowGatewayCallback;
         $this->attributeMapping = $attributeMapping;
     }
 
@@ -99,6 +102,7 @@ final class SAMLConnection
             $data['nameid_format'],
             $data['alternative_acs_url'],
             $data['idp_initiated_auth_disabled'],
+            $data['allow_gateway_callback'],
             $data['attribute_mapping'] ?? null
         );
     }
@@ -129,6 +133,7 @@ final class SAMLConnection
             'nameid_format' => $this->nameidFormat,
             'alternative_acs_url' => $this->alternativeAcsURL,
             'idp_initiated_auth_disabled' => $this->idpInitiatedAuthDisabled,
+            'allow_gateway_callback' => $this->allowGatewayCallback,
             'attribute_mapping' => $this->attributeMapping,
         ];
     }

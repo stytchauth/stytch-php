@@ -36,6 +36,12 @@ final class UpdateRequest
     * of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
      */
     public ?string $externalId = null;
+    /**
+    * Roles to explicitly assign to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
+    public ?array $roles = null;
 
     public function __construct(
         string $userId,
@@ -43,7 +49,8 @@ final class UpdateRequest
         ?\Stytch\Consumer\Models\Attributes $attributes = null,
         ?array $trustedMetadata = null,
         ?array $untrustedMetadata = null,
-        ?string $externalId = null
+        ?string $externalId = null,
+        ?array $roles = null
     ) {
         $this->userId = $userId;
         $this->name = $name;
@@ -51,6 +58,7 @@ final class UpdateRequest
         $this->trustedMetadata = $trustedMetadata;
         $this->untrustedMetadata = $untrustedMetadata;
         $this->externalId = $externalId;
+        $this->roles = $roles;
     }
 
     /**
@@ -67,7 +75,8 @@ final class UpdateRequest
             $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
-            $data['external_id'] ?? null
+            $data['external_id'] ?? null,
+            $data['roles'] ?? null
         );
     }
 
@@ -85,6 +94,7 @@ final class UpdateRequest
             'trusted_metadata' => $this->trustedMetadata,
             'untrusted_metadata' => $this->untrustedMetadata,
             'external_id' => $this->externalId,
+            'roles' => $this->roles,
         ];
     }
 }

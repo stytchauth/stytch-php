@@ -32,6 +32,12 @@ final class User
     /** An array that contains a list of all biometric registrations for a given User in the Stytch API. */
     public array $biometricRegistrations;
     public bool $isLocked;
+    /**
+    * Roles assigned to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
+    public array $roles;
     /** The name of the User. Each field in the `name` object is optional. */
     public ?Name $name = null;
     /**
@@ -68,6 +74,7 @@ final class User
         array $cryptoWallets,
         array $biometricRegistrations,
         bool $isLocked,
+        array $roles,
         ?Name $name = null,
         ?string $createdAt = null,
         ?Password $password = null,
@@ -87,6 +94,7 @@ final class User
         $this->cryptoWallets = $cryptoWallets;
         $this->biometricRegistrations = $biometricRegistrations;
         $this->isLocked = $isLocked;
+        $this->roles = $roles;
         $this->name = $name;
         $this->createdAt = $createdAt;
         $this->password = $password;
@@ -116,6 +124,7 @@ final class User
             isset($data['crypto_wallets']) ? array_map(fn ($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
             isset($data['biometric_registrations']) ? array_map(fn ($item) => BiometricRegistration::fromArray($item), $data['biometric_registrations']) : [],
             $data['is_locked'],
+            $data['roles'],
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['created_at'] ?? null,
             $data['password'] !== null ? Password::fromArray($data['password']) : null,
@@ -145,6 +154,7 @@ final class User
             'crypto_wallets' => $this->cryptoWallets,
             'biometric_registrations' => $this->biometricRegistrations,
             'is_locked' => $this->isLocked,
+            'roles' => $this->roles,
             'name' => $this->name,
             'created_at' => $this->createdAt,
             'password' => $this->password,

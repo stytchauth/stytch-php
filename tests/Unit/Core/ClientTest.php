@@ -363,7 +363,7 @@ class ClientTest extends TestCase
 
         // Chain async requests
         $finalPromise = $this->client->postAsync('/v1/users', ['email' => 'chain@example.com'])
-            ->then(function($createResponse) {
+            ->then(function ($createResponse) {
                 // Return another async request
                 return $this->client->postAsync('/v1/sessions/authenticate', [
                     'user_id' => $createResponse['user_id']
@@ -412,7 +412,7 @@ class ClientTest extends TestCase
 
         // Make an async request with error handling
         $promise = $this->client->getAsync('/v1/users/nonexistent')
-            ->otherwise(function($exception) use (&$errorCaught, &$errorMessage) {
+            ->otherwise(function ($exception) use (&$errorCaught, &$errorMessage) {
                 $errorCaught = true;
                 $errorMessage = $exception->getMessage();
                 return null; // Return fallback value
@@ -436,7 +436,7 @@ class ClientTest extends TestCase
         ])));
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'user_id' => 'user-2', 
+            'user_id' => 'user-2',
             'name' => 'User Two'
         ])));
         $this->mockHandler->append(new Response(200, [], json_encode([
@@ -492,7 +492,7 @@ class ClientTest extends TestCase
         $lastRequest = $this->mockHandler->getLastRequest();
         $this->assertNotNull($lastRequest);
         $this->assertEquals('/v1/users/user-456/sessions/session-789', $lastRequest->getUri()->getPath());
-        
+
         // Verify query parameters were cleaned (path params removed)
         parse_str($lastRequest->getUri()->getQuery(), $queryParams);
         $this->assertArrayHasKey('extra_param', $queryParams);
