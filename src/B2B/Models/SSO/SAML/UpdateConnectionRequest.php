@@ -99,6 +99,7 @@ final class UpdateConnectionRequest
     * with "-----BEGIN RSA PRIVATE KEY-----") is supported.
      */
     public ?string $samlEncryptionPrivateKey = null;
+    public ?bool $allowGatewayCallback = null;
 
     public function __construct(
         string $organizationId,
@@ -116,7 +117,8 @@ final class UpdateConnectionRequest
         ?string $nameidFormat = null,
         ?string $alternativeAcsURL = null,
         ?bool $idpInitiatedAuthDisabled = null,
-        ?string $samlEncryptionPrivateKey = null
+        ?string $samlEncryptionPrivateKey = null,
+        ?bool $allowGatewayCallback = null
     ) {
         $this->organizationId = $organizationId;
         $this->connectionId = $connectionId;
@@ -134,6 +136,7 @@ final class UpdateConnectionRequest
         $this->alternativeAcsURL = $alternativeAcsURL;
         $this->idpInitiatedAuthDisabled = $idpInitiatedAuthDisabled;
         $this->samlEncryptionPrivateKey = $samlEncryptionPrivateKey;
+        $this->allowGatewayCallback = $allowGatewayCallback;
     }
 
     /**
@@ -160,7 +163,8 @@ final class UpdateConnectionRequest
             $data['nameid_format'] ?? null,
             $data['alternative_acs_url'] ?? null,
             $data['idp_initiated_auth_disabled'] ?? null,
-            $data['saml_encryption_private_key'] ?? null
+            $data['saml_encryption_private_key'] ?? null,
+            $data['allow_gateway_callback'] ?? null
         );
     }
 
@@ -188,6 +192,7 @@ final class UpdateConnectionRequest
             'alternative_acs_url' => $this->alternativeAcsURL,
             'idp_initiated_auth_disabled' => $this->idpInitiatedAuthDisabled,
             'saml_encryption_private_key' => $this->samlEncryptionPrivateKey,
+            'allow_gateway_callback' => $this->allowGatewayCallback,
         ];
     }
 }

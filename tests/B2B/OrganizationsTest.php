@@ -228,7 +228,7 @@ class OrganizationsTest extends TestCase
         $organizationSlug = 'async-test-org-' . strtolower($this->generateRandomString());
 
         $createRequest = new CreateRequest($organizationName, $organizationSlug);
-        
+
         // Call async method
         $promise = $this->client->organizations->createAsync($createRequest);
 
@@ -252,7 +252,7 @@ class OrganizationsTest extends TestCase
         // First create an organization synchronously
         $organizationName = 'Test Async Get Org ' . $this->generateRandomString();
         $organizationSlug = 'test-async-get-' . strtolower($this->generateRandomString());
-        
+
         $createRequest = new CreateRequest($organizationName, $organizationSlug);
         $createResponse = $this->client->organizations->create($createRequest);
         $this->testOrganizations[] = $createResponse->organization->organizationId;
@@ -280,20 +280,20 @@ class OrganizationsTest extends TestCase
         $updatedName = 'Updated ' . $organizationName;
 
         $createRequest = new CreateRequest($organizationName, $organizationSlug);
-        
+
         // Chain async operations: create -> get -> update -> get
         $finalPromise = $this->client->organizations->createAsync($createRequest)
-            ->then(function($createResponse) use ($updatedName) {
+            ->then(function ($createResponse) use ($updatedName) {
                 // Organization created, add to cleanup
                 $this->testOrganizations[] = $createResponse->organization->organizationId;
-                
+
                 // Now update the organization
                 $updateRequest = new UpdateRequest($createResponse->organization->organizationId);
                 $updateRequest->organizationName = $updatedName;
-                
+
                 return $this->client->organizations->updateAsync($updateRequest);
             })
-            ->then(function($updateResponse) {
+            ->then(function ($updateResponse) {
                 // Organization updated, now get it to verify
                 $getRequest = new GetRequest($updateResponse->organization->organizationId);
                 return $this->client->organizations->getAsync($getRequest);
@@ -315,7 +315,7 @@ class OrganizationsTest extends TestCase
             ['name' => 'Concurrent Org 2 ' . $this->generateRandomString(), 'slug' => 'concurrent-2-' . strtolower($this->generateRandomString())],
             ['name' => 'Concurrent Org 3 ' . $this->generateRandomString(), 'slug' => 'concurrent-3-' . strtolower($this->generateRandomString())]
         ];
-        
+
         $organizationIds = [];
         foreach ($orgData as $data) {
             $createRequest = new CreateRequest($data['name'], $data['slug']);
@@ -337,8 +337,11 @@ class OrganizationsTest extends TestCase
         // Verify all requests succeeded
         $this->assertCount(3, $results);
         foreach ($results as $organizationId => $result) {
-            $this->assertEquals('fulfilled', $result['state'], 
-                "Request for organization {$organizationId} should have succeeded");
+            $this->assertEquals(
+                'fulfilled',
+                $result['state'],
+                "Request for organization {$organizationId} should have succeeded"
+            );
             $this->assertEquals($organizationId, $result['value']->organization->organizationId);
         }
     }
@@ -365,7 +368,7 @@ class OrganizationsTest extends TestCase
         $getRequest2 = new GetRequest('organization-test-nonexistent-async-2');
         $promise2 = $this->client->organizations->getAsync($getRequest2);
 
-        $handledPromise = $promise2->otherwise(function($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {
+        $handledPromise = $promise2->otherwise(function ($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {
             $errorCaught = true;
             $errorMessage = $exception->getMessage();
             $this->assertInstanceOf(StytchException::class, $exception);

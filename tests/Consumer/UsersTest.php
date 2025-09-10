@@ -213,11 +213,11 @@ class UsersTest extends TestCase
     public function testAsyncPromiseChaining(): void
     {
         $email = $this->generateRandomEmail();
-        
+
         // Chain async operations
         $finalPromise = $this->client->users->createAsync([
             'email' => $email
-        ])->then(function($createResponse) {
+        ])->then(function ($createResponse) {
             // User created, now get the user
             $this->testUsers[] = $createResponse->userId; // Add to cleanup
             return $this->client->users->getAsync([
@@ -241,7 +241,7 @@ class UsersTest extends TestCase
             $this->generateRandomEmail(),
             $this->generateRandomEmail()
         ];
-        
+
         $userIds = [];
         foreach ($emails as $email) {
             $response = $this->client->users->create(['email' => $email]);
@@ -263,8 +263,11 @@ class UsersTest extends TestCase
         // Verify all requests succeeded
         $this->assertCount(3, $results);
         foreach ($results as $userId => $result) {
-            $this->assertEquals('fulfilled', $result['state'], 
-                "Request for user {$userId} should have succeeded");
+            $this->assertEquals(
+                'fulfilled',
+                $result['state'],
+                "Request for user {$userId} should have succeeded"
+            );
             $this->assertEquals($userId, $result['value']->userId);
         }
     }
@@ -293,7 +296,7 @@ class UsersTest extends TestCase
             'user_id' => 'user-test-nonexistent-async-2'
         ]);
 
-        $handledPromise = $promise2->otherwise(function($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {
+        $handledPromise = $promise2->otherwise(function ($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {
             $errorCaught = true;
             $errorMessage = $exception->getMessage();
             $this->assertInstanceOf(StytchException::class, $exception);

@@ -34,14 +34,14 @@ try {
     ]);
 
     echo "Promise created, waiting for response...\n";
-    
+
     // Wait for the response (this blocks, but in real apps you'd chain promises)
     $createResponse = $createPromise->wait();
-    
+
     echo "✅ User created successfully!\n";
     echo "User ID: " . $createResponse->userId . "\n";
     echo "Request ID: " . $createResponse->requestId . "\n\n";
-    
+
 } catch (StytchException $e) {
     echo "❌ Error creating user: " . $e->getMessage() . "\n\n";
 }
@@ -53,9 +53,9 @@ echo "------------------\n";
 $client->users->createAsync([
     'email' => 'chained-user@example.com'
 ])
-->then(function($createResponse) use ($client) {
+->then(function ($createResponse) use ($client) {
     echo "✅ User created: " . $createResponse->userId . "\n";
-    
+
     // Chain another async operation
     return $client->magic_links->email->sendAsync([
         'user_id' => $createResponse->userId,
@@ -64,11 +64,11 @@ $client->users->createAsync([
         'signup_magic_link_url' => 'https://example.com/authenticate',
     ]);
 })
-->then(function($sendResponse) {
+->then(function ($sendResponse) {
     echo "✅ Magic link sent!\n";
     echo "Request ID: " . $sendResponse->requestId . "\n";
 })
-->otherwise(function($exception) {
+->otherwise(function ($exception) {
     echo "❌ Error in chain: " . $exception->getMessage() . "\n";
 });
 
@@ -111,12 +111,12 @@ echo "4. Async Error Handling\n";
 echo "----------------------\n";
 
 $client->users->getAsync(['user_id' => 'nonexistent-user-id'])
-    ->then(function($user) {
+    ->then(function ($user) {
         // This won't be called if the user doesn't exist
         echo "✅ User found: " . $user->user->emails[0]->email . "\n";
         return $user;
     })
-    ->otherwise(function($exception) {
+    ->otherwise(function ($exception) {
         echo "❌ Expected error caught: " . $exception->getMessage() . "\n";
         echo "Status code: " . $exception->getCode() . "\n";
         return null; // Return fallback value
@@ -133,9 +133,9 @@ try {
     $syncUser = $client->users->create([
         'email' => 'mixed-user@example.com'
     ]);
-    
+
     echo "✅ Sync user created: " . $syncUser->userId . "\n";
-    
+
     // Asynchronous operations on the user
     $asyncPromises = [
         'get' => $client->users->getAsync(['user_id' => $syncUser->userId]),
@@ -147,17 +147,17 @@ try {
             ]
         ])
     ];
-    
+
     $asyncResults = Utils::settle($asyncPromises)->wait();
-    
+
     if ($asyncResults['get']['state'] === 'fulfilled') {
         echo "✅ Async get successful\n";
     }
-    
+
     if ($asyncResults['update']['state'] === 'fulfilled') {
         echo "✅ Async update successful\n";
     }
-    
+
 } catch (StytchException $e) {
     echo "❌ Error in mixed operations: " . $e->getMessage() . "\n";
 }
@@ -171,23 +171,23 @@ echo "--------------------------------------\n";
 $client->users->createAsync([
     'email' => 'workflow-user@example.com'
 ])
-->then(function($createResponse) use ($client) {
+->then(function ($createResponse) use ($client) {
     echo "✅ Step 1: User created\n";
-    
+
     // Try to create a TOTP (might fail if not configured)
     return $client->totps->createAsync([
         'user_id' => $createResponse->userId,
         'expiration_minutes' => 10
     ]);
 })
-->then(function($totpResponse) {
+->then(function ($totpResponse) {
     echo "✅ Step 2: TOTP created successfully\n";
     return $totpResponse;
 })
-->otherwise(function($exception) use ($client) {
+->otherwise(function ($exception) use ($client) {
     echo "⚠️  Step 2 failed (expected): " . $exception->getMessage() . "\n";
     echo "✅ Recovering with magic link instead...\n";
-    
+
     // Recovery: send magic link instead
     // Note: In a real app, you'd need to pass the user info through the chain
     return null; // Simplified for example
@@ -212,9 +212,9 @@ echo "--------------------------------\n";
 $authFlow = $client->users->createAsync([
     'email' => 'auth-flow@example.com'
 ])
-->then(function($createResponse) use ($client) {
+->then(function ($createResponse) use ($client) {
     echo "✅ User created for auth flow\n";
-    
+
     // Send magic link
     return $client->magic_links->email->sendAsync([
         'user_id' => $createResponse->userId,
@@ -222,16 +222,16 @@ $authFlow = $client->users->createAsync([
         'login_magic_link_url' => 'https://example.com/authenticate',
     ]);
 })
-->then(function($sendResponse) {
+->then(function ($sendResponse) {
     echo "✅ Magic link sent, user can authenticate\n";
     echo "In a real app, user would click the link and you'd call authenticateAsync\n";
-    
+
     return [
         'flow_complete' => true,
         'request_id' => $sendResponse->requestId
     ];
 })
-->otherwise(function($exception) {
+->otherwise(function ($exception) {
     echo "❌ Auth flow failed: " . $exception->getMessage() . "\n";
     return ['flow_complete' => false, 'error' => $exception->getMessage()];
 });

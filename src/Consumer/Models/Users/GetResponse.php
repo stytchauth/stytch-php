@@ -38,6 +38,12 @@ final class GetResponse
     public array $biometricRegistrations;
     public bool $isLocked;
     /**
+    * Roles assigned to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
+    public array $roles;
+    /**
     * The HTTP status code of the response. Stytch follows standard HTTP response status code patterns, e.g.
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
@@ -79,6 +85,7 @@ final class GetResponse
         array $cryptoWallets,
         array $biometricRegistrations,
         bool $isLocked,
+        array $roles,
         int $statusCode,
         ?Name $name = null,
         ?string $createdAt = null,
@@ -100,6 +107,7 @@ final class GetResponse
         $this->cryptoWallets = $cryptoWallets;
         $this->biometricRegistrations = $biometricRegistrations;
         $this->isLocked = $isLocked;
+        $this->roles = $roles;
         $this->statusCode = $statusCode;
         $this->name = $name;
         $this->createdAt = $createdAt;
@@ -131,6 +139,7 @@ final class GetResponse
             isset($data['crypto_wallets']) ? array_map(fn ($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
             isset($data['biometric_registrations']) ? array_map(fn ($item) => BiometricRegistration::fromArray($item), $data['biometric_registrations']) : [],
             $data['is_locked'],
+            $data['roles'],
             $data['status_code'],
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['created_at'] ?? null,
@@ -162,6 +171,7 @@ final class GetResponse
             'crypto_wallets' => $this->cryptoWallets,
             'biometric_registrations' => $this->biometricRegistrations,
             'is_locked' => $this->isLocked,
+            'roles' => $this->roles,
             'status_code' => $this->statusCode,
             'name' => $this->name,
             'created_at' => $this->createdAt,
