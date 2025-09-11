@@ -12,6 +12,7 @@ use Stytch\Core\Client as CoreClient;
 use Stytch\Shared\PolicyCache;
 use Stytch\Consumer\Api\ConnectedApp;
 use Stytch\Consumer\Api\CryptoWallets;
+use Stytch\Consumer\Api\Debug;
 use Stytch\Consumer\Api\Fraud;
 use Stytch\Consumer\Api\IDP;
 use Stytch\Consumer\Api\Impersonation;
@@ -40,6 +41,7 @@ class Client
 
     public ConnectedApp $connected_app;
     public CryptoWallets $crypto_wallets;
+    public Debug $debug;
     public Fraud $fraud;
     public IDP $idp;
     public Impersonation $impersonation;
@@ -69,6 +71,7 @@ class Client
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->crypto_wallets = new CryptoWallets($this->client);
+        $this->debug = new Debug($this->client);
         $this->fraud = new Fraud($this->client);
         $this->idp = new IDP($this->client, $this->projectId, $this->policyCache);
         $this->impersonation = new Impersonation($this->client);

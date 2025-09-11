@@ -11,6 +11,7 @@ namespace Stytch\B2B;
 use Stytch\Core\Client as CoreClient;
 use Stytch\Shared\PolicyCache;
 use Stytch\Consumer\Api\ConnectedApp;
+use Stytch\Consumer\Api\Debug;
 use Stytch\B2B\Api\Discovery;
 use Stytch\Consumer\Api\Fraud;
 use Stytch\B2B\Api\IDP;
@@ -41,6 +42,7 @@ class Client
     private PolicyCache $policyCache;
 
     public ConnectedApp $connected_app;
+    public Debug $debug;
     public Discovery $discovery;
     public Fraud $fraud;
     public IDP $idp;
@@ -72,6 +74,7 @@ class Client
         $this->policyCache = new PolicyCache();
 
         $this->connected_app = new ConnectedApp($this->client);
+        $this->debug = new Debug($this->client);
         $this->discovery = new Discovery($this->client);
         $this->fraud = new Fraud($this->client);
         $this->idp = new IDP($this->client, $this->projectId, $this->policyCache);
