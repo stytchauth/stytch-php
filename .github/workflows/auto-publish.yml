@@ -64,7 +64,7 @@ jobs:
         if: steps.diff.outputs.diff != 0 && env.PACKAGIST_TOKEN != ''
         run: |
           curl -XPOST -H'content-type:application/json' \
-            'https://packagist.org/api/update-package?username={{ secrets.PACKAGIST_USERNAME }}&apiToken=${{ secrets.PACKAGIST_TOKEN }}' \
+            "https://packagist.org/api/update-package?username=$PACKAGIST_USERNAME&apiToken=$PACKAGIST_TOKEN" \
             -d'{"repository":{"url":"https://github.com/stytch/stytch-php"}}'
 
       - name: Create release
