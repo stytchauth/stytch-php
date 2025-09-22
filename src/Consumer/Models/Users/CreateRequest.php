@@ -10,12 +10,6 @@ namespace Stytch\Consumer\Models\Users;
 
 final class CreateRequest
 {
-    /**
-    * Roles to explicitly assign to this User.
-    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
-    * role assignment.
-     */
-    public array $roles;
     /** The email address of the end user. */
     public ?string $email = null;
     /** The name of the user. Each field in the name object is optional. */
@@ -53,9 +47,14 @@ final class CreateRequest
     * of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
      */
     public ?string $externalId = null;
+    /**
+    * Roles to explicitly assign to this User.
+    *    See the [RBAC guide](https://stytch.com/docs/guides/rbac/role-assignment) for more information about
+    * role assignment.
+     */
+    public ?array $roles = null;
 
     public function __construct(
-        array $roles,
         ?string $email = null,
         ?Name $name = null,
         ?\Stytch\Consumer\Models\Attributes $attributes = null,
@@ -63,9 +62,9 @@ final class CreateRequest
         ?bool $createUserAsPending = null,
         ?array $trustedMetadata = null,
         ?array $untrustedMetadata = null,
-        ?string $externalId = null
+        ?string $externalId = null,
+        ?array $roles = null
     ) {
-        $this->roles = $roles;
         $this->email = $email;
         $this->name = $name;
         $this->attributes = $attributes;
@@ -74,6 +73,7 @@ final class CreateRequest
         $this->trustedMetadata = $trustedMetadata;
         $this->untrustedMetadata = $untrustedMetadata;
         $this->externalId = $externalId;
+        $this->roles = $roles;
     }
 
     /**
@@ -85,7 +85,6 @@ final class CreateRequest
     public static function fromArray(array $data): static
     {
         return new static(
-            $data['roles'],
             $data['email'] ?? null,
             $data['name'] !== null ? Name::fromArray($data['name']) : null,
             $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
@@ -93,7 +92,8 @@ final class CreateRequest
             $data['create_user_as_pending'] ?? null,
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
-            $data['external_id'] ?? null
+            $data['external_id'] ?? null,
+            $data['roles'] ?? null
         );
     }
 
@@ -105,7 +105,6 @@ final class CreateRequest
     public function toArray(): array
     {
         return [
-            'roles' => $this->roles,
             'email' => $this->email,
             'name' => $this->name,
             'attributes' => $this->attributes,
@@ -114,6 +113,7 @@ final class CreateRequest
             'trusted_metadata' => $this->trustedMetadata,
             'untrusted_metadata' => $this->untrustedMetadata,
             'external_id' => $this->externalId,
+            'roles' => $this->roles,
         ];
     }
 }
