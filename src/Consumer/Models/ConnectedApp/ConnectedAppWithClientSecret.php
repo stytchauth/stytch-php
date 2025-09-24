@@ -47,6 +47,7 @@ final class ConnectedAppWithClientSecret
     public ?string $accessTokenCustomAudience = null;
     /** The logo URL of the Connected App, if any. */
     public ?string $logoURL = null;
+    public ?string $clientIdMetadataURL = null;
 
     public function __construct(
         string $clientId,
@@ -64,7 +65,8 @@ final class ConnectedAppWithClientSecret
         ?string $nextClientSecretLastFour = null,
         ?string $clientSecret = null,
         ?string $accessTokenCustomAudience = null,
-        ?string $logoURL = null
+        ?string $logoURL = null,
+        ?string $clientIdMetadataURL = null
     ) {
         $this->clientId = $clientId;
         $this->clientName = $clientName;
@@ -82,6 +84,7 @@ final class ConnectedAppWithClientSecret
         $this->clientSecret = $clientSecret;
         $this->accessTokenCustomAudience = $accessTokenCustomAudience;
         $this->logoURL = $logoURL;
+        $this->clientIdMetadataURL = $clientIdMetadataURL;
     }
 
     /**
@@ -108,7 +111,8 @@ final class ConnectedAppWithClientSecret
             $data['next_client_secret_last_four'] ?? null,
             $data['client_secret'] ?? null,
             $data['access_token_custom_audience'] ?? null,
-            $data['logo_url'] ?? null
+            $data['logo_url'] ?? null,
+            $data['client_id_metadata_url'] ?? null
         );
     }
 
@@ -136,6 +140,7 @@ final class ConnectedAppWithClientSecret
             'client_secret' => $this->clientSecret,
             'access_token_custom_audience' => $this->accessTokenCustomAudience,
             'logo_url' => $this->logoURL,
+            'client_id_metadata_url' => $this->clientIdMetadataURL,
         ];
     }
 }
