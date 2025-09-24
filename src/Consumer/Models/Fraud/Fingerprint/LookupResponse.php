@@ -45,6 +45,13 @@ final class LookupResponse
     public int $statusCode;
     /** Additional information about the user's browser and network. */
     public ?\Stytch\Consumer\Models\Fraud\Properties $properties = null;
+    /**
+    * The raw device attributes, such as screen size, that were collected by the Device Fingerprinting product
+    * to generate the fingerprints and verdict. You must be specifically enabled for the raw signals feature
+    * to see this field. You can find documentation for the specific fields in the
+    * [guides](https://stytch.com/docs/fraud/guides/device-fingerprinting/reference/raw-signals).
+     */
+    public ?array $rawSignals = null;
 
     public function __construct(
         string $requestId,
@@ -55,7 +62,8 @@ final class LookupResponse
         string $createdAt,
         string $expiresAt,
         int $statusCode,
-        ?\Stytch\Consumer\Models\Fraud\Properties $properties = null
+        ?\Stytch\Consumer\Models\Fraud\Properties $properties = null,
+        ?array $rawSignals = null
     ) {
         $this->requestId = $requestId;
         $this->telemetryId = $telemetryId;
@@ -66,6 +74,7 @@ final class LookupResponse
         $this->expiresAt = $expiresAt;
         $this->statusCode = $statusCode;
         $this->properties = $properties;
+        $this->rawSignals = $rawSignals;
     }
 
     /**
@@ -85,7 +94,8 @@ final class LookupResponse
             $data['created_at'],
             $data['expires_at'],
             $data['status_code'],
-            $data['properties'] !== null ? \Stytch\Consumer\Models\Fraud\Properties::fromArray($data['properties']) : null
+            $data['properties'] !== null ? \Stytch\Consumer\Models\Fraud\Properties::fromArray($data['properties']) : null,
+            $data['raw_signals'] ?? null
         );
     }
 
@@ -106,6 +116,7 @@ final class LookupResponse
             'expires_at' => $this->expiresAt,
             'status_code' => $this->statusCode,
             'properties' => $this->properties,
+            'raw_signals' => $this->rawSignals,
         ];
     }
 }
