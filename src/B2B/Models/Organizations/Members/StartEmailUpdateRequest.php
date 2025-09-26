@@ -50,6 +50,12 @@ final class StartEmailUpdateRequest
     * built-in customizations or a custom HTML email for Magic Links - Login.
      */
     public ?string $loginTemplateId = null;
+    /**
+    * The method that should be used to verify a member's new email address. The options are
+    * `EMAIL_MAGIC_LINK` or `EMAIL_OTP`. This field is optional, if no value is provided, `EMAIL_MAGIC_LINK`
+    * will be used.
+     */
+    public ?string $deliveryMethod = null;
 
     public function __construct(
         string $organizationId,
@@ -57,7 +63,8 @@ final class StartEmailUpdateRequest
         string $emailAddress,
         ?string $loginRedirectURL = null,
         ?string $locale = null,
-        ?string $loginTemplateId = null
+        ?string $loginTemplateId = null,
+        ?string $deliveryMethod = null
     ) {
         $this->organizationId = $organizationId;
         $this->memberId = $memberId;
@@ -65,6 +72,7 @@ final class StartEmailUpdateRequest
         $this->loginRedirectURL = $loginRedirectURL;
         $this->locale = $locale;
         $this->loginTemplateId = $loginTemplateId;
+        $this->deliveryMethod = $deliveryMethod;
     }
 
     /**
@@ -81,7 +89,8 @@ final class StartEmailUpdateRequest
             $data['email_address'],
             $data['login_redirect_url'] ?? null,
             $data['locale'] ?? null,
-            $data['login_template_id'] ?? null
+            $data['login_template_id'] ?? null,
+            $data['delivery_method'] ?? null
         );
     }
 
@@ -99,6 +108,7 @@ final class StartEmailUpdateRequest
             'login_redirect_url' => $this->loginRedirectURL,
             'locale' => $this->locale,
             'login_template_id' => $this->loginTemplateId,
+            'delivery_method' => $this->deliveryMethod,
         ];
     }
 }
