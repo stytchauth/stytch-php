@@ -60,9 +60,9 @@ class Client
     public function __construct(
         string $projectId,
         string $secret,
-        string $environment = null,
-        string $fraudEnvironment = null,
-        string $customBaseUrl = null
+        ?string $environment = null,
+        ?string $fraudEnvironment = null,
+        ?string $customBaseUrl = null
     ) {
         $this->projectId = $projectId;
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
