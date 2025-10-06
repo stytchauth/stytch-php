@@ -16,6 +16,7 @@ final class Session
     public string $userId;
     /** An array of different authentication factors that comprise a Session. */
     public array $authenticationFactors;
+    public array $roles;
     /**
     * The timestamp when the Session was created. Values conform to the RFC 3339 standard and are expressed in
     * UTC, e.g. `2021-12-29T12:33:09Z`.
@@ -43,6 +44,7 @@ final class Session
         string $sessionId,
         string $userId,
         array $authenticationFactors,
+        array $roles,
         ?string $startedAt = null,
         ?string $lastAccessedAt = null,
         ?string $expiresAt = null,
@@ -52,6 +54,7 @@ final class Session
         $this->sessionId = $sessionId;
         $this->userId = $userId;
         $this->authenticationFactors = $authenticationFactors;
+        $this->roles = $roles;
         $this->startedAt = $startedAt;
         $this->lastAccessedAt = $lastAccessedAt;
         $this->expiresAt = $expiresAt;
@@ -71,6 +74,7 @@ final class Session
             $data['session_id'],
             $data['user_id'],
             isset($data['authentication_factors']) ? array_map(fn ($item) => AuthenticationFactor::fromArray($item), $data['authentication_factors']) : [],
+            $data['roles'],
             $data['started_at'] ?? null,
             $data['last_accessed_at'] ?? null,
             $data['expires_at'] ?? null,
@@ -90,6 +94,7 @@ final class Session
             'session_id' => $this->sessionId,
             'user_id' => $this->userId,
             'authentication_factors' => $this->authenticationFactors,
+            'roles' => $this->roles,
             'started_at' => $this->startedAt,
             'last_accessed_at' => $this->lastAccessedAt,
             'expires_at' => $this->expiresAt,
