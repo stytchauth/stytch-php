@@ -67,6 +67,13 @@ final class CreateRequest
     * slug will be generated based on the email domain.
      */
     public ?string $organizationSlug = null;
+    /**
+    * An identifier that can be used in API calls wherever a organization_id is expected. This is a string
+    * consisting of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
+    * External IDs must be unique within a project, but may be reused across different projects in the same
+    * workspace.
+     */
+    public ?string $organizationExternalId = null;
     /** The image URL of the Organization logo. */
     public ?string $organizationLogoURL = null;
     /** An arbitrary JSON object for storing application-specific data or identity-provider-specific data. */
@@ -232,6 +239,7 @@ final class CreateRequest
         ?array $sessionCustomClaims = null,
         ?string $organizationName = null,
         ?string $organizationSlug = null,
+        ?string $organizationExternalId = null,
         ?string $organizationLogoURL = null,
         ?array $trustedMetadata = null,
         ?string $ssoJITProvisioning = null,
@@ -257,6 +265,7 @@ final class CreateRequest
         $this->sessionCustomClaims = $sessionCustomClaims;
         $this->organizationName = $organizationName;
         $this->organizationSlug = $organizationSlug;
+        $this->organizationExternalId = $organizationExternalId;
         $this->organizationLogoURL = $organizationLogoURL;
         $this->trustedMetadata = $trustedMetadata;
         $this->ssoJITProvisioning = $ssoJITProvisioning;
@@ -292,6 +301,7 @@ final class CreateRequest
             $data['session_custom_claims'] ?? null,
             $data['organization_name'] ?? null,
             $data['organization_slug'] ?? null,
+            $data['organization_external_id'] ?? null,
             $data['organization_logo_url'] ?? null,
             $data['trusted_metadata'] ?? null,
             $data['sso_jit_provisioning'] ?? null,
@@ -327,6 +337,7 @@ final class CreateRequest
             'session_custom_claims' => $this->sessionCustomClaims,
             'organization_name' => $this->organizationName,
             'organization_slug' => $this->organizationSlug,
+            'organization_external_id' => $this->organizationExternalId,
             'organization_logo_url' => $this->organizationLogoURL,
             'trusted_metadata' => $this->trustedMetadata,
             'sso_jit_provisioning' => $this->ssoJITProvisioning,
