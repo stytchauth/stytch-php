@@ -86,7 +86,7 @@ final class SendRequest
         return new static(
             $data['email'],
             $data['expiration_minutes'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['locale'] ?? null,
             $data['user_id'] ?? null,
             $data['session_token'] ?? null,

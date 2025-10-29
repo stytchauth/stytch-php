@@ -106,9 +106,9 @@ final class ResetResponse
             $data['intermediate_session_token'],
             $data['member_authenticated'],
             $data['status_code'],
-            $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
-            $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
+            isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
         );
     }
 

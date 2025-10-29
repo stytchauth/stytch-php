@@ -52,7 +52,7 @@ final class SearchRequest
         return new static(
             $data['cursor'] ?? null,
             $data['limit'] ?? null,
-            $data['query'] !== null ? \Stytch\Consumer\Models\M2M\M2MSearchQuery::fromArray($data['query']) : null
+            isset($data['query']) && $data['query'] !== null ? \Stytch\Consumer\Models\M2M\M2MSearchQuery::fromArray($data['query']) : null
         );
     }
 

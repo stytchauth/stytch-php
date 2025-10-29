@@ -110,8 +110,8 @@ final class ResetRequest
             $data['session_jwt'] ?? null,
             $data['code_verifier'] ?? null,
             $data['session_custom_claims'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
-            $data['options'] !== null ? \Stytch\Consumer\Models\MagicLinks\Options::fromArray($data['options']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['options']) && $data['options'] !== null ? \Stytch\Consumer\Models\MagicLinks\Options::fromArray($data['options']) : null,
             $data['telemetry_id'] ?? null
         );
     }

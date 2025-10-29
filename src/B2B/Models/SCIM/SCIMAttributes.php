@@ -114,8 +114,8 @@ final class SCIMAttributes
             isset($data['entitlements']) ? array_map(fn ($item) => Entitlement::fromArray($item), $data['entitlements']) : [],
             isset($data['roles']) ? array_map(fn ($item) => Role::fromArray($item), $data['roles']) : [],
             isset($data['x509certificates']) ? array_map(fn ($item) => X509Certificate::fromArray($item), $data['x509certificates']) : [],
-            $data['name'] !== null ? Name::fromArray($data['name']) : null,
-            $data['enterprise_extension'] !== null ? EnterpriseExtension::fromArray($data['enterprise_extension']) : null
+            isset($data['name']) && $data['name'] !== null ? Name::fromArray($data['name']) : null,
+            isset($data['enterprise_extension']) && $data['enterprise_extension'] !== null ? EnterpriseExtension::fromArray($data['enterprise_extension']) : null
         );
     }
 

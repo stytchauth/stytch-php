@@ -91,8 +91,8 @@ final class AuthenticateRequest
         return new static(
             $data['method_id'],
             $data['code'],
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
-            $data['options'] !== null ? \Stytch\Consumer\Models\MagicLinks\Options::fromArray($data['options']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['options']) && $data['options'] !== null ? \Stytch\Consumer\Models\MagicLinks\Options::fromArray($data['options']) : null,
             $data['session_token'] ?? null,
             $data['session_duration_minutes'] ?? null,
             $data['session_jwt'] ?? null,

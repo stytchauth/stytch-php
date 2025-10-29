@@ -10,9 +10,7 @@ namespace Stytch\B2B\Models\SCIM;
 
 final class SCIMGroupImplicitRoleAssignments
 {
-    /** The ID of the role. */
     public string $roleId;
-    /** The ID of the group. */
     public string $groupId;
     public string $groupName;
 

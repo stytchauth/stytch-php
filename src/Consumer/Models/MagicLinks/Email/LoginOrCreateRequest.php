@@ -121,7 +121,7 @@ final class LoginOrCreateRequest
             $data['signup_expiration_minutes'] ?? null,
             $data['login_template_id'] ?? null,
             $data['signup_template_id'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['create_user_as_pending'] ?? null,
             $data['code_challenge'] ?? null,
             $data['locale'] ?? null

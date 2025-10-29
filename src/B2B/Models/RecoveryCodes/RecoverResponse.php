@@ -82,8 +82,8 @@ final class RecoverResponse
             $data['session_jwt'],
             $data['recovery_codes_remaining'],
             $data['status_code'],
-            $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
         );
     }
 

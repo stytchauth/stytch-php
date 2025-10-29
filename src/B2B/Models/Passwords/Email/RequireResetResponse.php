@@ -53,8 +53,8 @@ final class RequireResetResponse
             $data['request_id'],
             $data['status_code'],
             $data['member_id'] ?? null,
-            $data['member'] !== null ? \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']) : null,
-            $data['organization'] !== null ? \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']) : null
+            isset($data['member']) && $data['member'] !== null ? \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']) : null,
+            isset($data['organization']) && $data['organization'] !== null ? \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']) : null
         );
     }
 

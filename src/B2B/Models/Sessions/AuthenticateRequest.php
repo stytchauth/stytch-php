@@ -90,7 +90,7 @@ final class AuthenticateRequest
             $data['session_duration_minutes'] ?? null,
             $data['session_jwt'] ?? null,
             $data['session_custom_claims'] ?? null,
-            $data['authorization_check'] !== null ? AuthorizationCheck::fromArray($data['authorization_check']) : null
+            isset($data['authorization_check']) && $data['authorization_check'] !== null ? AuthorizationCheck::fromArray($data['authorization_check']) : null
         );
     }
 

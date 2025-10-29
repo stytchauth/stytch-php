@@ -44,7 +44,7 @@ final class UpdateResponse
         return new static(
             $data['request_id'],
             $data['status_code'],
-            $data['webauthn_registration'] !== null ? \Stytch\Consumer\Models\Users\WebAuthnRegistration::fromArray($data['webauthn_registration']) : null
+            isset($data['webauthn_registration']) && $data['webauthn_registration'] !== null ? \Stytch\Consumer\Models\Users\WebAuthnRegistration::fromArray($data['webauthn_registration']) : null
         );
     }
 

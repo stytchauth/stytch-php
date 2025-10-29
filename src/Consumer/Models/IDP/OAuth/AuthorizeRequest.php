@@ -40,6 +40,7 @@ final class AuthorizeRequest
     public ?string $nonce = null;
     /** A base64url encoded challenge derived from the code verifier for PKCE flows. */
     public ?string $codeChallenge = null;
+    public ?array $resources = null;
 
     public function __construct(
         bool $consentGranted,
@@ -53,7 +54,8 @@ final class AuthorizeRequest
         ?string $prompt = null,
         ?string $state = null,
         ?string $nonce = null,
-        ?string $codeChallenge = null
+        ?string $codeChallenge = null,
+        ?array $resources = null
     ) {
         $this->consentGranted = $consentGranted;
         $this->scopes = $scopes;
@@ -67,6 +69,7 @@ final class AuthorizeRequest
         $this->state = $state;
         $this->nonce = $nonce;
         $this->codeChallenge = $codeChallenge;
+        $this->resources = $resources;
     }
 
     /**
@@ -89,7 +92,8 @@ final class AuthorizeRequest
             $data['prompt'] ?? null,
             $data['state'] ?? null,
             $data['nonce'] ?? null,
-            $data['code_challenge'] ?? null
+            $data['code_challenge'] ?? null,
+            $data['resources'] ?? null
         );
     }
 
@@ -113,6 +117,7 @@ final class AuthorizeRequest
             'state' => $this->state,
             'nonce' => $this->nonce,
             'code_challenge' => $this->codeChallenge,
+            'resources' => $this->resources,
         ];
     }
 }

@@ -48,7 +48,7 @@ final class PolicyResponse
         return new static(
             $data['request_id'],
             $data['status_code'],
-            $data['policy'] !== null ? Policy::fromArray($data['policy']) : null
+            isset($data['policy']) && $data['policy'] !== null ? Policy::fromArray($data['policy']) : null
         );
     }
 

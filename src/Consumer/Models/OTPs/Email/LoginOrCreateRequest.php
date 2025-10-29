@@ -87,7 +87,7 @@ final class LoginOrCreateRequest
         return new static(
             $data['email'],
             $data['expiration_minutes'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['create_user_as_pending'] ?? null,
             $data['locale'] ?? null,
             $data['login_template_id'] ?? null,

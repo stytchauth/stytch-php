@@ -294,7 +294,7 @@ final class Organization
             $data['updated_at'] ?? null,
             $data['organization_external_id'] ?? null,
             $data['sso_default_connection_id'] ?? null,
-            $data['scim_active_connection'] !== null ? ActiveSCIMConnection::fromArray($data['scim_active_connection']) : null,
+            isset($data['scim_active_connection']) && $data['scim_active_connection'] !== null ? ActiveSCIMConnection::fromArray($data['scim_active_connection']) : null,
             $data['allowed_oauth_tenants'] ?? null
         );
     }

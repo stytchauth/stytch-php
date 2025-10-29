@@ -99,7 +99,7 @@ final class CreateRequest
             $data['session_custom_claims'] ?? null,
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
-            $data['name'] !== null ? \Stytch\Consumer\Models\Users\Name::fromArray($data['name']) : null,
+            isset($data['name']) && $data['name'] !== null ? \Stytch\Consumer\Models\Users\Name::fromArray($data['name']) : null,
             $data['telemetry_id'] ?? null
         );
     }

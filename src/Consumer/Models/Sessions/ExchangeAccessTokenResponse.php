@@ -80,8 +80,8 @@ final class ExchangeAccessTokenResponse
             $data['session_jwt'],
             \Stytch\Consumer\Models\Users\User::fromArray($data['user']),
             $data['status_code'],
-            $data['session'] !== null ? Session::fromArray($data['session']) : null,
-            $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
+            isset($data['session']) && $data['session'] !== null ? Session::fromArray($data['session']) : null,
+            isset($data['user_device']) && $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
         );
     }
 

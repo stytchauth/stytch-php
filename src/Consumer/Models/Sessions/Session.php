@@ -78,7 +78,7 @@ final class Session
             $data['started_at'] ?? null,
             $data['last_accessed_at'] ?? null,
             $data['expires_at'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['custom_claims'] ?? null
         );
     }

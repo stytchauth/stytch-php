@@ -71,8 +71,8 @@ final class UpdateRequest
     {
         return new static(
             $data['user_id'],
-            $data['name'] !== null ? Name::fromArray($data['name']) : null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['name']) && $data['name'] !== null ? Name::fromArray($data['name']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['trusted_metadata'] ?? null,
             $data['untrusted_metadata'] ?? null,
             $data['external_id'] ?? null,
