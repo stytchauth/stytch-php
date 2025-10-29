@@ -122,8 +122,8 @@ final class AuthenticateResponse
             $data['reset_sessions'],
             $data['oauth_user_registration_id'],
             $data['status_code'],
-            $data['user_session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['user_session']) : null,
-            $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
+            isset($data['user_session']) && $data['user_session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['user_session']) : null,
+            isset($data['user_device']) && $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
         );
     }
 

@@ -77,8 +77,8 @@ final class AuthenticateResponse
             $data['session_token'],
             $data['session_jwt'],
             $data['status_code'],
-            $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
         );
     }
 

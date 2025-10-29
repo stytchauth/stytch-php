@@ -78,7 +78,7 @@ final class AttestResponse
             \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']),
             \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             $data['status_code'],
-            $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
         );
     }
 

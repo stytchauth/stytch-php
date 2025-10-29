@@ -72,7 +72,7 @@ final class AuthenticateResponse
             $data['session_token'],
             $data['session_jwt'],
             $data['status_code'],
-            $data['session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['session']) : null
+            isset($data['session']) && $data['session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['session']) : null
         );
     }
 

@@ -94,7 +94,7 @@ final class LookupResponse
             $data['created_at'],
             $data['expires_at'],
             $data['status_code'],
-            $data['properties'] !== null ? \Stytch\Consumer\Models\Fraud\Properties::fromArray($data['properties']) : null,
+            isset($data['properties']) && $data['properties'] !== null ? \Stytch\Consumer\Models\Fraud\Properties::fromArray($data['properties']) : null,
             $data['raw_signals'] ?? null
         );
     }

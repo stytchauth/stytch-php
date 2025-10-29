@@ -87,7 +87,7 @@ final class StrengthCheckResponse
             $data['strength_policy'],
             $data['breach_detection_on_create'],
             $data['status_code'],
-            $data['feedback'] !== null ? Feedback::fromArray($data['feedback']) : null
+            isset($data['feedback']) && $data['feedback'] !== null ? Feedback::fromArray($data['feedback']) : null
         );
     }
 

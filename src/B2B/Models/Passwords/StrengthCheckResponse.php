@@ -98,8 +98,8 @@ final class StrengthCheckResponse
             $data['strength_policy'],
             $data['breach_detection_on_create'],
             $data['status_code'],
-            $data['luds_feedback'] !== null ? LudsFeedback::fromArray($data['luds_feedback']) : null,
-            $data['zxcvbn_feedback'] !== null ? ZxcvbnFeedback::fromArray($data['zxcvbn_feedback']) : null
+            isset($data['luds_feedback']) && $data['luds_feedback'] !== null ? LudsFeedback::fromArray($data['luds_feedback']) : null,
+            isset($data['zxcvbn_feedback']) && $data['zxcvbn_feedback'] !== null ? ZxcvbnFeedback::fromArray($data['zxcvbn_feedback']) : null
         );
     }
 

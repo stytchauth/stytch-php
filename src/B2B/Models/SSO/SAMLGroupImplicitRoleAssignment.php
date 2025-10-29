@@ -10,19 +10,7 @@ namespace Stytch\B2B\Models\SSO;
 
 final class SAMLGroupImplicitRoleAssignment
 {
-    /**
-    * The unique identifier of the RBAC Role, provided by the developer and intended to be human-readable.
-    *
-    *   Reserved `role_id`s that are predefined by Stytch include:
-    *
-    *   * `stytch_member`
-    *   * `stytch_admin`
-    *
-    *   Check out the [guide on Stytch default Roles](https://stytch.com/docs/b2b/guides/rbac/stytch-default)
-    * for a more detailed explanation.
-     */
     public string $roleId;
-    /** The name of the group that grants the specified role assignment. */
     public string $group;
 
     public function __construct(

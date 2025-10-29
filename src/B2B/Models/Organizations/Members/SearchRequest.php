@@ -57,7 +57,7 @@ final class SearchRequest
             $data['organization_ids'],
             $data['cursor'] ?? null,
             $data['limit'] ?? null,
-            $data['query'] !== null ? \Stytch\B2B\Models\Organizations\SearchQuery::fromArray($data['query']) : null
+            isset($data['query']) && $data['query'] !== null ? \Stytch\B2B\Models\Organizations\SearchQuery::fromArray($data['query']) : null
         );
     }
 

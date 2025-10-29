@@ -44,7 +44,7 @@ final class CreateRequest
         return new static(
             $data['user_id'],
             $data['expiration_minutes'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null
         );
     }
 

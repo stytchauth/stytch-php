@@ -60,7 +60,7 @@ final class AuthenticateStartRequest
             $data['user_id'] ?? null,
             $data['session_token'] ?? null,
             $data['session_jwt'] ?? null,
-            $data['siwe_params'] !== null ? SIWEParams::fromArray($data['siwe_params']) : null
+            isset($data['siwe_params']) && $data['siwe_params'] !== null ? SIWEParams::fromArray($data['siwe_params']) : null
         );
     }
 

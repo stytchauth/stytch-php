@@ -75,7 +75,7 @@ final class AuthenticateResponse
             $data['session_jwt'],
             \Stytch\Consumer\Models\Users\User::fromArray($data['user']),
             $data['status_code'],
-            $data['verdict'] !== null ? AuthorizationVerdict::fromArray($data['verdict']) : null
+            isset($data['verdict']) && $data['verdict'] !== null ? AuthorizationVerdict::fromArray($data['verdict']) : null
         );
     }
 

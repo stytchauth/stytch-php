@@ -48,7 +48,7 @@ final class CreateResponse
         return new static(
             $data['request_id'],
             $data['status_code'],
-            $data['connection'] !== null ? \Stytch\B2B\Models\SCIM\SCIMConnectionWithToken::fromArray($data['connection']) : null
+            isset($data['connection']) && $data['connection'] !== null ? \Stytch\B2B\Models\SCIM\SCIMConnectionWithToken::fromArray($data['connection']) : null
         );
     }
 

@@ -80,8 +80,8 @@ final class ResetResponse
             $data['session_token'],
             $data['session_jwt'],
             $data['status_code'],
-            $data['session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['session']) : null,
-            $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
+            isset($data['session']) && $data['session'] !== null ? \Stytch\Consumer\Models\Sessions\Session::fromArray($data['session']) : null,
+            isset($data['user_device']) && $data['user_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['user_device']) : null
         );
     }
 

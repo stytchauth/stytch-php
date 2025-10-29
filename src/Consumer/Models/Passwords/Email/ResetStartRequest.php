@@ -99,7 +99,7 @@ final class ResetStartRequest
             $data['reset_password_redirect_url'] ?? null,
             $data['reset_password_expiration_minutes'] ?? null,
             $data['code_challenge'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
             $data['login_redirect_url'] ?? null,
             $data['locale'] ?? null,
             $data['reset_password_template_id'] ?? null

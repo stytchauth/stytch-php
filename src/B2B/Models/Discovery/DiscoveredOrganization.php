@@ -49,10 +49,10 @@ final class DiscoveredOrganization
     {
         return new static(
             $data['member_authenticated'],
-            $data['organization'] !== null ? \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']) : null,
-            $data['membership'] !== null ? Membership::fromArray($data['membership']) : null,
-            $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
-            $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null
+            isset($data['organization']) && $data['organization'] !== null ? \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']) : null,
+            isset($data['membership']) && $data['membership'] !== null ? Membership::fromArray($data['membership']) : null,
+            isset($data['primary_required']) && $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
+            isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null
         );
     }
 

@@ -52,7 +52,7 @@ final class SearchRequest
         return new static(
             $data['cursor'] ?? null,
             $data['limit'] ?? null,
-            $data['query'] !== null ? SearchQuery::fromArray($data['query']) : null
+            isset($data['query']) && $data['query'] !== null ? SearchQuery::fromArray($data['query']) : null
         );
     }
 

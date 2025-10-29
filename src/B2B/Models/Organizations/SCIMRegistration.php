@@ -43,7 +43,7 @@ final class SCIMRegistration
             $data['connection_id'],
             $data['registration_id'],
             $data['external_id'] ?? null,
-            $data['scim_attributes'] !== null ? \Stytch\B2B\Models\SCIM\SCIMAttributes::fromArray($data['scim_attributes']) : null
+            isset($data['scim_attributes']) && $data['scim_attributes'] !== null ? \Stytch\B2B\Models\SCIM\SCIMAttributes::fromArray($data['scim_attributes']) : null
         );
     }
 

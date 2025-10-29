@@ -65,7 +65,7 @@ final class MigrateResponse
             \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']),
             \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             $data['status_code'],
-            $data['member_session'] !== null ? MemberSession::fromArray($data['member_session']) : null
+            isset($data['member_session']) && $data['member_session'] !== null ? MemberSession::fromArray($data['member_session']) : null
         );
     }
 

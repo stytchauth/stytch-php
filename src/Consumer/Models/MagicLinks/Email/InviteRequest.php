@@ -94,8 +94,8 @@ final class InviteRequest
         return new static(
             $data['email'],
             $data['invite_template_id'] ?? null,
-            $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
-            $data['name'] !== null ? \Stytch\Consumer\Models\Users\Name::fromArray($data['name']) : null,
+            isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
+            isset($data['name']) && $data['name'] !== null ? \Stytch\Consumer\Models\Users\Name::fromArray($data['name']) : null,
             $data['invite_magic_link_url'] ?? null,
             $data['invite_expiration_minutes'] ?? null,
             $data['locale'] ?? null,

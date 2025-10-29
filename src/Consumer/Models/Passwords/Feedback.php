@@ -48,7 +48,7 @@ final class Feedback
         return new static(
             $data['warning'],
             $data['suggestions'],
-            $data['luds_requirements'] !== null ? LUDSRequirements::fromArray($data['luds_requirements']) : null
+            isset($data['luds_requirements']) && $data['luds_requirements'] !== null ? LUDSRequirements::fromArray($data['luds_requirements']) : null
         );
     }
 

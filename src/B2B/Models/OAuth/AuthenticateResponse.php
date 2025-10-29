@@ -151,11 +151,11 @@ final class AuthenticateResponse
             $data['member_authenticated'],
             $data['intermediate_session_token'],
             $data['status_code'],
-            $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            $data['provider_values'] !== null ? ProviderValues::fromArray($data['provider_values']) : null,
-            $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
-            $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
-            $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
+            isset($data['provider_values']) && $data['provider_values'] !== null ? ProviderValues::fromArray($data['provider_values']) : null,
+            isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
+            isset($data['primary_required']) && $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
         );
     }
 

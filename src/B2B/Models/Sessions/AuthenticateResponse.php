@@ -72,7 +72,7 @@ final class AuthenticateResponse
             \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']),
             \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             $data['status_code'],
-            $data['verdict'] !== null ? AuthorizationVerdict::fromArray($data['verdict']) : null
+            isset($data['verdict']) && $data['verdict'] !== null ? AuthorizationVerdict::fromArray($data['verdict']) : null
         );
     }
 

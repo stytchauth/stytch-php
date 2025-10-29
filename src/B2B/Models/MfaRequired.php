@@ -37,7 +37,7 @@ final class MfaRequired
     public static function fromArray(array $data): static
     {
         return new static(
-            $data['member_options'] !== null ? MemberOptions::fromArray($data['member_options']) : null,
+            isset($data['member_options']) && $data['member_options'] !== null ? MemberOptions::fromArray($data['member_options']) : null,
             $data['secondary_auth_initiated'] ?? null
         );
     }

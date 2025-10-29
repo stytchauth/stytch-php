@@ -212,7 +212,7 @@ final class Member
             $data['untrusted_metadata'] ?? null,
             $data['created_at'] ?? null,
             $data['updated_at'] ?? null,
-            $data['scim_registration'] !== null ? SCIMRegistration::fromArray($data['scim_registration']) : null,
+            isset($data['scim_registration']) && $data['scim_registration'] !== null ? SCIMRegistration::fromArray($data['scim_registration']) : null,
             $data['external_id'] ?? null,
             $data['lock_created_at'] ?? null,
             $data['lock_expires_at'] ?? null

@@ -47,7 +47,7 @@ final class EnterpriseExtension
             $data['division'],
             $data['department'],
             $data['organization'],
-            $data['manager'] !== null ? Manager::fromArray($data['manager']) : null
+            isset($data['manager']) && $data['manager'] !== null ? Manager::fromArray($data['manager']) : null
         );
     }
 

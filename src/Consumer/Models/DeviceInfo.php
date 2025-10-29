@@ -60,13 +60,13 @@ final class DeviceInfo
     {
         return new static(
             $data['visitor_id'],
-            $data['visitor_id_details'] !== null ? DeviceAttributeDetails::fromArray($data['visitor_id_details']) : null,
+            isset($data['visitor_id_details']) && $data['visitor_id_details'] !== null ? DeviceAttributeDetails::fromArray($data['visitor_id_details']) : null,
             $data['ip_address'] ?? null,
-            $data['ip_address_details'] !== null ? DeviceAttributeDetails::fromArray($data['ip_address_details']) : null,
+            isset($data['ip_address_details']) && $data['ip_address_details'] !== null ? DeviceAttributeDetails::fromArray($data['ip_address_details']) : null,
             $data['ip_geo_city'] ?? null,
             $data['ip_geo_region'] ?? null,
             $data['ip_geo_country'] ?? null,
-            $data['ip_geo_country_details'] !== null ? DeviceAttributeDetails::fromArray($data['ip_geo_country_details']) : null
+            isset($data['ip_geo_country_details']) && $data['ip_geo_country_details'] !== null ? DeviceAttributeDetails::fromArray($data['ip_geo_country_details']) : null
         );
     }
 

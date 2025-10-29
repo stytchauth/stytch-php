@@ -38,7 +38,7 @@ final class LookupRequest
     {
         return new static(
             $data['telemetry_id'],
-            $data['external_metadata'] !== null ? \Stytch\Consumer\Models\Fraud\Metadata::fromArray($data['external_metadata']) : null
+            isset($data['external_metadata']) && $data['external_metadata'] !== null ? \Stytch\Consumer\Models\Fraud\Metadata::fromArray($data['external_metadata']) : null
         );
     }
 
