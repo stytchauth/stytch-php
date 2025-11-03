@@ -15,8 +15,8 @@ final class MigrateRequest
     /** The password hash. For a Scrypt or PBKDF2 hash, the hash needs to be a base64 encoded string. */
     public string $hash;
     /**
-    * The password hash used. Currently `bcrypt`, `scrypt`, `argon_2i`, `argon_2id`, `md_5`, `sha_1`, and
-    * `pbkdf_2` are supported.
+    * The password hash used. Currently `bcrypt`, `scrypt`, `argon_2i`, `argon_2id`, `md_5`, `sha_1`,
+    * `sha_512`, and `pbkdf_2` are supported.
      */
     public string $hashType;
     /** Optional parameters for MD-5 hash types. */
@@ -25,6 +25,8 @@ final class MigrateRequest
     public ?Argon2Config $argon2Config = null;
     /** Optional parameters for SHA-1 hash types. */
     public ?SHA1Config $sha1Config = null;
+    /** Optional parameters for SHA-512 hash types. */
+    public ?SHA512Config $sha512Config = null;
     /**
     * Required parameters if the scrypt is not provided in a
     * [PHC encoded form](https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md#phc-string-format).
@@ -81,6 +83,7 @@ final class MigrateRequest
         ?MD5Config $md5Config = null,
         ?Argon2Config $argon2Config = null,
         ?SHA1Config $sha1Config = null,
+        ?SHA512Config $sha512Config = null,
         ?ScryptConfig $scryptConfig = null,
         ?PBKDF2Config $pbkdf2Config = null,
         ?array $trustedMetadata = null,
@@ -98,6 +101,7 @@ final class MigrateRequest
         $this->md5Config = $md5Config;
         $this->argon2Config = $argon2Config;
         $this->sha1Config = $sha1Config;
+        $this->sha512Config = $sha512Config;
         $this->scryptConfig = $scryptConfig;
         $this->pbkdf2Config = $pbkdf2Config;
         $this->trustedMetadata = $trustedMetadata;
@@ -125,6 +129,7 @@ final class MigrateRequest
             isset($data['md_5_config']) && $data['md_5_config'] !== null ? MD5Config::fromArray($data['md_5_config']) : null,
             isset($data['argon_2_config']) && $data['argon_2_config'] !== null ? Argon2Config::fromArray($data['argon_2_config']) : null,
             isset($data['sha_1_config']) && $data['sha_1_config'] !== null ? SHA1Config::fromArray($data['sha_1_config']) : null,
+            isset($data['sha_512_config']) && $data['sha_512_config'] !== null ? SHA512Config::fromArray($data['sha_512_config']) : null,
             isset($data['scrypt_config']) && $data['scrypt_config'] !== null ? ScryptConfig::fromArray($data['scrypt_config']) : null,
             isset($data['pbkdf_2_config']) && $data['pbkdf_2_config'] !== null ? PBKDF2Config::fromArray($data['pbkdf_2_config']) : null,
             $data['trusted_metadata'] ?? null,
@@ -152,6 +157,7 @@ final class MigrateRequest
             'md_5_config' => $this->md5Config,
             'argon_2_config' => $this->argon2Config,
             'sha_1_config' => $this->sha1Config,
+            'sha_512_config' => $this->sha512Config,
             'scrypt_config' => $this->scryptConfig,
             'pbkdf_2_config' => $this->pbkdf2Config,
             'trusted_metadata' => $this->trustedMetadata,
