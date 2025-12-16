@@ -12,11 +12,19 @@ $client = new Client(
 );
 
 try {
-    // Example: Authenticate a session
+    // Example: Authenticate a session using AuthenticateRequest object
     $response = $client->sessions->authenticate(
-        sessionToken: 'mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q',
-        sessionDurationMinutes: 60
+        new \Stytch\Consumer\Models\Sessions\AuthenticateRequest(
+            sessionToken: 'mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q',
+            sessionDurationMinutes: 60
+        )
     );
+
+    // Alternative: Using array format
+    // $response = $client->sessions->authenticate([
+    //     'session_token' => 'mZAYn5aLEqKUlZ_Ad9U_fWr38GaAQ1oFAhT8ds245v7Q',
+    //     'session_duration_minutes' => 60
+    // ]);
 
     echo "Session authenticated successfully!\n";
     echo "Session Token: " . $response->sessionToken . "\n";
