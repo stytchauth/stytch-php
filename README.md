@@ -23,9 +23,9 @@ $client = new Client(
 );
 
 // Create a user
-$response = $client->users->create(
-    email: 'user@example.com'
-);
+$response = $client->users->create([
+    'email' => 'user@example.com'
+]);
 ```
 
 ### B2B Client
@@ -39,10 +39,10 @@ $client = new Client(
 );
 
 // Create an organization
-$response = $client->organizations->create(
-    organizationName: 'Example Corp',
-    organizationSlug: 'example-corp'
-);
+$response = $client->organizations->create([
+    'organization_name' => 'Example Corp',
+    'organization_slug' => 'example-corp'
+]);
 ```
 
 ## Environment
@@ -129,7 +129,7 @@ The SDK throws `StytchException` for API errors:
 use Stytch\Core\StytchException;
 
 try {
-    $response = $client->users->create(email: 'invalid-email');
+    $response = $client->users->create(['email' => 'invalid-email']);
 } catch (StytchException $e) {
     echo 'Error: ' . $e->getMessage();
     echo 'Status Code: ' . $e->getCode();
