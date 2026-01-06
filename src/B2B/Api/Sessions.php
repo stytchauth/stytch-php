@@ -458,6 +458,7 @@ class Sessions
     // MANUAL(authenticateJwt)(SERVICE_METHOD)
     // ADDIMPORT: use Stytch\Shared\JwksCache;
     // ADDIMPORT: use Stytch\Shared\JwtHelpers;
+    // ADDIMPORT: use Stytch\Shared\RbacLocal;
 
     /**
      * Parse a JWT and verify the signature, preferring local verification over remote.
@@ -574,22 +575,40 @@ class Sessions
 
         // RBAC authorization check
         if (isset($data['authorization_check']) && $data['authorization_check'] !== null) {
-            $authCheck = $data['authorization_check'];
+            $authCheck = is_array($data['authorization_check'])
+                ? $data['authorization_check']
+                : $data['authorization_check']->toArray();
+
             $roles = $sessionClaim['roles'] ?? [];
 
             // Check if the organization ID matches (if provided in authorization check)
-            if (isset($authCheck->organizationId) && $authCheck->organizationId !== $organizationId) {
+            if (isset($authCheck['organization_id']) && $authCheck['organization_id'] !== $organizationId) {
                 throw new \Stytch\Core\StytchException(
                     'authorization_check_failed',
                     'Organization ID does not match'
                 );
             }
 
-            // TODO: Implement full RBAC authorization check using PolicyCache
-            // This would involve:
-            // 1. Fetching the policy from cache
-            // 2. Checking if the member's roles grant permission for the resource/action
-            // For now, we just validate organization ID match
+            // Fetch policy from cache
+            $cacheKey = \Stytch\Shared\PolicyCache::generateKey($organizationId, $memberId);
+            $policy = $this->policyCache->get($cacheKey);
+
+            if ($policy === null) {
+                // Policy not in cache - fall back to network authentication
+                // which will perform the authorization check via API
+                throw new \Stytch\Core\StytchException(
+                    'policy_cache_miss',
+                    'Policy not found in cache. Falling back to network authentication.'
+                );
+            }
+
+            // Perform role-based authorization check
+            RbacLocal::performRoleAuthorizationCheck(
+                $policy,
+                $roles,
+                $authCheck,
+                'Member'
+            );
         }
 
         // Map to MemberSession object

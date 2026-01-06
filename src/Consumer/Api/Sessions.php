@@ -328,6 +328,7 @@ class Sessions
     // MANUAL(authenticateJwt)(SERVICE_METHOD)
     // ADDIMPORT: use Stytch\Shared\JwksCache;
     // ADDIMPORT: use Stytch\Shared\JwtHelpers;
+    // ADDIMPORT: use Stytch\Shared\RbacLocal;
 
     /**
      * Parse a JWT and verify the signature, preferring local verification over remote.
@@ -411,11 +412,38 @@ class Sessions
             ]
         );
 
-        // TODO: Add RBAC authorization check if supported for Consumer
-        // if (isset($data['authorization_check'])) {
-        //     $policy = $this->policyCache->getPolicy();
-        //     // Perform authorization check
-        // }
+        // RBAC authorization check
+        if (isset($data['authorization_check']) && $data['authorization_check'] !== null) {
+            $authCheck = is_array($data['authorization_check'])
+                ? $data['authorization_check']
+                : $data['authorization_check']->toArray();
+
+            $roles = $sessionData['roles'] ?? [];
+
+            // Fetch policy from cache
+            // Note: PolicyCache in PHP currently doesn't auto-fetch from RBAC API like Node does
+            // This assumes the policy has been pre-loaded into the cache
+            $userId = $sessionData['sub'] ?? '';
+            $cacheKey = "policy:user:{$userId}";
+            $policy = $this->policyCache->get($cacheKey);
+
+            if ($policy === null) {
+                // Policy not in cache - fall back to network authentication
+                // which will perform the authorization check via API
+                throw new \Stytch\Core\StytchException(
+                    'policy_cache_miss',
+                    'Policy not found in cache. Falling back to network authentication.'
+                );
+            }
+
+            // Perform role-based authorization check
+            RbacLocal::performRoleAuthorizationCheck(
+                $policy,
+                $roles,
+                $authCheck,
+                'User'
+            );
+        }
 
         // Map to Session object
         return \Stytch\Consumer\Models\Sessions\Session::fromArray([

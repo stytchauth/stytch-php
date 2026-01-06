@@ -202,7 +202,8 @@ class JwtHelpers
      *
      * Supports multiple issuer formats for backwards compatibility:
      * - Primary: stytch.com/{project_id}
-     * - Secondary: Custom CNAME issuers (if configured)
+     * - Legacy: stytch.com/project-test-{uuid}
+     * - Custom CNAME issuers are validated if they contain the project_id
      *
      * @param string $issuer Issuer from JWT
      * @param string $projectId Project ID
@@ -210,13 +211,22 @@ class JwtHelpers
      */
     public static function validateIssuer(string $issuer, string $projectId): bool
     {
-        // Primary issuer format
+        // Primary issuer format: stytch.com/{project_id}
         if ($issuer === "stytch.com/{$projectId}") {
             return true;
         }
 
-        // TODO: Add support for custom CNAME issuers if needed
-        // For now, only support the primary format
+        // Legacy issuer format: stytch.com/project-test-{uuid}
+        // Check if issuer contains the project_id
+        if (str_starts_with($issuer, 'stytch.com/') && str_contains($issuer, $projectId)) {
+            return true;
+        }
+
+        // Custom CNAME issuer: any domain that contains the project_id
+        // This handles cases like custom-domain.com/{project_id}
+        if (str_contains($issuer, $projectId)) {
+            return true;
+        }
 
         return false;
     }
