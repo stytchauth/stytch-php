@@ -3,6 +3,7 @@
 namespace Stytch\Shared;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\JWK;
 use Firebase\JWT\Key;
 use Stytch\Core\StytchException;
 
@@ -45,7 +46,7 @@ class JwtHelpers
         // Decode JWT header to get 'kid' (key ID)
         $tks = explode('.', $jwt);
         if (count($tks) !== 3) {
-            throw new StytchException('jwt_invalid', 'Invalid JWT format');
+            throw new StytchException('Invalid JWT format', 0);
         }
 
         $headb64 = $tks[0];
@@ -53,29 +54,33 @@ class JwtHelpers
         $header = json_decode($headerJson, true);
 
         if (!isset($header['kid'])) {
-            throw new StytchException('jwt_invalid', 'JWT header missing kid');
+            throw new StytchException('JWT header missing kid', 0);
         }
 
         $kid = $header['kid'];
 
         // Find matching key in JWKS
         if (!isset($jwks[$kid])) {
-            throw new StytchException('jwt_invalid', 'No matching key found in JWKS');
+            throw new StytchException('No matching key found in JWKS', 0);
         }
 
         $jwk = $jwks[$kid];
 
-        // Convert JWK to PEM format for firebase/php-jwt
-        $publicKey = self::jwkToPem($jwk);
+        // Convert JWK to Key object using firebase/php-jwt's JWK parser
+        try {
+            $key = JWK::parseKey($jwk);
+        } catch (\Exception $e) {
+            throw new StytchException('Failed to parse JWK: ' . $e->getMessage(), 0, null, $e);
+        }
 
         // Set leeway for clock tolerance
         JWT::$leeway = $clockTolerance;
 
         // Decode and validate JWT
         try {
-            $payload = JWT::decode($jwt, new Key($publicKey, $jwk['alg'] ?? 'RS256'));
+            $payload = JWT::decode($jwt, $key);
         } catch (\Exception $e) {
-            throw new StytchException('jwt_invalid', 'Could not verify JWT: ' . $e->getMessage(), $e);
+            throw new StytchException('Could not verify JWT: ' . $e->getMessage(), 0, null, $e);
         } finally {
             // Reset leeway
             JWT::$leeway = 0;
@@ -87,27 +92,27 @@ class JwtHelpers
         // Validate issuer
         $issuer = $payload['iss'] ?? null;
         if (!$issuer || !self::validateIssuer($issuer, $projectId)) {
-            throw new StytchException('jwt_invalid', 'Invalid issuer');
+            throw new StytchException('Invalid issuer', 0);
         }
 
         // Validate audience
         $audience = $payload['aud'] ?? null;
         if ($audience !== $projectId) {
-            throw new StytchException('jwt_invalid', 'Invalid audience');
+            throw new StytchException('Invalid audience', 0);
         }
 
         // Check max token age if specified
         if ($maxTokenAge !== null) {
             $iat = $payload['iat'] ?? null;
             if (!$iat) {
-                throw new StytchException('jwt_invalid', 'JWT was missing iat claim');
+                throw new StytchException('JWT was missing iat claim', 0);
             }
 
             $now = $currentDate->getTimestamp();
             if ($now - $iat >= $maxTokenAge) {
                 throw new StytchException(
-                    'jwt_too_old',
-                    "JWT was issued at {$iat}, more than {$maxTokenAge} seconds ago"
+                    "JWT was issued at {$iat}, more than {$maxTokenAge} seconds ago",
+                    0
                 );
             }
         }
@@ -146,12 +151,12 @@ class JwtHelpers
         // Extract Stytch session claim
         $sessionClaim = $payload[self::SESSION_CLAIM] ?? null;
         if (!$sessionClaim) {
-            throw new StytchException('jwt_invalid', 'JWT missing session claim');
+            throw new StytchException('JWT missing session claim', 0);
         }
 
-        // Convert to array if it's an object
+        // Convert to array recursively if it's an object
         if (is_object($sessionClaim)) {
-            $sessionClaim = (array) $sessionClaim;
+            $sessionClaim = json_decode(json_encode($sessionClaim), true);
         }
 
         // Return intermediate session format
@@ -229,83 +234,5 @@ class JwtHelpers
         }
 
         return false;
-    }
-
-    /**
-     * Convert JWK to PEM format
-     *
-     * firebase/php-jwt requires PEM format public keys
-     *
-     * @param array $jwk JSON Web Key
-     * @return string PEM formatted public key
-     * @throws StytchException If JWK is invalid
-     */
-    private static function jwkToPem(array $jwk): string
-    {
-        if (!isset($jwk['kty']) || $jwk['kty'] !== 'RSA') {
-            throw new StytchException('jwt_invalid', 'Only RSA keys are supported');
-        }
-
-        if (!isset($jwk['n']) || !isset($jwk['e'])) {
-            throw new StytchException('jwt_invalid', 'Invalid RSA key: missing n or e');
-        }
-
-        // Decode base64url-encoded values
-        $n = self::base64UrlDecode($jwk['n']);
-        $e = self::base64UrlDecode($jwk['e']);
-
-        // Build RSA public key structure
-        $modulus = self::encodeLength(strlen($n)) . $n;
-        $exponent = self::encodeLength(strlen($e)) . $e;
-        $sequence = "\x30" . self::encodeLength(strlen($modulus) + strlen($exponent)) . $modulus . $exponent;
-
-        // RSA public key algorithm identifier
-        $rsaOID = "\x30\x0d\x06\x09\x2a\x86\x48\x86\xf7\x0d\x01\x01\x01\x05\x00";
-        $bitString = "\x03" . self::encodeLength(strlen($sequence) + 1) . "\x00" . $sequence;
-        $publicKey = "\x30" . self::encodeLength(strlen($rsaOID) . strlen($bitString)) . $rsaOID . $bitString;
-
-        // Convert to PEM format
-        $pem = "-----BEGIN PUBLIC KEY-----\n";
-        $pem .= chunk_split(base64_encode($publicKey), 64, "\n");
-        $pem .= "-----END PUBLIC KEY-----\n";
-
-        return $pem;
-    }
-
-    /**
-     * Base64url decode
-     *
-     * @param string $data Base64url encoded string
-     * @return string Decoded binary data
-     */
-    private static function base64UrlDecode(string $data): string
-    {
-        $remainder = strlen($data) % 4;
-        if ($remainder) {
-            $padlen = 4 - $remainder;
-            $data .= str_repeat('=', $padlen);
-        }
-        return base64_decode(strtr($data, '-_', '+/'));
-    }
-
-    /**
-     * Encode ASN.1 DER length field
-     *
-     * @param int $length Length to encode
-     * @return string Encoded length
-     */
-    private static function encodeLength(int $length): string
-    {
-        if ($length < 128) {
-            return chr($length);
-        }
-
-        $lengthBytes = '';
-        while ($length > 0) {
-            $lengthBytes = chr($length & 0xff) . $lengthBytes;
-            $length >>= 8;
-        }
-
-        return chr(0x80 | strlen($lengthBytes)) . $lengthBytes;
     }
 }

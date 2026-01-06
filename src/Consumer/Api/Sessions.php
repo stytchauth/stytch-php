@@ -401,7 +401,7 @@ class Sessions
         $jwks = $this->jwksCache->fetch($this->projectId);
 
         // Validate JWT locally
-        $sessionData = JwtHelpers::authenticateSessionJwtLocal(
+        $sessionData = \Stytch\Shared\JwtHelpers::authenticateSessionJwtLocal(
             $jwks,
             $data['session_jwt'],
             $this->projectId,
@@ -431,13 +431,13 @@ class Sessions
                 // Policy not in cache - fall back to network authentication
                 // which will perform the authorization check via API
                 throw new \Stytch\Core\StytchException(
-                    'policy_cache_miss',
-                    'Policy not found in cache. Falling back to network authentication.'
+                    'Policy not found in cache. Falling back to network authentication.',
+                    0
                 );
             }
 
             // Perform role-based authorization check
-            RbacLocal::performRoleAuthorizationCheck(
+            \Stytch\Shared\RbacLocal::performRoleAuthorizationCheck(
                 $policy,
                 $roles,
                 $authCheck,

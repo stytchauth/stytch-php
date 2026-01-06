@@ -61,8 +61,8 @@ class RbacLocal
 
         if (!$hasPermission) {
             throw new StytchException(
-                'invalid_permissions',
-                "{$callerType} does not have permission to perform the requested action"
+                "{$callerType} does not have permission to perform the requested action",
+                0
             );
         }
     }
@@ -117,8 +117,8 @@ class RbacLocal
 
         if (!$hasPermission) {
             throw new StytchException(
-                'invalid_permissions',
-                "{$callerType} does not have permission to perform the requested action"
+                "{$callerType} does not have permission to perform the requested action",
+                0
             );
         }
     }

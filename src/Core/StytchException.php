@@ -13,8 +13,8 @@ class StytchException extends \Exception
     public function __construct(
         string $message = '',
         int $code = 0,
-        array $errorData = null,
-        \Throwable $previous = null
+        ?array $errorData = null,
+        ?\Throwable $previous = null
     ) {
         $message = $message ?: 'An error occurred with the Stytch API';
         $message .= $errorData ? ' - ' . json_encode($errorData) : '';

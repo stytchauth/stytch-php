@@ -533,7 +533,7 @@ class Sessions
         $jwks = $this->jwksCache->fetch($this->projectId);
 
         // Validate JWT locally
-        $result = JwtHelpers::authenticateJwtLocal(
+        $result = \Stytch\Shared\JwtHelpers::authenticateJwtLocal(
             $jwks,
             $data['session_jwt'],
             $this->projectId,
@@ -550,7 +550,7 @@ class Sessions
         // Extract Stytch session claim
         $sessionClaim = $payload['https://stytch.com/session'] ?? null;
         if (!$sessionClaim) {
-            throw new \Stytch\Core\StytchException('jwt_invalid', 'JWT missing session claim');
+            throw new \Stytch\Core\StytchException('JWT missing session claim', 0);
         }
 
         // Convert to array if it's an object
@@ -561,7 +561,7 @@ class Sessions
         // Extract B2B organization claim
         $orgClaim = $payload['https://stytch.com/organization'] ?? null;
         if (!$orgClaim) {
-            throw new \Stytch\Core\StytchException('jwt_invalid', 'JWT missing organization claim');
+            throw new \Stytch\Core\StytchException('JWT missing organization claim', 0);
         }
 
         // Convert to array if it's an object
@@ -584,8 +584,8 @@ class Sessions
             // Check if the organization ID matches (if provided in authorization check)
             if (isset($authCheck['organization_id']) && $authCheck['organization_id'] !== $organizationId) {
                 throw new \Stytch\Core\StytchException(
-                    'authorization_check_failed',
-                    'Organization ID does not match'
+                    'Organization ID does not match',
+                    0
                 );
             }
 
@@ -597,13 +597,13 @@ class Sessions
                 // Policy not in cache - fall back to network authentication
                 // which will perform the authorization check via API
                 throw new \Stytch\Core\StytchException(
-                    'policy_cache_miss',
-                    'Policy not found in cache. Falling back to network authentication.'
+                    'Policy not found in cache. Falling back to network authentication.',
+                    0
                 );
             }
 
             // Perform role-based authorization check
-            RbacLocal::performRoleAuthorizationCheck(
+            \Stytch\Shared\RbacLocal::performRoleAuthorizationCheck(
                 $policy,
                 $roles,
                 $authCheck,
