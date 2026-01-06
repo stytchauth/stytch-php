@@ -14,13 +14,15 @@ class Sessions
 {
     private Client $client;
     private string $projectId;
+    private \Stytch\Shared\JwksCache $jwksCache;
     private \Stytch\Shared\PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, string $projectId, \Stytch\Shared\PolicyCache $policyCache)
+    public function __construct(Client $client, string $projectId, \Stytch\Shared\JwksCache $jwksCache, \Stytch\Shared\PolicyCache $policyCache)
     {
         $this->client = $client;
         $this->projectId = $projectId;
+        $this->jwksCache = $jwksCache;
         $this->policyCache = $policyCache;
 
     }
@@ -452,5 +454,6 @@ class Sessions
         return \GuzzleHttp\Promise\Create::promiseFor($this->authenticateJwtLocal($request));
     }
     // ENDMANUAL(authenticateJwt)
+
 
 }

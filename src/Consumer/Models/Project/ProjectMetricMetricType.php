@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Project;
 
-enum ProjectMetricMetricType: string
-{
-}
+enum ProjectMetricMetricType: string {}

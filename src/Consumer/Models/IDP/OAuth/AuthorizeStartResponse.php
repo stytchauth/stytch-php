@@ -61,7 +61,7 @@ final class AuthorizeStartResponse
             \Stytch\Consumer\Models\Users\User::fromArray($data['user']),
             \Stytch\Consumer\Models\ConnectedApp\ConnectedAppPublic::fromArray($data['client']),
             $data['consent_required'],
-            isset($data['scope_results']) ? array_map(fn ($item) => \Stytch\Consumer\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
+            isset($data['scope_results']) ? array_map(fn($item) => \Stytch\Consumer\Models\IDP\ScopeResult::fromArray($item), $data['scope_results']) : [],
             $data['status_code']
         );
     }

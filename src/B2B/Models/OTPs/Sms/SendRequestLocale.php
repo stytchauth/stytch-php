@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\OTPs\Sms;
 
-enum SendRequestLocale: string
-{
-}
+enum SendRequestLocale: string {}

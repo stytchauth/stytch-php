@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Organizations;
 
-enum UpdateRequestThirdPartyConnectedAppsAllowedType: string
-{
-}
+enum UpdateRequestThirdPartyConnectedAppsAllowedType: string {}

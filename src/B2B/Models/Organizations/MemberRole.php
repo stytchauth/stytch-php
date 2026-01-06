@@ -47,7 +47,7 @@ final class MemberRole
     {
         return new static(
             $data['role_id'],
-            isset($data['sources']) ? array_map(fn ($item) => MemberRoleSource::fromArray($item), $data['sources']) : []
+            isset($data['sources']) ? array_map(fn($item) => MemberRoleSource::fromArray($item), $data['sources']) : []
         );
     }
 

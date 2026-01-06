@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Passwords;
 
-enum MigrateRequestHashType: string
-{
-}
+enum MigrateRequestHashType: string {}

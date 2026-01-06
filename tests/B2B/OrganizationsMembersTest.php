@@ -66,7 +66,7 @@ class OrganizationsMembersTest extends TestCase
 
         return [
             'organization_id' => $response->organization->organizationId,
-            'organization' => $response->organization
+            'organization' => $response->organization,
         ];
     }
 
@@ -87,7 +87,7 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $response->memberId
+            'member_id' => $response->memberId,
         ];
     }
 
@@ -101,7 +101,7 @@ class OrganizationsMembersTest extends TestCase
         $createRequest = MemberCreateRequest::fromArray([
             'organization_id' => $orgData['organization_id'],
             'email_address' => $email,
-            'name' => $firstName . ' ' . $lastName
+            'name' => $firstName . ' ' . $lastName,
         ]);
         $response = $this->client->organizations->members->create($createRequest);
 
@@ -110,7 +110,7 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $response->memberId
+            'member_id' => $response->memberId,
         ];
     }
 
@@ -133,13 +133,13 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse->memberId
+            'member_id' => $createResponse->memberId,
         ];
 
         // Get the member
         $response = $this->client->organizations->members->get([
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse->memberId
+            'member_id' => $createResponse->memberId,
         ]);
 
         $this->assertEquals($createResponse->memberId, $response->member->memberId);
@@ -157,7 +157,7 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse->memberId
+            'member_id' => $createResponse->memberId,
         ];
 
         // Update the member
@@ -166,7 +166,7 @@ class OrganizationsMembersTest extends TestCase
         $response = $this->client->organizations->members->update([
             'organization_id' => $orgData['organization_id'],
             'member_id' => $createResponse->memberId,
-            'name' => $newName
+            'name' => $newName,
         ]);
 
         $this->assertEquals($newName, $response->member->name);
@@ -184,7 +184,7 @@ class OrganizationsMembersTest extends TestCase
         // Delete the member
         $response = $this->client->organizations->members->delete([
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse->memberId
+            'member_id' => $createResponse->memberId,
         ]);
 
         $this->assertEquals($createResponse->memberId, $response->memberId);
@@ -193,7 +193,7 @@ class OrganizationsMembersTest extends TestCase
         $this->expectException(StytchException::class);
         $this->client->organizations->members->get([
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse->memberId
+            'member_id' => $createResponse->memberId,
         ]);
     }
 
@@ -213,17 +213,17 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $member1->memberId
+            'member_id' => $member1->memberId,
         ];
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $member2->memberId
+            'member_id' => $member2->memberId,
         ];
 
         // Search for members
         $response = $this->client->organizations->members->search([
             'organization_ids' => [$orgData['organization_id']],
-            'limit' => 10
+            'limit' => 10,
         ]);
 
         $this->assertIsArray($response->members);
@@ -248,7 +248,7 @@ class OrganizationsMembersTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgData['organization_id'],
-            'member_id' => $createResponse1->memberId
+            'member_id' => $createResponse1->memberId,
         ];
 
         // Try to create second member with same email
@@ -266,7 +266,7 @@ class OrganizationsMembersTest extends TestCase
 
         $this->client->organizations->members->get([
             'organization_id' => $orgData['organization_id'],
-            'member_id' => 'member-test-nonexistent'
+            'member_id' => 'member-test-nonexistent',
         ]);
     }
 

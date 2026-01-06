@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\MagicLinks\Email\Discovery;
 
-enum SendRequestLocale: string
-{
-}
+enum SendRequestLocale: string {}

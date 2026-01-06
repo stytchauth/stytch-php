@@ -6,8 +6,6 @@
 // or your changes may be overwritten later!
 // !!!
 
-namespace Stytch\Consumer\Models\OTPs\Whatsapp;
+namespace Stytch\Consumer\Models\OTPs\WhatsApp;
 
-enum SendRequestLocale: string
-{
-}
+enum SendRequestLocale: string {}

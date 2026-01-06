@@ -354,7 +354,7 @@ final class UpdateRequest
             $data['auth_methods'] ?? null,
             $data['allowed_auth_methods'] ?? null,
             $data['mfa_policy'] ?? null,
-            isset($data['rbac_email_implicit_role_assignments']) && $data['rbac_email_implicit_role_assignments'] !== null ? array_map(fn ($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : null,
+            isset($data['rbac_email_implicit_role_assignments']) && $data['rbac_email_implicit_role_assignments'] !== null ? array_map(fn($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : null,
             $data['mfa_methods'] ?? null,
             $data['allowed_mfa_methods'] ?? null,
             $data['oauth_tenant_jit_provisioning'] ?? null,

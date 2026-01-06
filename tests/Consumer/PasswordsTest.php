@@ -58,14 +58,14 @@ class PasswordsTest extends TestCase
         // Create password first
         $createResponse = $this->client->passwords->create([
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
         $this->testUsers[] = $createResponse->userId;
 
         // Authenticate with password
         $response = $this->client->passwords->authenticate([
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
 
         $this->assertEquals($createResponse->userId, $response->userId);
@@ -99,7 +99,7 @@ class PasswordsTest extends TestCase
         // Create password first
         $createResponse = $this->client->passwords->create([
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
         $this->testUsers[] = $createResponse->userId;
 
@@ -107,7 +107,7 @@ class PasswordsTest extends TestCase
         $response = $this->client->passwords->existingPassword->reset([
             'email' => $email,
             'existing_password' => $password,
-            'new_password' => $newPassword
+            'new_password' => $newPassword,
         ]);
 
         $this->assertEquals($createResponse->userId, $response->userId);
@@ -115,7 +115,7 @@ class PasswordsTest extends TestCase
         // Verify new password works
         $authResponse = $this->client->passwords->authenticate([
             'email' => $email,
-            'password' => $newPassword
+            'password' => $newPassword,
         ]);
 
         $this->assertEquals(200, $authResponse->statusCode);
@@ -131,14 +131,14 @@ class PasswordsTest extends TestCase
         $createResponse = $this->client->passwords->create([
             'email' => $email,
             'password' => $password,
-            'session_duration_minutes' => 60
+            'session_duration_minutes' => 60,
         ]);
         $this->testUsers[] = $createResponse->userId;
 
         // Reset password using session
         $response = $this->client->passwords->sessions->reset([
             'session_token' => $createResponse->sessionToken,
-            'password' => $newPassword
+            'password' => $newPassword,
         ]);
 
         $this->assertEquals($createResponse->userId, $response->userId);
@@ -152,7 +152,7 @@ class PasswordsTest extends TestCase
         // Create password first
         $createResponse = $this->client->passwords->create([
             'email' => $email,
-            'password' => $password
+            'password' => $password,
         ]);
         $this->testUsers[] = $createResponse->userId;
 
@@ -161,7 +161,7 @@ class PasswordsTest extends TestCase
 
         $this->client->passwords->authenticate([
             'email' => $email,
-            'password' => 'wrong-password'
+            'password' => 'wrong-password',
         ]);
     }
 
@@ -173,7 +173,7 @@ class PasswordsTest extends TestCase
 
         $this->client->passwords->create([
             'email' => $email,
-            'password' => '123'  // Too weak
+            'password' => '123',  // Too weak
         ]);
     }
 
@@ -183,7 +183,7 @@ class PasswordsTest extends TestCase
 
         $this->client->passwords->authenticate([
             'email' => 'nonexistent@example.com',
-            'password' => 'some-password'
+            'password' => 'some-password',
         ]);
     }
 }

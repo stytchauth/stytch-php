@@ -14,14 +14,16 @@ class IDP
 {
     private Client $client;
     private string $projectId;
+    private \Stytch\Shared\JwksCache $jwksCache;
     private \Stytch\Shared\PolicyCache $policyCache;
 
     public IDPOAuth $oauth;
 
-    public function __construct(Client $client, string $projectId, \Stytch\Shared\PolicyCache $policyCache)
+    public function __construct(Client $client, string $projectId, \Stytch\Shared\JwksCache $jwksCache, \Stytch\Shared\PolicyCache $policyCache)
     {
         $this->client = $client;
         $this->projectId = $projectId;
+        $this->jwksCache = $jwksCache;
         $this->policyCache = $policyCache;
 
         $this->oauth = new IDPOAuth($this->client);

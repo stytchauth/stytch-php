@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-enum StartEmailUpdateRequestDeliveryMethod: string
-{
-}
+enum StartEmailUpdateRequestDeliveryMethod: string {}

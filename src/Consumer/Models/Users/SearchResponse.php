@@ -50,7 +50,7 @@ final class SearchResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['results']) ? array_map(fn ($item) => User::fromArray($item), $data['results']) : [],
+            isset($data['results']) ? array_map(fn($item) => User::fromArray($item), $data['results']) : [],
             ResultsMetadata::fromArray($data['results_metadata']),
             $data['status_code']
         );

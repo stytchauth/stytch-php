@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\M2M\Clients;
 
-enum UpdateRequestStatus: string
-{
-}
+enum UpdateRequestStatus: string {}

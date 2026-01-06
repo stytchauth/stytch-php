@@ -11,8 +11,7 @@ namespace Stytch\Consumer\Models\Project;
 final class MetricsRequest
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     /**
      * Create an instance from an array

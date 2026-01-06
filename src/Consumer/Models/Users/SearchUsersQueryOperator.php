@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Users;
 
-enum SearchUsersQueryOperator: string
-{
-}
+enum SearchUsersQueryOperator: string {}

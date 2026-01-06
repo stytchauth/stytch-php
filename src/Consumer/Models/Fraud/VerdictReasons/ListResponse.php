@@ -43,7 +43,7 @@ final class ListResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['verdict_reason_actions']) ? array_map(fn ($item) => \Stytch\Consumer\Models\Fraud\VerdictReasonAction::fromArray($item), $data['verdict_reason_actions']) : [],
+            isset($data['verdict_reason_actions']) ? array_map(fn($item) => \Stytch\Consumer\Models\Fraud\VerdictReasonAction::fromArray($item), $data['verdict_reason_actions']) : [],
             $data['status_code']
         );
     }

@@ -10,6 +10,7 @@ namespace Stytch\Consumer;
 
 use Stytch\Core\Client as CoreClient;
 use Stytch\Shared\PolicyCache;
+use Stytch\Shared\JwksCache;
 use Stytch\Consumer\Api\ConnectedApp;
 use Stytch\Consumer\Api\CryptoWallets;
 use Stytch\Consumer\Api\Debug;
@@ -38,6 +39,7 @@ class Client
     private CoreClient $client;
     private string $projectId;
     private PolicyCache $policyCache;
+    private JwksCache $jwksCache;
 
     public ConnectedApp $connected_app;
     public CryptoWallets $crypto_wallets;
@@ -68,21 +70,22 @@ class Client
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
 
         $this->policyCache = new PolicyCache();
+        $this->jwksCache = new JwksCache($this->client, $this->projectId);
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->crypto_wallets = new CryptoWallets($this->client);
         $this->debug = new Debug($this->client);
         $this->fraud = new Fraud($this->client);
-        $this->idp = new IDP($this->client, $this->projectId, $this->policyCache);
+        $this->idp = new IDP($this->client, $this->projectId, $this->jwksCache, $this->policyCache);
         $this->impersonation = new Impersonation($this->client);
-        $this->m2m = new M2M($this->client, $this->projectId);
+        $this->m2m = new M2M($this->client, $this->projectId, $this->jwksCache);
         $this->magic_links = new MagicLinks($this->client);
         $this->oauth = new OAuth($this->client);
         $this->otps = new OTPs($this->client);
         $this->passwords = new Passwords($this->client);
         $this->project = new Project($this->client);
         $this->rbac = new RBAC($this->client);
-        $this->sessions = new Sessions($this->client, $this->projectId, $this->policyCache);
+        $this->sessions = new Sessions($this->client, $this->projectId, $this->jwksCache, $this->policyCache);
         $this->totps = new TOTPs($this->client);
         $this->users = new Users($this->client);
         $this->webauthn = new WebAuthn($this->client);

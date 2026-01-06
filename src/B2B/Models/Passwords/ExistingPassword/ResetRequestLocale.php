@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Passwords\ExistingPassword;
 
-enum ResetRequestLocale: string
-{
-}
+enum ResetRequestLocale: string {}
