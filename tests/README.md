@@ -54,20 +54,21 @@ vendor/bin/phpunit --testsuite Integration
 ### Run Specific Test Files
 
 ```bash
-# Consumer user tests
+# Unit tests
+vendor/bin/phpunit tests/Unit/Shared/JwksCacheTest.php
+vendor/bin/phpunit tests/Unit/Shared/JwtHelpersTest.php
+vendor/bin/phpunit tests/Unit/Shared/RbacLocalTest.php
+
+# Consumer tests
 vendor/bin/phpunit tests/Consumer/UsersTest.php
-
-# Consumer password tests
 vendor/bin/phpunit tests/Consumer/PasswordsTest.php
+vendor/bin/phpunit tests/Consumer/SessionsJwtTest.php
 
-# B2B organization tests
+# B2B tests
 vendor/bin/phpunit tests/B2B/OrganizationsTest.php
-
-# B2B member tests
 vendor/bin/phpunit tests/B2B/OrganizationsMembersTest.php
-
-# B2B password tests
 vendor/bin/phpunit tests/B2B/PasswordsTest.php
+vendor/bin/phpunit tests/B2B/SessionsJwtTest.php
 ```
 
 ### Run with Coverage
@@ -80,28 +81,42 @@ vendor/bin/phpunit --coverage-html coverage-html
 
 The test suite covers the following endpoints:
 
+### Unit Tests
+- **JwksCache**: JWKS caching, TTL, fetch logic, cache invalidation
+- **JwtHelpers**: JWT parsing, validation, signature verification, claim extraction, issuer validation
+- **RbacLocal**: Role-based and scope-based authorization checks
+
 ### Consumer API
 - **Users**: create, get, update, delete, search
 - **Passwords**: create, authenticate, strength check, reset (email/existing/session)
+- **Sessions (JWT)**: authenticateJwt, authenticateJwtLocal, local validation with fallback, session management
 
 ### B2B API
 - **Organizations**: create, get, update, delete, search
 - **Organization Members**: create, get, update, delete, search, reactivate
 - **Passwords**: create, authenticate, strength check, reset (email/existing/session), discovery
+- **Sessions (JWT)**: authenticateJwt, authenticateJwtLocal, organization claim handling, RBAC authorization
 
 ## Test Structure
 
 ### Base Test Class
 - `TestCase.php`: Base class with helper methods for generating test data and accessing environment variables
 
+### Unit Tests
+- `Unit/Shared/JwksCacheTest.php`: Tests for JWKS caching functionality
+- `Unit/Shared/JwtHelpersTest.php`: Tests for JWT validation and parsing
+- `Unit/Shared/RbacLocalTest.php`: Tests for local RBAC authorization
+
 ### Consumer Tests
 - `Consumer/UsersTest.php`: Tests for user management operations
 - `Consumer/PasswordsTest.php`: Tests for password operations
+- `Consumer/SessionsJwtTest.php`: Tests for JWT session authentication
 
 ### B2B Tests
 - `B2B/OrganizationsTest.php`: Tests for organization management
 - `B2B/OrganizationsMembersTest.php`: Tests for member management
 - `B2B/PasswordsTest.php`: Tests for B2B password operations
+- `B2B/SessionsJwtTest.php`: Tests for B2B JWT session authentication with organization claims
 
 ## Test Data
 
@@ -121,7 +136,9 @@ Tests automatically clean up created resources in the `tearDown()` method to ens
 2. **Rate Limits**: Be aware of Stytch API rate limits when running tests frequently
 3. **Test Environment**: Use test project credentials, not production ones
 4. **Cleanup**: Tests clean up their resources, but manual cleanup may be needed if tests are interrupted
-5. **Network Dependency**: These are integration tests that make real API calls to Stytch
+5. **Network Dependency**: Integration tests make real API calls to Stytch; unit tests use mocks
+6. **JWT Tests**: JWT authentication tests include both local validation (unit tests) and network fallback (integration tests)
+7. **RBAC Tests**: RBAC authorization tests require policies to be configured in the test project
 
 ## Troubleshooting
 

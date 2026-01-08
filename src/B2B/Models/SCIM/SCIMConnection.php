@@ -64,7 +64,7 @@ final class SCIMConnection
             $data['identity_provider'],
             $data['base_url'],
             $data['bearer_token_last_four'],
-            isset($data['scim_group_implicit_role_assignments']) ? array_map(fn ($item) => SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : [],
+            isset($data['scim_group_implicit_role_assignments']) ? array_map(fn($item) => SCIMGroupImplicitRoleAssignments::fromArray($item), $data['scim_group_implicit_role_assignments']) : [],
             $data['next_bearer_token_last_four'],
             $data['bearer_token_expires_at'] ?? null,
             $data['next_bearer_token_expires_at'] ?? null

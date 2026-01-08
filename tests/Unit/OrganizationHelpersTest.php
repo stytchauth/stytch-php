@@ -47,7 +47,7 @@ class OrganizationHelpersTest extends TestCase
         // Test Member Delete
         $memberDeleteRequest = B2BOrganizationMemberDeleteRequest::fromArray([
             'organization_id' => 'org-test3',
-            'member_id' => 'member-test'
+            'member_id' => 'member-test',
         ]);
         $this->assertEquals('org-test3', $memberDeleteRequest->organization_id);
         $this->assertEquals('member-test', $memberDeleteRequest->member_id);

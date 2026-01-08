@@ -51,7 +51,7 @@ final class PolicyRole
         return new static(
             $data['role_id'],
             $data['description'],
-            isset($data['permissions']) ? array_map(fn ($item) => PolicyRolePermission::fromArray($item), $data['permissions']) : []
+            isset($data['permissions']) ? array_map(fn($item) => PolicyRolePermission::fromArray($item), $data['permissions']) : []
         );
     }
 

@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\OTPs\Sms;
 
-enum LoginOrCreateRequestLocale: string
-{
-}
+enum LoginOrCreateRequestLocale: string {}

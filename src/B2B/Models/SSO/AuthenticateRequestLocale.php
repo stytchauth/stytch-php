@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\SSO;
 
-enum AuthenticateRequestLocale: string
-{
-}
+enum AuthenticateRequestLocale: string {}

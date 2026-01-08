@@ -38,7 +38,7 @@ final class MetricsResponse
         return new static(
             $data['request_id'],
             $data['project_id'],
-            isset($data['metrics']) ? array_map(fn ($item) => ProjectMetric::fromArray($item), $data['metrics']) : [],
+            isset($data['metrics']) ? array_map(fn($item) => ProjectMetric::fromArray($item), $data['metrics']) : [],
             $data['status_code']
         );
     }

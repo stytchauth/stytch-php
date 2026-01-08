@@ -53,7 +53,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'request_id' => 'request-id-123',
-            'session_token' => 'session-token-456'
+            'session_token' => 'session-token-456',
         ])));
 
         // Create authorization with session token
@@ -61,7 +61,7 @@ class ClientTest extends TestCase
 
         // Make a POST request with authorization
         $response = $this->client->post('/v1/test/endpoint', [
-            'test_data' => 'value'
+            'test_data' => 'value',
         ], [$authorization]);
 
         // Assert the response
@@ -83,7 +83,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'request_id' => 'request-id-456',
-            'data' => ['test' => 'value']
+            'data' => ['test' => 'value'],
         ])));
 
         // Create authorization with session JWT
@@ -91,7 +91,7 @@ class ClientTest extends TestCase
 
         // Make a GET request with authorization
         $response = $this->client->get('/v1/test/endpoint', [
-            'query_param' => 'value'
+            'query_param' => 'value',
         ], [$authorization]);
 
         // Assert the response
@@ -112,7 +112,7 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'request-id-789'
+            'request_id' => 'request-id-789',
         ])));
 
         // Create authorization with both token types (session token takes precedence)
@@ -123,7 +123,7 @@ class ClientTest extends TestCase
 
         // Make a PUT request with authorization
         $response = $this->client->put('/v1/test/endpoint', [
-            'update_data' => 'new_value'
+            'update_data' => 'new_value',
         ], [$authorization]);
 
         // Assert the response
@@ -146,12 +146,12 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'request-id-delete'
+            'request_id' => 'request-id-delete',
         ])));
 
         // Make a DELETE request without authorization
         $response = $this->client->delete('/v1/test/endpoint', [
-            'delete_id' => '12345'
+            'delete_id' => '12345',
         ]);
 
         // Assert the response
@@ -171,7 +171,7 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'request-id-multi'
+            'request_id' => 'request-id-multi',
         ])));
 
         // Create multiple authorization objects (only the first with actual tokens should add headers)
@@ -180,7 +180,7 @@ class ClientTest extends TestCase
 
         // Make a POST request with multiple authorization objects
         $response = $this->client->post('/v1/test/endpoint', [
-            'test_data' => 'value'
+            'test_data' => 'value',
         ], [$auth1, $auth2]);
 
         // Assert the response
@@ -203,7 +203,7 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'request-id-empty'
+            'request_id' => 'request-id-empty',
         ])));
 
         // Make a GET request with empty method options
@@ -229,7 +229,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'request_id' => 'async-get-123',
-            'data' => ['test' => 'value']
+            'data' => ['test' => 'value'],
         ])));
 
         // Make an async GET request
@@ -253,7 +253,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(201, [], json_encode([
             'status_code' => 201,
             'request_id' => 'async-post-456',
-            'user_id' => 'user-12345'
+            'user_id' => 'user-12345',
         ])));
 
         // Make an async POST request
@@ -277,13 +277,13 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'request_id' => 'async-put-789',
-            'updated' => true
+            'updated' => true,
         ])));
 
         // Make an async PUT request
         $promise = $this->client->putAsync('/v1/users/{user_id}', [
             'user_id' => 'user-123',
-            'name' => ['first_name' => 'Updated']
+            'name' => ['first_name' => 'Updated'],
         ]);
 
         // Assert we got a promise
@@ -303,7 +303,7 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'async-delete-101112'
+            'request_id' => 'async-delete-101112',
         ])));
 
         // Make an async DELETE request
@@ -325,7 +325,7 @@ class ClientTest extends TestCase
         // Mock the HTTP response
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'request_id' => 'async-auth-131415'
+            'request_id' => 'async-auth-131415',
         ])));
 
         // Create authorization
@@ -333,7 +333,7 @@ class ClientTest extends TestCase
 
         // Make an async POST request with authorization
         $promise = $this->client->postAsync('/v1/test/authenticated', [
-            'test_data' => 'value'
+            'test_data' => 'value',
         ], [$authorization]);
 
         // Wait for the promise to resolve
@@ -354,11 +354,11 @@ class ClientTest extends TestCase
         // Mock multiple responses for chaining
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'user_id' => 'user-chain-123'
+            'user_id' => 'user-chain-123',
         ])));
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
-            'session_token' => 'session-chain-456'
+            'session_token' => 'session-chain-456',
         ])));
 
         // Chain async requests
@@ -366,7 +366,7 @@ class ClientTest extends TestCase
             ->then(function ($createResponse) {
                 // Return another async request
                 return $this->client->postAsync('/v1/sessions/authenticate', [
-                    'user_id' => $createResponse['user_id']
+                    'user_id' => $createResponse['user_id'],
                 ]);
             });
 
@@ -384,7 +384,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(400, [], json_encode([
             'status_code' => 400,
             'error_type' => 'invalid_request',
-            'error_message' => 'Invalid user ID'
+            'error_message' => 'Invalid user ID',
         ])));
 
         // Make an async request that will fail
@@ -404,7 +404,7 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(404, [], json_encode([
             'status_code' => 404,
             'error_type' => 'user_not_found',
-            'error_message' => 'User not found'
+            'error_message' => 'User not found',
         ])));
 
         $errorCaught = false;
@@ -432,17 +432,17 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'user_id' => 'user-1',
-            'name' => 'User One'
+            'name' => 'User One',
         ])));
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'user_id' => 'user-2',
-            'name' => 'User Two'
+            'name' => 'User Two',
         ])));
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'user_id' => 'user-3',
-            'name' => 'User Three'
+            'name' => 'User Three',
         ])));
 
         // Create concurrent async requests
@@ -473,14 +473,14 @@ class ClientTest extends TestCase
         $this->mockHandler->append(new Response(200, [], json_encode([
             'status_code' => 200,
             'request_id' => 'path-sub-123',
-            'user_id' => 'user-456'
+            'user_id' => 'user-456',
         ])));
 
         // Make request with path parameters
         $promise = $this->client->getAsync('/v1/users/{user_id}/sessions/{session_id}', [
             'user_id' => 'user-456',
             'session_id' => 'session-789',
-            'extra_param' => 'should_remain'
+            'extra_param' => 'should_remain',
         ]);
 
         $response = $promise->wait();

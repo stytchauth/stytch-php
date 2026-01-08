@@ -14,13 +14,15 @@ class M2M
 {
     private Client $client;
     private string $projectId;
+    private \Stytch\Shared\JwksCache $jwksCache;
 
     public M2MClients $clients;
 
-    public function __construct(Client $client, string $projectId)
+    public function __construct(Client $client, string $projectId, \Stytch\Shared\JwksCache $jwksCache)
     {
         $this->client = $client;
         $this->projectId = $projectId;
+        $this->jwksCache = $jwksCache;
 
         $this->clients = new M2MClients($this->client);
     }

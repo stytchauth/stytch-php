@@ -504,6 +504,32 @@ class Users
     }
 
     /**
+         * @param \Stytch\Consumer\Models\Users\DeleteExternalIdRequest|array $request
+         * @return \Stytch\Consumer\Models\Users\DeleteExternalIdResponse
+         */
+    public function deleteExternalId(
+        \Stytch\Consumer\Models\Users\DeleteExternalIdRequest|array $request,
+    ): \Stytch\Consumer\Models\Users\DeleteExternalIdResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $response = $this->client->delete('/v1/users/{user_id}/external_id', $data);
+        return \Stytch\Consumer\Models\Users\DeleteExternalIdResponse::fromArray($response);
+    }
+
+    /**
+     * @param \Stytch\Consumer\Models\Users\DeleteExternalIdRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteExternalIdAsync(
+        \Stytch\Consumer\Models\Users\DeleteExternalIdRequest|array $request,
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $promise = $this->client->deleteAsync('/v1/users/{user_id}/external_id', $data);
+        return $promise->then(function ($response) {
+            return \Stytch\Consumer\Models\Users\DeleteExternalIdResponse::fromArray($response);
+        });
+    }
+
+    /**
         * User Get Connected Apps retrieves a list of Connected Apps with which the User has successfully
         * completed an
         * authorization flow.

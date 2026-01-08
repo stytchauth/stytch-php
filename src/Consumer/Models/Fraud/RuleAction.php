@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-enum RuleAction: string
-{
-}
+enum RuleAction: string {}

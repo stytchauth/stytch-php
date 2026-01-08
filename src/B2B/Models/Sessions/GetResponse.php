@@ -43,7 +43,7 @@ final class GetResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['member_sessions']) ? array_map(fn ($item) => MemberSession::fromArray($item), $data['member_sessions']) : [],
+            isset($data['member_sessions']) ? array_map(fn($item) => MemberSession::fromArray($item), $data['member_sessions']) : [],
             $data['status_code']
         );
     }

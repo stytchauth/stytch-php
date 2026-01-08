@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Sessions;
 
-enum AuthenticationFactorDeliveryMethod: string
-{
-}
+enum AuthenticationFactorDeliveryMethod: string {}

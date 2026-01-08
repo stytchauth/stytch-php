@@ -64,7 +64,7 @@ class OrganizationsTest extends TestCase
         $createRequest = CreateRequest::fromArray([
             'organization_name' => $organizationName,
             'organization_slug' => $organizationSlug,
-            'email_allowed_domains' => $emailDomains
+            'email_allowed_domains' => $emailDomains,
         ]);
         $response = $this->client->organizations->create($createRequest);
 
@@ -108,7 +108,7 @@ class OrganizationsTest extends TestCase
 
         $updateRequest = UpdateRequest::fromArray([
             'organization_id' => $createResponse->organization->organizationId,
-            'organization_name' => $newOrganizationName
+            'organization_name' => $newOrganizationName,
         ]);
         $response = $this->client->organizations->update($updateRequest);
 
@@ -133,7 +133,7 @@ class OrganizationsTest extends TestCase
             'email_jit_provisioning' => 'RESTRICTED',
             'email_allowed_domains' => ['example.com', 'test.com'],
             'email_invites' => 'ALL_ALLOWED',
-            'auth_methods' => 'ALL_ALLOWED'
+            'auth_methods' => 'ALL_ALLOWED',
         ]);
         $response = $this->client->organizations->update($updateRequest);
 
@@ -313,7 +313,7 @@ class OrganizationsTest extends TestCase
         $orgData = [
             ['name' => 'Concurrent Org 1 ' . $this->generateRandomString(), 'slug' => 'concurrent-1-' . strtolower($this->generateRandomString())],
             ['name' => 'Concurrent Org 2 ' . $this->generateRandomString(), 'slug' => 'concurrent-2-' . strtolower($this->generateRandomString())],
-            ['name' => 'Concurrent Org 3 ' . $this->generateRandomString(), 'slug' => 'concurrent-3-' . strtolower($this->generateRandomString())]
+            ['name' => 'Concurrent Org 3 ' . $this->generateRandomString(), 'slug' => 'concurrent-3-' . strtolower($this->generateRandomString())],
         ];
 
         $organizationIds = [];

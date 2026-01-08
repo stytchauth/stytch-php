@@ -592,6 +592,36 @@ class OrganizationsMembers
     }
 
     /**
+         * @param \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdResponse
+         */
+    public function deleteExternalId(
+        \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/members/{member_id}/external_id', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdResponse::fromArray($response);
+    }
+
+    /**
+     * @param \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteExternalIdAsync(
+        \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequest|array $request,
+        \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/members/{member_id}/external_id', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\Members\DeleteExternalIdResponse::fromArray($response);
+        });
+    }
+
+    /**
         * Creates a Member. An `organization_id` and `email_address` are required.
 
          * @param \Stytch\B2B\Models\Organizations\Members\CreateRequest|array $request

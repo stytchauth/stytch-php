@@ -97,8 +97,8 @@ class PolicyCache
         $permissions = $policy['permissions'] ?? [];
 
         foreach ($permissions as $permission) {
-            if ($permission['resource'] === $resource &&
-                in_array($action, $permission['actions'] ?? [])) {
+            if ($permission['resource'] === $resource
+                && in_array($action, $permission['actions'] ?? [])) {
                 return true;
             }
         }

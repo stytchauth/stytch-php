@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Sessions;
 
-enum ExchangeRequestLocale: string
-{
-}
+enum ExchangeRequestLocale: string {}

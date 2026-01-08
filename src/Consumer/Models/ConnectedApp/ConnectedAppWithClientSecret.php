@@ -28,11 +28,11 @@ final class ConnectedAppWithClientSecret
      */
     public string $clientType;
     /** Array of redirect URI values for use in OAuth Authorization flows. */
-    public array $redirectURLS;
+    public array $redirectURLs;
     public int $accessTokenExpiryMinutes;
     public string $accessTokenTemplateContent;
     /** Array of redirect URI values for use in OIDC Logout flows. */
-    public array $postLogoutRedirectURLS;
+    public array $postLogoutRedirectURLs;
     /**
     * Valid for first party clients only. If true, the client does not need to request explicit user consent
     * for the `offline_access` scope.
@@ -56,10 +56,10 @@ final class ConnectedAppWithClientSecret
         string $status,
         bool $fullAccessAllowed,
         string $clientType,
-        array $redirectURLS,
+        array $redirectURLs,
         int $accessTokenExpiryMinutes,
         string $accessTokenTemplateContent,
-        array $postLogoutRedirectURLS,
+        array $postLogoutRedirectURLs,
         bool $bypassConsentForOfflineAccess,
         ?string $clientSecretLastFour = null,
         ?string $nextClientSecretLastFour = null,
@@ -74,10 +74,10 @@ final class ConnectedAppWithClientSecret
         $this->status = $status;
         $this->fullAccessAllowed = $fullAccessAllowed;
         $this->clientType = $clientType;
-        $this->redirectURLS = $redirectURLS;
+        $this->redirectURLs = $redirectURLs;
         $this->accessTokenExpiryMinutes = $accessTokenExpiryMinutes;
         $this->accessTokenTemplateContent = $accessTokenTemplateContent;
-        $this->postLogoutRedirectURLS = $postLogoutRedirectURLS;
+        $this->postLogoutRedirectURLs = $postLogoutRedirectURLs;
         $this->bypassConsentForOfflineAccess = $bypassConsentForOfflineAccess;
         $this->clientSecretLastFour = $clientSecretLastFour;
         $this->nextClientSecretLastFour = $nextClientSecretLastFour;
@@ -130,10 +130,10 @@ final class ConnectedAppWithClientSecret
             'status' => $this->status,
             'full_access_allowed' => $this->fullAccessAllowed,
             'client_type' => $this->clientType,
-            'redirect_urls' => $this->redirectURLS,
+            'redirect_urls' => $this->redirectURLs,
             'access_token_expiry_minutes' => $this->accessTokenExpiryMinutes,
             'access_token_template_content' => $this->accessTokenTemplateContent,
-            'post_logout_redirect_urls' => $this->postLogoutRedirectURLS,
+            'post_logout_redirect_urls' => $this->postLogoutRedirectURLs,
             'bypass_consent_for_offline_access' => $this->bypassConsentForOfflineAccess,
             'client_secret_last_four' => $this->clientSecretLastFour,
             'next_client_secret_last_four' => $this->nextClientSecretLastFour,

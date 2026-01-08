@@ -6,9 +6,9 @@
 // or your changes may be overwritten later!
 // !!!
 
-namespace Stytch\Consumer\Models\OTPs\Whatsapp;
+namespace Stytch\Consumer\Models\OTPs\WhatsApp;
 
-final class SendRequest
+final class LoginOrCreateRequest
 {
     /**
     * The phone number to use for one-time passcodes. The phone number should be in E.164 format (i.e.
@@ -27,6 +27,15 @@ final class SendRequest
      */
     public ?\Stytch\Consumer\Models\Attributes $attributes = null;
     /**
+    * Flag for whether or not to save a user as pending vs active in Stytch. Defaults to false.
+    *         If true, users will be saved with status pending in Stytch's backend until authenticated.
+    *         If false, users will be created as active. An example usage of
+    *         a true flag would be to require users to verify their phone by entering the OTP code before
+    * creating
+    *         an account for them.
+     */
+    public ?bool $createUserAsPending = null;
+    /**
     * Used to determine which language to use when sending the user this delivery method. Parameter is a
     * [IETF BCP 47 language tag](https://www.w3.org/International/articles/language-tags/), e.g. `"en"`.
     *
@@ -37,29 +46,19 @@ final class SendRequest
     * [here](https://docs.google.com/forms/d/e/1FAIpQLScZSpAu_m2AmLXRT3F3kap-s_mcV6UTBitYn6CdyWP0-o7YjQ/viewform?usp=sf_link")!
      */
     public ?string $locale = null;
-    /** The unique ID of a specific User. You may use an `external_id` here if one is set for the user. */
-    public ?string $userId = null;
-    /** The `session_token` associated with a User's existing Session. */
-    public ?string $sessionToken = null;
-    /** The `session_jwt` associated with a User's existing Session. */
-    public ?string $sessionJwt = null;
 
     public function __construct(
         string $phoneNumber,
         ?int $expirationMinutes = null,
         ?\Stytch\Consumer\Models\Attributes $attributes = null,
-        ?string $locale = null,
-        ?string $userId = null,
-        ?string $sessionToken = null,
-        ?string $sessionJwt = null
+        ?bool $createUserAsPending = null,
+        ?string $locale = null
     ) {
         $this->phoneNumber = $phoneNumber;
         $this->expirationMinutes = $expirationMinutes;
         $this->attributes = $attributes;
+        $this->createUserAsPending = $createUserAsPending;
         $this->locale = $locale;
-        $this->userId = $userId;
-        $this->sessionToken = $sessionToken;
-        $this->sessionJwt = $sessionJwt;
     }
 
     /**
@@ -74,10 +73,8 @@ final class SendRequest
             $data['phone_number'],
             $data['expiration_minutes'] ?? null,
             isset($data['attributes']) && $data['attributes'] !== null ? \Stytch\Consumer\Models\Attributes::fromArray($data['attributes']) : null,
-            $data['locale'] ?? null,
-            $data['user_id'] ?? null,
-            $data['session_token'] ?? null,
-            $data['session_jwt'] ?? null
+            $data['create_user_as_pending'] ?? null,
+            $data['locale'] ?? null
         );
     }
 
@@ -92,10 +89,8 @@ final class SendRequest
             'phone_number' => $this->phoneNumber,
             'expiration_minutes' => $this->expirationMinutes,
             'attributes' => $this->attributes,
+            'create_user_as_pending' => $this->createUserAsPending,
             'locale' => $this->locale,
-            'user_id' => $this->userId,
-            'session_token' => $this->sessionToken,
-            'session_jwt' => $this->sessionJwt,
         ];
     }
 }

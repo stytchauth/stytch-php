@@ -23,7 +23,7 @@ class UrlEncodingTest extends TestCase
         $path = '/v1/b2b/organizations/{organization_id}/members/{member_id}';
         $data = [
             'organization_id' => 'org-123',
-            'member_id' => 'user+test@example.com'
+            'member_id' => 'user+test@example.com',
         ];
 
         $result = $this->invokeSubstitutePath($client, $path, $data);
@@ -60,7 +60,7 @@ class UrlEncodingTest extends TestCase
         $path = '/v1/b2b/organizations/{organization_id}/members/{member_id}';
         $data = [
             'organization_id' => 'org-123',
-            'member_id' => 'member-456'
+            'member_id' => 'member-456',
         ];
 
         $result = $this->invokeSubstitutePath($client, $path, $data);
@@ -75,7 +75,7 @@ class UrlEncodingTest extends TestCase
 
         $path = '/v1/b2b/organizations/{organization_id}/members/{member_id}';
         $data = [
-            'organization_id' => 'org-123'
+            'organization_id' => 'org-123',
             // missing member_id
         ];
 

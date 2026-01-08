@@ -11,8 +11,7 @@ namespace Stytch\Consumer\Models\Debug;
 final class WhoamiRequest
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     /**
      * Create an instance from an array

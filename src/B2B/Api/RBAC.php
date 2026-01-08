@@ -14,11 +14,13 @@ class RBAC
 {
     private Client $client;
 
+    public RBACOrganizations $organizations;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
 
+        $this->organizations = new RBACOrganizations($this->client);
     }
 
     /**

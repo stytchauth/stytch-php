@@ -42,7 +42,7 @@ final class GetJWKSResponse
     public static function fromArray(array $data): static
     {
         return new static(
-            isset($data['keys']) ? array_map(fn ($item) => JWK::fromArray($item), $data['keys']) : [],
+            isset($data['keys']) ? array_map(fn($item) => JWK::fromArray($item), $data['keys']) : [],
             $data['request_id'],
             $data['status_code']
         );

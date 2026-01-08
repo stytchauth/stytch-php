@@ -57,7 +57,7 @@ class RequestHelpersTest extends TestCase
         $data = [
             'email' => 'test@example.com',
             'password' => 'password123',
-            'session_duration_minutes' => 30
+            'session_duration_minutes' => 30,
         ];
 
         $request = ConsumerPasswordCreateRequest::fromArray($data);

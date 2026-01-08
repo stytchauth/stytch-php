@@ -11,8 +11,7 @@ namespace Stytch\Consumer\Models\RBAC;
 final class PolicyRequest
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     /**
      * Create an instance from an array

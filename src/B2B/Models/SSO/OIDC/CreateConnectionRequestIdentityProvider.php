@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\SSO\OIDC;
 
-enum CreateConnectionRequestIdentityProvider: string
-{
-}
+enum CreateConnectionRequestIdentityProvider: string {}

@@ -77,7 +77,7 @@ class PasswordsTest extends TestCase
 
         $this->testMembers[] = [
             'organization_id' => $orgResponse->organization->organizationId,
-            'member_id' => $memberResponse->memberId
+            'member_id' => $memberResponse->memberId,
         ];
 
         return [
@@ -85,7 +85,7 @@ class PasswordsTest extends TestCase
             'organization' => $orgResponse->organization,
             'member_id' => $memberResponse->memberId,
             'member' => $memberResponse->member,
-            'email' => $email
+            'email' => $email,
         ];
     }
 

@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\SCIM\Connection;
 
-enum UpdateRequestIdentityProvider: string
-{
-}
+enum UpdateRequestIdentityProvider: string {}

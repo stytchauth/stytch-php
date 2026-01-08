@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Discovery\IntermediateSessions;
 
-enum ExchangeRequestLocale: string
-{
-}
+enum ExchangeRequestLocale: string {}

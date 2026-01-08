@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\Fraud;
 
-enum VerdictReasonActionAction: string
-{
-}
+enum VerdictReasonActionAction: string {}

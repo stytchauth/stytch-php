@@ -88,7 +88,7 @@ final class MemberSession
             $data['started_at'],
             $data['last_accessed_at'],
             $data['expires_at'],
-            isset($data['authentication_factors']) ? array_map(fn ($item) => \Stytch\Consumer\Models\Sessions\AuthenticationFactor::fromArray($item), $data['authentication_factors']) : [],
+            isset($data['authentication_factors']) ? array_map(fn($item) => \Stytch\Consumer\Models\Sessions\AuthenticationFactor::fromArray($item), $data['authentication_factors']) : [],
             $data['organization_id'],
             $data['roles'],
             $data['organization_slug'],

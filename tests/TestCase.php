@@ -42,7 +42,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function generateRandomPhoneNumber(): string
     {
-        return '+1555' . str_pad((string)rand(1000000, 9999999), 7, '0', STR_PAD_LEFT);
+        return '+1555' . str_pad((string) rand(1000000, 9999999), 7, '0', STR_PAD_LEFT);
     }
 
     protected function generateRandomPassword(): string

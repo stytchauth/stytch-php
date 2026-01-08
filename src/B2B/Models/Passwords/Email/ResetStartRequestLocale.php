@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Passwords\Email;
 
-enum ResetStartRequestLocale: string
-{
-}
+enum ResetStartRequestLocale: string {}

@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\MagicLinks\Email;
 
-enum LoginOrCreateRequestLocale: string
-{
-}
+enum LoginOrCreateRequestLocale: string {}

@@ -10,7 +10,7 @@ namespace Stytch\Consumer\Api;
 
 use Stytch\Core\Client;
 
-class OTPsWhatsapp
+class OTPsWhatsApp
 {
     private Client $client;
 
@@ -48,15 +48,15 @@ class OTPsWhatsapp
         * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
         * `phone_id` found in the response as the `method_id`.
 
-         * @param \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request
-         * @return \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse
+         * @param \Stytch\Consumer\Models\OTPs\WhatsApp\SendRequest|array $request
+         * @return \Stytch\Consumer\Models\OTPs\WhatsApp\SendResponse
          */
     public function send(
-        \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request,
-    ): \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse {
+        \Stytch\Consumer\Models\OTPs\WhatsApp\SendRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\WhatsApp\SendResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/whatsapp/send', $data);
-        return \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse::fromArray($response);
+        return \Stytch\Consumer\Models\OTPs\WhatsApp\SendResponse::fromArray($response);
     }
 
     /**
@@ -86,16 +86,16 @@ class OTPsWhatsapp
     * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
     * `phone_id` found in the response as the `method_id`.
 
-     * @param \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request
+     * @param \Stytch\Consumer\Models\OTPs\WhatsApp\SendRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function sendAsync(
-        \Stytch\Consumer\Models\OTPs\Whatsapp\SendRequest|array $request,
+        \Stytch\Consumer\Models\OTPs\WhatsApp\SendRequest|array $request,
     ): \GuzzleHttp\Promise\PromiseInterface {
         $data = is_array($request) ? $request : $request->toArray();
         $promise = $this->client->postAsync('/v1/otps/whatsapp/send', $data);
         return $promise->then(function ($response) {
-            return \Stytch\Consumer\Models\OTPs\Whatsapp\SendResponse::fromArray($response);
+            return \Stytch\Consumer\Models\OTPs\WhatsApp\SendResponse::fromArray($response);
         });
     }
 
@@ -114,15 +114,15 @@ class OTPsWhatsapp
         * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
         * `phone_id` found in the response as the `method_id`.
 
-         * @param \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request
-         * @return \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse
+         * @param \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateRequest|array $request
+         * @return \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateResponse
          */
     public function loginOrCreate(
-        \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request,
-    ): \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse {
+        \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateRequest|array $request,
+    ): \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateResponse {
         $data = is_array($request) ? $request : $request->toArray();
         $response = $this->client->post('/v1/otps/whatsapp/login_or_create', $data);
-        return \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse::fromArray($response);
+        return \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateResponse::fromArray($response);
     }
 
     /**
@@ -140,16 +140,16 @@ class OTPsWhatsapp
     * [Authenticate OTP](https://stytch.com/docs/api/authenticate-otp) using the OTP `code` along with the
     * `phone_id` found in the response as the `method_id`.
 
-     * @param \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request
+     * @param \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function loginOrCreateAsync(
-        \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateRequest|array $request,
+        \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateRequest|array $request,
     ): \GuzzleHttp\Promise\PromiseInterface {
         $data = is_array($request) ? $request : $request->toArray();
         $promise = $this->client->postAsync('/v1/otps/whatsapp/login_or_create', $data);
         return $promise->then(function ($response) {
-            return \Stytch\Consumer\Models\OTPs\Whatsapp\LoginOrCreateResponse::fromArray($response);
+            return \Stytch\Consumer\Models\OTPs\WhatsApp\LoginOrCreateResponse::fromArray($response);
         });
     }
 

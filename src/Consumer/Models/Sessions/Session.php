@@ -73,7 +73,7 @@ final class Session
         return new static(
             $data['session_id'],
             $data['user_id'],
-            isset($data['authentication_factors']) ? array_map(fn ($item) => AuthenticationFactor::fromArray($item), $data['authentication_factors']) : [],
+            isset($data['authentication_factors']) ? array_map(fn($item) => AuthenticationFactor::fromArray($item), $data['authentication_factors']) : [],
             $data['roles'],
             $data['started_at'] ?? null,
             $data['last_accessed_at'] ?? null,

@@ -331,4 +331,34 @@ class Organizations
         });
     }
 
+    /**
+         * @param \Stytch\B2B\Models\Organizations\DeleteExternalIdRequest|array $request
+         * @return \Stytch\B2B\Models\Organizations\DeleteExternalIdResponse
+         */
+    public function deleteExternalId(
+        \Stytch\B2B\Models\Organizations\DeleteExternalIdRequest|array $request,
+        \Stytch\B2B\Models\Organizations\DeleteExternalIdRequestOptions|array $options = [],
+    ): \Stytch\B2B\Models\Organizations\DeleteExternalIdResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $response = $this->client->delete('/v1/b2b/organizations/{organization_id}/external_id', $data, $opts);
+        return \Stytch\B2B\Models\Organizations\DeleteExternalIdResponse::fromArray($response);
+    }
+
+    /**
+     * @param \Stytch\B2B\Models\Organizations\DeleteExternalIdRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteExternalIdAsync(
+        \Stytch\B2B\Models\Organizations\DeleteExternalIdRequest|array $request,
+        \Stytch\B2B\Models\Organizations\DeleteExternalIdRequestOptions|array $options = [],
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        $data = is_array($request) ? $request : $request->toArray();
+        $opts = is_array($options) ? $options : $options->toArray();
+        $promise = $this->client->deleteAsync('/v1/b2b/organizations/{organization_id}/external_id', $data, $opts);
+        return $promise->then(function ($response) {
+            return \Stytch\B2B\Models\Organizations\DeleteExternalIdResponse::fromArray($response);
+        });
+    }
+
 }

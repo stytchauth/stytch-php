@@ -6,34 +6,24 @@
 // or your changes may be overwritten later!
 // !!!
 
-namespace Stytch\Consumer\Models\OTPs\Whatsapp;
+namespace Stytch\Consumer\Models\Users;
 
-final class SendResponse
+final class DeleteExternalIdResponse
 {
-    /**
-    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
-    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
-     */
     public string $requestId;
-    /** The unique ID of the affected User. */
     public string $userId;
-    /** The unique ID for the phone number. */
-    public string $phoneId;
-    /**
-    * The HTTP status code of the response. Stytch follows standard HTTP response status code patterns, e.g.
-    * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
-     */
+    public User $user;
     public int $statusCode;
 
     public function __construct(
         string $requestId,
         string $userId,
-        string $phoneId,
+        User $user,
         int $statusCode
     ) {
         $this->requestId = $requestId;
         $this->userId = $userId;
-        $this->phoneId = $phoneId;
+        $this->user = $user;
         $this->statusCode = $statusCode;
     }
 
@@ -48,7 +38,7 @@ final class SendResponse
         return new static(
             $data['request_id'],
             $data['user_id'],
-            $data['phone_id'],
+            User::fromArray($data['user']),
             $data['status_code']
         );
     }
@@ -63,7 +53,7 @@ final class SendResponse
         return [
             'request_id' => $this->requestId,
             'user_id' => $this->userId,
-            'phone_id' => $this->phoneId,
+            'user' => $this->user,
             'status_code' => $this->statusCode,
         ];
     }

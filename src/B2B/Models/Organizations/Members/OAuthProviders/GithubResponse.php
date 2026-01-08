@@ -51,7 +51,7 @@ final class GithubResponse
         return new static(
             $data['request_id'],
             $data['provider_type'],
-            isset($data['registrations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\GithubProviderInfo::fromArray($item), $data['registrations']) : [],
+            isset($data['registrations']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\GithubProviderInfo::fromArray($item), $data['registrations']) : [],
             $data['status_code']
         );
     }

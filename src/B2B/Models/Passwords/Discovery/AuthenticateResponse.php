@@ -80,7 +80,7 @@ final class AuthenticateResponse
             $data['request_id'],
             $data['email_address'],
             $data['intermediate_session_token'],
-            isset($data['discovered_organizations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Discovery\DiscoveredOrganization::fromArray($item), $data['discovered_organizations']) : [],
+            isset($data['discovered_organizations']) ? array_map(fn($item) => \Stytch\B2B\Models\Discovery\DiscoveredOrganization::fromArray($item), $data['discovered_organizations']) : [],
             $data['status_code']
         );
     }

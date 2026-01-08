@@ -29,8 +29,8 @@ try {
         'email' => 'async-user@example.com',
         'name' => [
             'first_name' => 'Async',
-            'last_name' => 'User'
-        ]
+            'last_name' => 'User',
+        ],
     ]);
 
     echo "Promise created, waiting for response...\n";
@@ -51,7 +51,7 @@ echo "2. Promise Chaining\n";
 echo "------------------\n";
 
 $client->users->createAsync([
-    'email' => 'chained-user@example.com'
+    'email' => 'chained-user@example.com',
 ])
 ->then(function ($createResponse) use ($client) {
     echo "✅ User created: " . $createResponse->userId . "\n";
@@ -85,8 +85,8 @@ for ($i = 1; $i <= 3; $i++) {
         'email' => "concurrent-user{$i}@example.com",
         'name' => [
             'first_name' => "User",
-            'last_name' => "Number{$i}"
-        ]
+            'last_name' => "Number{$i}",
+        ],
     ]);
 }
 
@@ -131,7 +131,7 @@ echo "-----------------------------\n";
 try {
     // Synchronous user creation
     $syncUser = $client->users->create([
-        'email' => 'mixed-user@example.com'
+        'email' => 'mixed-user@example.com',
     ]);
 
     echo "✅ Sync user created: " . $syncUser->userId . "\n";
@@ -143,9 +143,9 @@ try {
             'user_id' => $syncUser->userId,
             'name' => [
                 'first_name' => 'Updated',
-                'last_name' => 'Name'
-            ]
-        ])
+                'last_name' => 'Name',
+            ],
+        ]),
     ];
 
     $asyncResults = Utils::settle($asyncPromises)->wait();
@@ -169,7 +169,7 @@ echo "6. Complex Workflow with Error Recovery\n";
 echo "--------------------------------------\n";
 
 $client->users->createAsync([
-    'email' => 'workflow-user@example.com'
+    'email' => 'workflow-user@example.com',
 ])
 ->then(function ($createResponse) use ($client) {
     echo "✅ Step 1: User created\n";
@@ -177,7 +177,7 @@ $client->users->createAsync([
     // Try to create a TOTP (might fail if not configured)
     return $client->totps->createAsync([
         'user_id' => $createResponse->userId,
-        'expiration_minutes' => 10
+        'expiration_minutes' => 10,
     ]);
 })
 ->then(function ($totpResponse) {
@@ -210,7 +210,7 @@ echo "8. Real-World Authentication Flow\n";
 echo "--------------------------------\n";
 
 $authFlow = $client->users->createAsync([
-    'email' => 'auth-flow@example.com'
+    'email' => 'auth-flow@example.com',
 ])
 ->then(function ($createResponse) use ($client) {
     echo "✅ User created for auth flow\n";
@@ -228,7 +228,7 @@ $authFlow = $client->users->createAsync([
 
     return [
         'flow_complete' => true,
-        'request_id' => $sendResponse->requestId
+        'request_id' => $sendResponse->requestId,
     ];
 })
 ->otherwise(function ($exception) {
