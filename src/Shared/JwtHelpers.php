@@ -96,8 +96,17 @@ class JwtHelpers
         }
 
         // Validate audience
+        // The 'aud' claim can be either a string or an array of strings per JWT spec
         $audience = $payload['aud'] ?? null;
-        if ($audience !== $projectId) {
+        $validAudience = false;
+
+        if (is_string($audience)) {
+            $validAudience = ($audience === $projectId);
+        } elseif (is_array($audience)) {
+            $validAudience = in_array($projectId, $audience, true);
+        }
+
+        if (!$validAudience) {
             throw new StytchException('Invalid audience', 0);
         }
 

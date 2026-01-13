@@ -15,12 +15,14 @@ class JwksCache
     private string $projectId;
     private array $jwksCache = [];
     private int $ttl = 300; // 5 minutes default TTL (matches JWT lifetime)
+    private bool $isB2B = false;
 
-    public function __construct(Client $client, string $projectId, int $ttl = 300)
+    public function __construct(Client $client, string $projectId, int $ttl = 300, bool $isB2B = false)
     {
         $this->client = $client;
         $this->projectId = $projectId;
         $this->ttl = $ttl;
+        $this->isB2B = $isB2B;
     }
 
     /**
@@ -78,8 +80,11 @@ class JwksCache
             return $cached;
         }
 
-        // Fetch from API
-        $response = $this->client->get("/v1/sessions/jwks/{$projectId}");
+        // Fetch from API - use appropriate endpoint based on project type
+        $endpoint = $this->isB2B
+            ? "/v1/b2b/sessions/jwks/{$projectId}"
+            : "/v1/sessions/jwks/{$projectId}";
+        $response = $this->client->get($endpoint);
 
         // Extract keys array from response
         $keys = $response['keys'] ?? [];

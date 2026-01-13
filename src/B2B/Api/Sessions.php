@@ -550,9 +550,9 @@ class Sessions
             throw new \Stytch\Core\StytchException('JWT missing session claim', 0);
         }
 
-        // Convert to array if it's an object
+        // Convert to array recursively if it's an object
         if (is_object($sessionClaim)) {
-            $sessionClaim = (array) $sessionClaim;
+            $sessionClaim = json_decode(json_encode($sessionClaim), true);
         }
 
         // Extract B2B organization claim
@@ -561,9 +561,9 @@ class Sessions
             throw new \Stytch\Core\StytchException('JWT missing organization claim', 0);
         }
 
-        // Convert to array if it's an object
+        // Convert to array recursively if it's an object
         if (is_object($orgClaim)) {
-            $orgClaim = (array) $orgClaim;
+            $orgClaim = json_decode(json_encode($orgClaim), true);
         }
 
         $organizationId = $orgClaim['organization_id'] ?? '';
@@ -618,6 +618,8 @@ class Sessions
             'expires_at' => $sessionClaim['expires_at'] ?? '',
             'attributes' => $sessionClaim['attributes'] ?? [],
             'authentication_factors' => $sessionClaim['authentication_factors'] ?? [],
+            'roles' => $sessionClaim['roles'] ?? [],
+            'organization_slug' => $organizationSlug,
             'custom_claims' => $customClaims,
         ]);
     }

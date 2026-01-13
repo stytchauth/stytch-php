@@ -451,6 +451,7 @@ class Sessions
             'expires_at' => $sessionData['expires_at'],
             'attributes' => $sessionData['attributes'],
             'authentication_factors' => $sessionData['authentication_factors'],
+            'roles' => $sessionData['roles'] ?? [],
             'custom_claims' => $sessionData['custom_claims'],
         ]);
     }
