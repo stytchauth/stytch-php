@@ -456,9 +456,6 @@ class Sessions
     }
 
     // MANUAL(authenticateJwt)(SERVICE_METHOD)
-    // ADDIMPORT: use Stytch\Shared\JwksCache;
-    // ADDIMPORT: use Stytch\Shared\JwtHelpers;
-    // ADDIMPORT: use Stytch\Shared\RbacLocal;
 
     /**
      * Parse a JWT and verify the signature, preferring local verification over remote.
