@@ -74,7 +74,7 @@ final class ListResponse
         return new static(
             $data['request_id'],
             $data['email_address'],
-            isset($data['discovered_organizations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Discovery\DiscoveredOrganization::fromArray($item), $data['discovered_organizations']) : [],
+            isset($data['discovered_organizations']) ? array_map(fn($item) => \Stytch\B2B\Models\Discovery\DiscoveredOrganization::fromArray($item), $data['discovered_organizations']) : [],
             $data['status_code'],
             $data['organization_id_hint'] ?? null
         );

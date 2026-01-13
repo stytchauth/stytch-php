@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\ConnectedApp\Clients;
 
-enum CreateRequestClientType: string
-{
-}
+enum CreateRequestClientType: string {}

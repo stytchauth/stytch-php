@@ -10,6 +10,7 @@ namespace Stytch\B2B;
 
 use Stytch\Core\Client as CoreClient;
 use Stytch\Shared\PolicyCache;
+use Stytch\Shared\JwksCache;
 use Stytch\Consumer\Api\ConnectedApp;
 use Stytch\Consumer\Api\Debug;
 use Stytch\B2B\Api\Discovery;
@@ -40,6 +41,7 @@ class Client
     private CoreClient $client;
     private string $projectId;
     private PolicyCache $policyCache;
+    private JwksCache $jwksCache;
 
     public ConnectedApp $connected_app;
     public Debug $debug;
@@ -72,14 +74,15 @@ class Client
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
 
         $this->policyCache = new PolicyCache();
+        $this->jwksCache = new JwksCache($this->client, $this->projectId, 300, true);
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->debug = new Debug($this->client);
         $this->discovery = new Discovery($this->client);
         $this->fraud = new Fraud($this->client);
-        $this->idp = new IDP($this->client, $this->projectId, $this->policyCache);
+        $this->idp = new IDP($this->client, $this->projectId, $this->jwksCache, $this->policyCache);
         $this->impersonation = new Impersonation($this->client);
-        $this->m2m = new M2M($this->client, $this->projectId);
+        $this->m2m = new M2M($this->client, $this->projectId, $this->jwksCache);
         $this->magic_links = new MagicLinks($this->client);
         $this->oauth = new OAuth($this->client);
         $this->otps = new OTPs($this->client);
@@ -90,7 +93,7 @@ class Client
         $this->recovery_codes = new RecoveryCodes($this->client);
         $this->scim = new SCIM($this->client);
         $this->sso = new SSO($this->client);
-        $this->sessions = new Sessions($this->client, $this->projectId, $this->policyCache);
+        $this->sessions = new Sessions($this->client, $this->projectId, $this->jwksCache, $this->policyCache);
         $this->totps = new TOTPs($this->client);
     }
 }

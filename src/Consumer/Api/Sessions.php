@@ -14,13 +14,15 @@ class Sessions
 {
     private Client $client;
     private string $projectId;
+    private \Stytch\Shared\JwksCache $jwksCache;
     private \Stytch\Shared\PolicyCache $policyCache;
 
 
-    public function __construct(Client $client, string $projectId, \Stytch\Shared\PolicyCache $policyCache)
+    public function __construct(Client $client, string $projectId, \Stytch\Shared\JwksCache $jwksCache, \Stytch\Shared\PolicyCache $policyCache)
     {
         $this->client = $client;
         $this->projectId = $projectId;
+        $this->jwksCache = $jwksCache;
         $this->policyCache = $policyCache;
 
     }
@@ -322,5 +324,162 @@ class Sessions
             return \Stytch\Consumer\Models\Sessions\AttestResponse::fromArray($response);
         });
     }
+
+    // MANUAL(authenticateJwt)(SERVICE_METHOD)
+
+    /**
+     * Parse a JWT and verify the signature, preferring local verification over remote.
+     *
+     * Tries local JWT validation first for performance. If local validation fails for any
+     * reason (invalid signature, expired, etc.), falls back to network authentication.
+     *
+     * If max_token_age_seconds is set, remote verification will be forced if the JWT was issued
+     * (based on the "iat" claim) more than that many seconds ago.
+     *
+     * To force remote validation for all tokens, set max_token_age_seconds to zero or use the
+     * authenticate method instead.
+     *
+     * @param \Stytch\Consumer\Models\Sessions\AuthenticateJwtRequest|array $request
+     * @return \Stytch\Consumer\Models\Sessions\AuthenticateResponse
+     */
+    public function authenticateJwt(
+        \Stytch\Consumer\Models\Sessions\AuthenticateJwtRequest|array $request
+    ): \Stytch\Consumer\Models\Sessions\AuthenticateResponse {
+        $data = is_array($request) ? $request : $request->toArray();
+
+        try {
+            $session = $this->authenticateJwtLocal($request);
+
+            // Return same response format as authenticate()
+            // Build a response that matches AuthenticateResponse structure
+            $responseData = [
+                'status_code' => 200,
+                'request_id' => '',
+                'session' => $session,
+                'session_token' => '',
+                'session_jwt' => $data['session_jwt'],
+            ];
+
+            return \Stytch\Consumer\Models\Sessions\AuthenticateResponse::fromArray($responseData);
+        } catch (\Exception $e) {
+            // JWT could not be verified locally. Fall back to Stytch API.
+            return $this->authenticate([
+                'session_jwt' => $data['session_jwt'],
+                'authorization_check' => $data['authorization_check'] ?? null,
+            ]);
+        }
+    }
+
+    /**
+     * Parse a JWT and verify the signature locally (without calling /authenticate in the API).
+     *
+     * If max_token_age_seconds is set, this will return an error if the JWT was issued (based on the "iat"
+     * claim) more than max_token_age_seconds seconds ago.
+     *
+     * If max_token_age_seconds is explicitly set to zero, all tokens will be considered too old,
+     * even if they are otherwise valid.
+     *
+     * The value for current_date is used to compare timestamp claims ("exp", "nbf", "iat"). It
+     * defaults to the current date (new DateTime()).
+     *
+     * The value for clock_tolerance_seconds is the maximum allowable difference when comparing
+     * timestamps. It defaults to zero.
+     *
+     * @param \Stytch\Consumer\Models\Sessions\AuthenticateJwtLocalRequest|array $request
+     * @return \Stytch\Consumer\Models\Sessions\Session
+     * @throws \Stytch\Core\StytchException
+     */
+    public function authenticateJwtLocal(
+        \Stytch\Consumer\Models\Sessions\AuthenticateJwtLocalRequest|array $request
+    ): \Stytch\Consumer\Models\Sessions\Session {
+        $data = is_array($request) ? $request : $request->toArray();
+
+        // Fetch JWKS (cached)
+        $jwks = $this->jwksCache->fetch($this->projectId);
+
+        // Validate JWT locally
+        $sessionData = \Stytch\Shared\JwtHelpers::authenticateSessionJwtLocal(
+            $jwks,
+            $data['session_jwt'],
+            $this->projectId,
+            [
+                'clock_tolerance_seconds' => $data['clock_tolerance_seconds'] ?? null,
+                'max_token_age_seconds' => $data['max_token_age_seconds'] ?? null,
+                'current_date' => $data['current_date'] ?? null,
+            ]
+        );
+
+        // RBAC authorization check
+        if (isset($data['authorization_check']) && $data['authorization_check'] !== null) {
+            $authCheck = is_array($data['authorization_check'])
+                ? $data['authorization_check']
+                : $data['authorization_check']->toArray();
+
+            $roles = $sessionData['roles'] ?? [];
+
+            // Fetch policy from cache
+            // Note: PolicyCache in PHP currently doesn't auto-fetch from RBAC API like Node does
+            // This assumes the policy has been pre-loaded into the cache
+            $userId = $sessionData['sub'] ?? '';
+            $cacheKey = "policy:user:{$userId}";
+            $policy = $this->policyCache->get($cacheKey);
+
+            if ($policy === null) {
+                // Policy not in cache - fall back to network authentication
+                // which will perform the authorization check via API
+                throw new \Stytch\Core\StytchException(
+                    'Policy not found in cache. Falling back to network authentication.',
+                    0
+                );
+            }
+
+            // Perform role-based authorization check
+            \Stytch\Shared\RbacLocal::performRoleAuthorizationCheck(
+                $policy,
+                $roles,
+                $authCheck,
+                'User'
+            );
+        }
+
+        // Map to Session object
+        return \Stytch\Consumer\Models\Sessions\Session::fromArray([
+            'session_id' => $sessionData['session_id'],
+            'user_id' => $sessionData['sub'],
+            'started_at' => $sessionData['started_at'],
+            'last_accessed_at' => $sessionData['last_accessed_at'],
+            'expires_at' => $sessionData['expires_at'],
+            'attributes' => $sessionData['attributes'],
+            'authentication_factors' => $sessionData['authentication_factors'],
+            'roles' => $sessionData['roles'] ?? [],
+            'custom_claims' => $sessionData['custom_claims'],
+        ]);
+    }
+
+    /**
+     * Async version of authenticateJwt
+     *
+     * @param \Stytch\Consumer\Models\Sessions\AuthenticateJwtRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateJwtAsync(
+        \Stytch\Consumer\Models\Sessions\AuthenticateJwtRequest|array $request
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        return \GuzzleHttp\Promise\Create::promiseFor($this->authenticateJwt($request));
+    }
+
+    /**
+     * Async version of authenticateJwtLocal
+     *
+     * @param \Stytch\Consumer\Models\Sessions\AuthenticateJwtLocalRequest|array $request
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function authenticateJwtLocalAsync(
+        \Stytch\Consumer\Models\Sessions\AuthenticateJwtLocalRequest|array $request
+    ): \GuzzleHttp\Promise\PromiseInterface {
+        return \GuzzleHttp\Promise\Create::promiseFor($this->authenticateJwtLocal($request));
+    }
+    // ENDMANUAL(authenticateJwt)
+
 
 }

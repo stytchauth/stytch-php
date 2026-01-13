@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Discovery\Organizations;
 
-enum CreateRequestFirstPartyConnectedAppsAllowedType: string
-{
-}
+enum CreateRequestFirstPartyConnectedAppsAllowedType: string {}

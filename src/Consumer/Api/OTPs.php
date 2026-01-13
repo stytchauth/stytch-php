@@ -15,7 +15,7 @@ class OTPs
     private Client $client;
 
     public OTPsSms $sms;
-    public OTPsWhatsapp $whatsapp;
+    public OTPsWhatsApp $whatsapp;
     public OTPsEmail $email;
 
     public function __construct(Client $client)
@@ -23,7 +23,7 @@ class OTPs
         $this->client = $client;
 
         $this->sms = new OTPsSms($this->client);
-        $this->whatsapp = new OTPsWhatsapp($this->client);
+        $this->whatsapp = new OTPsWhatsApp($this->client);
         $this->email = new OTPsEmail($this->client);
     }
 

@@ -39,7 +39,7 @@ final class GetConnectedAppsResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['connected_apps']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\MemberConnectedApp::fromArray($item), $data['connected_apps']) : [],
+            isset($data['connected_apps']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\MemberConnectedApp::fromArray($item), $data['connected_apps']) : [],
             $data['status_code']
         );
     }

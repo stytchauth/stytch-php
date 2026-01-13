@@ -172,6 +172,7 @@ final class Organization
     * Organization's `third_party_connected_apps_allowed_type` is `RESTRICTED`.
      */
     public array $allowedThirdPartyConnectedApps;
+    public array $customRoles;
     /** An arbitrary JSON object for storing application-specific data or identity-provider-specific data. */
     public ?array $trustedMetadata = null;
     /**
@@ -219,6 +220,7 @@ final class Organization
         array $allowedFirstPartyConnectedApps,
         string $thirdPartyConnectedAppsAllowedType,
         array $allowedThirdPartyConnectedApps,
+        array $customRoles,
         ?array $trustedMetadata = null,
         ?string $createdAt = null,
         ?string $updatedAt = null,
@@ -249,6 +251,7 @@ final class Organization
         $this->allowedFirstPartyConnectedApps = $allowedFirstPartyConnectedApps;
         $this->thirdPartyConnectedAppsAllowedType = $thirdPartyConnectedAppsAllowedType;
         $this->allowedThirdPartyConnectedApps = $allowedThirdPartyConnectedApps;
+        $this->customRoles = $customRoles;
         $this->trustedMetadata = $trustedMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
@@ -273,14 +276,14 @@ final class Organization
             $data['organization_slug'],
             $data['sso_jit_provisioning'],
             $data['sso_jit_provisioning_allowed_connections'],
-            isset($data['sso_active_connections']) ? array_map(fn ($item) => ActiveSSOConnection::fromArray($item), $data['sso_active_connections']) : [],
+            isset($data['sso_active_connections']) ? array_map(fn($item) => ActiveSSOConnection::fromArray($item), $data['sso_active_connections']) : [],
             $data['email_allowed_domains'],
             $data['email_jit_provisioning'],
             $data['email_invites'],
             $data['auth_methods'],
             $data['allowed_auth_methods'],
             $data['mfa_policy'],
-            isset($data['rbac_email_implicit_role_assignments']) ? array_map(fn ($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : [],
+            isset($data['rbac_email_implicit_role_assignments']) ? array_map(fn($item) => EmailImplicitRoleAssignment::fromArray($item), $data['rbac_email_implicit_role_assignments']) : [],
             $data['mfa_methods'],
             $data['allowed_mfa_methods'],
             $data['oauth_tenant_jit_provisioning'],
@@ -289,6 +292,7 @@ final class Organization
             $data['allowed_first_party_connected_apps'],
             $data['third_party_connected_apps_allowed_type'],
             $data['allowed_third_party_connected_apps'],
+            isset($data['custom_roles']) ? array_map(fn($item) => CustomRole::fromArray($item), $data['custom_roles']) : [],
             $data['trusted_metadata'] ?? null,
             $data['created_at'] ?? null,
             $data['updated_at'] ?? null,
@@ -329,6 +333,7 @@ final class Organization
             'allowed_first_party_connected_apps' => $this->allowedFirstPartyConnectedApps,
             'third_party_connected_apps_allowed_type' => $this->thirdPartyConnectedAppsAllowedType,
             'allowed_third_party_connected_apps' => $this->allowedThirdPartyConnectedApps,
+            'custom_roles' => $this->customRoles,
             'trusted_metadata' => $this->trustedMetadata,
             'created_at' => $this->createdAt,
             'updated_at' => $this->updatedAt,

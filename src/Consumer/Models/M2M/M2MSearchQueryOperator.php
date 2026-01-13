@@ -8,6 +8,4 @@
 
 namespace Stytch\Consumer\Models\M2M;
 
-enum M2MSearchQueryOperator: string
-{
-}
+enum M2MSearchQueryOperator: string {}

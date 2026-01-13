@@ -63,9 +63,9 @@ final class UpdateResponse
         return new static(
             $data['request_id'],
             $data['user_id'],
-            isset($data['emails']) ? array_map(fn ($item) => Email::fromArray($item), $data['emails']) : [],
-            isset($data['phone_numbers']) ? array_map(fn ($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
-            isset($data['crypto_wallets']) ? array_map(fn ($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
+            isset($data['emails']) ? array_map(fn($item) => Email::fromArray($item), $data['emails']) : [],
+            isset($data['phone_numbers']) ? array_map(fn($item) => PhoneNumber::fromArray($item), $data['phone_numbers']) : [],
+            isset($data['crypto_wallets']) ? array_map(fn($item) => CryptoWallet::fromArray($item), $data['crypto_wallets']) : [],
             User::fromArray($data['user']),
             $data['status_code']
         );

@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Passwords\Sessions;
 
-enum ResetRequestLocale: string
-{
-}
+enum ResetRequestLocale: string {}

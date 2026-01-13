@@ -39,7 +39,7 @@ class UsersTest extends TestCase
         $email = $this->generateRandomEmail();
 
         $response = $this->client->users->create([
-            'email' => $email
+            'email' => $email,
         ]);
 
         $this->assertNotEmpty($response->userId);
@@ -59,8 +59,8 @@ class UsersTest extends TestCase
             'email' => $email,
             'name' => [
                 'first_name' => $firstName,
-                'last_name' => $lastName
-            ]
+                'last_name' => $lastName,
+            ],
         ]);
 
         $this->assertEquals($firstName, $response->user->name->firstName);
@@ -98,8 +98,8 @@ class UsersTest extends TestCase
             'user_id' => $createResponse->userId,
             'name' => [
                 'first_name' => $newFirstName,
-                'last_name' => $newLastName
-            ]
+                'last_name' => $newLastName,
+            ],
         ]);
 
         $this->assertEquals($newFirstName, $response->user->name->firstName);
@@ -136,7 +136,7 @@ class UsersTest extends TestCase
 
         // Search for users
         $response = $this->client->users->search([
-            'limit' => 10
+            'limit' => 10,
         ]);
 
         $this->assertIsArray($response->results);
@@ -148,7 +148,7 @@ class UsersTest extends TestCase
         $this->expectException(StytchException::class);
 
         $this->client->users->create([
-            'email' => 'invalid-email'
+            'email' => 'invalid-email',
         ]);
     }
 
@@ -167,7 +167,7 @@ class UsersTest extends TestCase
 
         // Call async method
         $promise = $this->client->users->createAsync([
-            'email' => $email
+            'email' => $email,
         ]);
 
         // Verify it returns a promise
@@ -190,13 +190,13 @@ class UsersTest extends TestCase
         // First create a user synchronously
         $email = $this->generateRandomEmail();
         $createResponse = $this->client->users->create([
-            'email' => $email
+            'email' => $email,
         ]);
         $this->testUsers[] = $createResponse->userId;
 
         // Now get the user asynchronously
         $promise = $this->client->users->getAsync([
-            'user_id' => $createResponse->userId
+            'user_id' => $createResponse->userId,
         ]);
 
         // Verify it returns a promise
@@ -216,12 +216,12 @@ class UsersTest extends TestCase
 
         // Chain async operations
         $finalPromise = $this->client->users->createAsync([
-            'email' => $email
+            'email' => $email,
         ])->then(function ($createResponse) {
             // User created, now get the user
             $this->testUsers[] = $createResponse->userId; // Add to cleanup
             return $this->client->users->getAsync([
-                'user_id' => $createResponse->userId
+                'user_id' => $createResponse->userId,
             ]);
         });
 
@@ -239,7 +239,7 @@ class UsersTest extends TestCase
         $emails = [
             $this->generateRandomEmail(),
             $this->generateRandomEmail(),
-            $this->generateRandomEmail()
+            $this->generateRandomEmail(),
         ];
 
         $userIds = [];
@@ -253,7 +253,7 @@ class UsersTest extends TestCase
         $promises = [];
         foreach ($userIds as $userId) {
             $promises[$userId] = $this->client->users->getAsync([
-                'user_id' => $userId
+                'user_id' => $userId,
             ]);
         }
 
@@ -276,7 +276,7 @@ class UsersTest extends TestCase
     {
         // Try to get a non-existent user - this should throw StytchException
         $promise = $this->client->users->getAsync([
-            'user_id' => 'user-test-nonexistent-async'
+            'user_id' => 'user-test-nonexistent-async',
         ]);
 
         // Test 1: Direct exception handling with wait()
@@ -293,7 +293,7 @@ class UsersTest extends TestCase
         $fallbackValue = 'error-fallback';
 
         $promise2 = $this->client->users->getAsync([
-            'user_id' => 'user-test-nonexistent-async-2'
+            'user_id' => 'user-test-nonexistent-async-2',
         ]);
 
         $handledPromise = $promise2->otherwise(function ($exception) use (&$errorCaught, &$errorMessage, $fallbackValue) {

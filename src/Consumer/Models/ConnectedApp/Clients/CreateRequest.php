@@ -20,7 +20,7 @@ final class CreateRequest
     /** A human-readable description for the client. */
     public ?string $clientDescription = null;
     /** Array of redirect URI values for use in OAuth Authorization flows. */
-    public ?array $redirectURLS = null;
+    public ?array $redirectURLs = null;
     /**
     * Valid for first party clients only. If `true`, an authorization token granted to this Client can be
     * exchanged for a full Stytch session.
@@ -33,7 +33,7 @@ final class CreateRequest
     /** The content of the access token custom claims template. The template must be a valid JSON object. */
     public ?string $accessTokenTemplateContent = null;
     /** Array of redirect URI values for use in OIDC Logout flows. */
-    public ?array $postLogoutRedirectURLS = null;
+    public ?array $postLogoutRedirectURLs = null;
     /** The logo URL of the Connected App, if any. */
     public ?string $logoURL = null;
     /**
@@ -46,24 +46,24 @@ final class CreateRequest
         string $clientType,
         ?string $clientName = null,
         ?string $clientDescription = null,
-        ?array $redirectURLS = null,
+        ?array $redirectURLs = null,
         ?bool $fullAccessAllowed = null,
         ?int $accessTokenExpiryMinutes = null,
         ?string $accessTokenCustomAudience = null,
         ?string $accessTokenTemplateContent = null,
-        ?array $postLogoutRedirectURLS = null,
+        ?array $postLogoutRedirectURLs = null,
         ?string $logoURL = null,
         ?bool $bypassConsentForOfflineAccess = null
     ) {
         $this->clientType = $clientType;
         $this->clientName = $clientName;
         $this->clientDescription = $clientDescription;
-        $this->redirectURLS = $redirectURLS;
+        $this->redirectURLs = $redirectURLs;
         $this->fullAccessAllowed = $fullAccessAllowed;
         $this->accessTokenExpiryMinutes = $accessTokenExpiryMinutes;
         $this->accessTokenCustomAudience = $accessTokenCustomAudience;
         $this->accessTokenTemplateContent = $accessTokenTemplateContent;
-        $this->postLogoutRedirectURLS = $postLogoutRedirectURLS;
+        $this->postLogoutRedirectURLs = $postLogoutRedirectURLs;
         $this->logoURL = $logoURL;
         $this->bypassConsentForOfflineAccess = $bypassConsentForOfflineAccess;
     }
@@ -102,12 +102,12 @@ final class CreateRequest
             'client_type' => $this->clientType,
             'client_name' => $this->clientName,
             'client_description' => $this->clientDescription,
-            'redirect_urls' => $this->redirectURLS,
+            'redirect_urls' => $this->redirectURLs,
             'full_access_allowed' => $this->fullAccessAllowed,
             'access_token_expiry_minutes' => $this->accessTokenExpiryMinutes,
             'access_token_custom_audience' => $this->accessTokenCustomAudience,
             'access_token_template_content' => $this->accessTokenTemplateContent,
-            'post_logout_redirect_urls' => $this->postLogoutRedirectURLS,
+            'post_logout_redirect_urls' => $this->postLogoutRedirectURLs,
             'logo_url' => $this->logoURL,
             'bypass_consent_for_offline_access' => $this->bypassConsentForOfflineAccess,
         ];

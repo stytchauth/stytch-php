@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\SSO\SAML;
 
-enum UpdateConnectionRequestIdentityProvider: string
-{
-}
+enum UpdateConnectionRequestIdentityProvider: string {}

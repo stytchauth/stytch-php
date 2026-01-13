@@ -43,7 +43,7 @@ final class OIDCProvidersResponse
     {
         return new static(
             $data['request_id'],
-            isset($data['registrations']) ? array_map(fn ($item) => \Stytch\B2B\Models\Organizations\OIDCProviderInfo::fromArray($item), $data['registrations']) : [],
+            isset($data['registrations']) ? array_map(fn($item) => \Stytch\B2B\Models\Organizations\OIDCProviderInfo::fromArray($item), $data['registrations']) : [],
             $data['status_code']
         );
     }

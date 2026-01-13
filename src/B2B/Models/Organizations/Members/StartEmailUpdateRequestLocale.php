@@ -8,6 +8,4 @@
 
 namespace Stytch\B2B\Models\Organizations\Members;
 
-enum StartEmailUpdateRequestLocale: string
-{
-}
+enum StartEmailUpdateRequestLocale: string {}
