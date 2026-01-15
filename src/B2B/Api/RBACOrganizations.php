@@ -84,6 +84,31 @@ class RBACOrganizations
     }
 
     /**
+        * Set the RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC Policy
+        * allows you to define roles that are specific to that organization, providing fine-grained control over
+        * permissions at the organization level.
+        *
+        * This endpoint allows you to create, update, or replace the organization-scoped roles for a given
+        * organization. Organization policies supplement the project-level RBAC policy with additional roles that
+        * are only applicable within the context of that specific organization.
+        *
+        * The organization policy consists of roles, where each role defines:
+        * - A unique `role_id` to identify the role
+        * - A human-readable `description` of the role's purpose
+        * - A set of `permissions` that specify which actions can be performed on which resources
+        *
+        * When you set an organization policy, it will replace any existing organization-specific roles for that
+        * organization. The project-level RBAC policy remains unchanged.
+        *
+        * Organization-specific roles are useful for scenarios where different organizations within your project
+        * require different permission structures, such as:
+        * - Multi-tenant applications with varying access levels per tenant
+        * - Organizations with custom approval workflows
+        * - Different organizational hierarchies requiring unique role definitions
+        *
+        * Check out the [RBAC overview](https://stytch.com/docs/b2b/guides/rbac/overview) to learn more about
+        * Stytch's RBAC permissioning model and organization-scoped policies.
+
          * @param \Stytch\B2B\Models\RBAC\Organizations\SetOrgPolicyRequest|array $request
          * @return \Stytch\B2B\Models\RBAC\Organizations\SetOrgPolicyResponse
          */
@@ -96,6 +121,31 @@ class RBACOrganizations
     }
 
     /**
+    * Set the RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC Policy
+    * allows you to define roles that are specific to that organization, providing fine-grained control over
+    * permissions at the organization level.
+    *
+    * This endpoint allows you to create, update, or replace the organization-scoped roles for a given
+    * organization. Organization policies supplement the project-level RBAC policy with additional roles that
+    * are only applicable within the context of that specific organization.
+    *
+    * The organization policy consists of roles, where each role defines:
+    * - A unique `role_id` to identify the role
+    * - A human-readable `description` of the role's purpose
+    * - A set of `permissions` that specify which actions can be performed on which resources
+    *
+    * When you set an organization policy, it will replace any existing organization-specific roles for that
+    * organization. The project-level RBAC policy remains unchanged.
+    *
+    * Organization-specific roles are useful for scenarios where different organizations within your project
+    * require different permission structures, such as:
+    * - Multi-tenant applications with varying access levels per tenant
+    * - Organizations with custom approval workflows
+    * - Different organizational hierarchies requiring unique role definitions
+    *
+    * Check out the [RBAC overview](https://stytch.com/docs/b2b/guides/rbac/overview) to learn more about
+    * Stytch's RBAC permissioning model and organization-scoped policies.
+
      * @param \Stytch\B2B\Models\RBAC\Organizations\SetOrgPolicyRequest|array $request
      * @return \GuzzleHttp\Promise\PromiseInterface
      */

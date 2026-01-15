@@ -24,13 +24,16 @@ final class SearchRequest
     * size, you must paginate the response. See the `cursor` field.
      */
     public ?int $limit = null;
+    public ?\Stytch\Consumer\Models\ConnectedApp\SearchConnectedAppsQuery $query = null;
 
     public function __construct(
         ?string $cursor = null,
-        ?int $limit = null
+        ?int $limit = null,
+        ?\Stytch\Consumer\Models\ConnectedApp\SearchConnectedAppsQuery $query = null
     ) {
         $this->cursor = $cursor;
         $this->limit = $limit;
+        $this->query = $query;
     }
 
     /**
@@ -43,7 +46,8 @@ final class SearchRequest
     {
         return new static(
             $data['cursor'] ?? null,
-            $data['limit'] ?? null
+            $data['limit'] ?? null,
+            isset($data['query']) && $data['query'] !== null ? \Stytch\Consumer\Models\ConnectedApp\SearchConnectedAppsQuery::fromArray($data['query']) : null
         );
     }
 
@@ -57,6 +61,7 @@ final class SearchRequest
         return [
             'cursor' => $this->cursor,
             'limit' => $this->limit,
+            'query' => $this->query,
         ];
     }
 }

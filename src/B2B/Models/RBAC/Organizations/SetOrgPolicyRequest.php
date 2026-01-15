@@ -10,7 +10,17 @@ namespace Stytch\B2B\Models\RBAC\Organizations;
 
 final class SetOrgPolicyRequest
 {
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public string $organizationId;
+    /**
+    * The organization-specific RBAC Policy that contains roles defined for this organization. Organization
+    * policies supplement the project-level RBAC policy with additional roles that are specific to the
+    * organization.
+     */
     public ?\Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy = null;
 
     public function __construct(
