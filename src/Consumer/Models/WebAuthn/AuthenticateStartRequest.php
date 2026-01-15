@@ -22,15 +22,18 @@ final class AuthenticateStartRequest
     * `userVerification` set to `"preferred"`.
      */
     public ?bool $returnPasskeyCredentialOptions = null;
+    public ?bool $useBase64URLEncoding = null;
 
     public function __construct(
         string $domain,
         ?string $userId = null,
-        ?bool $returnPasskeyCredentialOptions = null
+        ?bool $returnPasskeyCredentialOptions = null,
+        ?bool $useBase64URLEncoding = null
     ) {
         $this->domain = $domain;
         $this->userId = $userId;
         $this->returnPasskeyCredentialOptions = $returnPasskeyCredentialOptions;
+        $this->useBase64URLEncoding = $useBase64URLEncoding;
     }
 
     /**
@@ -44,7 +47,8 @@ final class AuthenticateStartRequest
         return new static(
             $data['domain'],
             $data['user_id'] ?? null,
-            $data['return_passkey_credential_options'] ?? null
+            $data['return_passkey_credential_options'] ?? null,
+            $data['use_base64_url_encoding'] ?? null
         );
     }
 
@@ -59,6 +63,7 @@ final class AuthenticateStartRequest
             'domain' => $this->domain,
             'user_id' => $this->userId,
             'return_passkey_credential_options' => $this->returnPasskeyCredentialOptions,
+            'use_base64_url_encoding' => $this->useBase64URLEncoding,
         ];
     }
 }

@@ -10,8 +10,21 @@ namespace Stytch\B2B\Models\RBAC\Organizations;
 
 final class SetOrgPolicyResponse
 {
+    /**
+    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
+    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
+     */
     public string $requestId;
+    /**
+    * The HTTP status code of the response. Stytch follows standard HTTP response status code patterns, e.g.
+    * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
+     */
     public int $statusCode;
+    /**
+    * The organization-specific RBAC Policy that contains roles defined for this organization. Organization
+    * policies supplement the project-level RBAC policy with additional roles that are specific to the
+    * organization.
+     */
     public ?\Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy = null;
 
     public function __construct(

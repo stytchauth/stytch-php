@@ -70,7 +70,7 @@ class Client
         $this->client = new CoreClient($projectId, $secret, $environment, $fraudEnvironment, $customBaseUrl);
 
         $this->policyCache = new PolicyCache();
-        $this->jwksCache = new JwksCache($this->client, $this->projectId);
+        $this->jwksCache = new JwksCache($this->client, $this->projectId, 300, false);
 
         $this->connected_app = new ConnectedApp($this->client);
         $this->crypto_wallets = new CryptoWallets($this->client);
