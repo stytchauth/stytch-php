@@ -10,18 +10,31 @@ namespace Stytch\B2B\Models\RBAC\Organizations;
 
 final class SetOrgPolicyResponse
 {
+    /**
+    * Globally unique UUID that is returned with every API call. This value is important to log for debugging
+    * purposes; we may ask for this value to help identify a specific API call when helping you debug an issue.
+     */
     public string $requestId;
+    /**
+    * The organization-specific RBAC Policy that contains roles defined for this organization. Organization
+    * policies supplement the project-level RBAC policy with additional roles that are specific to the
+    * organization.
+     */
+    public \Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy;
+    /**
+    * The HTTP status code of the response. Stytch follows standard HTTP response status code patterns, e.g.
+    * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
+     */
     public int $statusCode;
-    public ?\Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy = null;
 
     public function __construct(
         string $requestId,
-        int $statusCode,
-        ?\Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy = null
+        \Stytch\B2B\Models\RBAC\OrgPolicy $orgPolicy,
+        int $statusCode
     ) {
         $this->requestId = $requestId;
-        $this->statusCode = $statusCode;
         $this->orgPolicy = $orgPolicy;
+        $this->statusCode = $statusCode;
     }
 
     /**
@@ -34,8 +47,8 @@ final class SetOrgPolicyResponse
     {
         return new static(
             $data['request_id'],
-            $data['status_code'],
-            isset($data['org_policy']) && $data['org_policy'] !== null ? \Stytch\B2B\Models\RBAC\OrgPolicy::fromArray($data['org_policy']) : null
+            \Stytch\B2B\Models\RBAC\OrgPolicy::fromArray($data['org_policy']),
+            $data['status_code']
         );
     }
 
@@ -48,8 +61,8 @@ final class SetOrgPolicyResponse
     {
         return [
             'request_id' => $this->requestId,
-            'status_code' => $this->statusCode,
             'org_policy' => $this->orgPolicy,
+            'status_code' => $this->statusCode,
         ];
     }
 }
