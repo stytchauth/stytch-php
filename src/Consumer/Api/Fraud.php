@@ -17,6 +17,7 @@ class Fraud
     public FraudFingerprint $fingerprint;
     public FraudRules $rules;
     public FraudVerdictReasons $verdictReasons;
+    public FraudEmail $email;
 
     public function __construct(Client $client)
     {
@@ -25,6 +26,7 @@ class Fraud
         $this->fingerprint = new FraudFingerprint($this->client);
         $this->rules = new FraudRules($this->client);
         $this->verdictReasons = new FraudVerdictReasons($this->client);
+        $this->email = new FraudEmail($this->client);
     }
 
 }
