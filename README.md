@@ -160,6 +160,47 @@ $client->users->getAsync(['user_id' => 'invalid-id'])
 - PHP 8.1 or higher
 - Guzzle HTTP client
 
+## Upgrading to 2.0
+
+### PHP 8.4 Compatibility
+
+Version 2.0 adds full support for PHP 8.4 by using explicit nullable type declarations. If you're using PHP 8.4 with strict deprecation handling (common in PHPUnit/Laravel test environments), you **must** upgrade to v2.0+ to avoid deprecation errors.
+
+**Fixed in v2.0:**
+
+```php
+// v1.x - Implicit nullable (deprecated in PHP 8.4)
+function example(array $data = null) { }
+
+// v2.0+ - Explicit nullable (PHP 8.4 compatible)
+function example(?array $data = null) { }
+```
+
+### Breaking Changes
+
+#### WhatsApp OTP Namespace Change
+
+The WhatsApp OTP class has been renamed to fix capitalization:
+
+```php
+// v1.x
+use Stytch\Consumer\Api\OTPsWhatsapp;  // Old
+$client->otps->whatsapp->send(...);   // Still works
+
+// v2.0+
+use Stytch\Consumer\Api\OTPsWhatsApp;  // New (capital A)
+$client->otps->whatsapp->send(...);   // Still works
+```
+
+**Impact:** Only affects code that directly imports or type-hints the `OTPsWhatsapp` class. The property access `$client->otps->whatsapp` remains unchanged.
+
+### New Features in 2.0
+
+- **Local JWT Authentication**: Authenticate JWTs locally without making an API call
+- **RBAC Organization Policies**: Set and retrieve organization-specific RBAC policies
+- **External ID Management**: Delete external IDs for users and organization members
+- **DFP Email Risk API**: New device fingerprinting email risk endpoint
+
 ## Testing
 
 The SDK includes a comprehensive test suite covering both Consumer and B2B functionality.
@@ -167,6 +208,7 @@ The SDK includes a comprehensive test suite covering both Consumer and B2B funct
 ### Setup Tests
 
 1. Set up environment variables:
+
 ```bash
 export STYTCH_PROJECT_ID="your-consumer-project-id"
 export STYTCH_PROJECT_SECRET="your-consumer-project-secret"
@@ -175,6 +217,7 @@ export STYTCH_B2B_PROJECT_SECRET="your-b2b-project-secret"
 ```
 
 2. Install test dependencies:
+
 ```bash
 composer install
 ```
@@ -200,17 +243,20 @@ vendor/bin/phpunit --coverage-html coverage-html
 The test suite covers:
 
 **Consumer API:**
+
 - Users: create, get, update, delete, search (sync & async)
 - Passwords: create, authenticate, strength check, reset operations (sync & async)
 - Sessions: authenticate, get, revoke, exchange (sync & async)
 - Magic Links: send, authenticate, invite operations (sync & async)
 
 **B2B API:**
+
 - Organizations: create, get, update, delete, search (sync & async)
 - Organization Members: create, get, update, delete, search, reactivate (sync & async)
 - Passwords: create, authenticate, strength check, reset operations, discovery (sync & async)
 
 **Async Functionality:**
+
 - Core HTTP client async methods (GET, POST, PUT, DELETE)
 - Promise chaining and error handling
 - Concurrent request processing
@@ -245,12 +291,14 @@ tests/
 ### Code Quality
 
 This project uses:
+
 - **PHPStan** for static analysis
 - **PHPUnit** for testing
 - **PSR-4** autoloading
 - **PSR-12** coding standards
 
 Run code quality checks:
+
 ```bash
 vendor/bin/phpstan analyse src tests
 vendor/bin/phpunit
