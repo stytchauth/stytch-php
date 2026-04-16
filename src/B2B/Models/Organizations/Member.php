@@ -57,6 +57,7 @@ final class Member
     *   [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/stytch-default) for more details on this Role.
      */
     public bool $isAdmin;
+    /** Globally unique UUID that identifies a TOTP instance. */
     public string $totpRegistrationId;
     /**
     * A list of retired email addresses for this member.
@@ -73,6 +74,10 @@ final class Member
     *   using the [Unlink Retired Email endpoint](https://stytch.com/docs/b2b/api/unlink-retired-member-email).
      */
     public array $retiredEmailAddresses;
+    /**
+    * Whether the Member is temporarily locked due to too many failed authentication attempts. See the
+    * [User Locking Guide](https://stytch.com/docs/resources/platform/user-locks) for more information.
+     */
     public bool $isLocked;
     /**
     * Sets whether the Member is enrolled in MFA. If true, the Member must complete an MFA step whenever they
@@ -85,6 +90,11 @@ final class Member
     * format (i.e. +1XXXXXXXXXX).
      */
     public string $mfaPhoneNumber;
+    /**
+    * The Member's default MFA method. This value is used to determine which secondary MFA method to use in
+    * the case of multiple methods registered for a Member. The current possible values are `sms_otp` and
+    * `totp`.
+     */
     public string $defaultMfaMethod;
     /**
     * Explicit or implicit Roles assigned to this Member, along with details about the role assignment source.
@@ -119,7 +129,15 @@ final class Member
     public ?SCIMRegistration $scimRegistration = null;
     /** The ID of the member given by the identity provider. */
     public ?string $externalId = null;
+    /**
+    * When the member lock was created, if there is one. Values conform to the RFC 3339 standard and are
+    * expressed in UTC, e.g. `2021-12-29T12:33:09Z`.
+     */
     public ?string $lockCreatedAt = null;
+    /**
+    * When the member lock expires, if there is one. Values conform to the RFC 3339 standard and are expressed
+    * in UTC, e.g. `2021-12-29T12:33:09Z`.
+     */
     public ?string $lockExpiresAt = null;
 
     public function __construct(

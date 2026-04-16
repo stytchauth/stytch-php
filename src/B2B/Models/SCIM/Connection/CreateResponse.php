@@ -20,11 +20,7 @@ final class CreateResponse
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
     public int $statusCode;
-    /**
-    * The `SCIM Connection` object affected by this API call. See the
-    * [SCIM Connection Object](https://stytch.com/docs/b2b/api/scim-connection-object) for complete response
-    * field details.
-     */
+    /** The [SCIM Connection Object](https://stytch.com/docs/b2b/api/scim-connection-object). */
     public ?\Stytch\B2B\Models\SCIM\SCIMConnectionWithToken $connection = null;
 
     public function __construct(

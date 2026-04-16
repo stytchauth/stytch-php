@@ -23,6 +23,8 @@ final class CreateResponse
     public string $sessionJwt;
     /** The [Member object](https://stytch.com/docs/b2b/api/member-object) */
     public \Stytch\B2B\Models\Organizations\Member $member;
+    /** The [Organization object](https://stytch.com/docs/b2b/api/organization-object). */
+    public \Stytch\B2B\Models\Organizations\Organization $organization;
     /**
     * Indicates whether the Member is fully authenticated. If false, the Member needs to complete an MFA step
     * to log in to the Organization.
@@ -50,8 +52,6 @@ final class CreateResponse
     public int $statusCode;
     /** The [Session object](https://stytch.com/docs/b2b/api/session-object). */
     public ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null;
-    /** The [Organization object](https://stytch.com/docs/b2b/api/organization-object). */
-    public ?\Stytch\B2B\Models\Organizations\Organization $organization = null;
     /** Information about the MFA requirements of the Organization and the Member's options for fulfilling MFA. */
     public ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null;
     /** Information about the primary authentication requirements of the Organization. */
@@ -69,11 +69,11 @@ final class CreateResponse
         string $sessionToken,
         string $sessionJwt,
         \Stytch\B2B\Models\Organizations\Member $member,
+        \Stytch\B2B\Models\Organizations\Organization $organization,
         bool $memberAuthenticated,
         string $intermediateSessionToken,
         int $statusCode,
         ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null,
-        ?\Stytch\B2B\Models\Organizations\Organization $organization = null,
         ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null,
         ?\Stytch\B2B\Models\Sessions\PrimaryRequired $primaryRequired = null,
         ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null
@@ -83,11 +83,11 @@ final class CreateResponse
         $this->sessionToken = $sessionToken;
         $this->sessionJwt = $sessionJwt;
         $this->member = $member;
+        $this->organization = $organization;
         $this->memberAuthenticated = $memberAuthenticated;
         $this->intermediateSessionToken = $intermediateSessionToken;
         $this->statusCode = $statusCode;
         $this->memberSession = $memberSession;
-        $this->organization = $organization;
         $this->mfaRequired = $mfaRequired;
         $this->primaryRequired = $primaryRequired;
         $this->memberDevice = $memberDevice;
@@ -107,11 +107,11 @@ final class CreateResponse
             $data['session_token'],
             $data['session_jwt'],
             \Stytch\B2B\Models\Organizations\Member::fromArray($data['member']),
+            \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']),
             $data['member_authenticated'],
             $data['intermediate_session_token'],
             $data['status_code'],
             isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            isset($data['organization']) && $data['organization'] !== null ? \Stytch\B2B\Models\Organizations\Organization::fromArray($data['organization']) : null,
             isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
             isset($data['primary_required']) && $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
             isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
@@ -131,11 +131,11 @@ final class CreateResponse
             'session_token' => $this->sessionToken,
             'session_jwt' => $this->sessionJwt,
             'member' => $this->member,
+            'organization' => $this->organization,
             'member_authenticated' => $this->memberAuthenticated,
             'intermediate_session_token' => $this->intermediateSessionToken,
             'status_code' => $this->statusCode,
             'member_session' => $this->memberSession,
-            'organization' => $this->organization,
             'mfa_required' => $this->mfaRequired,
             'primary_required' => $this->primaryRequired,
             'member_device' => $this->memberDevice,

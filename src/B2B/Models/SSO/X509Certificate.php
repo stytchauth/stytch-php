@@ -10,11 +10,17 @@ namespace Stytch\B2B\Models\SSO;
 
 final class X509Certificate
 {
+    /** The ID of the certificate. */
     public string $certificateId;
+    /** The certificate, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format. */
     public string $certificate;
+    /** The issuer of the certificate. For signing certificates, this value will be "Stytch". */
     public string $issuer;
+    /** A timestamp that indicates when the certificate was created. */
     public ?string $createdAt = null;
+    /** A timestamp that indicates when the certificate will expire. */
     public ?string $expiresAt = null;
+    /** A timestamp that indicates when the certificate was updated. */
     public ?string $updatedAt = null;
 
     public function __construct(

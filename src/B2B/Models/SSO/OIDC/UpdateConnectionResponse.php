@@ -20,11 +20,7 @@ final class UpdateConnectionResponse
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
     public int $statusCode;
-    /**
-    * The `OIDC Connection` object affected by this API call. See the
-    * [OIDC Connection Object](https://stytch.com/docs/b2b/api/oidc-connection-object) for complete response
-    * field details.
-     */
+    /** The [OIDC Connection Object](https://stytch.com/docs/b2b/api/oidc-connection-object). */
     public ?\Stytch\B2B\Models\SSO\OIDCConnection $connection = null;
     /**
     * If it is not possible to resolve the well-known metadata document from the OIDC issuer, this field will

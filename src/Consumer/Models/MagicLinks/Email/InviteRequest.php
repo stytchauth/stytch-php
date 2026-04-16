@@ -13,9 +13,9 @@ final class InviteRequest
     /** The email address of the User to send the invite Magic Link to. */
     public string $email;
     /**
-    * Use a custom template for invite emails. By default, it will use your default email template. The
-    * template must be a template using our built-in customizations or a custom HTML email for Magic links -
-    * Invite.
+    * Use a custom template for invite emails. By default, it will use your default email template. Templates
+    * can be added in the [Stytch dashboard](https://stytch.com/dashboard/templates) using our built-in
+    * customization options or custom HTML templates with type “Magic links - Invite”.
      */
     public ?string $inviteTemplateId = null;
     /**
@@ -38,7 +38,7 @@ final class InviteRequest
      */
     public ?int $inviteExpirationMinutes = null;
     /**
-    * Used to determine which language to use when sending the user this delivery method. Parameter is a
+    * Used to determine which language to use when sending the user this delivery method. Parameter is an
     * [IETF BCP 47 language tag](https://www.w3.org/International/articles/language-tags/), e.g. `"en"`.
     *
     * Currently supported languages are English (`"en"`), Spanish (`"es"`), French (`"fr"`) and Brazilian

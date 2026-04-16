@@ -31,6 +31,10 @@ final class User
     public array $cryptoWallets;
     /** An array that contains a list of all biometric registrations for a given User in the Stytch API. */
     public array $biometricRegistrations;
+    /**
+    * Whether the User is temporarily locked due to too many failed authentication attempts. See the
+    * [User Locking Guide](https://stytch.com/docs/resources/platform/user-locks) for more information.
+     */
     public bool $isLocked;
     /**
     * Roles assigned to this User.
@@ -59,8 +63,21 @@ final class User
     * behavior details.
      */
     public ?array $untrustedMetadata = null;
+    /**
+    * An identifier that can be used in most API calls where a `member_id` is expected. This is a string
+    * consisting of alphanumeric, `.`, `_`, `-`, or `|` characters with a maximum length of 128 characters.
+    * External IDs must be unique within the project.
+     */
     public ?string $externalId = null;
+    /**
+    * When the user lock was created, if there is one. Values conform to the RFC 3339 standard and are
+    * expressed in UTC, e.g. `2021-12-29T12:33:09Z`.
+     */
     public ?string $lockCreatedAt = null;
+    /**
+    * When the user lock expires, if there is one. Values conform to the RFC 3339 standard and are expressed
+    * in UTC, e.g. `2021-12-29T12:33:09Z`.
+     */
     public ?string $lockExpiresAt = null;
 
     public function __construct(

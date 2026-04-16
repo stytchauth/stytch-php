@@ -20,11 +20,7 @@ final class CreateConnectionResponse
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
     public int $statusCode;
-    /**
-    * The `SAML Connection` object affected by this API call. See the
-    * [SAML Connection Object](https://stytch.com/docs/b2b/api/saml-connection-object) for complete response
-    * field details.
-     */
+    /** The [SAML Connection Object](https://stytch.com/docs/b2b/api/saml-connection-object) */
     public ?\Stytch\B2B\Models\SSO\SAMLConnection $connection = null;
 
     public function __construct(
