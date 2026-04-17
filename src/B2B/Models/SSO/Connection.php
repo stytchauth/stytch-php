@@ -10,13 +10,40 @@ namespace Stytch\B2B\Models\SSO;
 
 final class Connection
 {
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public string $organizationId;
+    /** Globally unique UUID that identifies a specific External SSO Connection. */
     public string $connectionId;
+    /** Globally unique UUID that identifies a different Organization within your Project. */
     public string $externalOrganizationId;
+    /**
+    * Globally unique UUID that identifies a specific SSO connection configured for a different Organization
+    * in your Project.
+     */
     public string $externalConnectionId;
+    /** A human-readable display name for the connection. */
     public string $displayName;
+    /** The status of the connection. External connections are always active. */
     public string $status;
+    /**
+    * All Members who log in with this External connection will implicitly receive the specified Roles. See
+    * the [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about
+    * role assignment. Implicit role assignments are not supported for External connections if the underlying
+    * SSO connection is an OIDC connection.
+     */
     public array $externalConnectionImplicitRoleAssignments;
+    /**
+    * Defines the names of the groups
+    *  that grant specific role assignments. For each group-Role pair, if a Member logs in with this external
+    * connection and
+    *  belongs to the specified group, they will be granted the associated Role. See the
+    *  [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
+    * assignment.
+     */
     public array $externalGroupImplicitRoleAssignments;
 
     public function __construct(

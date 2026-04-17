@@ -10,8 +10,14 @@ namespace Stytch\Consumer\Models\RBAC;
 
 final class PolicyScope
 {
+    /** The unique identifier of the RBAC Scope, provided by the developer and intended to be human-readable. */
     public string $scope;
+    /** The description of the RBAC Scope. */
     public string $description;
+    /**
+    * A list of permissions that link a [Resource](https://stytch.com/docs/api/rbac-resource-object) to a list
+    * of actions.
+     */
     public array $permissions;
 
     public function __construct(

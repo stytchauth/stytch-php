@@ -100,6 +100,16 @@ final class Organization
     * `microsoft_oauth`, `slack_oauth`, `github_oauth`, and `hubspot_oauth`.
      */
     public array $allowedAuthMethods;
+    /**
+    * The setting that controls the MFA policy for all Members in the Organization. The accepted values are:
+    *
+    *   `REQUIRED_FOR_ALL` – All Members within the Organization will be required to complete MFA every time
+    * they wish to log in. However, any active Session that existed prior to this setting change will remain
+    * valid.
+    *
+    *   `OPTIONAL` – The default value. The Organization does not require MFA by default for all Members.
+    * Members will be required to complete MFA only if their `mfa_enrolled` status is set to true.
+     */
     public string $mfaPolicy;
     /**
     * Implicit role assignments based off of email domains.
@@ -135,6 +145,7 @@ final class Organization
     *   `NOT_ALLOWED` – the default setting, disables JIT provisioning by OAuth Tenant.
      */
     public string $oauthTenantJITProvisioning;
+    /** A list of email domains that are claimed by the Organization. */
     public array $claimedEmailDomains;
     /**
     * The authentication setting that sets the Organization's policy towards first party Connected Apps. The

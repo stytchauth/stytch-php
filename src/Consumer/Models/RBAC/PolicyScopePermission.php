@@ -10,7 +10,17 @@ namespace Stytch\Consumer\Models\RBAC;
 
 final class PolicyScopePermission
 {
+    /**
+    * A unique identifier of the RBAC Resource, provided by the developer and intended to be human-readable.
+    *
+    *   A `resource_id` is not allowed to start with `stytch`, which is a special prefix used for Stytch
+    * default Resources with reserved `resource_id`s.
+     */
     public string $resourceId;
+    /**
+    * A list of permitted actions the Scope is required to take with the provided Resource. You can use `*` as
+    * a wildcard to require a Scope permission to use all possible actions related to the Resource.
+     */
     public array $actions;
 
     public function __construct(

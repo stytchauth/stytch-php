@@ -32,6 +32,11 @@ final class RegisterStartRequest
     public ?string $overrideId = null;
     public ?string $overrideName = null;
     public ?string $overrideDisplayName = null;
+    /**
+    * If true, values in the `public_key_credential_creation_options` will be base64 URL encoded. Set this
+    * option to true when using built-in browser methods like `navigator.credentials.create` and
+    * `navigator.credentials.get`.
+     */
     public ?bool $useBase64URLEncoding = null;
 
     public function __construct(

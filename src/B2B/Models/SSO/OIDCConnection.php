@@ -10,20 +10,72 @@ namespace Stytch\B2B\Models\SSO;
 
 final class OIDCConnection
 {
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public string $organizationId;
+    /** Globally unique UUID that identifies a specific OIDC Connection. */
     public string $connectionId;
+    /**
+    * The status of the connection. The possible values are pending or active. See the
+    * [Update OIDC Connection endpoint](https://stytch.com/docs/b2b/api/update-oidc-connection) for more
+    * details.
+     */
     public string $status;
+    /** A human-readable display name for the connection. */
     public string $displayName;
+    /**
+    * The callback URL for this OIDC connection. This value will be passed to the IdP to redirect the Member
+    * back to Stytch after a sign-in attempt.
+     */
     public string $redirectURL;
+    /** The OAuth2.0 client ID used to authenticate login attempts. This will be provided by the IdP. */
     public string $clientId;
+    /**
+    * The secret belonging to the OAuth2.0 client used to authenticate login attempts. This will be provided
+    * by the IdP.
+     */
     public string $clientSecret;
+    /** A case-sensitive `https://` URL that uniquely identifies the IdP. This will be provided by the IdP. */
     public string $issuer;
+    /** The location of the URL that starts an OAuth login at the IdP. This will be provided by the IdP. */
     public string $authorizationURL;
+    /**
+    * The location of the URL that issues OAuth2.0 access tokens and OIDC ID tokens. This will be provided by
+    * the IdP.
+     */
     public string $tokenURL;
+    /**
+    * The location of the IDP's
+    * [UserInfo Endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo). This will be
+    * provided by the IdP.
+     */
     public string $userinfoURL;
+    /**
+    * The location of the IdP's JSON Web Key Set, used to verify credentials issued by the IdP. This will be
+    * provided by the IdP.
+     */
     public string $jwksURL;
+    /**
+    * Name of the IdP. Enum with possible values: `classlink`, `cyberark`, `duo`, `google-workspace`,
+    * `jumpcloud`, `keycloak`, `miniorange`, `microsoft-entra`, `okta`, `onelogin`, `pingfederate`,
+    * `rippling`, `salesforce`, `shibboleth`, or `generic`.
+    *
+    * Specifying a known provider allows Stytch to handle any provider-specific logic.
+     */
     public string $identityProvider;
+    /**
+    * A space-separated list of custom scopes that will be requested on every SSOStart call. If set, this
+    * value will replace the default set of OIDC scopes requested: `openid email profile`. Additional scopes
+    * can be requested using the `custom_scopes` query parameter on individual SSOStart calls.
+     */
     public string $customScopes;
+    /**
+    * An object that represents the attributes used to identify a Member. This object will map the IdP-defined
+    * User attributes to Stytch-specific values, which will appear on the member's Trusted Metadata.
+     */
     public ?array $attributeMapping = null;
 
     public function __construct(

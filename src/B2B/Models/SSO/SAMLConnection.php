@@ -10,25 +10,103 @@ namespace Stytch\B2B\Models\SSO;
 
 final class SAMLConnection
 {
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public string $organizationId;
+    /** Globally unique UUID that identifies a specific SAML Connection. */
     public string $connectionId;
+    /**
+    * The status of the connection. The possible values are pending or active. See the
+    * [Update SAML Connection endpoint](https://stytch.com/docs/b2b/api/update-saml-connection) for more
+    * details.
+     */
     public string $status;
+    /** A globally unique name for the IdP. This will be provided by the IdP. */
     public string $idpEntityId;
+    /** A human-readable display name for the connection. */
     public string $displayName;
+    /** The URL for which assertions for login requests will be sent. This will be provided by the IdP. */
     public string $idpSSOURL;
+    /**
+    * The URL of the Assertion Consumer Service. This value will be passed to the IdP to redirect the Member
+    * back to Stytch after a sign-in attempt. Read our
+    * [SAML Overview](https://stytch.com/docs/b2b/api/saml-overview) for more info.
+     */
     public string $acsURL;
+    /**
+    * The URL of the Audience Restriction. This value will indicate that Stytch is the intended audience of an
+    * assertion. Read our [SAML Overview](https://stytch.com/docs/b2b/api/saml-overview) for more info.
+     */
     public string $audienceUri;
+    /**
+    * A list of X.509 certificates Stytch will use to sign its assertion requests. Certificates should be
+    * uploaded to the IdP.
+     */
     public array $signingCertificates;
+    /**
+    * A list of X.509 certificates Stytch will use to validate an assertion callback. Certificates should be
+    * populated from the IdP.
+     */
     public array $verificationCertificates;
     public array $encryptionPrivateKeys;
+    /**
+    * All Members who log in with this SAML connection will implicitly receive the specified Roles. See the
+    * [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
+    * assignment.
+     */
     public array $samlConnectionImplicitRoleAssignments;
+    /**
+    * Defines the names of the SAML groups
+    *  that grant specific role assignments. For each group-Role pair, if a Member logs in with this SAML
+    * connection and
+    *  belongs to the specified SAML group, they will be granted the associated Role. See the
+    *  [RBAC guide](https://stytch.com/docs/b2b/guides/rbac/role-assignment) for more information about role
+    * assignment.
+     */
     public array $samlGroupImplicitRoleAssignments;
+    /**
+    * An alternative URL to use for the Audience Restriction. This value can be used when you wish to migrate
+    * an existing SAML integration to Stytch with zero downtime. Read our
+    * [SSO migration guide](https://stytch.com/docs/b2b/guides/migrations/additional-migration-considerations)
+    * for more info.
+     */
     public string $alternativeAudienceUri;
+    /**
+    * Name of the IdP. Enum with possible values: `classlink`, `cyberark`, `duo`, `google-workspace`,
+    * `jumpcloud`, `keycloak`, `miniorange`, `microsoft-entra`, `okta`, `onelogin`, `pingfederate`,
+    * `rippling`, `salesforce`, `shibboleth`, or `generic`.
+    *
+    * Specifying a known provider allows Stytch to handle any provider-specific logic.
+     */
     public string $identityProvider;
+    /**
+    * The NameID format the SAML Connection expects to use. Defaults to
+    * `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`.
+     */
     public string $nameidFormat;
+    /**
+    * An alternative URL to use for the `AssertionConsumerServiceURL` in SP initiated SAML AuthNRequests. This
+    * value can be used when you wish to migrate an existing SAML integration to Stytch with zero downtime.
+    * Note that you will be responsible for proxying requests sent to the Alternative ACS URL to Stytch. Read
+    * our
+    * [SSO migration guide](https://stytch.com/docs/b2b/guides/migrations/additional-migration-considerations)
+    * for more info.
+     */
     public string $alternativeAcsURL;
+    /**
+    * Determines whether IDP initiated auth is allowed for a given SAML connection. Defaults to false (IDP
+    * Initiated Auth is enabled).
+     */
     public bool $idpInitiatedAuthDisabled;
     public bool $allowGatewayCallback;
+    /**
+    * An object that represents the attributes used to identify a Member. This object will map the IdP-defined
+    * User attributes to Stytch-specific values. Required attributes: `email` and one of `full_name` or
+    * `first_name` and `last_name`.
+     */
     public ?array $attributeMapping = null;
 
     public function __construct(

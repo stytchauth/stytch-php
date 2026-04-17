@@ -22,6 +22,9 @@ class RBACOrganizations
     }
 
     /**
+        * The organization RBAC policy feature is currently in private beta and must be enabled for your
+        * Workspace. Please contact Stytch support at support@stytch.com to request access.
+        *
         * Get the active RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC
         * Policy contains the roles that have been defined specifically for that organization, allowing for
         * organization-specific permissioning models.
@@ -52,6 +55,9 @@ class RBACOrganizations
     }
 
     /**
+    * The organization RBAC policy feature is currently in private beta and must be enabled for your
+    * Workspace. Please contact Stytch support at support@stytch.com to request access.
+    *
     * Get the active RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC
     * Policy contains the roles that have been defined specifically for that organization, allowing for
     * organization-specific permissioning models.
@@ -84,6 +90,9 @@ class RBACOrganizations
     }
 
     /**
+        * The organization RBAC policy feature is currently in private beta and must be enabled for your
+        * Workspace. Please contact Stytch support at support@stytch.com to request access.
+        *
         * Set the RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC Policy
         * allows you to define roles that are specific to that organization, providing fine-grained control over
         * permissions at the organization level.
@@ -121,6 +130,9 @@ class RBACOrganizations
     }
 
     /**
+    * The organization RBAC policy feature is currently in private beta and must be enabled for your
+    * Workspace. Please contact Stytch support at support@stytch.com to request access.
+    *
     * Set the RBAC Policy for a specific Organization within your Stytch Project. An Organization RBAC Policy
     * allows you to define roles that are specific to that organization, providing fine-grained control over
     * permissions at the organization level.

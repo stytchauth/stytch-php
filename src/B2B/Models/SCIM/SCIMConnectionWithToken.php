@@ -10,14 +10,44 @@ namespace Stytch\B2B\Models\SCIM;
 
 final class SCIMConnectionWithToken
 {
+    /**
+    * Globally unique UUID that identifies a specific Organization. The `organization_id` is critical to
+    * perform operations on an Organization, so be sure to preserve this value. You may also use the
+    * organization_slug or organization_external_id here as a convenience.
+     */
     public string $organizationId;
+    /** The ID of the SCIM connection. */
     public string $connectionId;
+    /** The status of the connection. The possible values are deleted or active. */
     public string $status;
+    /** A human-readable display name for the connection. */
     public string $displayName;
+    /**
+    * Name of the IdP. Enum with possible values: `okta`, `microsoft-entra`, `cyberark`, `jumpcloud`,
+    * `onelogin`, `pingfederate`, `rippling` or `generic`.
+    *
+    * Specifying a known provider allows Stytch to handle any provider-specific logic, such as automatically
+    * appending `?aadOptscim062020` to the returned BaseURL for `microsoft-entra` SCIM Connections to
+    * [enable the SCIM 2.0 compliant flag](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/application-provisioning-config-problem-scim-compatibility#scim-20-compliance-issues-and-status).
+     */
     public string $identityProvider;
+    /**
+    * The URL supplied to the Identity Provider (IdP) alongside the bearer token enabling access to Stytch's
+    * SCIM API endpoints
+     */
     public string $baseURL;
+    /**
+    * The token supplied to the Identity Provider (IdP) alongside the base URL that grants access to Stytch's
+    * SCIM API endpoints. It should be included in HTTP authorization headers. This field is supplied only on
+    * creation of the SCIM connection.
+     */
     public string $bearerToken;
+    /**
+    * An array of SCIM group implicit role assignments. Each object in the array must contain a `group_id` and
+    * a `role_id`.
+     */
     public array $scimGroupImplicitRoleAssignments;
+    /** The bearer token expiry time. */
     public ?string $bearerTokenExpiresAt = null;
 
     public function __construct(

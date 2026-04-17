@@ -14,6 +14,7 @@ final class Policy
     public array $roles;
     /** An array of [Resource objects](https://stytch.com/docs/api/rbac-resource-object). */
     public array $resources;
+    /** An array of [Scope objects](https://stytch.com/docs/api/rbac-scope-object). */
     public array $scopes;
 
     public function __construct(
