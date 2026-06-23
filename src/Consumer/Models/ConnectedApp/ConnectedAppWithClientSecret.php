@@ -38,6 +38,7 @@ final class ConnectedAppWithClientSecret
     * for the `offline_access` scope.
      */
     public bool $bypassConsentForOfflineAccess;
+    public string $idTokenTemplateContent;
     /** The last four characters of the client secret. */
     public ?string $clientSecretLastFour = null;
     /** The last four characters of the `next_client_secret`. Null if no `next_client_secret` exists. */
@@ -61,6 +62,7 @@ final class ConnectedAppWithClientSecret
         string $accessTokenTemplateContent,
         array $postLogoutRedirectURLs,
         bool $bypassConsentForOfflineAccess,
+        string $idTokenTemplateContent,
         ?string $clientSecretLastFour = null,
         ?string $nextClientSecretLastFour = null,
         ?string $clientSecret = null,
@@ -79,6 +81,7 @@ final class ConnectedAppWithClientSecret
         $this->accessTokenTemplateContent = $accessTokenTemplateContent;
         $this->postLogoutRedirectURLs = $postLogoutRedirectURLs;
         $this->bypassConsentForOfflineAccess = $bypassConsentForOfflineAccess;
+        $this->idTokenTemplateContent = $idTokenTemplateContent;
         $this->clientSecretLastFour = $clientSecretLastFour;
         $this->nextClientSecretLastFour = $nextClientSecretLastFour;
         $this->clientSecret = $clientSecret;
@@ -107,6 +110,7 @@ final class ConnectedAppWithClientSecret
             $data['access_token_template_content'],
             $data['post_logout_redirect_urls'],
             $data['bypass_consent_for_offline_access'],
+            $data['id_token_template_content'],
             $data['client_secret_last_four'] ?? null,
             $data['next_client_secret_last_four'] ?? null,
             $data['client_secret'] ?? null,
@@ -135,6 +139,7 @@ final class ConnectedAppWithClientSecret
             'access_token_template_content' => $this->accessTokenTemplateContent,
             'post_logout_redirect_urls' => $this->postLogoutRedirectURLs,
             'bypass_consent_for_offline_access' => $this->bypassConsentForOfflineAccess,
+            'id_token_template_content' => $this->idTokenTemplateContent,
             'client_secret_last_four' => $this->clientSecretLastFour,
             'next_client_secret_last_four' => $this->nextClientSecretLastFour,
             'client_secret' => $this->clientSecret,

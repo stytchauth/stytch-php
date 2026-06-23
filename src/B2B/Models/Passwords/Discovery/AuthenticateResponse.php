@@ -53,19 +53,22 @@ final class AuthenticateResponse
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
     public int $statusCode;
+    public ?string $intermediateSessionTokenExpiresAt = null;
 
     public function __construct(
         string $requestId,
         string $emailAddress,
         string $intermediateSessionToken,
         array $discoveredOrganizations,
-        int $statusCode
+        int $statusCode,
+        ?string $intermediateSessionTokenExpiresAt = null
     ) {
         $this->requestId = $requestId;
         $this->emailAddress = $emailAddress;
         $this->intermediateSessionToken = $intermediateSessionToken;
         $this->discoveredOrganizations = $discoveredOrganizations;
         $this->statusCode = $statusCode;
+        $this->intermediateSessionTokenExpiresAt = $intermediateSessionTokenExpiresAt;
     }
 
     /**
@@ -81,7 +84,8 @@ final class AuthenticateResponse
             $data['email_address'],
             $data['intermediate_session_token'],
             isset($data['discovered_organizations']) ? array_map(fn($item) => \Stytch\B2B\Models\Discovery\DiscoveredOrganization::fromArray($item), $data['discovered_organizations']) : [],
-            $data['status_code']
+            $data['status_code'],
+            $data['intermediate_session_token_expires_at'] ?? null
         );
     }
 
@@ -98,6 +102,7 @@ final class AuthenticateResponse
             'intermediate_session_token' => $this->intermediateSessionToken,
             'discovered_organizations' => $this->discoveredOrganizations,
             'status_code' => $this->statusCode,
+            'intermediate_session_token_expires_at' => $this->intermediateSessionTokenExpiresAt,
         ];
     }
 }

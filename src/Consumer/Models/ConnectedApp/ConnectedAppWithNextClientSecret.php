@@ -41,6 +41,7 @@ final class ConnectedAppWithNextClientSecret
     * for the `offline_access` scope.
      */
     public bool $bypassConsentForOfflineAccess;
+    public string $idTokenTemplateContent;
     /** The last four characters of the `next_client_secret`. Null if no `next_client_secret` exists. */
     public ?string $nextClientSecretLastFour = null;
     public ?string $accessTokenCustomAudience = null;
@@ -62,6 +63,7 @@ final class ConnectedAppWithNextClientSecret
         string $accessTokenTemplateContent,
         array $postLogoutRedirectURLs,
         bool $bypassConsentForOfflineAccess,
+        string $idTokenTemplateContent,
         ?string $nextClientSecretLastFour = null,
         ?string $accessTokenCustomAudience = null,
         ?string $logoURL = null,
@@ -80,6 +82,7 @@ final class ConnectedAppWithNextClientSecret
         $this->accessTokenTemplateContent = $accessTokenTemplateContent;
         $this->postLogoutRedirectURLs = $postLogoutRedirectURLs;
         $this->bypassConsentForOfflineAccess = $bypassConsentForOfflineAccess;
+        $this->idTokenTemplateContent = $idTokenTemplateContent;
         $this->nextClientSecretLastFour = $nextClientSecretLastFour;
         $this->accessTokenCustomAudience = $accessTokenCustomAudience;
         $this->logoURL = $logoURL;
@@ -108,6 +111,7 @@ final class ConnectedAppWithNextClientSecret
             $data['access_token_template_content'],
             $data['post_logout_redirect_urls'],
             $data['bypass_consent_for_offline_access'],
+            $data['id_token_template_content'],
             $data['next_client_secret_last_four'] ?? null,
             $data['access_token_custom_audience'] ?? null,
             $data['logo_url'] ?? null,
@@ -136,6 +140,7 @@ final class ConnectedAppWithNextClientSecret
             'access_token_template_content' => $this->accessTokenTemplateContent,
             'post_logout_redirect_urls' => $this->postLogoutRedirectURLs,
             'bypass_consent_for_offline_access' => $this->bypassConsentForOfflineAccess,
+            'id_token_template_content' => $this->idTokenTemplateContent,
             'next_client_secret_last_four' => $this->nextClientSecretLastFour,
             'access_token_custom_audience' => $this->accessTokenCustomAudience,
             'logo_url' => $this->logoURL,

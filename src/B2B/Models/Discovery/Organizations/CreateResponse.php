@@ -62,6 +62,7 @@ final class CreateResponse
     * `member_device` response field will contain information about the member's device attributes.
      */
     public ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null;
+    public ?string $intermediateSessionTokenExpiresAt = null;
 
     public function __construct(
         string $requestId,
@@ -76,7 +77,8 @@ final class CreateResponse
         ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null,
         ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null,
         ?\Stytch\B2B\Models\Sessions\PrimaryRequired $primaryRequired = null,
-        ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null
+        ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null,
+        ?string $intermediateSessionTokenExpiresAt = null
     ) {
         $this->requestId = $requestId;
         $this->memberId = $memberId;
@@ -91,6 +93,7 @@ final class CreateResponse
         $this->mfaRequired = $mfaRequired;
         $this->primaryRequired = $primaryRequired;
         $this->memberDevice = $memberDevice;
+        $this->intermediateSessionTokenExpiresAt = $intermediateSessionTokenExpiresAt;
     }
 
     /**
@@ -114,7 +117,8 @@ final class CreateResponse
             isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
             isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
             isset($data['primary_required']) && $data['primary_required'] !== null ? \Stytch\B2B\Models\Sessions\PrimaryRequired::fromArray($data['primary_required']) : null,
-            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null,
+            $data['intermediate_session_token_expires_at'] ?? null
         );
     }
 
@@ -139,6 +143,7 @@ final class CreateResponse
             'mfa_required' => $this->mfaRequired,
             'primary_required' => $this->primaryRequired,
             'member_device' => $this->memberDevice,
+            'intermediate_session_token_expires_at' => $this->intermediateSessionTokenExpiresAt,
         ];
     }
 }

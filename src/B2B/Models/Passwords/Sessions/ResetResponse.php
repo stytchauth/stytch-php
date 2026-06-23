@@ -59,6 +59,7 @@ final class ResetResponse
     * `member_device` response field will contain information about the member's device attributes.
      */
     public ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null;
+    public ?string $intermediateSessionTokenExpiresAt = null;
 
     public function __construct(
         string $requestId,
@@ -72,7 +73,8 @@ final class ResetResponse
         int $statusCode,
         ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null,
         ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null,
-        ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null
+        ?\Stytch\Consumer\Models\DeviceInfo $memberDevice = null,
+        ?string $intermediateSessionTokenExpiresAt = null
     ) {
         $this->requestId = $requestId;
         $this->memberId = $memberId;
@@ -86,6 +88,7 @@ final class ResetResponse
         $this->memberSession = $memberSession;
         $this->mfaRequired = $mfaRequired;
         $this->memberDevice = $memberDevice;
+        $this->intermediateSessionTokenExpiresAt = $intermediateSessionTokenExpiresAt;
     }
 
     /**
@@ -108,7 +111,8 @@ final class ResetResponse
             $data['status_code'],
             isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
             isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
-            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null
+            isset($data['member_device']) && $data['member_device'] !== null ? \Stytch\Consumer\Models\DeviceInfo::fromArray($data['member_device']) : null,
+            $data['intermediate_session_token_expires_at'] ?? null
         );
     }
 
@@ -132,6 +136,7 @@ final class ResetResponse
             'member_session' => $this->memberSession,
             'mfa_required' => $this->mfaRequired,
             'member_device' => $this->memberDevice,
+            'intermediate_session_token_expires_at' => $this->intermediateSessionTokenExpiresAt,
         ];
     }
 }

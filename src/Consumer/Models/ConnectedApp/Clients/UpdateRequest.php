@@ -38,6 +38,7 @@ final class UpdateRequest
     * for the `offline_access` scope.
      */
     public ?bool $bypassConsentForOfflineAccess = null;
+    public ?string $idTokenTemplateContent = null;
 
     public function __construct(
         string $clientId,
@@ -50,7 +51,8 @@ final class UpdateRequest
         ?string $accessTokenTemplateContent = null,
         ?array $postLogoutRedirectURLs = null,
         ?string $logoURL = null,
-        ?bool $bypassConsentForOfflineAccess = null
+        ?bool $bypassConsentForOfflineAccess = null,
+        ?string $idTokenTemplateContent = null
     ) {
         $this->clientId = $clientId;
         $this->clientName = $clientName;
@@ -63,6 +65,7 @@ final class UpdateRequest
         $this->postLogoutRedirectURLs = $postLogoutRedirectURLs;
         $this->logoURL = $logoURL;
         $this->bypassConsentForOfflineAccess = $bypassConsentForOfflineAccess;
+        $this->idTokenTemplateContent = $idTokenTemplateContent;
     }
 
     /**
@@ -84,7 +87,8 @@ final class UpdateRequest
             $data['access_token_template_content'] ?? null,
             $data['post_logout_redirect_urls'] ?? null,
             $data['logo_url'] ?? null,
-            $data['bypass_consent_for_offline_access'] ?? null
+            $data['bypass_consent_for_offline_access'] ?? null,
+            $data['id_token_template_content'] ?? null
         );
     }
 
@@ -107,6 +111,7 @@ final class UpdateRequest
             'post_logout_redirect_urls' => $this->postLogoutRedirectURLs,
             'logo_url' => $this->logoURL,
             'bypass_consent_for_offline_access' => $this->bypassConsentForOfflineAccess,
+            'id_token_template_content' => $this->idTokenTemplateContent,
         ];
     }
 }
