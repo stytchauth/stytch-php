@@ -80,6 +80,7 @@ final class AuthenticateResponse
     * 2XX values equate to success, 3XX values are redirects, 4XX are client errors, and 5XX are server errors.
      */
     public int $statusCode;
+    public ?string $intermediateSessionTokenExpiresAt = null;
 
     public function __construct(
         string $requestId,
@@ -90,7 +91,8 @@ final class AuthenticateResponse
         string $providerTenantId,
         array $providerTenantIds,
         string $fullName,
-        int $statusCode
+        int $statusCode,
+        ?string $intermediateSessionTokenExpiresAt = null
     ) {
         $this->requestId = $requestId;
         $this->intermediateSessionToken = $intermediateSessionToken;
@@ -101,6 +103,7 @@ final class AuthenticateResponse
         $this->providerTenantIds = $providerTenantIds;
         $this->fullName = $fullName;
         $this->statusCode = $statusCode;
+        $this->intermediateSessionTokenExpiresAt = $intermediateSessionTokenExpiresAt;
     }
 
     /**
@@ -120,7 +123,8 @@ final class AuthenticateResponse
             $data['provider_tenant_id'],
             $data['provider_tenant_ids'],
             $data['full_name'],
-            $data['status_code']
+            $data['status_code'],
+            $data['intermediate_session_token_expires_at'] ?? null
         );
     }
 
@@ -141,6 +145,7 @@ final class AuthenticateResponse
             'provider_tenant_ids' => $this->providerTenantIds,
             'full_name' => $this->fullName,
             'status_code' => $this->statusCode,
+            'intermediate_session_token_expires_at' => $this->intermediateSessionTokenExpiresAt,
         ];
     }
 }

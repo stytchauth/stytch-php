@@ -46,6 +46,7 @@ final class AuthenticateResponse
     public ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null;
     /** MFA will not be required when authenticating impersonation tokens. */
     public ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null;
+    public ?string $intermediateSessionTokenExpiresAt = null;
 
     public function __construct(
         string $requestId,
@@ -59,7 +60,8 @@ final class AuthenticateResponse
         bool $memberAuthenticated,
         int $statusCode,
         ?\Stytch\B2B\Models\Sessions\MemberSession $memberSession = null,
-        ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null
+        ?\Stytch\B2B\Models\MfaRequired $mfaRequired = null,
+        ?string $intermediateSessionTokenExpiresAt = null
     ) {
         $this->requestId = $requestId;
         $this->memberId = $memberId;
@@ -73,6 +75,7 @@ final class AuthenticateResponse
         $this->statusCode = $statusCode;
         $this->memberSession = $memberSession;
         $this->mfaRequired = $mfaRequired;
+        $this->intermediateSessionTokenExpiresAt = $intermediateSessionTokenExpiresAt;
     }
 
     /**
@@ -95,7 +98,8 @@ final class AuthenticateResponse
             $data['member_authenticated'],
             $data['status_code'],
             isset($data['member_session']) && $data['member_session'] !== null ? \Stytch\B2B\Models\Sessions\MemberSession::fromArray($data['member_session']) : null,
-            isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null
+            isset($data['mfa_required']) && $data['mfa_required'] !== null ? \Stytch\B2B\Models\MfaRequired::fromArray($data['mfa_required']) : null,
+            $data['intermediate_session_token_expires_at'] ?? null
         );
     }
 
@@ -119,6 +123,7 @@ final class AuthenticateResponse
             'status_code' => $this->statusCode,
             'member_session' => $this->memberSession,
             'mfa_required' => $this->mfaRequired,
+            'intermediate_session_token_expires_at' => $this->intermediateSessionTokenExpiresAt,
         ];
     }
 }
